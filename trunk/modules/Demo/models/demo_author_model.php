@@ -8,7 +8,7 @@
 
 class Demo_author_model extends Base_model
 {
-	// Author tables
+	// Author tabless
 	protected $_author_table = 'module_demo_author';
 	protected $_author_lang_table = 'module_demo_author_lang';
 
