@@ -15,7 +15,7 @@
 
 		<a class="button light">
 			<i class="icon plus"></i>
-			Can access to this button
+			Can access to this buttons
 		</a>
 
 	<?php endif ;?>

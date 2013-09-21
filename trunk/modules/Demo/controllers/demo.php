@@ -9,7 +9,7 @@ class Demo extends My_Module
 
 	function index()
 	{
-		$this->template['title'] = 'Demo module title';
+		$this->template['title'] = 'Demo module titleasd';
 		$this->output('demo');
 	}
 
