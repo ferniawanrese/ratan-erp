@@ -24,12 +24,7 @@
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
-        <!-- Fav and touch icons -->
-        <link rel="shortcut icon" href="<ion:theme_url />assets/ico/favicon.ico">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<ion:theme_url />assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<ion:theme_url />assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<ion:theme_url />assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="<ion:theme_url />assets/ico/apple-touch-icon-57-precomposed.png">
+        
     </head>
     <body>
         <header>
@@ -47,23 +42,23 @@
                             <a href="<ion:home_url />" class="brand"><ion:site_title /></a>
                             <div class="nav-collapse collapse">
 
-								<!--
-									Navigation Menu
-								-->
-								<ion:tree_navigation tag="ul" class="nav" active_class="active" />
+                <!--
+                  Navigation Menu
+                -->
+                <ion:tree_navigation tag="ul" class="nav" active_class="active" />
 
-								<!--
-									Language Selector
-								-->
-								<ion:languages tag="ul" active="active" class="nav languages">
-									<li<ion:language:is_active> class="active"</ion:language:is_active>>
-									<a href="<ion:language:url />" title="<ion:language:name />">
-										<img src="<ion:theme_url />assets/images/flags/flag_<ion:language:id />.png" alt="<ion:language:name />" />
-									</a>
-									</li>
-								</ion:languages>
+                <!--
+                  Language Selector
+                -->
+                <ion:languages tag="ul" active="active" class="nav languages">
+                  <li<ion:language:is_active> class="active"</ion:language:is_active>>
+                  <a href="<ion:language:url />" title="<ion:language:name />">
+                    <img src="<ion:theme_url />assets/images/flags/flag_<ion:language:id />.png" alt="<ion:language:name />" />
+                  </a>
+                  </li>
+                </ion:languages>
 
-							</div>
+              </div>
                         </div>
                     </div>
                 </div>
