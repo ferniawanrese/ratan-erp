@@ -33,13 +33,7 @@
 			<div class="left-secondary-nav tab-content">
 				<div class="tab-pane active" id="main">
 					<h4 class="side-head">Dashboard</h4>
-					<div class="search-box">
-						<div class="input-append input-icon">
-							<input class="search-input" placeholder="Search..." type="text">
-							<i class=" icon-search"></i>
-							<button class="btn" type="button">Go!</button>
-						</div>
-					</div>
+					
 					<ul class="metro-sidenav clearfix">
 							
 							<li><span class="notify-tip">30</span><a href="#" class="brown"><i class="icon-user"></i><span>User</span></a></li>
