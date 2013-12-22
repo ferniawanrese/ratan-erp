@@ -74,18 +74,13 @@ class hrd extends CI_Controller {
 	}
 	function do_upload()
 	{
+		
 		$config['upload_path'] = './upload/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size'] = '1000000';
 		$config['max_width']  = '1024000';
 		$config['max_height']  = '768000';
-		$config['width'] = 75;
-		$config['height'] = 50;
 
-		$this->load->library('image_lib', $config);
-
-		$this->image_lib->resize();
-		
 		$this->load->library('upload', $config);
 
 		if ( ! $this->upload->do_upload())
@@ -98,7 +93,7 @@ class hrd extends CI_Controller {
 		{
 			$data = array('upload_data' => $this->upload->data());
 
-			//echo "sukses";
+			
 
 			
 		}

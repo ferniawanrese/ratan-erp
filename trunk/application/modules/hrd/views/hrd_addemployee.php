@@ -6,6 +6,7 @@
 <script src="js/bootbox.js"></script>
 <script src="js/bootstrap-fileupload.js"></script>
 <script src="js/bootstrap-datetimepicker.min.js"></script>
+
 <script type="text/javascript">
 			$(function () {
        	 	$('#employee_dob').datetimepicker({
@@ -76,7 +77,7 @@
 						</div>
 						<div class="widget-container gray ">
 							<div class="form-container">
-								<form id="stepy_form" class=" form-horizontal" enctype="multipart/form-data" >
+								<form id="stepy_form" class="form-horizontal" enctype="multipart/form-data" >
 									<fieldset title="Step 1">
 										<legend>General Information</legend>
 										<div class="control-group">
@@ -159,10 +160,14 @@
 												<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
 												</div>
 												<div>
-													<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span>
-													<input type="file" name="employee_photo" id="employee_photo"  hidden="true"/>
+													<span class="btn btn-file"><span class="fileupload-new">Select image</span>
+													<span class="fileupload-exists">Change</span>
+													<input type="file" id="userfile" name="userfile" hidden="true"/>
 													</span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+													
+													<input type = "text" name='employee_photo' id='employee_photo'>
 												</div>
+
 											</div>
 	
 									
@@ -282,6 +287,8 @@
 		</div>
 	</div>
 
+<script type="text/javascript"src="<?php echo base_url('js/ajaxfileupload.js') ?>"></script>
+
 <script>
  function submit_form() {
  	$('.bar').show();
@@ -293,12 +300,33 @@
 
         success: function(json) {
            // alert('all done');
+           ajaxFileUpload();
            $('.bar').hide();
+
             display_data();
         }
     });
 };
-</script>
+
+function ajaxFileUpload(){
+	 
+	  $.ajaxFileUpload({
+			url:'<?php echo base_url('hrd/do_upload')?>', 
+			secureuri:false,
+			fileElementId:'userfile',
+			contentType:'multipart/form-data',
+			type: 'POST',
+			dataType: 'text',
+			success: function (data, status)
+							{
+								
+							}
+			 	})
+				return false;
+            }
+    									
+	</script>
+
 
 
 				
