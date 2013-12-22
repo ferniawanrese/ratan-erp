@@ -129,7 +129,7 @@
 												</div>
 												<div>
 													<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span>
-													<input type="file" id = "userfile" name = "userfile" />
+													<input type="file" name="image_ajax" id="uploadImage"  hidden="true"/>
 													</span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
 												</div>
 											</div>
@@ -217,42 +217,6 @@
 		</div>
 	</div>
 
-<script type="text/javascript"src="<?php echo base_url('js/ajaxfileupload.js') ?>"></script>								
-	<script>
-										
-		$(':file').change(function(){
-            var file = this.files[0];
-            name = file.name;
-            size = file.size;
-            type = file.type;
 
-            if(file.name.length < 1) {
-
-            }
-            else if(file.size > 5000000) {
-                alert("File is to big");
-            }
-            else if(file.type != 'image/png' && file.type != 'image/jpg' && !file.type != 'image/gif' && file.type != 'image/jpeg' ) {
-                alert("File doesnt match png, jpg or gif");
-            }
-            else{
-
-				$.ajaxFileUpload({
-						url:"<?php echo base_url('hrd/do_upload');?>",
-						secureuri:false,
-						fileElementId:'userfile',
-						contentType:'multipart/form-data',
-						type: 'POST',
-						dataType: 'text',
-						success: function (data, status)
-							{
-								alert('uploaded');
-							}
-			 	})
-				return false;
-            }
-    	});
-										
-	</script>
 
 				
