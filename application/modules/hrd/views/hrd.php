@@ -20,7 +20,7 @@
 			<div class="row-fluid ">
 				<div class="span12">
 					<div class="primary-head">
-						<h3 class="page-header">Human Resource Development</h3>
+						<h3 class="page-header">Human Resource</h3>
 							<div class="progress progress-info progress-striped active" >
 								<div class="bar" style="width: 100%" style="display:none"> </div>
 							</div>
@@ -33,7 +33,7 @@
 					</div>
 					<ul class="breadcrumb">
 						<li><a href="<?php echo base_url('backend');?>" class="icon-home"></a><span class="divider "><i class="icon-angle-right"></i></span></li>
-						<li><a href="#">HRD</a><span class="divider"><i class="icon-angle-right"></i></span></li>
+						<li><a href="<?php echo  base_url('hrd');?>">HRD</a><span class="divider"><i class="icon-angle-right"></i></span></li>
 						<li class="active">Data</li>
 					</ul>
 
