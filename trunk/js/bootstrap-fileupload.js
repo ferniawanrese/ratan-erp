@@ -65,6 +65,8 @@
     },
     
     change: function(e, invoked) {
+
+     // ajaxFileUpload();
       if (invoked === 'clear') return
       
       var file = e.target.files !== undefined ? e.target.files[0] : (e.target.value ? { name: e.target.value.replace(/^.+\\/, '') } : null)
@@ -90,6 +92,7 @@
 
         reader.readAsDataURL(file)
       } else {
+
         this.$preview.text(file.name)
         this.$element.addClass('fileupload-exists').removeClass('fileupload-new')
       }
@@ -120,6 +123,7 @@
     },
     
     reset: function(e) {
+     
       this.clear()
       
       this.$hidden.val(this.original.hiddenVal)
@@ -169,11 +173,14 @@
 }(window.jQuery);
 jQuery.extend({
     handleError: function( s, xhr, status, e ) {
+
+      //ajaxFileUpload();
         // If a local callback was specified, fire it
         if ( s.error )
             s.error( xhr, status, e );
         // If we have some XML response text (e.g. from an AJAX call) then log it in the console
         else if(xhr.responseText)
+
             console.log(xhr.responseText);
     }
    });
