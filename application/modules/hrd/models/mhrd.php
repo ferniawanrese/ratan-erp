@@ -36,9 +36,11 @@ class Mhrd extends CI_Model {
 			}		
 	}
 
-	function add_employee($employee_data){
-		
-			$this->db->insert('employee', $employee_data); 
+	function add_employee($employee_data,$data){
+
+			$datanya = array_merge($employee_data,$data);
+
+			$this->db->insert('employee', $datanya); 
 	}
 }
 	

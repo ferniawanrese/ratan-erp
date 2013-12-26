@@ -44,7 +44,7 @@
 								<div class="span12">
 							          <div class="content-widgets gray">
 							            <div class="widget-head blue clearfix">
-							              <h3 class="pull-left">Employee Data</h3>
+							              <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;"><i class="icon-th-list"></i> Employee Data </h3>
 							            </div>
 							            <div class="widget-container">
 							            	
@@ -59,7 +59,7 @@
 
 											</div>
 							            	
-							             
+
 							            	<!-- content ajax -->
 							              	<div class = "list"></div>
 
