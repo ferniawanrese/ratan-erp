@@ -61,18 +61,18 @@ class hrd extends CI_Controller {
 	function hrd_adddata_employee (){
 
 
-		$config['file_name'] = $this->generate_code->getUID();
-		$config['upload_path'] = './upload/'.$config['file_name'];
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size'] = '1000000';
-		$config['max_width']  = '1024000';
-		$config['max_height']  = '768000';
+		$config['file_name'] 		= $this->generate_code->getUID();
+		$config['upload_path'] 		= './upload/employee_photo/'.$config['file_name'].'/';
+		$config['allowed_types'] 	= 'gif|jpg|png';
+		$config['max_size'] 		= '1024000';
+		$config['max_width']  		= '1024000';
+		$config['max_height']  		= '768000';
 		
 		$employee_hexaID = $this->generate_code->getUID();
 
 		$this->load->library('upload', $config);
 
-		$create = mkdir('./upload/'.$config['file_name'], 0777);
+		$create = mkdir($config['upload_path'], 0777);
 
 		if ( ! $this->upload->do_upload())
 		{
@@ -84,23 +84,20 @@ class hrd extends CI_Controller {
 		{
 			$data = array('upload_data' => $this->upload->data());
 
-			$additional_data = array('employee_photo' => $config['upload_path'].$config['file_name'].$data['upload_data']['file_name'],
+			$additional_data = array('employee_photo' => $config['upload_path'].$data['upload_data']['file_name'],
 										'employee_hexaID' => $employee_hexaID);
 
 			//image resize
 
-			$iconfig['image_library'] = 'GD2'; //i also wrote GD/gd2
-       	 	$iconfig['source_image']= './upload/'.$config['file_name'].'/'.$data['upload_data']['orig_name'];
-       	 	$iconfig['create_thumb'] = TRUE;
-       	 	$iconfig['width']     = 40;
-       		$iconfig['height']    = 40;
-       		$iconfig['width']     = 100;
-       		$iconfig['height']    = 100;
-       	 	$iconfig['thumb_marker'] = '-'.$iconfig['width'].'x'.$iconfig['height'];
+			$iconfig['image_library'] 	= 'GD2'; //i also wrote GD/gd2
+       	 	$iconfig['source_image']	= $config['upload_path'].$data['upload_data']['orig_name'];
+       	 	$iconfig['create_thumb'] 	= TRUE;
+       		$iconfig['width']     		= 100;
+       		$iconfig['height']    		= 100;
+       	 	$iconfig['thumb_marker'] 	= '-'.$iconfig['width'].'x'.$iconfig['height'];
        	 	
-
-       					$this->load->library('image_lib');
-                        $this->image_lib->initialize($iconfig);
+       			$this->load->library('image_lib');
+                $this->image_lib->initialize($iconfig);
 
                 if ( ! $this->image_lib->resize())
                 {
