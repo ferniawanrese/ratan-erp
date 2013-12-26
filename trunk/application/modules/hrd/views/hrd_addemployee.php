@@ -3,7 +3,6 @@
 
 <script src="js/jquery.validate.js"></script>
 <script src="js/stepy.jquery.js"></script>
-<script src="js/bootbox.js"></script>
 <script src="js/bootstrap-fileupload.js"></script>
 <script src="js/bootstrap-datetimepicker.min.js"></script>
 
@@ -49,15 +48,15 @@
                         $('#stepy_form div.stepy-error').append(error);
                     },
                     rules: {
-                        'name': 'required',
-                        'email': 'required',
+                        'employee_name': 'required',	
+                        'employee_email': 'required',
                     },
                     messages: {
-                        'name': {
-                           // required: 'Name field is required!'
+                        'employee_name': {
+                            required: 'Name field is required!'
                         },
-                        'email': {
-                           // required: 'Email field is requerid!'
+                        'employee_email': {
+                            required: 'Email field is requerid!'
                         },
                     }
                 });
@@ -162,12 +161,9 @@
 												<div>
 													<span class="btn btn-file"><span class="fileupload-new">Select image</span>
 													<span class="fileupload-exists">Change</span>
-													<input type="file" id="userfile" name="userfile" hidden="true"/>
+													<input type="file" id="userfile" name="userfile" />
 													</span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-													
-													<input type = "text" name='employee_photo' id='employee_photo'>
 												</div>
-
 											</div>
 	
 									
@@ -268,7 +264,8 @@
 											</div>
 										</div>
 										<div class = "pull-right">
-											<a class="btn btn-success" onclick="submit_form()"> Finish!</a>
+											<!--<a class="btn btn-success" onclick="submit_form()"> Finish!</a>-->
+											<a  class="btn btn-success" id="multi-post" >Finish</a>
 										</div>
 									</fieldset >
 									
@@ -287,46 +284,110 @@
 		</div>
 	</div>
 
-<script type="text/javascript"src="<?php echo base_url('js/ajaxfileupload.js') ?>"></script>
+	
 
+<!-- script ajax save -->
 <script>
- function submit_form() {
- 	$('.bar').show();
-    $.ajax({
-        url: '<?php echo base_url('hrd/hrd_adddata_employee');?>',
-        cache: false,
-        type: 'POST',
-        data : $('#stepy_form').serialize(),
 
-        success: function(json) {
-           // alert('all done');
-           ajaxFileUpload();
-           $('.bar').hide();
+$(document).ready(function()
+{
 
-            display_data();
-        }
-    });
-};
+	function getDoc(frame) {
+	     var doc = null;
+	     
+	     // IE8 cascading access check
+	     try {
+	         if (frame.contentWindow) {
+	             doc = frame.contentWindow.document;
+	         }
+	     } catch(err) {
+	     }
 
-function ajaxFileUpload(){
-	 
-	  $.ajaxFileUpload({
-			url:'<?php echo base_url('hrd/do_upload')?>', 
-			secureuri:false,
-			fileElementId:'userfile',
-			contentType:'multipart/form-data',
-			type: 'POST',
-			dataType: 'text',
-			success: function (data, status)
-							{
-								
-							}
-			 	})
-				return false;
-            }
-    									
-	</script>
+	     if (doc) { // successful getting content
+	         return doc;
+	     }
+
+	     try { // simply checking may throw in ie8 under ssl or mismatched protocol
+	         doc = frame.contentDocument ? frame.contentDocument : frame.document;
+	     } catch(err) {
+	         // last attempt
+	         doc = frame.document;
+	     }
+	     return doc;
+	}
+
+	$("#stepy_form").submit(function(e)
+	{
+			$('.bar').show();
+
+		var formObj = $(this);
+		var formURL = "<?php echo base_url('hrd/hrd_adddata_employee')?>";
+
+	if(window.FormData !== undefined)  // for HTML5 browsers
+	//	if(false)
+		{
+		
+			var formData = new FormData(this);
+			
+			$.ajax({
+	        	url: formURL,
+		        type: 'POST',
+				data:  formData,
+				mimeType:"multipart/form-data",
+				contentType: false,
+	    	    cache: false,
+	        	processData:false,
+				success: function(data, textStatus, jqXHR)
+			    {
+						$('.bar').hide();
+						display_data();
+			    },
+			  	error: function(jqXHR, textStatus, errorThrown) 
+		    	{
+
+					//$("#multi-msg").html('<pre><code class="prettyprint">AJAX Request Failed<br/> textStatus='+textStatus+', errorThrown='+errorThrown+'</code></pre>');
+		    	} 	        
+		   });
+	        e.preventDefault();
+	   }
+	   else  //for olden browsers
+		{
+			//generate a random id
+			var  iframeId = 'unique' + (new Date().getTime());
+
+			//create an empty iframe
+			var iframe = $('<iframe src="javascript:false;" name="'+iframeId+'" />');
+
+			//hide it
+			iframe.hide();
+
+			//set form target to iframe
+			formObj.attr('target',iframeId);
+
+			//Add iframe to body
+			iframe.appendTo('body');
+			iframe.load(function(e)
+			{
+				var doc = getDoc(iframe[0]);
+				var docRoot = doc.body ? doc.body : doc.documentElement;
+				var data = docRoot.innerHTML;
+				$("#multi-msg").html('<pre><code>'+data+'</code></pre>');
+			});
+		
+		}
+
+	});
 
 
+	$("#multi-post").click(function()
+		{
+			
+		$("#stepy_form").submit();
+		
+	});
 
-				
+});
+
+</script>
+
+<!-- end ajax save -->
