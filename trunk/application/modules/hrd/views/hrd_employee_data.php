@@ -13,7 +13,7 @@
 				                  </tr>
 				                </thead>
 				                <tbody>
-
+				                <?php if($employee_data):?>		
 				                <?php $i=1;foreach($employee_data as $keys):?>
 				                  <tr>
 				                    <td><a href="#"><?php echo $i;?></a></td>
@@ -28,14 +28,35 @@
 				                    <td class="center"><div class="btn-toolbar row-action">
 				                        <div class="btn-group">
 				                          <button class="btn btn-info" title="Edit"><i class="icon-edit"></i></button>
-				                          <button class="btn btn-danger" title="Delete"><i class="icon-remove"></i></button>
+				                          <button class="btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['employee_hexaID'];?>")><i class="icon-remove"></i></button>
 				                          <button class="btn btn-inverse" title="Suspend"><i class=" icon-remove-sign"></i></button>
 				                          <button class="btn btn-success" title="Approve"><i class=" icon-ok"></i></button>
 				                        </div>
 				                      </div></td>
 				                  </tr>
 				                <?php $i++;endforeach;?>
+				            	<?php else:?>
+				            	 <tr>
+				                    <td colspan='9'><center>no data</center></td>
+				                  </tr>
+				          		<?php endif;?>
 				                </tbody>
 				                <tfoot>
 				                </tfoot>
 </table>
+
+<script>
+function delete_post(a){
+
+	$.ajax({
+				url: "<?php echo base_url('hrd/hrd_delete_employee/')?>/" + a,
+		        
+				success: function(data)
+			    {
+						$('.bar').hide();
+						display_data();
+			    }
+
+	});
+}
+</script>

@@ -9,7 +9,7 @@ class Mhrd extends CI_Model {
 	
 	function employee_data(){
 		
-		
+		$this->db->where('deleted', '0');
 			
 		$query = $this->db->get('employee');
 
@@ -34,6 +34,18 @@ class Mhrd extends CI_Model {
 			{
 				return FALSE;
 			}		
+	}
+
+	function employee_delete($employee_hexaID){
+		
+		$data = array(
+               'deleted' => '1'              
+            );
+
+		$this->db->where('employee_hexaID', $employee_hexaID);
+		$this->db->update('employee', $data); 
+
+
 	}
 
 	function add_employee($employee_data,$data){
