@@ -122,6 +122,13 @@ class hrd extends CI_Controller {
 
 	}
 
+
+	function hrd_delete_employee($employee_hexaID){
+
+		$this->Mhrd->employee_delete($employee_hexaID);
+		
+	}
+
 	function do_upload()
 	{
 		

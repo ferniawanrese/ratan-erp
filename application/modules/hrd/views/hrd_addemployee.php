@@ -98,7 +98,7 @@
 											<label class="control-label">Department</label>
 											<div class="controls">
 												<input name="employee_divisionID" id="employee_divisionID" type="text"/>
-												<button class="alert-box btn"><i class="icon-plus ">
+												<!--<button class="alert-box btn"><i class="icon-plus ">-->
 												</i>New Department</button>
 											</div>
 										</div>
@@ -106,7 +106,7 @@
 											<label class="control-label">Position</label>
 											<div class="controls">
 												<input name="employee_positionID" type="text"/>
-												<button class="alert-box btn"><i class="icon-plus ">
+												<!--<button class="alert-box btn"><i class="icon-plus ">-->
 												</i>New Position</button>
 											</div>
 										</div>
