@@ -87,7 +87,7 @@ function display_data(){
 
 	$.ajax({
 				
-				url: "<?php echo base_url('hrd/hrd_employe_data/');?>",
+				url: "<?php echo base_url('hrd/hrd_employe_viewall/');?>",
 				success: function(data){     
 
 					$( ".list" ).html(data); 

@@ -78,18 +78,21 @@
 							<div class="form-container">
 								<form id="stepy_form" class="form-horizontal" enctype="multipart/form-data" >
 									<fieldset title="Step 1">
+
+										<input name="employee_hexaID" type="hidden" value = "<?php if (isset($employee_data_detail[0]['employee_hexaID'])) {echo $employee_data_detail[0]['employee_hexaID'];}?>"/>
+
 										<legend>General Information</legend>
 										<div class="control-group">
 											<label class="control-label">Name</label>
 											<div class="controls">
-												<input name="employee_name" id = "employee_name" type="text"/>
+												<input name="employee_name" id = "employee_name" type="text" value = "<?php if (isset($employee_data_detail[0]['employee_name'])) {echo $employee_data_detail[0]['employee_name'];}?>"/>
 											</div>
 										</div>
 										
 										<div class="control-group">
 											<label class="control-label">Email Address</label>
 											<div class="controls">
-												<input name="employee_email" id = "employee_email" type="email"/>
+												<input name="employee_email" id = "employee_email" type="email" value = "<?php if (isset($employee_data_detail[0]['employee_email'])) {echo $employee_data_detail[0]['employee_email'];}?>"/>
 												<button class="alert-box btn"><i class="icon-plus ">
 												</i>Add User</button>
 											</div>
@@ -97,7 +100,7 @@
 										<div class="control-group">
 											<label class="control-label">Department</label>
 											<div class="controls">
-												<input name="employee_divisionID" id="employee_divisionID" type="text"/>
+												<input name="employee_divisionID" id="employee_divisionID" type="text" value = "<?php if (isset($employee_data_detail[0]['employee_divisionID'])) {echo $employee_data_detail[0]['employee_divisionID'];}?>"/>
 												<!--<button class="alert-box btn"><i class="icon-plus ">-->
 												</i>New Department</button>
 											</div>
@@ -105,7 +108,7 @@
 										<div class="control-group">
 											<label class="control-label">Position</label>
 											<div class="controls">
-												<input name="employee_positionID" type="text"/>
+												<input name="employee_positionID" type="text" value = "<?php if (isset($employee_data_detail[0]['employee_positionID'])) {echo $employee_data_detail[0]['employee_positionID'];}?>"/>
 												<!--<button class="alert-box btn"><i class="icon-plus ">-->
 												</i>New Position</button>
 											</div>
@@ -113,39 +116,39 @@
 										<div class="control-group">
 											<label class="control-label">Manager</label>
 											<div class="controls">
-												<input name="employee_managerID" type="text"/>
+												<input name="employee_managerID" type="text" value = "<?php if (isset($employee_data_detail[0]['employee_managerID'])) {echo $employee_data_detail[0]['employee_managerID'];}?>"/>
 												
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Badge</label>
 											<div class="controls">
-												<input name="employee_badge" type="text"/>
+												<input name="employee_badge" type="text" value = "<?php if (isset($employee_data_detail[0]['employee_badge'])) {echo $employee_data_detail[0]['employee_badge'];}?>"/>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Work Phone</label>
 											<div class="controls">
-												<input name="employee_phone" type="text"/>
+												<input name="employee_phone" type="text" value = "<?php if (isset($employee_data_detail[0]['employee_phone'])) {echo $employee_data_detail[0]['employee_phone'];}?>"/>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Work Mobile</label>
 											<div class="controls">
-												<input name="employee_mobilephone" type="text"/>
+												<input name="employee_mobilephone" type="text" value = "<?php if (isset($employee_data_detail[0]['employee_mobilephone'])) {echo $employee_data_detail[0]['employee_mobilephone'];}?>"/>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Home Address</label>
 											<div class="controls">
-												<input name="employee_address" type="text"/>
+												<input name="employee_address" type="text" value = "<?php if (isset($employee_data_detail[0]['employee_address'])) {echo $employee_data_detail[0]['employee_address'];}?>"/>
 											</div>
 										</div>
 										
 										<div class="control-group">
 											<label class="control-label">Work Location</label>
 											<div class="controls">
-												<input name="employee_worklocationID" type="text"/>
+												<input name="employee_worklocationID" type="text" value = "<?php if (isset($employee_data_detail[0]['employee_worklocationID'])) {echo $employee_data_detail[0]['employee_worklocationID'];}?>"/>
 											</div>
 										</div>
 										<div class="control-group">
@@ -154,7 +157,7 @@
 										
 											<div class="fileupload fileupload-new" data-provides="fileupload">
 												<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-													<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA" alt="img"/>
+													<img src="<?php if (isset($employee_data_detail[0]['employee_photo'])) {echo base_url($employee_data_detail[0]['employee_photo']);}?>" alt="img"/>
 												</div>
 												<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
 												</div>
@@ -165,8 +168,6 @@
 													</span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
 												</div>
 											</div>
-	
-									
 											</div>
 										</div>
 									</fieldset>
@@ -321,7 +322,7 @@ $(document).ready(function()
 			$('.bar').show();
 
 		var formObj = $(this);
-		var formURL = "<?php echo base_url('hrd/hrd_adddata_employee')?>";
+		var formURL = "<?php echo base_url('hrd/hrd_save_employee')?>";
 
 	if(window.FormData !== undefined)  // for HTML5 browsers
 	//	if(false)
