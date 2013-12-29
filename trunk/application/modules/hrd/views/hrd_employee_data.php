@@ -27,7 +27,7 @@
 				                    <td class="center"><span class="label label-success">New</span> <span class="label label-info">Pending</span></td>
 				                    <td class="center"><div class="btn-toolbar row-action">
 				                        <div class="btn-group">
-				                          <button class="btn btn-info" title="Edit"><i class="icon-edit"></i></button>
+				                          <button class="btn btn-info" title="Edit" onclick=edit_employee("<?php echo $keys['employee_hexaID'];?>")><i class="icon-edit"></i></button>
 				                          <button class="btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['employee_hexaID'];?>")><i class="icon-remove"></i></button>
 				                          <button class="btn btn-inverse" title="Suspend"><i class=" icon-remove-sign"></i></button>
 				                          <button class="btn btn-success" title="Approve"><i class=" icon-ok"></i></button>
@@ -58,5 +58,21 @@ function delete_post(a){
 			    }
 
 	});
+}
+
+function edit_employee(a){
+
+	$('.bar').show();
+
+	$.ajax({
+				
+				url: "<?php echo base_url('hrd/hrd_addemployee/');?>/" + a,
+				success: function(data){     
+
+					$( ".list" ).html(data); 
+					$('.bar').hide();
+				}  
+			});
+
 }
 </script>

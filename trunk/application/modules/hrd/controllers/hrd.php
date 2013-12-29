@@ -50,7 +50,7 @@ class hrd extends CI_Controller {
 		
 	}
 
-	function hrd_employe_data(){
+	function hrd_employe_viewall(){
 
 		$data['employee_data'] = $this->Mhrd->employee_data();
 
@@ -58,7 +58,7 @@ class hrd extends CI_Controller {
 
 	}
 
-	function hrd_adddata_employee (){
+	function hrd_save_employee (){
 
 
 		$config['file_name'] 		= $this->generate_code->getUID();
@@ -111,10 +111,11 @@ class hrd extends CI_Controller {
 		
 	}
 
-	function hrd_addemployee(){
+	function hrd_addemployee($employee_hexaID= null){
 
-		$data['employee_data'] = $this->Mhrd->employee_data();
-
+		
+		$data['employee_data_detail'] = $this->Mhrd->employee_data_detail($employee_hexaID);
+		
 		$data['country'] = $this->Mhrd->get_country();
 
 

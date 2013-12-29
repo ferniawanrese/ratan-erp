@@ -8,6 +8,7 @@ class Mhrd extends CI_Model {
 	
 	
 	function employee_data(){
+
 		
 		$this->db->where('deleted', '0');
 			
@@ -22,6 +23,26 @@ class Mhrd extends CI_Model {
 				return FALSE;
 			}		
 	}
+
+	function employee_data_detail($employee_hexaID = null){
+
+		
+		$this->db->where('employee_hexaID', $employee_hexaID);
+		
+		$this->db->where('deleted', '0');
+			
+		$query = $this->db->get('employee');
+
+			//if ($query->num_rows())
+			//{
+				return $query->result_array();
+			//}
+			//else
+			//{
+			//	return FALSE;
+			//}		
+	}
+
 	function get_country(){
 		
 		$query = $this->db->get('countries');
