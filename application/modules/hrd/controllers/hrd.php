@@ -58,67 +58,64 @@ class hrd extends CI_Controller {
 
 	}
 
-	function hrd_save_employee (){
+	function hrd_save_employee ($action){
 
+		//check update or insert
 
-		$config['file_name'] 		= $this->generate_code->getUID();
-		$config['upload_path'] 		= './upload/employee_photo/'.$config['file_name'].'/';
-		$config['allowed_types'] 	= 'gif|jpg|png';
-		$config['max_size'] 		= '1024000';
-		$config['max_width']  		= '1024000';
-		$config['max_height']  		= '768000';
-		
+		if($action == "insert"){
+
 		$employee_hexaID = $this->generate_code->getUID();
 
-		$this->load->library('upload', $config);
+		}
 
-		$create = mkdir($config['upload_path'], 0777);
+		if($action == "update"){
 
-		if ( ! $this->upload->do_upload())
-		{
-			$error = array('error' => $this->upload->display_errors());
-			$additional_data = array('employee_photo' => '');
+		$employee_hexaID = $this->input->post('employee_hexaID');
 
 		}
-		else
-		{
-			$data = array('upload_data' => $this->upload->data());
 
-			$additional_data = array('employee_photo' => $config['upload_path'].$data['upload_data']['file_name'],
-										'employee_hexaID' => $employee_hexaID);
+		//upload if image change or new image
 
-			//image resize
+		if($this->input->post('employee_photo')==""){
 
-			$iconfig['image_library'] 	= 'GD2'; //i also wrote GD/gd2
-       	 	$iconfig['source_image']	= $config['upload_path'].$data['upload_data']['orig_name'];
-       	 	$iconfig['create_thumb'] 	= TRUE;
-       		$iconfig['width']     		= 100;
-       		$iconfig['height']    		= 100;
-       	 	$iconfig['thumb_marker'] 	= '-'.$iconfig['width'].'x'.$iconfig['height'];
-       	 	
-       			$this->load->library('image_lib');
-                $this->image_lib->initialize($iconfig);
-
-                if ( ! $this->image_lib->resize())
-                {
-                    echo $this->image_lib->display_errors();
-                }
+			$config['file_name'] 		= $this->generate_code->getUID();
+			$config['upload_path'] 		= './upload/employee_photo/'.$employee_hexaID.'/';
+			$config['allowed_types'] 	= 'gif|jpg|png';
+			$config['max_size'] 		= '1024000';
+			$config['max_width']  		= '1024000';
+			$config['max_height']  		= '768000';
 			
-			// end image resize
+			$this->load->library('upload', $config);
+
+			$create = mkdir($config['upload_path'], 0777);
+
 		}
 
-		$this->Mhrd->add_employee($this->input->post(),$additional_data);
+		//---
+
+		
+
+		$this->Mhrd->save_employee($this->input->post(),$additional_data);
 		
 	}
 
+	
 	function hrd_addemployee($employee_hexaID= null){
 
-		
 		$data['employee_data_detail'] = $this->Mhrd->employee_data_detail($employee_hexaID);
 		
 		$data['country'] = $this->Mhrd->get_country();
 
+		if($employee_hexaID == null ){
 
+			$data['action'] = "insert";
+
+		}else{
+
+			$data['action'] = "update";
+		}
+
+		
 		$this->parser->parse('hrd_addemployee', $data);
 
 	}

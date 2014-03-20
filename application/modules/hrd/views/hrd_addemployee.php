@@ -68,7 +68,7 @@
                 });
             });
  </script>
-
+<input type = 'hidden' name='action' id = 'action' value = '<?php echo $action;?>'>
 					<div class="stepy-widget">
 						<div class="widget-head clearfix orange">
 							<div id="top_tabby" class="pull-right">
@@ -154,7 +154,7 @@
 										<div class="control-group">
 											<label class="control-label">Photo</label>
 											<div class="controls">
-										
+											<input name="employee_photo" id = "employee_photo" type="text" value = "<?php if (isset($employee_data_detail[0]['employee_photo'])) {echo $employee_data_detail[0]['employee_photo'];}?>"/>
 											<div class="fileupload fileupload-new" data-provides="fileupload">
 												<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
 													<img src="<?php if (isset($employee_data_detail[0]['employee_photo'])) {echo base_url($employee_data_detail[0]['employee_photo']);}?>" alt="img"/>
@@ -320,9 +320,9 @@ $(document).ready(function()
 	$("#stepy_form").submit(function(e)
 	{
 			$('.bar').show();
-
+		var action = document.getElementById('action').value;
 		var formObj = $(this);
-		var formURL = "<?php echo base_url('hrd/hrd_save_employee')?>";
+		var formURL = "<?php echo base_url('hrd/hrd_save_employee/')?>" + "/" + action;
 
 	if(window.FormData !== undefined)  // for HTML5 browsers
 	//	if(false)
@@ -387,8 +387,14 @@ $(document).ready(function()
 		
 	});
 
+
 });
+
+function do_update_image(){
+	document.getElementById('employee_photo').value = '';
+}
 
 </script>
 
 <!-- end ajax save -->
+

@@ -24,7 +24,7 @@ class Mhrd extends CI_Model {
 			}		
 	}
 
-	function employee_data_detail($employee_hexaID = null){
+	function employee_data_detail($employee_hexaID){
 
 		
 		$this->db->where('employee_hexaID', $employee_hexaID);
@@ -33,14 +33,16 @@ class Mhrd extends CI_Model {
 			
 		$query = $this->db->get('employee');
 
-			//if ($query->num_rows())
-			//{
+			if ($query->num_rows())
+			{
 				return $query->result_array();
-			//}
-			//else
-			//{
-			//	return FALSE;
-			//}		
+
+			}
+			else
+			{
+				return FALSE;
+			}	
+				
 	}
 
 	function get_country(){
@@ -69,11 +71,12 @@ class Mhrd extends CI_Model {
 
 	}
 
-	function add_employee($employee_data,$data){
+	function save_employee($employee_data,$data){
 
-			$datanya = array_merge($employee_data,$data);
+				$datanya = array_merge($employee_data,$data);
 
-			$this->db->insert('employee', $datanya); 
+				$this->db->insert('employee', $datanya); 
+
 	}
 }
 	
