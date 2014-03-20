@@ -55,7 +55,7 @@
 												<input class="search-input" type="text" placeholder="Search...">
 												<i class=" icon-search"></i>
 												<button class="btn" type="button">Go!</button>
-												<button class="btn btn-success" type="button" onclick = "add_employee()">Add Employee</button>
+												<button class="btn btn-warning" type="button" onclick = "add_employee()">Add Employee</button>
 
 											</div>
 							            	

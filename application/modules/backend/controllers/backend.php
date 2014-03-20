@@ -45,6 +45,8 @@ class backend extends CI_Controller {
 		
 		$output['data']['employee_name'] = $this->session->userdata('employee_name');
 		
+		$output['data']['userdata'] = $this->Mbackend->get_user($this->session->userdata('employee_hexaID'));
+				
 		$output['content'] = "backend/backend";
 		
 		$this->load->view('template', $output);

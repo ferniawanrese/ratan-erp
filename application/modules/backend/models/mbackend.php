@@ -25,6 +25,21 @@ class Mbackend extends CI_Model {
 				return FALSE;
 			}		
 	}
+	
+	function get_user($employee_hexaID){
+		
+		$this->db->where('employee_hexaID',$employee_hexaID);
+		$query = $this->db->get('employee');
+			
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
 }
 	
 ?>

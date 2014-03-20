@@ -1,9 +1,9 @@
 <!-- ALERT -->
-			<div class = "alert_message">
-			<div class="alert alert-error">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<i class="icon-exclamation-sign"></i><strong>Warning!</strong> Best check yo self, you're not looking too good.
-			</div>
+			<div class="alert_message">
+				<div class="alert alert-error alert-warning alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert"></button>
+					<i class="icon-exclamation-sign"></i><strong>Warning!</strong> Best check yo self, you're not looking too good.
+				</div>
 			</div>
 			
 			<div class="row-fluid ">
