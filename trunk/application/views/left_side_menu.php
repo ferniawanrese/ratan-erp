@@ -1,15 +1,15 @@
 <div class="leftbar leftbar-close clearfix">
-		<div class="admin-info clearfix">
-			<div class="admin-thumb">
-				<img src="upload/employee_image/nurjamilah.jpg" alt="some_text">
+		<div class="admin-info clearfix ">
+			<div class=" col-md-6">		
+				<img src="<?php echo base_url($userdata[0]['employee_photo']);?>" class = "responsive">
 			</div>
-			<div class="admin-meta">
-				<ul>
-					<li class="admin-username"><?php echo $employee_name;?></li>
-					<li><a href="#">Edit Profile</a></li>
-					<li><a href="#">View Profile </a><a href="#"><i class="icon-lock"></i> Logout</a></li>
-				</ul>
-			</div>
+			
+			<ul >
+				<li class="admin-username"><?php echo $employee_name;?></li>
+				<li><a href="#">Edit Profile</a></li>
+				<li><a href="#">View Profile </a><a href="#"><i class="icon-lock"></i> Logout</a></li>
+			</ul>
+			
 		</div>
 		
 		<div class="left-nav clearfix">
