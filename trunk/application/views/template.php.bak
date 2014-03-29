@@ -12,7 +12,7 @@
 	
 		<div class="container-fluid">
 		
-		<?php $this->load->view('main_menu',$data);?>
+		<?php $this->load->view('mainmenu',$data);?>
 		
 		<?php $this->load->view($content, $data);?>
 		

@@ -1,3 +1,5 @@
+			<?php //print_r($this->session->all_userdata());?>
+			
 			<!--
 			<div class="row-fluid ">
 				<div class="span3">
