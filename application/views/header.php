@@ -27,7 +27,6 @@
 
 <!--============ javascript ===========-->
 <script src="js/jquery.js"></script>
-<script src="js/jquery-ui-1.10.1.custom.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/custom.js"></script>
 </head>

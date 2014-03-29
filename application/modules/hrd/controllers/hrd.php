@@ -29,6 +29,7 @@ class hrd extends CI_Controller {
 		$this->load->model('Mhrd');  
 		$this->load->library('encrypt');
 		$this->load->library('generate_code');
+		$this->load->library('core');
 		$this->load->library('image_lib');
 		$this->load->library('parser');
 		$this->load->library('session');
