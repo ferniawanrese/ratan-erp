@@ -30,7 +30,7 @@
 | This route indicates which controller class should be loaded if the
 | URI contains no data. In the above example, the "welcome" class
 | would be loaded.
-|
+| 
 |	$route['404_override'] = 'errors/page_missing';
 |
 | This route will tell the Router what URI segments to use if those provided
@@ -38,8 +38,44 @@
 |
 */
 
+// defaults
 $route['default_controller'] = "welcome";
+$route['scaffolding_trigger'] = 'scaf';
 $route['404_override'] = '';
+
+
+// admin and modules
+$handle = opendir(APPPATH.'modules');
+if ($handle)
+{
+	while ( false !== ($module = readdir($handle)) )
+	{
+		// make sure we don't map silly dirs like .svn, or . or ..
+		
+		if (substr($module, 0, 1) != ".")
+		{
+			if ( file_exists(APPPATH.'modules/'.$module.'/'.$module.'_routes.php') )
+			{
+				include(APPPATH.'modules/'.$module.'/'.$module.'_routes.php');
+			}
+
+			if ( file_exists(APPPATH.'modules/'.$module.'/controllers/admin.php') )
+			{
+				$route['admin/'.$module] = $module.'/admin';
+				$route['admin/'.$module.'/(.*)'] = $module.'/admin/$1';
+			}
+
+			if ( file_exists(APPPATH.'modules/'.$module.'/controllers/'.$module.'.php') )
+			{
+				$route[$module] = $module;
+				$route[$module.'/(.*)'] = $module.'/$1';
+			}
+		}
+	}
+}
+
+// cms
+$route['(:any)'] = 'page/pages/$1';
 
 
 /* End of file routes.php */

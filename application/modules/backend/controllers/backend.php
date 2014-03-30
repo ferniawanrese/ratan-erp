@@ -6,14 +6,11 @@ class backend extends CI_Controller {
 	{
 		parent::__construct();
 		
-		
 		$this->load->model('Mbackend');
-		$this->load->library('parser');
 		$this->load->helper('form');
 		$this->load->database();
 		$this->load->library('session');
 		$this->load->helper('url');  
-		$this->load->library('encrypt');
 		$this->load->library('core');
 		$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
@@ -29,10 +26,6 @@ class backend extends CI_Controller {
 		
 		$output['data']['main_menu'] = $this->Mbackend->cek_menu($this->session->userdata('employee_hexaID'));
 		
-		$output['data']['employee_name'] = $this->session->userdata('employee_name');
-		
-		$output['data']['userdata'] = $this->Mbackend->get_user($this->session->userdata('employee_hexaID'));
-				
 		$output['content'] = "backend/backend";
 		
 		$this->load->view('template', $output);

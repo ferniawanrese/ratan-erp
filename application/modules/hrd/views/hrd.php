@@ -1,14 +1,4 @@
 
-		<?php $this->load->view('header');?>
-
-<div class="layout">
-
-		<?php $this->load->view('top_navbar');?>
-	
-		<?php $this->load->view('left_side_menu');?>
-		
-	<div class="main-wrapper">
-		<div class="container-fluid">
 		
 			<!-- ALERT -->
 			<div class = "alert_message">
@@ -21,9 +11,14 @@
 				<div class="span12">
 					<div class="primary-head">
 						<h3 class="page-header">Human Resource</h3>
-							<div class="progress progress-info progress-striped active" >
-								<div class="bar" style="width: 100%" style="display:none"> </div>
-							</div>
+						
+						<div class="progress progress-striped active">
+						  <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+							<span class="sr-only">45% Complete</span>
+						  </div>
+						</div>
+	
+							
 						<ul class="top-right-toolbar">
 							<li><a data-toggle="dropdown" class="dropdown-toggle blue-violate" href="#" title="Users"><i class="icon-user"></i></a>
 							</li>
@@ -49,13 +44,20 @@
 							            <div class="widget-container">
 							            	
 							           		<!-- searching -->
+											
+											<div class="col-lg-4">
+												<div class="input-group">
+												  <input type="text" class="form-control" id ="search" name ="search" placeholder="Search..">
+												  <span class="input-group-btn">
+													<button class="btn btn-default" type="button">Go!</button>
+												  </span>
+												</div><!-- /input-group -->
+											</div><!-- /.col-lg-6 -->
 
 								            <div class="input-append input-icon">
 
-												<input class="search-input" type="text" placeholder="Search...">
-												<i class=" icon-search"></i>
-												<button class="btn" type="button">Go!</button>
-												<button class="btn btn-warning" type="button" onclick = "add_employee()">Add Employee</button>
+												
+												<button class="btn btn-warning icon-plus" type="button" onclick = "add_employee()">Add Employee</button>
 
 											</div>
 							            	
@@ -72,12 +74,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</div>
-
-<?php $this->load->view('footer');?>
-
+		
 <script>
 display_data();
 
@@ -87,7 +84,7 @@ function display_data(){
 
 	$.ajax({
 				
-				url: "<?php echo base_url('hrd/hrd_employe_viewall/');?>",
+				url: "<?php echo base_url('hrd/hrd_employe_data/');?>",
 				success: function(data){     
 
 					$( ".list" ).html(data); 

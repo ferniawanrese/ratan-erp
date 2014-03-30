@@ -31,7 +31,6 @@ class hrd extends CI_Controller {
 		$this->load->library('generate_code');
 		$this->load->library('core');
 		$this->load->library('image_lib');
-		$this->load->library('parser');
 		$this->load->library('session');
 		$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
@@ -45,17 +44,19 @@ class hrd extends CI_Controller {
 	public function index()
 	{
 		
-		$data['employee_name'] = $this->session->userdata('employee_name');
+		$output['data']['employee_name'] = $this->session->userdata('employee_name');
 		
-		$this->parser->parse('hrd', $data);
+		$output['content'] = "hrd/hrd";
+		
+		$this->load->view('template', $output);
 		
 	}
 
-	function hrd_employe_viewall(){
+	function hrd_employe_data(){
 
 		$data['employee_data'] = $this->Mhrd->employee_data();
 
-		$this->parser->parse('hrd_employee_data', $data);
+		$this->load->view('hrd_employee_data', $data);
 
 	}
 
