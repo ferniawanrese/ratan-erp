@@ -431,6 +431,12 @@
 .orange {
 	background:#ce4b27;
 }
+.cocolate {
+	background:#663300;
+}
+.grey {
+	background:#686868;
+}
 .bondi-blue {
 	background:#0093a8;
 }
@@ -454,6 +460,9 @@
 }
 .board-widgets.orange {
 	background:#ce4b27;
+}
+.board-widgets.cocolate {
+	background:#663300;
 }
 .board-widgets .widget-stat {
 	background: rgba( 0, 0, 0, .4);
