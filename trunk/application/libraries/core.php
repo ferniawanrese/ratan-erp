@@ -30,6 +30,12 @@ class core
 				return $result_path;
 		}	
 	}
+	
+	function alert($msg,$type="default"){
+	
+		
+	
+	}
 
 }	
 ?>
