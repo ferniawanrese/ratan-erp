@@ -44,7 +44,7 @@ class hrd extends CI_Controller {
 	public function index()
 	{
 		
-		$output['data']['employee_name'] = $this->session->userdata('employee_name');
+		$output['data']['module_name'] = "Human Resources";
 		
 		$output['content'] = "hrd/hrd";
 		

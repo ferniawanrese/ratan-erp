@@ -23,6 +23,8 @@ class backend extends CI_Controller {
 	
 	public function index()
 	{
+	
+		$output['data']['module_name'] = "Human Resources";
 		
 		$output['data']['main_menu'] = $this->Mbackend->cek_menu($this->session->userdata('employee_hexaID'));
 		
