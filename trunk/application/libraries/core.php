@@ -31,11 +31,6 @@ class core
 		}	
 	}
 	
-	function alert($msg,$type="default"){
-	
-		
-	
-	}
 
 }	
 ?>

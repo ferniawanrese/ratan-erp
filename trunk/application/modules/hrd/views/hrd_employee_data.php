@@ -3,11 +3,10 @@
 				                  <tr>
 				                    <th> No </th>
 				                    <th> Full Name </th>
-				                    <th> Address </th>
 				                    <th> Email </th>
 				                    <th> Phone </th>
 				                    <th> Start Working </th>
-				                    <th> Thumb </th>
+				                    
 				                    <th> Status </th>
 				                    <th> Action </th>
 				                  </tr>
@@ -22,8 +21,7 @@
 				                    <td class="center"> <?php echo $keys['employee_email'];?> </td>
 				                    <td class="center"> <?php echo $keys['employee_phone'];?> </td>
 				                    <td class="center"> <?php echo date("d M Y", strtotime($keys['employee_startworking']));?> </td>
-				                    <td class="center"><div class="user-thumb"> <a href="#">
-				                    	<img height="40" width="40" alt="User" src="<?php echo $keys['employee_photo'];?>"></a> </div></td>
+				                    
 				                    <td class="center"><span class="label label-success">New</span> <span class="label label-info">Pending</span></td>
 				                    <td class="center"><div class="btn-toolbar row-action">
 				                        <div class="btn-group">

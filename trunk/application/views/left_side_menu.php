@@ -2,11 +2,11 @@
 		
 		<div class="admin-info clearfix ">	
 			<div class="admin-meta ">
-					<img src="<?php echo $this->core->get_im($userdata[0]['employee_photo'],100,100);?>" class="img-responsive img-thumbnail">	
+					<img src="<?php echo $this->core->get_im($this->session->userdata('employee_photo'),100,100);?>" class="img-responsive ">	
 			</div>
 			<div class="admin-meta ">
 				<ul >
-					<li class="admin-username"><?php echo $employee_name;?></li>
+					<li class="admin-username"><?php echo $this->session->userdata('employee_name');?></li>
 					<li><a href="#">Edit Profile</a></li>
 					<li><a href="#">View Profile </a><a href="#"></li>
 					<li><i class="icon-lock"></i> Logout</a></li>
