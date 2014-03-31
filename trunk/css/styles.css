@@ -741,6 +741,12 @@
 .switch-item li a.orange:hover {
 	background:#983114;
 }
+.switch-item li a.cocolate:hover {
+	background:#3D1F00;
+}
+.switch-item li a.grey:hover {
+	background:#202020 ;
+}
 .switch-item li a.bondi-blue:hover {
 	background:#066b79;
 }

@@ -30,6 +30,7 @@ class hrd extends CI_Controller {
 		$this->load->library('encrypt');
 		$this->load->library('generate_code');
 		$this->load->library('core');
+		$this->load->library('parser');
 		$this->load->library('image_lib');
 		$this->load->library('session');
 		$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
