@@ -56,7 +56,7 @@ class hrd extends CI_Controller {
 	function hrd_employe_data(){
 
 		$data['employee_data'] = $this->Mhrd->employee_data();
-
+	
 		$this->load->view('hrd_employee_data', $data);
 
 	}
@@ -95,8 +95,6 @@ class hrd extends CI_Controller {
 		}
 
 		//---
-
-		
 
 		$this->Mhrd->save_employee($this->input->post(),$additional_data);
 		

@@ -16,7 +16,7 @@
 											<div class="well col-sm-12 col-md-12">
 												
 												<!-- searching -->
-												
+											<span name ="search" id ="search">	
 												<div class="col-sm-6 col-md-6">
 													<div class="input-group">
 													  <input type="text" class="form-control" id ="search" name ="search" placeholder="Search..">
@@ -32,8 +32,11 @@
 
 												</div>
 												
-												<!-- content ajax -->
-												<div class = "list col-sm-12 col-md-12"></div>
+											</span>
+												
+												<div class = "list col-sm-12 col-md-12">
+													<!-- content ajax -->											
+												</div>
 
 											</div>
 										</div>
@@ -55,7 +58,9 @@ function display_data(){
 				success: function(data){     
 
 					$( ".list" ).html(data); 
+					$('#search').show();
 					$('.progress-bar').hide();
+					
 				}  
 			});
 
@@ -64,14 +69,50 @@ function display_data(){
 function add_employee(){
 
 	$('.progress-bar').show();
-
+	$('#search').hide();
 	$.ajax({
 				
 				url: "<?php echo base_url('hrd/hrd_addemployee/');?>",
 				success: function(data){     
 
-					$( ".list" ).html(data); 
+					$( ".list" ).html(data); 					
 					$('.progress-bar').hide();
+					
+				}  
+			});
+
+}
+</script>
+
+
+
+
+<script>
+function delete_post(a){
+
+	$.ajax({
+				url: "<?php echo base_url('hrd/hrd_delete_employee/')?>/" + a,
+		        
+				success: function(data)
+			    {
+						$('.bar').hide();
+						display_data();
+			    }
+
+	});
+}
+
+function edit_employee(a){
+
+	$('.bar').show();
+
+	$.ajax({
+				
+				url: "<?php echo base_url('hrd/hrd_addemployee/');?>/" + a,
+				success: function(data){     
+
+					$( ".list" ).html(data); 
+					$('.bar').hide();
 				}  
 			});
 
