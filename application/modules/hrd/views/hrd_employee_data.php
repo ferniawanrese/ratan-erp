@@ -1,7 +1,7 @@
-<table class="table table-striped table-bordered table-responsive">
+
+<table class="responsive table table-striped table-bordered table-hover" >
 	<thead>
 		  <tr>
-				<th> No </th>
 				<th> Full Name </th>
 				<th> Address </th>
 				<th> Email </th>
@@ -15,9 +15,8 @@
 	
 	<tbody>
 			<?php if($employee_data):?>		
-			<?php $i=1;foreach($employee_data as $keys):?>
-				<tr>
-					<td><a href="#"><?php echo $i;?></a></td>
+			<?php foreach($employee_data as $keys):?>
+				<tr>				
 					<td><a href="#"><?php echo $keys['employee_name'];?></a></td>
 					<td> <?php echo $keys['employee_address'];?> </td>
 					<td class="center"> <?php echo $keys['employee_email'];?> </td>
@@ -35,15 +34,17 @@
 							</div>
 					 </td>
 				</tr>
-			<?php $i++;endforeach;?>
+			<?php endforeach;?>
 			<?php else:?>
 				 <tr>
 					<td colspan='9'><center>no data</center></td>
 				  </tr>
 	<?php endif;?>
 	</tbody>
-				                
+	
 </table>
+
+
 
 <script>
 function delete_post(a){
@@ -76,3 +77,8 @@ function edit_employee(a){
 
 }
 </script>
+
+
+					
+						
+		
