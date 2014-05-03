@@ -35,6 +35,8 @@
 <script src="js/responsive-tables.js"></script>
 <script src="js/bootstrap-datetimepicker.min.js"></script>
 <script src="js/bootstrap-fileupload.js"></script>
+<script src="js/bootbox.js"></script>
+<script src="js/bootstrap-paginator.js"></script>
 
 </head>
 <body>

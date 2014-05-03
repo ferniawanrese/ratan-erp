@@ -8,12 +8,22 @@
 					<div class="primary-head">
 						<!--content-->
 						<div class="row-fluid">
-							
 									<div class="content-widgets gray">
 										<div class="widget-head blue clearfix">
-										  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;"><i class="icon-th-list"></i> Search Employee Data </h3>
+										  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">Employee Data </h3>
+											
 										</div>
+																			
 										<div class="well col-sm-12 col-md-12">
+										
+											<div  id = "btn-create" class="form-group">
+												<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_employee()"> Create</button>
+											</div>
+											
+											<div   id = "btn-list" class="form-group">
+												<button class="btn btn-inverse icon-list" type="button" onclick = "display_data()" > Data List</button>
+											</div>
+											
 											<span = id ="search">	
 												<!-- searching -->
 											 <form id = "form_filter" name="form_filter" method="post">
@@ -30,18 +40,18 @@
 													<label for="validate-optional"></label>
 													<div class="input-group col-sm-12 col-md-12">
 														<select class="form-control" name="employee_divisionID" id="employee_divisionID" >
-															<option>[division]</option>
+															<option value = "">[division]</option>
 														</select>
-														<span class="input-group-addon info"><span class="icon-plus"></span></span>
+														<span class="input-group-addon info"><span class="icon-plus" style = "cursor:pointer;"></span></span>
 													</div>
 												</div>
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-email"></label>
 													<div class="input-group col-sm-12 col-md-12" >
 														<select class="form-control" name="employee_positionID" id="employee_positionID" >
-															<option>[position]</option>
+															<option  value = "">[position]</option>
 														</select>
-														<span class="input-group-addon "></span>
+														<span class="input-group-addon info"><span class="icon-plus" style = "cursor:pointer;"></span></span>
 													</div>
 												</div>
 												
@@ -52,17 +62,31 @@
 														<span class="input-group-addon danger"></span>
 													</div>
 												</div>
+												
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-number"></label>
 													<div class="input-group col-sm-12 col-md-12" data-validate="number">
 														<select class="form-control" name="orderby" id="orderby" >
-																<option >[order by]</option>
+																<option value = "">[order by]</option>
 																<?php foreach($filterplus as $filterpluss):?>
 																<option value = "<?php echo $filterpluss['COLUMN_NAME'];?>"><?php echo $filterpluss['COLUMN_COMMENT'];?></option>
 																<?php endforeach;?>
 															</select>
 															<input type = "hidden" name = "ascdsc" id = "ascdsc" value = "ASC">
 															<span class="input-group-addon "><i class = "icon-arrow-up" title = "Ascending" style = "cursor:pointer;"></i></span>
+													</div>
+												</div>
+												
+												<div class="form-group col-sm-12 col-md-3">
+													<label for="validate-email"></label>
+													<div class="input-group col-sm-12 col-md-12" >
+														<select class="form-control" name="limit" id="limit" >
+															<option value = "10">Limit 10</option>
+															<option value = "20">Limit 20</option>
+															<option value = "50">Limit 50</option>
+															<option value = "100">Limit 100</option>
+														</select>
+														<span class="input-group-addon "></span>
 													</div>
 												</div>
 												
@@ -82,22 +106,20 @@
 												</div>
 												
 												<div class="form-group col-sm-12 col-md-3">
-													<label for="validate-number"></label>
-													<div class="input-group col-sm-12 col-md-12" data-validate="number">
-														<button type = "submit" class="btn btn-default"  > Search!</buttton>
-														<button type = "button" class="btn btn-default" onclick = "clearfilter()" > Clear Filter</buttton>
-													</div>
+													<label for="validate-email"></label>
+													<div class="input-group col-sm-12 col-md-12" >
+														<span class = "btn-group">
+															<button type = "submit" class="btn btn-default"  > Search!</buttton>
+															<button type = "button" class="btn btn-default" onclick = "clearfilter()" > Clear Filter</buttton>
+														</span>
+													</div>													
 												</div>
 												</fieldset>
 											 </form>
 											</span>
 											
-											<div class="form-group col-sm-12 col-md-3" id = "btn-create">
-												<button class="btn btn-success icon-plus" type="button" onclick = "add_employee()"> Create</button>
-											</div>
-											<div class="form-group col-sm-12 col-md-3"  id = "btn-list">
-												<button class="btn btn-success icon-list" type="button" onclick = "display_data()" > Data List</button>
-											</div>
+												
+											
 											<div class = "list col-sm-12 col-md-12">
 												<!-- content ajax -->											
 											</div>
@@ -108,15 +130,16 @@
 						</div>
 						<!--end content-->
 					</div>
-					
+							
 <script>
+
 $( "#additionalfilter" ).change(function() {
 var e = this.value;
 $adding = 
 '<div class="additional_group form-group col-sm-12 col-md-3" id = "' + e + '">';
 $adding +=		'						<label for="validate-number"></label>';
 $adding +=		'							<div class="input-group col-sm-12 col-md-12" data-validate="number">';
-$adding +=		'										<input type="text" class="form-control" name="'+e+'" id="'+e+'" placeholder="'+e+'">';
+$adding +=		'										<input type="text" class="form-control" name="filterplus['+e+']" id="filterplus['+e+']" placeholder="'+e+'">';
 $adding +=		'									<span class="input-group-addon "><i class = "icon-remove-sign" style = "cursor:pointer;" onclick = delfilter("' + e + '")></i></span>';
 $adding +=		'								</div>';
 $adding +=		'							</div>';
@@ -138,10 +161,10 @@ function display_data(){
 	$('#btn-list').hide();
 	$('#btn-create').show();
 	$.ajax({
-				
+				type: "POST",
 				url: "<?php echo base_url('hrd/hrd_employe_data/');?>",
+				data: $("#form_filter").serialize(),
 				success: function(data){     
-
 					$( ".list" ).html(data); 
 					$('#search').show();
 					$('.progress-bar').hide();
@@ -185,7 +208,7 @@ function add_employee(){
 				data: $("#form_filter").serialize(),
 				success: function(data)
 				{
-					$( "#offerdata_list" ).html(data);
+					$( ".list" ).html(data);
 						
 						$('.progress-bar').hide();
 				}
@@ -198,23 +221,13 @@ function add_employee(){
 
 
 <script>
-function delete_post(a){
-	$('.progress-bar').show();
-	$.ajax({
-				url: "<?php echo base_url('hrd/hrd_delete_employee/')?>/" + a,
-		        
-				success: function(data)
-			    {
-						$('.progress-bar').hide();
-						display_data();
-			    }
-
-	});
-}
 
 function edit_employee(a){
 
 	$('.progress-bar').show();
+	$('#search').hide();
+	$('#btn-list').show();
+	$('#btn-create').hide();
 
 	$.ajax({
 				
@@ -230,6 +243,7 @@ function edit_employee(a){
 
 function clearfilter(){
 $('.progress-bar').show();
+$('#limit').val('10');
 $('#employee_name').val('');
 $('#employee_divisionID').val('');
 $('#employee_positionID').val('');
@@ -237,6 +251,29 @@ $('#employee_managerID').val('');
 $('#orderby').val('');
 $('#ascdsc').val('');
 $('.additional_group').remove();
-$('.progress-bar').hide();
+display_data();
+}
+
+
+			
+function delete_post(a){
+	
+	bootbox.confirm("Are you sure?", function (result) {
+                  
+					if(result == true){
+						$('.progress-bar').show();
+						$.ajax({
+									url: "<?php echo base_url('hrd/hrd_delete_employee/')?>/" + a,
+									
+									success: function(data)
+									{
+											$('.progress-bar').hide();
+											display_data();
+									}
+
+						});
+					}
+					
+                });
 }
 </script>
