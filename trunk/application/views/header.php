@@ -33,6 +33,8 @@
 <script src="js/bootstrap.js"></script>
 <script src="js/custom.js"></script>
 <script src="js/responsive-tables.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-fileupload.js"></script>
 
 </head>
 <body>

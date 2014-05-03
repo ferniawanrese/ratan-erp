@@ -80,7 +80,7 @@
       this.$input.attr('name', this.name)
       
       if (this.type === "image" && this.$preview.length > 0 && (typeof file.type !== "undefined" ? file.type.match('image.*') : file.name.match('\\.(gif|png|jpe?g)$')) && typeof FileReader !== "undefined") {
-        do_update_image();
+        //do_update_image();
         var reader = new FileReader()
         var preview = this.$preview
         var element = this.$element
