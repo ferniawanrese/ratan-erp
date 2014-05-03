@@ -54,10 +54,16 @@ class hrd extends CI_Controller {
 		
 	}
 
-	function hrd_employe_data(){
-
-		$data['employee_data'] = $this->Mhrd->employee_data($this->input->post());		
+	function hrd_employe_data($page=1){
+	
+		$data['limit'] = $this->input->post('limit');
 		
+		$data['page'] = $page;
+
+		$data['employee_data'] = $this->Mhrd->employee_data($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->employee_data_count($this->input->post());	
+
 		$this->load->view('hrd_employee_data', $data);
 
 	}

@@ -7,10 +7,42 @@ class Mhrd extends CI_Model {
     }
 	
 	
-	function employee_data($data){
+	function employee_data($data,$page,$limit){
 	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->where('deleted', '0');
+		
+		if($data['orderby']!=""){
+		$this->db->order_by($data['orderby'],$data['ascdsc']);
+		}else{
+		$this->db->order_by('dateCreated','DESC');
+		}
+		if(isset($data['filterplus'])){
+		$this->db->like($data['filterplus']);
+		}
+				
+		$query = $this->db->get('employee',$limit,$a);
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
+	function employee_data_count($data){
+	
+		$this->db->select('count(*) as totdata');
 		$this->db->where('deleted', '0');
 		$this->db->order_by('datecreated','desc');	
+		if(isset($data['filterplus'])){
+		$this->db->like($data['filterplus']);
+		}
 		$query = $this->db->get('employee');
 
 			if ($query->num_rows())

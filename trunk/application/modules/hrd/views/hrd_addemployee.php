@@ -2,13 +2,13 @@
 					 <div class="col-md-12">
 							<ul class="nav nav-pills nav-justified thumbnail setup-panel">
 								<li class="active"><a href="#step-1">
-									<h4 class="list-group-item-heading">General Information</h4>
+									General Information
 								</a></li>
 								<li ><a href="#step-2">
-									<h4 class="list-group-item-heading ">Personal Information</h4>
+									Personal Information
 								</a></li>
 								<li><a href="#step-3">
-									<h4 class="list-group-item-heading">Note</h4>
+									Note
 								</a></li>
 							</ul>
 						</div>
@@ -29,11 +29,10 @@
 												
 												<div class="form-group ">
 													<label  class="col-sm-3 control-label">Email Address :</label>
-													<div class="control col-md-6">
+													<div class="control input-group col-md-6">
 														<input name="employee_email" required id = "employee_email" class="form-control" type="email" value = "<?php echo $data_detail[0]['employee_email'];?>"/>
 														
-														<button class="alert-box btn"><i class="icon-plus ">
-														</i>Add User</button>
+														<span class="input-group-addon info"><span class="icon-plus" style = "cursor:pointer;"></span></span>
 													</div>
 												</div>
 												<div class="form-group">
