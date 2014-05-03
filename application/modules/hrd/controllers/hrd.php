@@ -30,7 +30,6 @@ class hrd extends CI_Controller {
 		$this->load->library('encrypt');
 		$this->load->library('generate_code');
 		$this->load->library('core');
-		$this->load->library('parser');
 		$this->load->library('image_lib');
 		$this->load->library('session');
 		$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
@@ -38,7 +37,7 @@ class hrd extends CI_Controller {
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
 		$this->output->set_header('Pragma: no-cache');
 		if($this->session->userdata('employee_access')!='1'){
-		redirect(base_url(''));
+			redirect(base_url(''));
 		}
 	} 
 	
@@ -49,94 +48,30 @@ class hrd extends CI_Controller {
 		
 		$output['content'] = "hrd/hrd";
 		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
 		$this->load->view('template', $output);
 		
 	}
 
 	function hrd_employe_data(){
 
-		$data['employee_data'] = $this->Mhrd->employee_data();
-	
+		$data['employee_data'] = $this->Mhrd->employee_data($this->input->post());		
+		
 		$this->load->view('hrd_employee_data', $data);
 
 	}
 
-	function hrd_save_employee ($action){
-
-		//check update or insert
-
-		if($action == "insert"){
-
-		$employee_hexaID = $this->generate_code->getUID();
-
-		}
-
-		if($action == "update"){
-
-		$employee_hexaID = $this->input->post('employee_hexaID');
-
-		}
-
-		//upload if image change or new image
-
-		if($this->input->post('employee_photo')==""){
-
-			$config['file_name'] 		= $this->generate_code->getUID();
-			$config['upload_path'] 		= './upload/employee_photo/'.$employee_hexaID.'/';
-			$config['allowed_types'] 	= 'gif|jpg|png';
-			$config['max_size'] 		= '1024000';
-			$config['max_width']  		= '1024000';
-			$config['max_height']  		= '768000';
-			
-			$this->load->library('upload', $config);
-
-			$create = mkdir($config['upload_path'], 0777);
-
-		}
-
-		//---
-
-		$this->Mhrd->save_employee($this->input->post(),$additional_data);
+	function hrd_save_employee (){
 		
-	}
-
-	
-	function hrd_addemployee($employee_hexaID= null){
-
-		$data['employee_data_detail'] = $this->Mhrd->employee_data_detail($employee_hexaID);
+		$this->Mhrd->save_employee($this->input->post());
+				
+		$config['file_name'] 		= $this->generate_code->getUID();
+		$config['upload_path'] 	= './upload/employee_photo/'.$config['file_name'].'/';
+		$config['allowed_types'] 	= 'gif|jpg|png';
 		
-		$data['country'] = $this->Mhrd->get_country();
-
-		if($employee_hexaID == null ){
-
-			$data['action'] = "insert";
-
-		}else{
-
-			$data['action'] = "update";
-		}
-
+		mkdir($config['upload_path'], 0777);
 		
-		$this->parser->parse('hrd_addemployee', $data);
-
-	}
-
-
-	function hrd_delete_employee($employee_hexaID){
-
-		$this->Mhrd->employee_delete($employee_hexaID);
-		
-	}
-
-	function do_upload()
-	{
-		
-		$config['upload_path'] = './upload/';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size'] = '1000000';
-		$config['max_width']  = '1024000';
-		$config['max_height']  = '768000';
-
 		$this->load->library('upload', $config);
 
 		if ( ! $this->upload->do_upload())
@@ -147,9 +82,30 @@ class hrd extends CI_Controller {
 		else
 		{
 			$data = array('upload_data' => $this->upload->data());
-
+			 $this->core->resize_im($config);
 		}
+		
 	}
+
+	
+	function hrd_addemployee($employee_hexaID= null){
+	
+		$data['data_detail'] = $this->Mhrd->employee_data_detail($employee_hexaID);
+				
+		$data['country'] = $this->Mhrd->get_country();
+				
+		$this->load->view('hrd_addemployee', $data);
+		
+	}
+
+
+	function hrd_delete_employee($employee_hexaID){
+
+		$this->Mhrd->employee_delete($employee_hexaID);
+		
+	}
+
+	
 }
 
 /* End of file welcome.php */

@@ -5,7 +5,8 @@
 	<div class="nav navbar-inverse top-nav">
 		<div class="navbar-inner">
 			<div class="container">
-				<span class="home-link"><a href="merp.ratan.co" class="icon-home"></a></span><a class="brand" href="./index.html"><img src="upload/img/logo-falgun.png" width="103" height="50" alt="Falgun"></a>
+				<span class="home-link"><a href="<?php echo base_url();?>" class="icon-home"></a></span><a class="brand" href="./index.html">
+					
 				<div class="btn-toolbar pull-right notification-nav">
 					<div class="btn-group">
 						<div class="dropdown">

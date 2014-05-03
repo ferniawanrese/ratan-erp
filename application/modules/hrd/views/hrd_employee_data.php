@@ -28,7 +28,6 @@
 								<div class="btn-group">
 									<button class="btn btn-info" title="Edit" onclick=edit_employee("<?php echo $keys['employee_hexaID'];?>")><i class="icon-edit"></i></button>
 									<button class="btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['employee_hexaID'];?>")><i class="icon-remove"></i></button>
-									<button class="btn btn-inverse" title="Suspend"><i class=" icon-remove-sign"></i></button>
 									<button class="btn btn-success" title="Approve"><i class=" icon-ok"></i></button>
 								</div>
 							</div>

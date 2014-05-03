@@ -26,9 +26,9 @@
  */
 class CI_Upload {
 
-	public $max_size				= 0;
-	public $max_width				= 0;
-	public $max_height				= 0;
+	public $max_size				= 10000;
+	public $max_width				= 1024000;
+	public $max_height				= 768000;
 	public $max_filename			= 0;
 	public $allowed_types			= "";
 	public $file_temp				= "";
@@ -80,9 +80,9 @@ class CI_Upload {
 	public function initialize($config = array())
 	{
 		$defaults = array(
-							'max_size'			=> 0,
-							'max_width'			=> 0,
-							'max_height'		=> 0,
+							'max_size'			=> 10000,
+							'max_width'			=> 1024000,
+							'max_height'		=> 768000,
 							'max_filename'		=> 0,
 							'allowed_types'		=> "",
 							'file_temp'			=> "",
