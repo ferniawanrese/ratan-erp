@@ -18,6 +18,7 @@
 										
 											<div  id = "btn-create" class="form-group">
 												<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_employee()"> Create</button>
+												<button class="btn btn-inverse btn-large icon-file-alt" type="button" onclick = "exportdata()"> Export to Excel</button>
 											</div>
 											
 											<div   id = "btn-list" class="form-group">
@@ -106,6 +107,19 @@
 												</div>
 												
 												<div class="form-group col-sm-12 col-md-3">
+													<label for="validate-number"></label>
+													<div class="input-group col-sm-12 col-md-12" data-validate="number">													
+														<select class="form-control" name="additionalcolums" id="additionalcolums" placeholder="[additional filter]">
+																<option value="" selected disabled>[more colums]</option>
+																<?php foreach($filterplus as $filterpluss):?>
+																<option value = "<?php echo $filterpluss['COLUMN_NAME'];?>"><?php echo $filterpluss['COLUMN_COMMENT'];?></option>
+																<?php endforeach;?>
+														</select>
+															<span class="input-group-addon "></span>
+													</div>
+												</div>
+												
+												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-email"></label>
 													<div class="input-group col-sm-12 col-md-12" >
 														<span class = "btn-group">
@@ -134,19 +148,24 @@
 <script>
 
 $( "#additionalfilter" ).change(function() {
-var e = this.value;
-$adding = 
-'<div class="additional_group form-group col-sm-12 col-md-3" id = "' + e + '">';
-$adding +=		'						<label for="validate-number"></label>';
-$adding +=		'							<div class="input-group col-sm-12 col-md-12" data-validate="number">';
-$adding +=		'										<input type="text" class="form-control" name="filterplus['+e+']" id="filterplus['+e+']" placeholder="'+e+'">';
-$adding +=		'									<span class="input-group-addon "><i class = "icon-remove-sign" style = "cursor:pointer;" onclick = delfilter("' + e + '")></i></span>';
-$adding +=		'								</div>';
-$adding +=		'							</div>';
+	var e = this.value;
+	$adding = 
+	'<div class="additional_group form-group col-sm-12 col-md-3" id = "' + e + '">';
+	$adding +=		'						<label for="validate-number"></label>';
+	$adding +=		'							<div class="input-group col-sm-12 col-md-12" data-validate="number">';
+	$adding +=		'										<input type="text" class="form-control" name="filterplus['+e+']" id="filterplus['+e+']" placeholder="'+e+'">';
+	$adding +=		'									<span class="input-group-addon "><i class = "icon-remove-sign" style = "cursor:pointer;" onclick = delfilter("' + e + '")></i></span>';
+	$adding +=		'								</div>';
+	$adding +=		'							</div>';
 
 
-$( ".additional" ).append($adding);
-$( "#additionalfilter" ).val('');
+	$( ".additional" ).append($adding);
+	$( "#additionalfilter" ).val('');
+});
+
+$( "#additionalcolums" ).change(function() {
+	$( ".additionalcolums" ).append("<th> Start Working </th>");
+	$( "#additionalcolums" ).val('');
 });
 
 function delfilter(e){
@@ -194,6 +213,7 @@ function add_employee(){
 }
 </script>
 
+
 <script>
 
 	$("form#form_filter").submit(function(e){
@@ -217,6 +237,21 @@ function add_employee(){
 			return false;
 	});
 
+
+function exportdata(){
+
+$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('hrd/hrd_employe_data_export');?>",
+				data: $("#form_filter").serialize(),
+				success: function(data)
+				{
+						
+						$('.progress-bar').hide();
+				}
+			});
+			
+}
 </script>
 
 

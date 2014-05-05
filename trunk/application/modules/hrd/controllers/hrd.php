@@ -46,6 +46,8 @@ class hrd extends CI_Controller {
 		
 		$output['data']['module_name'] = "Human Resources";
 		
+		$output['data']['menu_name'] = "HRD";
+		
 		$output['content'] = "hrd/hrd";
 		
 		$output['filterplus'] = $this->core->filterplus('employee');
@@ -65,6 +67,26 @@ class hrd extends CI_Controller {
 		$data['countdata'] = $this->Mhrd->employee_data_count($this->input->post());	
 
 		$this->load->view('hrd_employee_data', $data);
+
+	}
+	
+	function hrd_employe_data_export(){
+	
+		header("Content-type: application/vnd-ms-excel");
+ 
+		header("Content-Disposition: attachment; filename=employee-export.xls");
+ 
+		$content = "
+
+		<table>
+
+		<tr><td>nama</td><td>bimosaurus</td></tr><tr><td>alamat</td><td>wonosobo</td></tr><tr><td>nohp</td><td>080808080</td></tr>
+
+		</table>
+
+		";
+		
+		print $content;
 
 	}
 

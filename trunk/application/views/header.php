@@ -37,6 +37,6 @@
 <script src="js/bootstrap-fileupload.js"></script>
 <script src="js/bootbox.js"></script>
 <script src="js/bootstrap-paginator.js"></script>
-
+<script src="js/accordion.nav.js"></script>
 </head>
 <body>
