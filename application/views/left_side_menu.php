@@ -18,8 +18,11 @@
 				<div class="left-primary-nav">
 					<ul id="myTab">
 						<li class="active"><a href="#main" class="icon-desktop" title="Dashboard"></a></li>
+						<?php if(isset($menu_name)){
+							if($menu_name== "HRD"):?>
 						<li><a href="#forms" class="icon-th-large" title="Forms"></a></li>
-						
+						<?php endif;?>
+						<?php };?>
 					</ul>
 				</div>
 				<div class="responsive-leftbar">
@@ -27,7 +30,7 @@
 				</div>
 				<div class="left-secondary-nav tab-content">
 					<div class="tab-pane active" id="main">
-						<h4 class="side-head">Dashboard</h4>						
+						<h4 class="side-head"><?php echo $module_name;?></h4>						
 						<ul class="metro-sidenav clearfix">								
 								<li><span class="notify-tip">30</span><a href="#" class="brown"><i class="icon-user"></i><span>User</span></a></li>
 								<li><a href="#" class="orange"><i class="icon-cogs"></i><span>Settings</span></a></li>
@@ -35,18 +38,26 @@
 								<li><a href="#" class=" blue-violate"><i class="icon-lightbulb"></i><span>Support</span></a></li>
 						</ul>						
 					</div>
-					<div class="tab-pane" id="forms">
-						<h4 class="side-head">Forms</h4>
-						<ul id="nav" class="accordion-nav">
-							<li><a href="form-elements.html"><i class="icon-list-alt"></i> Form Elements <span class="notify-tip">50</span></a></li>
-							<li><a href="form-components.html"><i class="icon-th"></i> Form Components </a></li>
-							<li><a href="form-validation.html"><i class="icon-ok-circle"></i> Form Validation<span>Quisque commodo lectus sit amet sem </span></a></li>
-							<li><a href="form-wizard.html"><i class="icon-external-link"></i> Wizard </a></li>
-							<li><a href="text-editor.html"><i class="icon-pencil"></i> WYSIWYG editor <span>Quisque commodo lectus sit amet sem </span></a></li>
+				
+				<?php if(isset($menu_name)){
+					if($menu_name== "HRD"):?>
+					
+				<div class="tab-pane" id="forms">
+					<h4 class="side-head"><?php echo $module_name;?></h4>
+					<ul class="accordion-nav">
+						<li><a href="#"><i class="icon-cogs"></i> Configuration</a>
+						<ul>
+							<li><a href="page-403.html"><i class=" icon-file-alt"></i> Categories of Employee</a></li>
+							<li><a href="page-404.html"><i class=" icon-file-alt"></i> Categories Structure</a></li>
+							<li><a href="page-405.html"><i class=" icon-file-alt"></i> Job Positions</a></li>
+							<li><a href="page-500.html"><i class=" icon-file-alt"></i> Departments</a></li>
 						</ul>
-					</div>
-					
-					
+						</li>
+						<li><a href="login.html"><i class=" icon-table"></i> Reporting</a></li>                               
+					</ul>
+				</div>
+				<?php endif;?>
+				<?php };?>	
 				</div>
 		</div>
 		

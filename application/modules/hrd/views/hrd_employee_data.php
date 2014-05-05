@@ -8,7 +8,9 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 				<th> Address </th>
 				<th> Email </th>
 				<th> Phone </th>
-				<th> Start Working </th>				
+				<th> Start Working </th>		
+				<span class = "additionalcolums"></span>
+				<th class = "additionalcolums1"><i class = "icon-remove" style = "cursor:pointer" onclick = "remove_addcolums('additionalcolums1')"></i> Additionlacolums </th>
 				<th> Action </th>
 				
 				
@@ -23,7 +25,8 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<td> <?php echo $keys['employee_address'];?> </td>
 					<td class="center"> <?php echo $keys['employee_email'];?> </td>
 					<td class="center"> <?php echo $keys['employee_phone'];?> </td>
-					<td class="center"> <?php echo date("d M Y", strtotime($keys['employee_startworking']));?> </td>									
+					<td class="center"> <?php echo date("d M Y", strtotime($keys['employee_startworking']));?> </td>	
+					<td class="additionalcolums1"> <?php echo date("d M Y", strtotime($keys['employee_startworking']));?> </td>						
 					<td class="center">
 							<div class="btn-toolbar row-action">
 								
@@ -95,7 +98,11 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 			$('.pagination').bootstrapPaginator(options);
 </script>
 
-
+<script>
+function remove_addcolums(a){
+$('.'+a).remove();
+}
+</script>
 
 
 					
