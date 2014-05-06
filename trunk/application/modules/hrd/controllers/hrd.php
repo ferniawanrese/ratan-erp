@@ -55,6 +55,36 @@ class hrd extends CI_Controller {
 		$this->load->view('template', $output);
 		
 	}
+	
+	function employee_cat()
+	{
+		
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['content'] = "hrd/employee_cat";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+		
+	}
+	
+		function employee_structure()
+	{
+		
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['content'] = "hrd/employee_structure";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+		
+	}
 
 	function hrd_employe_data($page=1){
 	
