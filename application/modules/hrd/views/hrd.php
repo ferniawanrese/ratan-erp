@@ -1,8 +1,7 @@
 
 					<ul class="breadcrumb">
 						<li><a href="<?php echo base_url('backend');?>" class="icon-home"></a><span class="divider "><i class="icon-angle-right"></i></span></li>
-						<li><a href="<?php echo  base_url('hrd');?>">HRD</a><span class="divider"><i class="icon-angle-right"></i></span></li>
-						<li class="active">Data</li>
+						<li class="active">HRD</li>
 					</ul>
 
 					<div class="primary-head">
