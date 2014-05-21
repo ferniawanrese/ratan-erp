@@ -12,6 +12,8 @@
 <!--[if IE 7]>
             <link rel="stylesheet" href="css/font-awesome-ie7.min.css');?>">
         <![endif]-->
+<link href="<?php echo base_url('css/loadie.css');?>" rel="stylesheet"> 
+
 <link href="<?php echo base_url('css/styles.css');?>" rel="stylesheet"> 
 
 <link href="<?php echo base_url('css/tablecloth.css');?>" rel="stylesheet">
@@ -32,6 +34,9 @@
 
 <script type="text/javascript">
   var baseurl = "<?php print base_url(); ?>";
+ 
+
+
 </script>
 <script src="<?php echo base_url('js/jquery.js');?>"></script>
 <script src="<?php echo base_url('js/bootstrap.js');?>"></script>
@@ -42,5 +47,13 @@
 <script src="<?php echo base_url('js/bootbox.js');?>"></script>
 <script src="<?php echo base_url('js/bootstrap-paginator.js');?>"></script>
 <script src="<?php echo base_url('js/accordion.nav.js');?>"></script>
+<script src="<?php echo base_url('js/jquery.loadie.js');?>"></script>
 </head>
+
+<script>
+ $(function() {				
+		var percent = 1;
+		$('body').loadie(percent);   
+	})
+</script>
 <body>
