@@ -187,7 +187,8 @@ function display_data(){
 					$('#search').show();
 					$('.progress-bar').hide();
 					
-				}  
+					$('body').loadie(7);
+				}			
 			});
 
 }
