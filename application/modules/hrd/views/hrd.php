@@ -162,7 +162,7 @@ $( "#additionalfilter" ).change(function() {
 	$( "#additionalfilter" ).val('');
 });
 
-$( "#additionalcolums" ).change(function() {
+	$( "#additionalcolums" ).change(function() {
 	$( ".additionalcolums" ).append("<th> Start Working </th>");
 	$( "#additionalcolums" ).val('');
 });
@@ -174,8 +174,7 @@ $( "#"+e).remove();
 display_data();
 
 function display_data(){
-
-	$('.progress-bar').show();
+	
 	$('#btn-list').hide();
 	$('#btn-create').show();
 	$.ajax({
@@ -184,10 +183,8 @@ function display_data(){
 				data: $("#form_filter").serialize(),
 				success: function(data){     
 					$( ".list" ).html(data); 
-					$('#search').show();
-					$('.progress-bar').hide();
-					
-					$('body').loadie(7);
+					$('#search').show();				
+					$('.my_loadie_container').loadie(1);
 				}			
 			});
 
@@ -195,7 +192,6 @@ function display_data(){
 
 function add_employee(){
 
-	$('.progress-bar').show();
 	$('#search').hide();
 	$('#btn-list').show();
 	$('#btn-create').hide();
@@ -205,8 +201,7 @@ function add_employee(){
 				success: function(data){     
 
 					$( ".list" ).html(data); 		
-					$('.progress-bar').hide();
-					
+					$('body').loadie(1);
 				}  
 			});
 
@@ -218,8 +213,6 @@ function add_employee(){
 
 	$("form#form_filter").submit(function(e){
 	
-	$('.progress-bar').show();
-	
 	e.preventDefault();
 	
 			$.ajax({
@@ -229,8 +222,7 @@ function add_employee(){
 				success: function(data)
 				{
 					$( ".list" ).html(data);
-						
-						$('.progress-bar').hide();
+					$('body').loadie(1);
 				}
 			});
 			
@@ -246,8 +238,7 @@ $.ajax({
 				data: $("#form_filter").serialize(),
 				success: function(data)
 				{
-						
-						$('.progress-bar').hide();
+						$('body').loadie(1);
 				}
 			});
 			
@@ -259,7 +250,7 @@ $.ajax({
 
 function edit_employee(a){
 
-	$('.progress-bar').show();
+	
 	$('#search').hide();
 	$('#btn-list').show();
 	$('#btn-create').hide();
@@ -268,16 +259,14 @@ function edit_employee(a){
 				
 				url: "<?php echo base_url('hrd/hrd_addemployee/');?>/" + a,
 				success: function(data){     
-
 					$( ".list" ).html(data); 
-					$('.progress-bar').hide();
+					$('body').loadie(1);
 				}  
 			});
 
 }
 
 function clearfilter(){
-$('.progress-bar').show();
 $('#limit').val('10');
 $('#employee_name').val('');
 $('#employee_divisionID').val('');
@@ -295,17 +284,13 @@ function delete_post(a){
 	
 	bootbox.confirm("Are you sure?", function (result) {
                   
-					if(result == true){
-						$('.progress-bar').show();
+					if(result == true){						
 						$.ajax({
-									url: "<?php echo base_url('hrd/hrd_delete_employee/')?>/" + a,
-									
+									url: "<?php echo base_url('hrd/hrd_delete_employee/')?>/" + a,									
 									success: function(data)
-									{
-											$('.progress-bar').hide();
+									{											
 											display_data();
 									}
-
 						});
 					}
 					

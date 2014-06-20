@@ -51,9 +51,11 @@
 </head>
 
 <script>
- $(function() {				
-		var percent = 1;
-		$('body').loadie(percent);   
+
+ $(function() {					
+ 
+		$('body').loadie();   
 	})
 </script>
 <body>
+<div class="my_loadie_container"></div>
