@@ -12,13 +12,11 @@ MySQL - 5.6.16 : Database - merp
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`merp` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `merp`;
+USE `k1377424_merp`;
 
 /*Table structure for table `access` */
 
-DROP TABLE IF EXISTS `access`;
 
 CREATE TABLE `access` (
   `access_ID` int(30) NOT NULL AUTO_INCREMENT,
@@ -27,11 +25,11 @@ CREATE TABLE `access` (
   `menu_hexaID` char(30) DEFAULT NULL,
   `deleted` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`access_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `access` */
 
-insert  into `access`(`access_ID`,`access_hexaID`,`employee_hexaID`,`menu_hexaID`,`deleted`) values (1,'1','1','1',0),(2,'2','1','2',0),(3,'3','1','3',0),(4,'4','1','4',0);
+insert  into `access`(`access_ID`,`access_hexaID`,`employee_hexaID`,`menu_hexaID`,`deleted`) values (1,'1','1','1',0),(2,'2','1','2',0),(3,'3','1','3',0),(4,'4','1','4',0),(5,'5','1','5',0),(6,'6','1','6',0),(7,'7','1','7',0),(8,'8','1','8',0),(9,'9','1','9',0),(10,'10','1','10',0);
 
 /*Table structure for table `ci_sessions` */
 
@@ -51,7 +49,7 @@ CREATE TABLE `ci_sessions` (
 
 /*Data for the table `ci_sessions` */
 
-insert  into `ci_sessions`(`session_id`,`ip_address`,`user_agent`,`last_activity`,`user_data`,`date_created`,`online`) values ('a265ab1883f54a9c4ff2fae1f28e3963','::1','Mozilla/5.0 (Windows NT 6.2; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0',1396193592,'a:30:{s:9:\"user_data\";s:0:\"\";s:11:\"employee_ID\";s:1:\"1\";s:15:\"employee_hexaID\";s:1:\"1\";s:13:\"employee_name\";s:10:\"Nurjamilah\";s:14:\"employee_email\";s:20:\"anakpisces@gmail.com\";s:17:\"employee_password\";s:32:\"7884fc6616d2e1c408a298a75eb159d4\";s:15:\"employee_access\";s:1:\"1\";s:14:\"employee_photo\";s:99:\"upload/employee_photo/fe2dbda1-c4ea-57ad-882c-5989936c2a7d/503539ca-f8c1-5354-b00f-d97490fdcd20.jpg\";s:21:\"employee_startworking\";s:10:\"2012-12-12\";s:19:\"employee_endworking\";N;s:14:\"employee_badge\";s:10:\"ADR-100119\";s:19:\"employee_positionID\";N;s:19:\"employee_divisionID\";N;s:15:\"employee_status\";s:3:\"new\";s:20:\"employee_mobilephone\";N;s:14:\"employee_phone\";s:12:\"085271129400\";s:18:\"employee_managerID\";N;s:23:\"employee_worklocationID\";N;s:16:\"employee_address\";s:41:\"Jl. Bukit Barisan Perum Cendana I blok c2\";s:12:\"employee_SSN\";N;s:20:\"employee_passport_no\";N;s:15:\"employee_gender\";N;s:14:\"employee_blood\";N;s:17:\"employee_religion\";N;s:20:\"employee_maritalstat\";N;s:18:\"employee_countryID\";N;s:12:\"employee_dob\";N;s:14:\"employee_notes\";N;s:7:\"deleted\";s:1:\"0\";s:19:\"employee_datecreate\";s:19:\"0000-00-00 00:00:00\";}','2014-03-30 22:33:12',1),('181e88657ba793c30968c7729ae0bf39','::1','Mozilla/5.0 (Windows NT 6.2; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0',1396185301,'','2014-03-30 20:15:01',1),('6a0a918c804f9afdfa1ef515599ab17d','::1','Mozilla/5.0 (Windows NT 6.2; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0',1396191536,'','2014-03-30 21:22:19',1),('2ad8cd44001b9dc04b780b3e6da1ee0d','::1','Mozilla/5.0 (Windows NT 6.2; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0',1396180312,'a:30:{s:9:\"user_data\";s:0:\"\";s:11:\"employee_ID\";s:1:\"1\";s:15:\"employee_hexaID\";s:1:\"1\";s:13:\"employee_name\";s:10:\"Nurjamilah\";s:14:\"employee_email\";s:20:\"anakpisces@gmail.com\";s:17:\"employee_password\";s:32:\"7884fc6616d2e1c408a298a75eb159d4\";s:15:\"employee_access\";s:1:\"1\";s:14:\"employee_photo\";s:99:\"upload/employee_photo/fe2dbda1-c4ea-57ad-882c-5989936c2a7d/503539ca-f8c1-5354-b00f-d97490fdcd20.jpg\";s:21:\"employee_startworking\";s:10:\"2012-12-12\";s:19:\"employee_endworking\";N;s:14:\"employee_badge\";s:10:\"ADR-100119\";s:19:\"employee_positionID\";N;s:19:\"employee_divisionID\";N;s:15:\"employee_status\";s:3:\"new\";s:20:\"employee_mobilephone\";N;s:14:\"employee_phone\";s:12:\"085271129400\";s:18:\"employee_managerID\";N;s:23:\"employee_worklocationID\";N;s:16:\"employee_address\";s:41:\"Jl. Bukit Barisan Perum Cendana I blok c2\";s:12:\"employee_SSN\";N;s:20:\"employee_passport_no\";N;s:15:\"employee_gender\";N;s:14:\"employee_blood\";N;s:17:\"employee_religion\";N;s:20:\"employee_maritalstat\";N;s:18:\"employee_countryID\";N;s:12:\"employee_dob\";N;s:14:\"employee_notes\";N;s:7:\"deleted\";s:1:\"0\";s:19:\"employee_datecreate\";s:19:\"0000-00-00 00:00:00\";}','2014-03-30 16:15:14',1);
+insert  into `ci_sessions`(`session_id`,`ip_address`,`user_agent`,`last_activity`,`user_data`,`date_created`,`online`) values ('43b163c710581cc04db646aa283d4d30','127.0.0.1','Mozilla/5.0 (Windows NT 6.2; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',1403278371,'a:30:{s:9:\"user_data\";s:0:\"\";s:11:\"employee_ID\";s:1:\"1\";s:15:\"employee_hexaID\";s:1:\"1\";s:13:\"employee_name\";s:10:\"Nurjamilah\";s:14:\"employee_email\";s:20:\"anakpisces@gmail.com\";s:17:\"employee_password\";s:32:\"7884fc6616d2e1c408a298a75eb159d4\";s:15:\"employee_access\";s:1:\"1\";s:14:\"employee_photo\";s:99:\"upload/employee_photo/fe2dbda1-c4ea-57ad-882c-5989936c2a7d/503539ca-f8c1-5354-b00f-d97490fdcd20.jpg\";s:21:\"employee_startworking\";s:10:\"2012-12-12\";s:19:\"employee_endworking\";N;s:14:\"employee_badge\";s:10:\"ADR-100119\";s:19:\"employee_positionID\";N;s:19:\"employee_divisionID\";N;s:15:\"employee_status\";s:3:\"new\";s:20:\"employee_mobilephone\";N;s:14:\"employee_phone\";s:12:\"085271129400\";s:18:\"employee_managerID\";N;s:23:\"employee_worklocationID\";N;s:16:\"employee_address\";s:41:\"Jl. Bukit Barisan Perum Cendana I blok c2\";s:12:\"employee_SSN\";N;s:20:\"employee_passport_no\";N;s:15:\"employee_gender\";N;s:14:\"employee_blood\";N;s:17:\"employee_religion\";N;s:20:\"employee_maritalstat\";N;s:18:\"employee_countryID\";N;s:12:\"employee_dob\";N;s:14:\"employee_notes\";N;s:7:\"deleted\";s:1:\"0\";s:11:\"datecreated\";s:19:\"0000-00-00 00:00:00\";}','2014-06-20 22:32:51',1),('976c30ae5c709d1c3a1f0a7150773c65','127.0.0.1','Mozilla/5.0 (Windows NT 6.2; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0',1403306985,'a:30:{s:9:\"user_data\";s:0:\"\";s:11:\"employee_ID\";s:1:\"1\";s:15:\"employee_hexaID\";s:1:\"1\";s:13:\"employee_name\";s:10:\"Nurjamilah\";s:14:\"employee_email\";s:20:\"anakpisces@gmail.com\";s:17:\"employee_password\";s:32:\"7884fc6616d2e1c408a298a75eb159d4\";s:15:\"employee_access\";s:1:\"1\";s:14:\"employee_photo\";s:99:\"upload/employee_photo/fe2dbda1-c4ea-57ad-882c-5989936c2a7d/503539ca-f8c1-5354-b00f-d97490fdcd20.jpg\";s:21:\"employee_startworking\";s:10:\"2012-12-12\";s:19:\"employee_endworking\";N;s:14:\"employee_badge\";s:10:\"ADR-100119\";s:19:\"employee_positionID\";N;s:19:\"employee_divisionID\";N;s:15:\"employee_status\";s:3:\"new\";s:20:\"employee_mobilephone\";N;s:14:\"employee_phone\";s:12:\"085271129400\";s:18:\"employee_managerID\";N;s:23:\"employee_worklocationID\";N;s:16:\"employee_address\";s:41:\"Jl. Bukit Barisan Perum Cendana I blok c2\";s:12:\"employee_SSN\";N;s:20:\"employee_passport_no\";N;s:15:\"employee_gender\";N;s:14:\"employee_blood\";N;s:17:\"employee_religion\";N;s:20:\"employee_maritalstat\";N;s:18:\"employee_countryID\";N;s:12:\"employee_dob\";N;s:14:\"employee_notes\";N;s:7:\"deleted\";s:1:\"0\";s:11:\"datecreated\";s:19:\"0000-00-00 00:00:00\";}','2014-06-21 06:29:45',1),('733ea1ad07a72df0891122d9e9326195','::1','Mozilla/5.0 (Windows NT 6.2; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0',1401940587,'a:30:{s:9:\"user_data\";s:0:\"\";s:11:\"employee_ID\";s:1:\"1\";s:15:\"employee_hexaID\";s:1:\"1\";s:13:\"employee_name\";s:10:\"Nurjamilah\";s:14:\"employee_email\";s:20:\"anakpisces@gmail.com\";s:17:\"employee_password\";s:32:\"7884fc6616d2e1c408a298a75eb159d4\";s:15:\"employee_access\";s:1:\"1\";s:14:\"employee_photo\";s:99:\"upload/employee_photo/fe2dbda1-c4ea-57ad-882c-5989936c2a7d/503539ca-f8c1-5354-b00f-d97490fdcd20.jpg\";s:21:\"employee_startworking\";s:10:\"2012-12-12\";s:19:\"employee_endworking\";N;s:14:\"employee_badge\";s:10:\"ADR-100119\";s:19:\"employee_positionID\";N;s:19:\"employee_divisionID\";N;s:15:\"employee_status\";s:3:\"new\";s:20:\"employee_mobilephone\";N;s:14:\"employee_phone\";s:12:\"085271129400\";s:18:\"employee_managerID\";N;s:23:\"employee_worklocationID\";N;s:16:\"employee_address\";s:41:\"Jl. Bukit Barisan Perum Cendana I blok c2\";s:12:\"employee_SSN\";N;s:20:\"employee_passport_no\";N;s:15:\"employee_gender\";N;s:14:\"employee_blood\";N;s:17:\"employee_religion\";N;s:20:\"employee_maritalstat\";N;s:18:\"employee_countryID\";N;s:12:\"employee_dob\";N;s:14:\"employee_notes\";N;s:7:\"deleted\";s:1:\"0\";s:11:\"datecreated\";s:19:\"0000-00-00 00:00:00\";}','2014-06-05 10:56:27',1);
 
 /*Table structure for table `countries` */
 
@@ -79,39 +77,39 @@ DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
   `employee_ID` int(10) NOT NULL AUTO_INCREMENT,
   `employee_hexaID` char(30) DEFAULT NULL,
-  `employee_name` varchar(255) DEFAULT NULL,
-  `employee_email` varchar(255) DEFAULT NULL,
+  `employee_name` varchar(255) DEFAULT NULL COMMENT 'name',
+  `employee_email` varchar(255) DEFAULT NULL COMMENT 'email',
   `employee_password` varchar(255) DEFAULT NULL,
-  `employee_access` tinyint(1) DEFAULT '1',
+  `employee_access` tinyint(1) DEFAULT '1' COMMENT 'access',
   `employee_photo` varchar(255) DEFAULT NULL,
-  `employee_startworking` date DEFAULT NULL,
-  `employee_endworking` date DEFAULT NULL,
-  `employee_badge` varchar(11) DEFAULT NULL,
+  `employee_startworking` date DEFAULT NULL COMMENT 'start working',
+  `employee_endworking` date DEFAULT NULL COMMENT 'end working',
+  `employee_badge` varchar(11) DEFAULT NULL COMMENT 'badge',
   `employee_positionID` char(36) DEFAULT NULL,
   `employee_divisionID` char(36) DEFAULT NULL,
-  `employee_status` varchar(255) DEFAULT NULL,
-  `employee_mobilephone` char(30) DEFAULT NULL,
-  `employee_phone` char(30) DEFAULT NULL,
+  `employee_status` varchar(255) DEFAULT NULL COMMENT 'status',
+  `employee_mobilephone` char(30) DEFAULT NULL COMMENT 'mobile phone',
+  `employee_phone` char(30) DEFAULT NULL COMMENT 'phone',
   `employee_managerID` char(30) DEFAULT NULL,
-  `employee_worklocationID` char(30) DEFAULT NULL,
-  `employee_address` varchar(255) DEFAULT NULL,
-  `employee_SSN` char(30) DEFAULT NULL,
-  `employee_passport_no` char(50) DEFAULT NULL,
-  `employee_gender` char(6) DEFAULT NULL,
-  `employee_blood` char(2) DEFAULT NULL,
-  `employee_religion` varchar(30) DEFAULT NULL,
-  `employee_maritalstat` varchar(30) DEFAULT NULL,
+  `employee_worklocationID` char(30) DEFAULT NULL COMMENT 'work location',
+  `employee_address` varchar(255) DEFAULT NULL COMMENT 'address',
+  `employee_SSN` char(30) DEFAULT NULL COMMENT 'SSN',
+  `employee_passport_no` char(50) DEFAULT NULL COMMENT 'passport',
+  `employee_gender` char(6) DEFAULT NULL COMMENT 'gender',
+  `employee_blood` char(2) DEFAULT NULL COMMENT 'blood',
+  `employee_religion` varchar(30) DEFAULT NULL COMMENT 'religion',
+  `employee_maritalstat` varchar(30) DEFAULT NULL COMMENT 'marital status',
   `employee_countryID` char(30) DEFAULT NULL,
-  `employee_dob` date DEFAULT NULL,
-  `employee_notes` varchar(255) DEFAULT NULL,
+  `employee_dob` date DEFAULT NULL COMMENT 'date of brith',
+  `employee_notes` varchar(255) DEFAULT NULL COMMENT 'note',
   `deleted` tinyint(1) DEFAULT '0',
-  `employee_datecreate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `datecreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`employee_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=133 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=167 DEFAULT CHARSET=latin1;
 
 /*Data for the table `employee` */
 
-insert  into `employee`(`employee_ID`,`employee_hexaID`,`employee_name`,`employee_email`,`employee_password`,`employee_access`,`employee_photo`,`employee_startworking`,`employee_endworking`,`employee_badge`,`employee_positionID`,`employee_divisionID`,`employee_status`,`employee_mobilephone`,`employee_phone`,`employee_managerID`,`employee_worklocationID`,`employee_address`,`employee_SSN`,`employee_passport_no`,`employee_gender`,`employee_blood`,`employee_religion`,`employee_maritalstat`,`employee_countryID`,`employee_dob`,`employee_notes`,`deleted`,`employee_datecreate`) values (1,'1','Nurjamilah','anakpisces@gmail.com','7884fc6616d2e1c408a298a75eb159d4',1,'upload/employee_photo/fe2dbda1-c4ea-57ad-882c-5989936c2a7d/503539ca-f8c1-5354-b00f-d97490fdcd20.jpg','2012-12-12',NULL,'ADR-100119',NULL,NULL,'new',NULL,'085271129400',NULL,NULL,'Jl. Bukit Barisan Perum Cendana I blok c2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'0000-00-00 00:00:00'),(132,'40521937-bd37-5c61-af0b-d06d2e','ferniawan','ferniawan@ratan.co',NULL,1,'upload/employee_photo/fe2dbda1-c4ea-57ad-882c-5989936c2a7d/503539ca-f8c1-5354-b00f-d97490fdcd20.jpg',NULL,NULL,'0991','Programmer','IT',NULL,'082387873400','082387873400','PP','asd','Jl. asd','','','Male','A','Single','Single','1','0000-00-00','',0,'2013-12-26 20:32:54'),(131,'7966a515-0cab-5ea1-91dd-f17826','asd','ASD@sfd.j',NULL,1,'upload/employee_photo/fe2dbda1-c4ea-57ad-882c-5989936c2a7d/503539ca-f8c1-5354-b00f-d97490fdcd20.jpg',NULL,NULL,'','','',NULL,'','','','','','','','Male','A','Single','Single','1','0000-00-00','',0,'2013-12-26 20:03:44');
+insert  into `employee`(`employee_ID`,`employee_hexaID`,`employee_name`,`employee_email`,`employee_password`,`employee_access`,`employee_photo`,`employee_startworking`,`employee_endworking`,`employee_badge`,`employee_positionID`,`employee_divisionID`,`employee_status`,`employee_mobilephone`,`employee_phone`,`employee_managerID`,`employee_worklocationID`,`employee_address`,`employee_SSN`,`employee_passport_no`,`employee_gender`,`employee_blood`,`employee_religion`,`employee_maritalstat`,`employee_countryID`,`employee_dob`,`employee_notes`,`deleted`,`datecreated`) values (1,'1','Nurjamilah','anakpisces@gmail.com','7884fc6616d2e1c408a298a75eb159d4',1,'upload/employee_photo/fe2dbda1-c4ea-57ad-882c-5989936c2a7d/503539ca-f8c1-5354-b00f-d97490fdcd20.jpg','2012-12-12',NULL,'ADR-100119',NULL,NULL,'new',NULL,'085271129400',NULL,NULL,'Jl. Bukit Barisan Perum Cendana I blok c2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'0000-00-00 00:00:00'),(132,'40521937-bd37-5c61-af0b-d06d2e','ferniawan','ferniawan@ratan.co',NULL,1,'upload/employee_photo/fe2dbda1-c4ea-57ad-882c-5989936c2a7d/503539ca-f8c1-5354-b00f-d97490fdcd20.jpg',NULL,NULL,'0991','Programmer','IT',NULL,'082387873400','082387873400','PP','asd','Jl. asd','','','Male','A','Single','Single','1','0000-00-00','',0,'2013-12-26 20:32:54'),(131,'7966a515-0cab-5ea1-91dd-f17826','Andi Munajad','andi@asd.com',NULL,1,'upload/employee_photo/fe2dbda1-c4ea-57ad-882c-5989936c2a7d/503539ca-f8c1-5354-b00f-d97490fdcd20.jpg',NULL,NULL,'','','',NULL,'','','','','','','','Male','A','Single','Single','1','0000-00-00','',0,'2013-12-26 20:03:44'),(163,'354adab3-0a92-5c54-bb7c-96e2ab','A im ','arif@ratan.co',NULL,1,NULL,NULL,NULL,'1234','IT Infrastruktur','IT Infrastruktur',NULL,'0852878734567','0852878734567','','Pekanbaru','Jl. Bangau sakti no 23','123','123','Male','A','Single','Single','101',NULL,'asd',0,'2014-04-26 09:01:45'),(162,'87316df2-9c00-5aec-8438-9ef576','Aim Oman','arif@ratan.co',NULL,1,NULL,NULL,NULL,'1234','IT Infrastruktur','IT Infrastruktur',NULL,'0852878734567','0852878734567','','Pekanbaru','Jl. Bangau sakti no 23','','','Male','A','Single','Single','1',NULL,'',0,'2014-04-26 09:01:45'),(161,'ba7418ee-000d-573e-9e0b-c6c385','Ajo Saputra','',NULL,1,NULL,NULL,NULL,'','','',NULL,'','','','','Jl. Cempaka','','','Male','A','Single','Single','1',NULL,'',0,'2014-04-13 19:16:16'),(160,'a721abb9-0875-5a07-b924-143040','Bantuan','',NULL,1,NULL,NULL,NULL,'','','',NULL,'','','','','','','','Male','A','Single','Single','1',NULL,'',0,'2014-04-13 14:38:02'),(159,'1f0ecaeb-c8e2-540e-bd0e-f63c06','','',NULL,1,NULL,NULL,NULL,'','','',NULL,'','','','','','','','Male','A','Single','Single','1',NULL,'',1,'2014-04-13 14:36:49'),(158,'97f214b6-0383-56c8-9422-1a93c8','','',NULL,1,NULL,NULL,NULL,'','','',NULL,'','','','','','','','Male','A','Single','Single','1',NULL,'',1,'2014-04-13 14:14:31'),(157,'22a6d6b4-6ced-5e49-b034-a041a2','Andi Saputra','andi@ratan.co',NULL,1,'',NULL,NULL,'','Accounting','Accounting',NULL,'','','','','Jl. Bangau sakti','','','Male','A','Single','Single','1',NULL,'',0,'2014-04-13 08:05:36'),(151,'e615300e-c2ad-502a-a4c1-442d53','Gya Apitudiya asd','asdqwe123@asd.com',NULL,1,'',NULL,NULL,'','','',NULL,'','','','','','','','Male','A','Single','Single','1',NULL,'',0,'2014-04-12 23:09:55'),(152,'ac25b129-86a2-5582-ae2f-74cfdd','12321x','',NULL,1,'',NULL,NULL,'','','',NULL,'','','','','','','','Male','A','Single','Single','1',NULL,'',0,'2014-04-12 23:11:42'),(153,'4882f88d-73da-53c2-ae1a-f035ff','asd','asd',NULL,1,'',NULL,NULL,'','','',NULL,'','','','','','','','Male','A','Single','Single','1',NULL,'',0,'2014-04-12 23:19:32'),(154,'00f21e8c-ebf0-5e1a-8f4d-e173c7','jauharizala','jauhari@ratan.co',NULL,1,'',NULL,NULL,'','','',NULL,'','','','','Jl. Gunung raya ','','','Male','A','Single','Single','1',NULL,'',0,'2014-04-12 23:38:19'),(164,'45a1e286-4538-5de7-be99-78fd03','','',NULL,1,NULL,NULL,NULL,'','','',NULL,'','','','','','','','Male','A','Single','Single','1',NULL,'',1,'2014-05-03 09:58:29'),(165,'bc98881a-1076-58a4-94eb-ca73da','Andi','asd',NULL,1,NULL,NULL,NULL,'asd','asd','asd',NULL,'asd','asd','asd','','asd','','','Male','A','Single','Single','1',NULL,'',1,'2014-05-03 12:37:52'),(166,'593f0a02-f2c3-5f37-b041-d7d2b9','uco','asd@asd.uco',NULL,1,NULL,NULL,NULL,'','','asd',NULL,'','','','','Jl. Kratu','','','Male','A','Single','Single','1',NULL,'',0,'2014-05-04 00:13:20');
 
 /*Table structure for table `menu` */
 
@@ -127,11 +125,39 @@ CREATE TABLE `menu` (
   `menu_icon` varchar(128) DEFAULT NULL,
   `deleted` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`menu_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `menu` */
 
-insert  into `menu`(`menu_ID`,`menu_hexaID`,`menu_name`,`menu_desc`,`menu_url`,`menu_class`,`menu_icon`,`deleted`) values (1,'1','Project','Project','project','magenta','icon-bar-chart',0),(2,'2','Purchase','Purchase','purchase','green','icon-shopping-cart',0),(3,'3','Finance','Finance','finance','dark-yellow','icon-money',0),(4,'4','HRD','HRD','hrd','blue-violate','icon-money',0),(5,'5','CRM','CRM','crm','blue','icon-briefcase',0),(6,'6','POS','POS','pos','dark-yellow','icon-truck',0),(7,'7','Warehouse','Warehouse','warehouse','green','icon-hdd',0),(8,'8','Manufacture','Manufacture','manufacture','orange','icon-wrench',0),(9,'9','Payroll','Payroll','payroll','green','icon-credit-card',0),(10,'10','Asset','Asset','Asset','blue','icon-list-alt',0);
+insert  into `menu`(`menu_ID`,`menu_hexaID`,`menu_name`,`menu_desc`,`menu_url`,`menu_class`,`menu_icon`,`deleted`) values (1,'1','Project','Project','project','magenta','icon-bar-chart',0),(2,'2','Purchase','Purchase','purchase','grey','icon-shopping-cart',0),(3,'3','Finance','Finance','finance','dark-yellow','icon-money',0),(4,'4','HRD','HRD','hrd','blue-violate','icon-group',0),(5,'5','CRM','CRM','crm','blue','icon-briefcase',0),(6,'6','POS','POS','pos','cocolate','icon-truck',0),(7,'7','Warehouse','Warehouse','warehouse','brown','icon-hdd',0),(8,'8','Manufacture','Manufacture','manufacture','orange','icon-wrench',0),(9,'9','Payroll','Payroll','payroll','green','icon-credit-card',0),(10,'10','Asset','Asset','Asset','bondi-blue','icon-list-alt',0);
+
+/*Table structure for table `stock` */
+
+DROP TABLE IF EXISTS `stock`;
+
+CREATE TABLE `stock` (
+  `STOCK_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `STOCK_CODE` varchar(10) NOT NULL,
+  `STOCK_NAME` varchar(20) NOT NULL,
+  PRIMARY KEY (`STOCK_ID`) USING BTREE,
+  UNIQUE KEY `UNI_STOCK_NAME` (`STOCK_NAME`),
+  UNIQUE KEY `UNI_STOCK_ID` (`STOCK_CODE`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `stock` */
+
+/*Table structure for table `teams` */
+
+DROP TABLE IF EXISTS `teams`;
+
+CREATE TABLE `teams` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) NOT NULL,
+  `rating` int(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `teams` */
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

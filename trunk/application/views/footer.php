@@ -1,6 +1,6 @@
 <div class="copyright">
 		<p>
-			 &copy; 2013 Carl & Ellie
+			 &copy; 2013 Ratan Software Indonesia
 		</p>
 	</div>
 	<div class="scroll-top">
