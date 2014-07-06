@@ -5,15 +5,16 @@
 	<div class="nav navbar-inverse top-nav">
 		<div class="navbar-inner">
 			<div class="container">
-				<span class="home-link"><a href="<?php echo base_url();?>" class="icon-home"></a></span><a class="brand" href="./index.html">
+				<span class="home-link"><a href="<?php echo base_url();?>" class="icon-home"></a></span>
 					
 				<div class="btn-toolbar pull-right notification-nav">
 					<div class="btn-group">
 						<div class="dropdown">
-							<a class="btn btn-notification"><i class="icon-reply"></i></a>
+							<span class="home-link"><a href="http://ratan.co" class="icon-reply"></a></span>
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>
