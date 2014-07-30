@@ -9,7 +9,7 @@ class core
 		}
 		
 		// if local image, then directly load it
-		if (is_file($path)) {
+		if ($path){
 			
 			$path_parts = explode('/', $path);
 			
