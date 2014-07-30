@@ -1,7 +1,7 @@
 
 Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];?></span>
-
-<table class="responsive table table-striped table-bordered table-hover" >
+<div></br></div>
+<table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
 	<thead>
 		  <tr>
 				<th> Full Name </th>
@@ -85,8 +85,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					data: $("#form_filter").serialize(),
 					
 						success: function(data){     
-							$( ".list" ).html(data); 
-							$('#search').show();
+							$( ".list" ).html(data); 							
 							$('.progress-bar').hide();
 							
 						}  
