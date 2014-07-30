@@ -2510,7 +2510,7 @@ th:active {
 	max-width: 300px;
 	padding: 10px 20px 20px;
 	margin: 60px auto 20px;
-	background-color: #fff;
+	background-color: rgba(252, 255, 255, 0.6);
 	border: 1px solid #282828;
 	border-top:#282828 4px solid;
 	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .3);
