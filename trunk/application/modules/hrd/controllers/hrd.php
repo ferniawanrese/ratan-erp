@@ -37,7 +37,7 @@ class hrd extends CI_Controller {
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
 		$this->output->set_header('Pragma: no-cache');
 		if($this->session->userdata('employee_access')!='1'){
-			//redirect(base_url(''));
+			redirect(base_url(''));
 		}
 	} 
 	
