@@ -57,5 +57,5 @@
 		$('body').loadie();   
 	})
 </script>
-<body>
-<div class="my_loadie_container"></div>
+<body id = "smashinglogo">
+<div class="my_loadie_container" ></div>
