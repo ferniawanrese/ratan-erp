@@ -1,11 +1,12 @@
 <div class="leftbar leftbar-close clearfix">
 		
 		<div class="admin-info clearfix ">	
+			<img src="<?php echo base_url($this->core->get_im($this->session->userdata('employee_photo'),100,100));?>" class="img-responsive " 
+					onError="this.src='<?php echo base_url('images/no_image.png');?>'">
+				
 			<div class="admin-meta ">
-					<img src="<?php echo base_url($this->core->get_im($this->session->userdata('employee_photo'),100,100));?>" class="img-responsive " 
-					onError="this.src='<?php echo base_url('images/no_image.png');?>'">	
-			</div>
-			<div class="admin-meta ">
+				
+				
 				<ul >
 					<li class="admin-username"><?php echo $this->session->userdata('employee_name');?></li>
 					<li><a href="#">Edit Profile</a></li>
