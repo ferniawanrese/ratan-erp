@@ -37,7 +37,7 @@
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-text"></label>
 													<div class="input-group col-sm-12 col-md-12">
-														<input type="text" class="form-control" name="employee_name" id="employee_name" placeholder="name" >		
+														<input type="text" class="form-control" name="filter[employee_name]" id="filter[employee_name]" placeholder="name" >		
 														<span class="input-group-addon "></span>
 													</div>
 												</div>
@@ -255,7 +255,6 @@ $.ajax({
 
 function edit_employee(a){
 
-	
 	$('#search').hide();
 	$('#btn-list').show();
 	$('#btn-create').hide();
@@ -273,7 +272,6 @@ function edit_employee(a){
 
 function clearfilter(){
 $('#limit').val('10');
-$('#employee_name').val('');
 $('#employee_divisionID').val('');
 $('#employee_positionID').val('');
 $('#employee_managerID').val('');
@@ -306,12 +304,12 @@ function delete_post(a){
 	
 <script>
 function close_filter(){											
-$("#search").hide();
+$("#search").fadeOut();
 $("#Show").show();
 $("#Hide").hide();
 }
 function open_filter(){											
-$("#search").show();
+$("#search").fadeIn();
 $("#Hide").show();
 $("#Show").hide();
 }
