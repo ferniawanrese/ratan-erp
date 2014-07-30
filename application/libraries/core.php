@@ -5,7 +5,7 @@ class core
 	function get_im($path, $width = null, $height = null) {
 		// if empty, then put no image
 		if (empty($path)) {
-			return $this->CI->config->item('staticPath').'/images/no_image.jpg';
+			return $this->CI->config->item('staticPath').'/images/no_image.png';
 		}
 		
 		// if local image, then directly load it

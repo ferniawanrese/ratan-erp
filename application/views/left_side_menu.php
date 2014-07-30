@@ -2,7 +2,8 @@
 		
 		<div class="admin-info clearfix ">	
 			<div class="admin-meta ">
-					<img src="<?php echo base_url($this->core->get_im($this->session->userdata('employee_photo'),100,100));?>" class="img-responsive ">	
+					<img src="<?php echo base_url($this->core->get_im($this->session->userdata('employee_photo'),100,100));?>" class="img-responsive " 
+					onError="this.src='<?php echo base_url('images/no_image.png');?>'">	
 			</div>
 			<div class="admin-meta ">
 				<ul >

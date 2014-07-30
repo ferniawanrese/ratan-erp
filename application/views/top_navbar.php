@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="container"><div class="navbar-header"><a class="navbar-brand" href="<?php echo base_url('backend');?>"></a></div>
 				<span class="home-link"><a href="<?php echo base_url('backend');?>" class="icon-home"></a></span>
-				<div class="navbar-collapse col-sm-5 col-md-5">
+				<!--<div class="navbar-collapse col-sm-5 col-md-5">
 					<ul class="nav navbar-nav">
 						
 						<li class="dropdown">
@@ -18,7 +18,7 @@
 						</div>
 						</li>					
 					</ul>
-				</div>
+				</div>-->
 				<div class="btn-toolbar pull-right notification-nav">
 					<div class="btn-group">
 						<div class="dropdown">
