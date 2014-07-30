@@ -14,13 +14,19 @@ class Mhrd extends CI_Model {
 		
 		$this->db->where('deleted', '0');
 		
+		//orderby
 		if($data['orderby']!=""){
 		$this->db->order_by($data['orderby'],$data['ascdsc']);
 		}else{
 		$this->db->order_by('dateCreated','DESC');
 		}
+		
 		if(isset($data['filterplus'])){
 		$this->db->like($data['filterplus']);
+		}
+		
+		if(isset($data['filter'])){
+		$this->db->like($data['filter']);
 		}
 				
 		$query = $this->db->get('employee',$limit,$a);
@@ -42,6 +48,9 @@ class Mhrd extends CI_Model {
 		$this->db->order_by('datecreated','desc');	
 		if(isset($data['filterplus'])){
 		$this->db->like($data['filterplus']);
+		}
+		if(isset($data['filter'])){
+		$this->db->like($data['filter']);
 		}
 		$query = $this->db->get('employee');
 
