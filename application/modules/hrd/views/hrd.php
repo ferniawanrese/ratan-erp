@@ -18,17 +18,22 @@
 											<div  id = "btn-create" class="form-group">
 												<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_employee()"> Create</button>
 												<button class="btn btn-inverse btn-large icon-file-alt" type="button" onclick = "exportdata()"> Export to Excel</button>
+												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "open_filter()" id = "Show"> Show Filter</button>
+												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "close_filter()" id = "Hide" style = "display: none;"> Hide Filter</button>
 											</div>
 											
 											<div   id = "btn-list" class="form-group">
 												<button class="btn btn-inverse icon-list" type="button" onclick = "display_data()" > Data List</button>
 											</div>
 											
-											<span = id ="search">	
+										
+											<span  id ="search" style = "display: none;">	
 												<!-- searching -->
 											 <form id = "form_filter" name="form_filter" method="post">
-												<fieldset class="default">
-												<legend>Filtering</legend>
+												
+											<fieldset class="default panel">
+											<legend> Filtering </legend>
+											
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-text"></label>
 													<div class="input-group col-sm-12 col-md-12">
@@ -127,6 +132,7 @@
 														</span>
 													</div>													
 												</div>
+												
 												</fieldset>
 											 </form>
 											</span>
@@ -182,8 +188,7 @@ function display_data(){
 				url: "<?php echo base_url('hrd/hrd_employe_data/');?>",
 				data: $("#form_filter").serialize(),
 				success: function(data){     
-					$( ".list" ).html(data); 
-					$('#search').show();				
+					$( ".list" ).html(data); 								
 					$('.my_loadie_container').loadie(1);
 				}			
 			});
@@ -295,5 +300,19 @@ function delete_post(a){
 					}
 					
                 });
+}
+</script>
+
+	
+<script>
+function close_filter(){											
+$("#search").hide();
+$("#Show").show();
+$("#Hide").hide();
+}
+function open_filter(){											
+$("#search").show();
+$("#Hide").show();
+$("#Show").hide();
 }
 </script>
