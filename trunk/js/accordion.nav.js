@@ -5,10 +5,12 @@
 /*
 SETUP
 */
-var slideSpeed = 'slow';    // 'slow', 'normal', 'fast', or miliseconds 
+var slideSpeed = 'normal';    // 'slow', 'normal', 'fast', or miliseconds 
 //end setup
 
 var pathname = window.location.pathname;
+
+
 
 $(function() {
 

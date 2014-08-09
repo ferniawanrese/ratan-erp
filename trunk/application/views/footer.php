@@ -1,6 +1,6 @@
 <div class="copyright">
 		<p>
-			 &copy; 2013 Ratan Software Indonesia
+			 &copy; 2014 Ratan Software Indonesia
 		</p>
 	</div>
 	<div class="scroll-top">
