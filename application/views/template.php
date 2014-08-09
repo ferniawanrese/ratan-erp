@@ -3,7 +3,7 @@
 
 <div class="layout">
 
-		<?php $this->load->view('top_navbar');?>
+		<?php $this->load->view('top_navbar',$data);?>
 		<?php $this->load->view('left_side_menu',$data);?>
 		
 		

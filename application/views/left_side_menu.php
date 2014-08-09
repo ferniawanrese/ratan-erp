@@ -3,16 +3,16 @@
 		<div class="admin-info clearfix ">	
 			<img src="<?php echo base_url($this->core->get_im($this->session->userdata('employee_photo'),100,100));?>" class="img-responsive " 
 					onError="this.src='<?php echo base_url('images/no_image.png');?>'">
-				
+				Hii <?php echo $this->session->userdata('employee_name');?>. <a href=""><i class="icon-edit"></i> Update profile </a>
 			<div class="admin-meta ">
 				
 				
-				<ul >
+				<!--<ul >
 					<li class="admin-username"><?php echo $this->session->userdata('employee_name');?></li>
 					<li><a href="#">Edit Profile</a></li>
 					<li><a href="#">View Profile </a><a href="#"></li>
 					<li><i class="icon-lock"></i> Logout</a></li>
-				</ul>
+				</ul>-->
 			</div>
 		</div>
 		
@@ -26,7 +26,7 @@
 					
 						<?php if(isset($menu_name)){
 							if($menu_name== "HRD"):?>
-						<li class="active" ><a href="#forms" class="icon-th-large" title="Forms"></a></li>
+						<li class="active" ><a href="#forms" class="icon-th-large" title="Dashboard"></a></li>
 						<?php endif;?>
 						<?php };?>
 						

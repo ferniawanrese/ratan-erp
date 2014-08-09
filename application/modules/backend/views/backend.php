@@ -1,8 +1,10 @@
 
 			
 <div class="row-fluid">
-				<div class="span12">
-					<div class="switch-board gray">
+				<div class="switch-board gray col-md-12">
+					<div class="col-md-2">
+					</div>
+					<div class="col-md-8">
 						<ul class="clearfix switch-item">
 							
 							<?php foreach($main_menu as $key):?>
@@ -10,6 +12,8 @@
 							<?php endforeach;?>
 							
 						</ul>
+					</div>
+					<div class="col-md-2">
 					</div>
 				</div>
 </div>

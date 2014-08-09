@@ -1,11 +1,11 @@
 <?php $this->load->view('header');?>
-<style>
+<!--<style>
 #smashinglogo {
   background: url(<?php echo base_url('images/bgstart.jpg');?>)  100%  no-repeat;
   max-width: 100%;
   background-size:100% auto;
 }
-</style>
+</style>-->
 <div class="layout " id = "smashinglogox">
 	<!-- Navbar================================================== -->
 	<div class="nav navbar-inverse top-nav">

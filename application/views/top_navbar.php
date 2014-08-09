@@ -4,28 +4,34 @@
 		<div class="container">
 			<div class="container"><div class="navbar-header"><a class="navbar-brand" href="<?php echo base_url('backend');?>"></a></div>
 				<span class="home-link"><a href="<?php echo base_url('backend');?>" class="icon-home"></a></span>
-				<!--<div class="navbar-collapse col-sm-5 col-md-5">
+				
+				<?php if(isset($menu_name)){
+					if($menu_name== "HRD"):?>
+				<div class="navbar-collapse col-sm-5 col-md-5">
 					<ul class="nav navbar-nav">
 						
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="icon-th-large"></i> Forms <b class="icon-angle-down"></b>
+								<i class="icon-cogs"></i> Human Resource Configuration <b class="icon-angle-down"></b>
 							</a>
 						<div class="dropdown-menu">
 							<ul>
-								<li><a href="form-elements.html"><i class="icon-list-alt"></i> Form Elements </a></li>							
+								<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class="icon-file-alt"></i> Categories of Employee </a></li>		
+								<li><a href="<?php echo base_url('hrd/employee_structure');?>"><i class="icon-file-alt"></i> Categories Structure </a></li>
+								<li><a href="form-elements.html"><i class="icon-file-alt"></i> Job Positions </a></li>			
+								<li><a href="form-elements.html"><i class="icon-file-alt"></i> Departments </a></li>			
 							</ul>
+							
 						</div>
 						</li>					
 					</ul>
-				</div>-->
+				</div>
+				<?php endif;?>
+				<?php };?>	
+				
 				<div class="btn-toolbar pull-right notification-nav">
-					<div class="btn-group">
-						<div class="dropdown">
-							<span class="home-link"><a href="<?php echo base_url();?>" class="icon-lock"></a></span>
-						</div>
-					</div>
-					<div class="btn-group">
+					
+					<div class="btn-group" style="padding-right:20px">
 						<div class="dropdown">
 							<a class="btn btn-notification dropdown-toggle btn-default" data-toggle="dropdown"><i class="icon-globe">
 							<span class="notify-tip">30</span></i></a> 
@@ -36,7 +42,11 @@
 							</div>
 						</div>
 					</div>
-					
+					<div class="btn-group">
+						<div class="dropdown">
+							<span class="home-link"><a href="<?php echo base_url();?>" class="icon-lock"></a></span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
