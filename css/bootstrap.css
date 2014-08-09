@@ -4496,7 +4496,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: #1a1a1a;
 }
 
-.label-danger {
+.label-danger { 
   background-color: #d9534f;
 }
 .label-danger[href]:hover,
