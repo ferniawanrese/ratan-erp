@@ -9,21 +9,21 @@
 						<div class="row-fluid">
 									<div class="content-widgets gray">
 										<div class="widget-head blue clearfix">
-										  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">Employee Data </h3>
-											
+											<h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">Employee Data </h3>
+											<h3 class="pull-right" onclick="exportdata()" style="cursor:pointer;"><i class = "icon-download-alt" title = "Download Data"></i> </h3>
 										</div>
 																			
 										<div class="well col-sm-12 col-md-12">
 										
 											<div  id = "btn-create" class="form-group">
 												<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_employee()"> Create</button>
-												<button class="btn btn-inverse btn-large icon-file-alt" type="button" onclick = "exportdata()"> Export to Excel</button>
+												<!--<button class="btn btn-inverse btn-large icon-file-alt" type="button" onclick = "exportdata()"> Export to Excel</button>-->
 												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "open_filter()" id = "Show"> Show Filter</button>
 												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "close_filter()" id = "Hide" style = "display: none;"> Hide Filter</button>
 											</div>
 											
 											<div   id = "btn-list" class="form-group">
-												<button class="btn btn-inverse icon-list" type="button" onclick = "display_data()" > Data List</button>
+												<button class="btn btn-inverse  icon-arrow-left" type="button" onclick = "display_data()" > Back to Data</button>
 											</div>
 											
 										
@@ -37,7 +37,7 @@
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-text"></label>
 													<div class="input-group col-sm-12 col-md-12">
-														<input type="text" class="form-control" name="filter[employee_name]" id="filter[employee_name]" placeholder="name" >		
+														<input type="text" class="form-control" id="employee_name" name="filter[employee_name]" placeholder="name" >	
 														<span class="input-group-addon "></span>
 													</div>
 												</div>
@@ -68,6 +68,21 @@
 													</div>
 												</div>
 												
+												<span class = "additional"></span>
+												
+												<div class="form-group col-sm-12 col-md-3">
+													<label for="validate-number"></label>
+													<div class="input-group col-sm-12 col-md-12" data-validate="number">													
+														<select class="form-control" name="additionalfilter" id="additionalfilter" placeholder="[additional filter]">
+																<option value="" selected disabled>[additional filter]</option>
+																<?php foreach($filterplus as $filterpluss):?>
+																<option value = "<?php echo $filterpluss['COLUMN_NAME'];?>"><?php echo $filterpluss['COLUMN_COMMENT'];?></option>
+																<?php endforeach;?>
+														</select>
+															<span class="input-group-addon "></span>
+													</div>
+												</div>
+												
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-number"></label>
 													<div class="input-group col-sm-12 col-md-12" data-validate="number">
@@ -95,26 +110,11 @@
 													</div>
 												</div>
 												
-												<span class = "additional"></span>
-												
-												<div class="form-group col-sm-12 col-md-3">
-													<label for="validate-number"></label>
-													<div class="input-group col-sm-12 col-md-12" data-validate="number">													
-														<select class="form-control" name="additionalfilter" id="additionalfilter" placeholder="[additional filter]">
-																<option value="" selected disabled>[additional filter]</option>
-																<?php foreach($filterplus as $filterpluss):?>
-																<option value = "<?php echo $filterpluss['COLUMN_NAME'];?>"><?php echo $filterpluss['COLUMN_COMMENT'];?></option>
-																<?php endforeach;?>
-														</select>
-															<span class="input-group-addon "></span>
-													</div>
-												</div>
-												
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-number"></label>
 													<div class="input-group col-sm-12 col-md-12" data-validate="number">													
 														<select class="form-control" name="additionalcolums" id="additionalcolums" placeholder="[additional filter]">
-																<option value="" selected disabled>[more colums]</option>
+																<option value="" selected disabled>[show more colums]</option>
 																<?php foreach($filterplus as $filterpluss):?>
 																<option value = "<?php echo $filterpluss['COLUMN_NAME'];?>"><?php echo $filterpluss['COLUMN_COMMENT'];?></option>
 																<?php endforeach;?>
@@ -122,6 +122,8 @@
 															<span class="input-group-addon "></span>
 													</div>
 												</div>
+												
+												
 												
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-email"></label>
@@ -278,6 +280,8 @@ $('#employee_managerID').val('');
 $('#orderby').val('');
 $('#ascdsc').val('');
 $('.additional_group').remove();
+$('#employee_name').val('');
+
 display_data();
 }
 
