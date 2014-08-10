@@ -123,31 +123,30 @@ class hrd extends CI_Controller {
 	function hrd_save_employee (){
 		
 		$this->Mhrd->save_employee($this->input->post());
+		
+		// upload file/image
 				
 		$config['file_name'] 		= $this->generate_code->getUID();
 		$config['upload_path'] 	= './upload/employee_photo/'.$config['file_name'].'/';
 		$config['allowed_types'] 	= 'gif|jpg|png';
 		
-		mkdir($config['upload_path'], 0777);
+		@mkdir($config['upload_path'], 0777);
 		
 		$this->load->library('upload', $config);
 
 		if ( ! $this->upload->do_upload())
 		{
-			$error = array('error' => $this->upload->display_errors());
-			
+			$error = array('error' => $this->upload->display_errors());			
 		}
 		else
 		{
-			$data = array('upload_data' => $this->upload->data());
-			 $this->core->resize_im($config);
+			$data = $this->upload->data();			
+			$this->core->resize_im(array_merge($config,$data));
 		}
 		
 		redirect('hrd');
-		
 	}
-
-	
+		
 	function hrd_addemployee($employee_hexaID= null){
 	
 		$data['data_detail'] = $this->Mhrd->employee_data_detail($employee_hexaID);
