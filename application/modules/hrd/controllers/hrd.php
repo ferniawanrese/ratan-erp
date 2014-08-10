@@ -143,6 +143,8 @@ class hrd extends CI_Controller {
 			 $this->core->resize_im($config);
 		}
 		
+		redirect('hrd');
+		
 	}
 
 	

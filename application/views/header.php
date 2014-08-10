@@ -48,6 +48,8 @@
 <script src="<?php echo base_url('js/bootstrap-paginator.js');?>"></script>
 <script src="<?php echo base_url('js/accordion.nav.js');?>"></script>
 <script src="<?php echo base_url('js/jquery.loadie.js');?>"></script>
+<script src="<?php echo base_url('js/jquery.validate.js');?>"></script>
+<script src="<?php echo base_url('js/jquery.metadata.js');?>"></script>
 </head>
 
 <script>
@@ -57,5 +59,7 @@
 		$('body').loadie();   
 	})
 </script>
+
+
 <body id = "smashinglogo">
 <div class="my_loadie_container" ></div>

@@ -29,6 +29,8 @@ $.extend($.fn, {
 		$.data(this[0], 'validator', validator);
 
 		if ( validator.settings.onsubmit ) {
+		
+					
 
 			this.validateDelegate( ":submit", "click", function(ev) {
 				if ( validator.settings.submitHandler ) {
@@ -42,6 +44,9 @@ $.extend($.fn, {
 
 			// validate the form on submit
 			this.submit( function( event ) {
+	
+				$('.setup-content').show(); // wawan
+			
 				if ( validator.settings.debug ) {
 					// prevent form submit to be able to see console output
 					event.preventDefault();
@@ -74,9 +79,15 @@ $.extend($.fn, {
 						return false;
 					}
 					return handle();
-				} else {
+				} else {					
+					$('.setup-content').hide(); //wawan
+					$('#step-last').show(); //wawan 
+					$('.alert_message_required').show(); //wawan
+					$("html, body").animate({ scrollTop: 0 }, "slow"); //wawan
+					
 					validator.focusInvalid();
 					return false;
+					
 				}
 			});
 		}

@@ -11,12 +11,12 @@
 			<div class="container-fluid">
 			
 			<!-- ALERT -->
-			<!--<div class = "alert_message col-sm-12 col-md-12">
+			<div class = "alert_message_required col-sm-12 col-md-12" style="display:none;">
 				<div class="alert alert-error">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<i class="icon-exclamation-sign"></i><strong>Warning!</strong> For safety reason, please change your password periodicly.
+					<i class="icon-exclamation-sign"></i><strong>Warning!</strong> There are serious errors in your form submission, please see field required!
 				</div>
-			</div>-->
+			</div>
 			
 			<div class="row-fluid ">
 				<div class="col-sm-12 col-md-12">

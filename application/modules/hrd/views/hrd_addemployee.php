@@ -7,15 +7,14 @@
 								<li ><a href="#step-2">
 									Personal Information
 								</a></li>
-								<li><a href="#step-3">
+								<li><a href="#step-last">
 									Note
 								</a></li>
 							</ul>
 						</div>
-					
-					
+						
 						<div class="form-container">
-							<form id="stepy_form" class="form-horizontal" enctype="multipart/form-data" >
+							<form id="stepy_form" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/hrd_save_employee/');?>" method="post">
 								<div class="row setup-content " id="step-1">
 										
 												<input name="employee_hexaID" type="hidden" value = "<?php echo $data_detail[0]['employee_hexaID'];?>"/>
@@ -23,18 +22,19 @@
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Name :</label>
 													<div class="control col-md-6">
-														<input name="employee_name" required id = "employee_name" class="form-control" type="text" placeholder = "Full Name" value = "<?php echo $data_detail[0]['employee_name'];?>"/>
+														<input name="employee_name"  id = "employee_name" class="form-control {validate:{required:true}}" type="text" placeholder = "Full Name" value = "<?php echo $data_detail[0]['employee_name'];?>"/>
 													</div>
 												</div>
 												
-												<div class="form-group ">
+												<div class="form-group">
 													<label  class="col-sm-3 control-label">Email Address :</label>
-													<div class="control input-group col-md-6">
-														<input name="employee_email" required id = "employee_email" class="form-control" type="email" value = "<?php echo $data_detail[0]['employee_email'];?>"/>
+													<div class="control col-md-4">
+														<input name="employee_email"  id = "employee_email" class="form-control  {validate:{required:true,email:true}}" type="email" placeholder = "email" value = "<?php echo $data_detail[0]['employee_email'];?>"/>
 														
-														<span class="input-group-addon info"><span class="icon-plus" style = "cursor:pointer;"></span></span>
+														
 													</div>
 												</div>
+												
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Department : </label>
 													<div class="control col-md-6">
@@ -46,7 +46,7 @@
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Position :</label>
 													<div class="control col-md-6">
-														<input name="employee_positionID" required class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_positionID'];?>"/>
+														<input name="employee_positionID"  class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_positionID'];?>"/>
 														<button class="alert-box btn"><i class="icon-plus ">
 														</i>New Position</button>
 													</div>
@@ -114,9 +114,6 @@
 													</div>
 												</div>
 												
-												<div class = "pull-right">
-													<button id="activate-step-2" class="btn btn-primary alert-box btn">Next Step</button>
-												</div>
 								</div>	
 								<div class="row setup-content " id="step-2">			
 											<fieldset title="Step 2">
@@ -124,13 +121,13 @@
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">SSN No :</label>
 													<div class="control col-md-6">
-														<input type="text" id = "employee_SSN" name = "employee_SSN" class="form-control" placeholder="Social Security Number" class="input-large">
+														<input type="text" id = "employee_SSN" name = "employee_SSN" value = "<?php echo $data_detail[0]['employee_SSN'];?>" class="form-control" placeholder="Social Security Number" class="input-large">
 													</div>
 												</div>
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Passport No :</label>
 													<div class="control col-md-6">
-														<input type="text" name = "employee_passport_no" id = "employee_passport_no" class="form-control" placeholder="Passport Number" class="input-large">
+														<input type="text" name = "employee_passport_no" id = "employee_passport_no" value = "<?php echo $data_detail[0]['employee_passport_no'];?>" class="form-control" placeholder="Passport Number" class="input-large">
 													</div>
 												</div>
 												
@@ -204,34 +201,28 @@
 												</div>
 												
 												
-												<div class = "pull-right">
-													 <button id="activate-step-3" class="btn btn-primary">Next Step </button>
-												</div>
+												
 												
 								</div>
-								<div class="row setup-content " id="step-3">
+								<div class="row setup-content " id="step-last">
 								
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Employee Notes :</label>
 													<div class="control col-md-6">
-														<textarea name = "employee_notes" id = "employee_notes" class="form-control"></textarea>
+														<textarea name = "employee_notes" id = "employee_notes"  class="form-control {validate:{required:true}}"><?php echo $data_detail[0]['employee_notes'];?></textarea>
 													</div>
 												</div>
 												<div class = "pull-right">
 													
-													<button class="alert-box btn" type = "submit" id="multi-post">Finish</button>
-													<!--<a  class="btn btn-success" id="multi-post" class="alert-box btn">Finish</a>-->
+													<button class="alert-box btn" type = "submit" >Finish</button>
+													
 												</div>
 								</div >
-											
-											<div class="finish"></div>
-										</div>									
-								</div>
+								
 							</form>
-
 						</div>
 					
-<!-- dialog contents on hidden div -->   
+	<!-- dialog contents on hidden div -->   
 
 	<div id="modal-content" class="hide">
 		<div id="modal-body">
@@ -239,86 +230,28 @@
 		</div>
 	</div>
 
-	
-
-<!-- script ajax save -->
-<script>
-
-
-	$("#stepy_form").submit(function(e)
-	{
-		$('.bar').show();
-		var formObj = $(this);
-
-	if(window.FormData !== undefined)  // for HTML5 browsers
-	//	if(false)
-		{		
-			var formData = new FormData(this);
-			
-			$.ajax({
-	        	url: "<?php echo base_url('hrd/hrd_save_employee/')?>",
-		        type: 'POST',
-				data:  formData,
-				mimeType:"multipart/form-data",
-				contentType: false,
-	    	    cache: false,
-	        	processData:false,
-				success: function(data, textStatus, jqXHR)
-			    {
-						$('.bar').hide();
-						display_data();
-			    },
-			  	error: function(jqXHR, textStatus, errorThrown) 
-		    	{
-
-					$("#multi-msg").html('<pre><code class="prettyprint">AJAX Request Failed<br/> textStatus='+textStatus+', errorThrown='+errorThrown+'</code></pre>');
-		    	} 	        
-		   });
-	        e.preventDefault();
-	   }
-	   else  //for olden browsers
-		{
-			//generate a random id
-			var  iframeId = 'unique' + (new Date().getTime());
-
-			//create an empty iframe
-			var iframe = $('<iframe src="javascript:false;" name="'+iframeId+'" />');
-
-			//hide it
-			iframe.hide();
-
-			//set form target to iframe
-			formObj.attr('target',iframeId);
-
-			//Add iframe to body
-			iframe.appendTo('body');
-			iframe.load(function(e)
-			{
-				var doc = getDoc(iframe[0]);
-				var docRoot = doc.body ? doc.body : doc.documentElement;
-				var data = docRoot.innerHTML;
-				$("#multi-msg").html('<pre><code>'+data+'</code></pre>');
-			});
-		
-		}
-
-	});
-
-
-	$("#multi-post").click(function(){
-			$("#stepy_form").submit();		
-	});
-
-
-</script>
-
 <script type="text/javascript">
-   
-        $('#datetimepicker4').datetimepicker({
-            pickTime: false
-        });
-   
+            
+			cek_validate();
+			function cek_validate(){
+				
+				 var container = $('div.error-container ');
+                // validate the form when it is submitted
+                var validator = $(".form-validate").validate({
+                    errorContainer: container,
+                    errorLabelContainer: $("ol", container),
+                    wrapper: 'span',
+                    meta: "validate"
+                });
+				
+                $(".cancel").click(function () {
+                    validator.resetForm();
+                });
+			}
 </script>
+<!-- script ajax save -->
+
+
 
 <script>
 // Tab step
@@ -346,17 +279,15 @@ $(document).ready(function() {
     
     $('ul.setup-panel li.active a').trigger('click');
     
-    // DEMO ONLY //
-    $('#activate-step-2').on('click', function(e) {
-        $('ul.setup-panel li:eq(1)').removeClass('disabled');
-        $('ul.setup-panel li a[href="#step-2"]').trigger('click');
-        $(this).remove();
-    })    
-	 $('#activate-step-3').on('click', function(e) {
-        $('ul.setup-panel li:eq(2)').removeClass('disabled');
-        $('ul.setup-panel li a[href="#step-3"]').trigger('click');
-        $(this).remove();
-    })   
+   
 });
 
+ $('#datetimepicker4').datetimepicker({
+            pickTime: false
+        });
 </script>
+
+
+
+						
+							
