@@ -98,7 +98,9 @@
 															<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
 																<?php if($data_detail[0]['employee_photo']):?>
 																	<img src="<?php  echo base_url($data_detail[0]['employee_photo']);?>" alt="image"/>
-																<?php endif;?>	
+																<?php else:?>	
+																	<img alt="img" src="<?php echo base_url('images/upload-icon.png');?>">
+																<?php endif;?>
 															</div>
 															<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
 															</div>
@@ -135,6 +137,9 @@
 													<label  class="col-sm-3 control-label">Gender :</label>
 													<div class="control col-md-3">
 														<select name = "employee_gender" id = "employee_gender" class="form-control">
+															<?php if($data_detail[0]['employee_gender']){
+															echo '<option value = "'.$data_detail[0]['employee_gender'].'" selected disabled>'.$data_detail[0]['employee_gender'].'</option>' ;};?>
+															
 															<option value = "Male">Male</option>
 															<option value = "Female">Female</option>
 														</select>
@@ -144,6 +149,9 @@
 													<label  class="col-sm-3 control-label">Blood Group :</label>
 													<div class="control col-md-3">
 														<select name = "employee_blood" id = 'employee_blood' class="form-control">
+															<?php if($data_detail[0]['employee_blood']){
+															echo '<option value = "'.$data_detail[0]['employee_blood'].'" selected disabled>'.$data_detail[0]['employee_blood'].'</option>' ;};?>
+															
 															<option value = "A">A</option>
 															<option value = "B">B</option>
 															<option value = "AB">AB</option>
@@ -156,6 +164,9 @@
 													<label  class="col-sm-3 control-label">Marital Status :</label>
 													<div class="control col-md-3">
 														<select name = "employee_maritalstat" id ="employee_maritalstat" class="form-control">
+															<?php if($data_detail[0]['employee_maritalstat']){
+															echo '<option value = "'.$data_detail[0]['employee_maritalstat'].'" selected disabled>'.$data_detail[0]['employee_maritalstat'].'</option>' ;};?>
+														
 															<option value = "Single">Single</option>
 															<option value = "Married">Married</option>
 															<option value = "Widower">Widower</option>
@@ -167,12 +178,15 @@
 													<label  class="col-sm-3 control-label">Religion :</label>
 													<div class="control col-md-3">
 														<select name = "employee_religion" id = "employee_religion" class="form-control">
-															<option value = "Single">Islam</option>
-															<option value = "Married">Katholik</option>
-															<option value = "Widower">Protestan</option>
-															<option value = "Divorced">Hindu</option>
-															<option value = "Divorced">Budha</option>
-															<option value = "Divorced">Other</option>
+															<?php if($data_detail[0]['employee_religion']){
+															echo '<option value = "'.$data_detail[0]['employee_religion'].'" selected disabled>'.$data_detail[0]['employee_religion'].'</option>' ;};?>
+														
+															<option value = "Islam">Islam</option>
+															<option value = "Katholik">Katholik</option>
+															<option value = "Protestan">Protestan</option>
+															<option value = "Hindu">Hindu</option>
+															<option value = "Budha">Budha</option>
+															<option value = "Other">Other</option>
 														</select>
 													</div>
 												</div>
