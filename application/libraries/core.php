@@ -1,6 +1,7 @@
 <?php
-class core
+class Core
 {   
+	
 	
 	function get_im($path, $width = null, $height = null) {
 		// if empty, then put no image
@@ -40,32 +41,40 @@ class core
 	 * @param itemId
 	 * @return array
 	 */
-	function resize_im($directory) {
-				
+	function resize_im($config) {
+	
 			if (empty($sizes)) {
 				$sizes['0']['width'] = 100;
 				$sizes['0']['height'] = 100;
 				$sizes['1']['width'] = 220;
-				$sizes['1']['height'] = 210;
+				$sizes['1']['height'] = 220;
 				$sizes['2']['width'] = 450;
 				$sizes['2']['height'] = 450;
-				$sizes['3']['width'] = 300;
-				$sizes['3']['height'] = 210;
+				$sizes['3']['width'] = 650;
+				$sizes['3']['height'] = 650;
 			}
 			
-			$config['image_library'] = 'gd2';
-			$config['source_image'] = ".upload/employee_photo/fe2dbda1-c4ea-57ad-882c-5989936c2a7d/503539ca-f8c1-5354-b00f-d97490fdcd20.jpg";
-			$config['create_thumb'] = TRUE;
-			$config['maintain_ratio'] = TRUE;
-			$config['width'] = 75;
-			$config['height'] = 50;
-
-			//$this->load->library('image_lib', $config);
+			foreach ($sizes as $size) {
+				$size_dir = $size['width'].'x'.$size['height'];
+				@mkdir($config['upload_path'].'/'.$size_dir, 0777);
+				
+				$setup['image_library'] = 'gd2';
+				$setup['source_image'] = $config['upload_path'].$config['file_name'];
+				$setup['new_image'] = $config['upload_path'].$size_dir.'/'.$config['file_name'];
+				$setup['create_thumb'] = FALSE;
+				$setup['maintain_ratio'] = TRUE;
+				$setup['width'] = $size['width'];
+				$setup['height'] = $size['height'];
+				$setup['master_dim'] = 'height';
+				
 				$this->CI =& get_instance();
-				$this->CI->load->library('image_lib',$config);
-				$this->CI->image_lib->initialize($config);
+				
+				$this->CI->image_lib->initialize($setup); 
+    
 				$this->CI->image_lib->resize();
-		
+				
+			}
+				
 	}
 	
 	function filterplus($table) {
