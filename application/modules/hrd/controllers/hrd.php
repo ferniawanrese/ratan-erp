@@ -122,8 +122,6 @@ class hrd extends CI_Controller {
 
 	function hrd_save_employee (){
 		
-		$this->Mhrd->save_employee($this->input->post());
-		
 		// upload file/image
 				
 		$config['file_name'] 		= $this->generate_code->getUID();
@@ -143,6 +141,14 @@ class hrd extends CI_Controller {
 			$data = $this->upload->data();			
 			$this->core->resize_im(array_merge($config,$data));
 		}
+		
+		if($data['file_name']){
+		$img = $config['upload_path'].$data['file_name'];
+		}else{
+		$img = null;
+		}
+		
+		$this->Mhrd->save_employee($this->input->post(),$img);
 		
 		redirect('hrd');
 	}

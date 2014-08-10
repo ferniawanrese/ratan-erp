@@ -19,9 +19,9 @@ class Core
 				// build the resized image's url
 				if (count($path_parts) > 1) {
 					// build image's url in sub directory
-					$result_path = $path_parts[0].'/'.$path_parts[1].'/'.$path_parts[2].'/'.$width.'x'.$height.'/'.$path_parts[3];
+					$result_path = $path_parts[1].'/'.$path_parts[2].'/'.$path_parts[3].'/'.$width.'x'.$height.'/'.$path_parts[4];
 				} else {
-					$result_path = $width.'x'.$height.'/'.$path_parts[0];
+					$result_path = $width.'x'.$height.'/'.$path_parts[1];
 				}
 			} else {
 				// build original image's url

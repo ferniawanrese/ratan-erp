@@ -110,13 +110,23 @@ class Mhrd extends CI_Model {
 
 	}
 
-	function save_employee($data){
+	function save_employee($data,$img){
 	
 		if ($data['employee_hexaID']==""){
 			unset($data['employee_hexaID']);
-			$this->db->set('employee_hexaID', $this->generate_code->getUID());			
+			
+			if($img!= null){
+			$this->db->set('employee_photo', $img);	
+			}
+			
+			$this->db->set('employee_hexaID', $this->generate_code->getUID());	
 			$this->db->insert('employee', $data); 
 		}else{
+			
+			if($img!= null){
+			$this->db->set('employee_photo', $img);	
+			}
+			
 			$this->db->where('employee_hexaID',$data['employee_hexaID']);
 			$this->db->update('employee', $data); 			
 		}
