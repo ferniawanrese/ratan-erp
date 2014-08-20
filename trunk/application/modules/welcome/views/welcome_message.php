@@ -6,23 +6,20 @@
   background-size:100% auto;
 }
 </style>-->
-<div class="layout " id = "smashinglogox">
 	<!-- Navbar================================================== -->
 	<div class="nav navbar-inverse top-nav">
-		<div class="navbar-inner">
 			<div class="container">
-				<span class="home-link"><a href="<?php echo base_url();?>" class="icon-home"></a></span>
-					
+				<div class="navbar-header">
+					<img src="images/logo-merp.gif" width="103" height="50" alt="Media ERP"> &nbsp &nbsp &nbsp
+				</div> 
 				<div class="btn-toolbar pull-right notification-nav">
 					<div class="btn-group">
 						<div class="dropdown">
 							<span class="home-link"><a href="http://ratan.co" class="icon-reply"></a></span>
 						</div>
 					</div>
-				</div>
-				
+				</div> 
 			</div>
-		</div>
 	</div>
 	<div class="container">
 		<form class="form-signin" action = "welcome/ceklog" method="POST">
@@ -45,7 +42,6 @@
 			<button class="btn btn-success btn-block" type="submit">Create Account</button>
 		</form>
 	</div>
-</div>
 
 
 <?php $this->load->view('footer');?>

@@ -220,6 +220,7 @@
 }
 .accordion-nav li li img {
 	top:8px !important;
+	list-style-type: none;
 }
 .accordion-nav li li a {
 	display:block !important;
@@ -238,6 +239,7 @@
 .accordion-nav li ul {
 	border-top:#D1D1D1 1px solid;
 	box-shadow:0 -1px 0 rgba(255, 255, 255, 0.6) inset;
+	list-style-type: none;
 }
 .notification-nav {
 	margin:0px !important;

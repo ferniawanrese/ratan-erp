@@ -2,13 +2,13 @@
 		
 		<div class="admin-info clearfix ">	
 					<?php if($this->session->userdata('employee_photo')):?>
-					 <img src="<?php echo base_url($this->core->get_im($this->session->userdata('employee_photo'),100,100));?>" class="img-responsive " 
+					 <img src="<?php echo base_url($this->core->get_im($this->session->userdata('employee_photo'),100,100));?>" class="img-responsive img-thumbnail" 
 					onError="this.src='<?php echo base_url('images/no_image.png');?>'"> 
 					<?php else:?>
 					 <img src="'<?php echo base_url('images/no_image.png');?>" class="img-responsive " 
 					onError="this.src='<?php echo base_url('images/no_image.png');?>'"> 
 					<?php endif;?>
-				Hii <?php echo $this->session->userdata('employee_name');?>. <a href=""><i class="icon-edit"></i> Update profile </a>
+				Hii <?php echo $this->session->userdata('employee_name');?>. </br><a href=""><i class="icon-edit"></i> Update profile </a>
 			<div class="admin-meta ">
 				
 				<!--<ul >

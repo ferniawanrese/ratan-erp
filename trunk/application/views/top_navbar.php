@@ -2,7 +2,10 @@
     ================================================== -->
 	<div class="nav navbar-inverse top-nav">
 		<div class="container">
-			<div class="container"><div class="navbar-header"><a class="navbar-brand" href="<?php echo base_url('backend');?>"></a></div>
+				<div class="navbar-header">
+					&nbsp <img src="images/logo-merp.gif" width="103" height="50" alt="Media ERP"> &nbsp &nbsp &nbsp
+					
+				</div>
 				<span class="home-link"><a href="<?php echo base_url('backend');?>" class="icon-home"></a></span>
 				
 				<?php if(isset($menu_name)){
@@ -48,6 +51,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			 
 		</div>
 	</div>
