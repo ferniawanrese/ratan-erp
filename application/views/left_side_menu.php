@@ -65,7 +65,6 @@
 						<li><a href="#"><i class="icon-cogs"></i> Configurations</a>
 						<ul>
 							<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Categories of Employee</a></li>
-							<li><a href="<?php echo base_url('hrd/employee_structure');?>"><i class=" icon-file-alt"></i> Categories Structure</a></li>
 							<li><a href="page-405.html"><i class=" icon-file-alt"></i> Job Positions</a></li>
 							<li><a href="page-500.html"><i class=" icon-file-alt"></i> Departments</a></li>
 						</ul>

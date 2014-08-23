@@ -8,17 +8,28 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 				<th>  Child </th> 
 				<th> Action </th> 
 		  </tr>
-	</thead>
-	
+	</thead> 
 	<tbody>
 			<?php if($employee_cat):?>		
 			<?php foreach($employee_cat as $keys):?>
 				<tr>				
-					<td><?php echo $keys['employee_catName'];?></td> 
-					<td><?php echo $keys['employee_catName'];?></td> 
+					<td>
+					
+					<?php 
+					if($keys['employee_catParentID']==0){
+					echo $keys['employee_catName'];
+					}else{
+					echo $catparent[$keys['employee_catParentID']];
+					}					 
+					?>
+					
+					</td> 
+					<td>					
+					<?php if($keys['employee_catParentID']!=0){echo $keys['employee_catName'];}?>					
+					</td> 
 					<td class="center">
 							<div class="btn-toolbar row-action">
-								
+									<?php //echo $keys['employee_catParentID'];?>
 									<button class="btn btn-info" title="Edit" onclick=edit_employee("<?php echo $keys['employee_catID'];?>")><i class="icon-edit"></i></button>
 									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['employee_catID'];?>")><i class="icon-trash "></i></button>
 								
@@ -70,7 +81,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					$('.progress-bar').show();
 					$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('hrd/hrd_employe_data/');?>" + "/" + page,
+					url: "<?php echo base_url('hrd/employee_cat_data/');?>" + "/" + page,
 					data: $("#form_filter").serialize(),
 					
 						success: function(data){     

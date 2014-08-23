@@ -188,6 +188,20 @@ class Mhrd extends CI_Model {
 			}		
 	}
 	
+	function employeecat_child(){
+	$this->db->where('employee_catParentID !=','0');
+	$query = $this->db->get('employee_cat');
+	
+	if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
 	function employee_cat_add($data){
 	
 		$idparent = $this->generate_code->getUID();
