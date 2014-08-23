@@ -38,7 +38,7 @@
 													<label for="validate-text"></label>
 													<div class="input-group col-sm-12 col-md-12">
 														<input type="text" class="form-control" id="employee_name" name="filter[employee_name]" placeholder="name" >	
-														<span class="input-group-addon "></span>
+														 
 													</div>
 												</div>
 												<div class="form-group col-sm-12 col-md-3">
@@ -47,7 +47,7 @@
 														<select class="form-control" name="employee_divisionID" id="employee_divisionID" >
 															<option value = "">[division]</option>
 														</select>
-														<span class="input-group-addon info"><span class="icon-plus" style = "cursor:pointer;"></span></span>
+														
 													</div>
 												</div>
 												<div class="form-group col-sm-12 col-md-3">
@@ -56,7 +56,7 @@
 														<select class="form-control" name="employee_positionID" id="employee_positionID" >
 															<option  value = "">[position]</option>
 														</select>
-														<span class="input-group-addon info"><span class="icon-plus" style = "cursor:pointer;"></span></span>
+														
 													</div>
 												</div>
 												
@@ -64,7 +64,7 @@
 													<label for="validate-number"></label>
 													<div class="input-group col-sm-12 col-md-12" data-validate="number">
 														<input type="text" class="form-control" name="employee_managerID" id="employee_managerID" placeholder="manager" >
-														<span class="input-group-addon danger"></span>
+														 
 													</div>
 												</div>
 												
@@ -76,10 +76,10 @@
 														<select class="form-control" name="additionalfilter" id="additionalfilter" placeholder="[additional filter]">
 																<option value="" selected disabled>[additional filter]</option>
 																<?php foreach($filterplus as $filterpluss):?>
-																<option value = "<?php echo $filterpluss['COLUMN_NAME'];?>"><?php echo $filterpluss['COLUMN_COMMENT'];?></option>
+																<option value = "<?php echo $filterpluss['COLUMN_COMMENT'];?>" myTag="<?php echo $filterpluss['COLUMN_NAME'];?>"><?php echo $filterpluss['COLUMN_COMMENT'];?></option>
 																<?php endforeach;?>
 														</select>
-															<span class="input-group-addon "></span>
+															 
 													</div>
 												</div>
 												
@@ -106,25 +106,10 @@
 															<option value = "50">Limit 50</option>
 															<option value = "100">Limit 100</option>
 														</select>
-														<span class="input-group-addon "></span>
+														 
 													</div>
 												</div>
-												
-												<div class="form-group col-sm-12 col-md-3">
-													<label for="validate-number"></label>
-													<div class="input-group col-sm-12 col-md-12" data-validate="number">													
-														<select class="form-control" name="additionalcolums" id="additionalcolums" placeholder="[additional filter]">
-																<option value="" selected disabled>[show more colums]</option>
-																<?php foreach($filterplus as $filterpluss):?>
-																<option value = "<?php echo $filterpluss['COLUMN_NAME'];?>"><?php echo $filterpluss['COLUMN_COMMENT'];?></option>
-																<?php endforeach;?>
-														</select>
-															<span class="input-group-addon "></span>
-													</div>
-												</div>
-												
-												
-												
+												 
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-email"></label>
 													<div class="input-group col-sm-12 col-md-12" >
@@ -138,9 +123,7 @@
 												</fieldset>
 											 </form>
 											</span>
-											
-												
-											
+											 
 											<div class = "list col-sm-12 col-md-12">
 												<!-- content ajax -->											
 											</div>
@@ -156,12 +139,14 @@
 
 $( "#additionalfilter" ).change(function() {
 	var e = this.value;
+	var a = $('option:selected', this).attr('mytag');
+ 
 	$adding = 
-	'<div class="additional_group form-group col-sm-12 col-md-3" id = "' + e + '">';
+	'<div class="additional_group form-group col-sm-12 col-md-3" id = "' + a + '">';
 	$adding +=		'						<label for="validate-number"></label>';
 	$adding +=		'							<div class="input-group col-sm-12 col-md-12" data-validate="number">';
-	$adding +=		'										<input type="text" class="form-control" name="filterplus['+e+']" id="filterplus['+e+']" placeholder="'+e+'">';
-	$adding +=		'									<span class="input-group-addon "><i class = "icon-remove-sign" style = "cursor:pointer;" onclick = delfilter("' + e + '")></i></span>';
+	$adding +=		'										<input type="text" class="form-control" name="filterplus['+a+']" id="filterplus['+a+']" placeholder="'+e+'">';
+	$adding +=		'									<span class="input-group-addon "><i class = "icon-remove-sign" style = "cursor:pointer;" onclick = delfilter("' + a + '")></i></span>';
 	$adding +=		'								</div>';
 	$adding +=		'							</div>';
 
@@ -170,10 +155,7 @@ $( "#additionalfilter" ).change(function() {
 	$( "#additionalfilter" ).val('');
 });
 
-	$( "#additionalcolums" ).change(function() {
-	$( ".additionalcolums" ).append("<th> Start Working </th>");
-	$( "#additionalcolums" ).val('');
-});
+ 
 
 function delfilter(e){
 $( "#"+e).remove();

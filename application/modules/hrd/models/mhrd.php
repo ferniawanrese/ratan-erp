@@ -41,6 +41,45 @@ class Mhrd extends CI_Model {
 			}		
 	}
 	
+	function employee_cat($data,$page,$limit){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->where('deleted', '0');
+		
+		$this->db->like('employee_catName', $data['search']);
+		 
+		$query = $this->db->get('employee_cat',$limit,$a);
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
+	function employee_cat_count($data){
+	
+		$this->db->select('count(*) as totdata');
+		$this->db->where('deleted', '0');
+		$this->db->like('employee_catName', $data['search']);
+		
+		$query = $this->db->get('employee_cat');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
 	function employee_data_count($data){
 	
 		$this->db->select('count(*) as totdata');
@@ -135,8 +174,46 @@ class Mhrd extends CI_Model {
 
 	}
 	
-	function employee_colum(){
+	function employeecat_parent(){
+	$this->db->where('employee_catParentID','0');
+	$query = $this->db->get('employee_cat');
 	
+	if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
+	function employee_cat_add($data){
+	
+		$idparent = $this->generate_code->getUID();
+		
+		if($data['parent'] == '-1' && $data['parent_new'] !=""){
+		$this->db->set('employee_catID', $idparent);	
+		$this->db->set('employee_catName',$data['parent_new']);
+		$this->db->insert('employee_cat');
+		
+			if($data['child']){
+				$this->db->set('employee_catID', $this->generate_code->getUID());	
+				$this->db->set('employee_catName',$data['child']);
+				$this->db->set('employee_catParentID',$idparent);
+				$this->db->insert('employee_cat');
+			}
+		}
+		 
+		if($data['parent'] != '-1' && $data['child'] !=""){
+		
+				$this->db->set('employee_catID', $this->generate_code->getUID());	
+				$this->db->set('employee_catName',$data['child']);
+				$this->db->set('employee_catParentID',$data['parent']);
+				$this->db->insert('employee_cat');
+		
+		}
+		 
 	}
 }
 	

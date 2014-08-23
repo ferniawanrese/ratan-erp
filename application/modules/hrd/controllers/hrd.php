@@ -71,7 +71,39 @@ class hrd extends CI_Controller {
 		
 	}
 	
-		function employee_structure()
+	function employee_cat_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+
+		$data['employee_cat'] = $this->Mhrd->employee_cat($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->employee_cat_count($this->input->post());	
+
+		$this->load->view('employee_cat_data', $data);
+
+	}
+	
+	function employee_cat_add(){
+	 
+		$data['parent'] = $this->Mhrd->employeecat_parent();
+		 
+		$data['country'] = $this->Mhrd->get_country();
+				
+		$this->load->view('employee_cat_add', $data);
+		
+	}
+	
+	function employee_cat_add_action(){
+	
+		$this->Mhrd->employee_cat_add($this->input->post());
+		
+		redirect(base_url('hrd/employee_cat'));
+		
+	}
+	
+	function employee_structure()
 	{
 		
 		$output['data']['module_name'] = "Human Resources";

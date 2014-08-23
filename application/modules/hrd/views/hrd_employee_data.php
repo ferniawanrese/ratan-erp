@@ -9,11 +9,8 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 				<th> Email </th>
 				<th> Phone </th>
 				<th> Badge </th>		
-				<span class = "additionalcolums"></span>
-				<!--<th class = "additionalcolums1"><i class = "icon-remove" style = "cursor:pointer" onclick = "remove_addcolums('additionalcolums1')"></i> Additionlacolums </th>-->
-				<th> Action </th>
-				
-				
+				<th class = "additionalcolums_name" style="display:none"></th>
+				<th> Action </th> 
 		  </tr>
 	</thead>
 	
@@ -26,6 +23,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<td class="center"> <?php echo $keys['employee_email'];?> </td>
 					<td class="center"> <?php echo $keys['employee_phone'];?> </td>
 					<td class="center"> <?php echo $keys['employee_badge'];?> </td>	
+					<td class = "additionalcolums_data" style="display:none"></td>
 					<!--<td class="additionalcolums1"> <?php echo date("d M Y", strtotime($keys['employee_startworking']));?> </td>		-->				
 					<td class="center">
 							<div class="btn-toolbar row-action">
