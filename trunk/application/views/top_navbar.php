@@ -3,7 +3,7 @@
 	<div class="nav navbar-inverse top-nav">
 		<div class="container">
 				<div class="navbar-header">
-					&nbsp <img src="images/logo-merp.gif" width="103" height="50" alt="Media ERP"> &nbsp &nbsp &nbsp
+					&nbsp <img src="<?php echo base_url('images/logo-merp.gif');?>" width="103" height="50" alt="Media ERP"> &nbsp &nbsp &nbsp
 					
 				</div>
 				<span class="home-link"><a href="<?php echo base_url('backend');?>" class="icon-home"></a></span>

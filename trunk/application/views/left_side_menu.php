@@ -1,6 +1,9 @@
 <div class="leftbar leftbar-close clearfix">
 		
 		<div class="admin-info clearfix ">	
+					
+				 <?php //echo $this->session->userdata('employee_name');?>
+			<div class="admin-meta ">
 					<?php if($this->session->userdata('employee_photo')):?>
 					 <img src="<?php echo base_url($this->core->get_im($this->session->userdata('employee_photo'),100,100));?>" class="img-responsive img-thumbnail" 
 					onError="this.src='<?php echo base_url('images/no_image.png');?>'"> 
@@ -8,15 +11,15 @@
 					 <img src="'<?php echo base_url('images/no_image.png');?>" class="img-responsive " 
 					onError="this.src='<?php echo base_url('images/no_image.png');?>'"> 
 					<?php endif;?>
-				Hii <?php echo $this->session->userdata('employee_name');?>. </br><a href=""><i class="icon-edit"></i> Update profile </a>
-			<div class="admin-meta ">
 				
-				<!--<ul >
+			</div>
+			<div class="admin-meta ">
+				<ul >
 					<li class="admin-username"><?php echo $this->session->userdata('employee_name');?></li>
-					<li><a href="#">Edit Profile</a></li>
-					<li><a href="#">View Profile </a><a href="#"></li>
-					<li><i class="icon-lock"></i> Logout</a></li>
-				</ul>-->
+					<li><a href="#"><small>Edit Profile</small></a></li>
+					<li><a href="#"><small>View Profile </small></a><a href="#"></li>
+					<li><i class="icon-lock"></i> <small>Logout</small></a></li>
+				</ul>
 			</div>
 		</div>
 		
