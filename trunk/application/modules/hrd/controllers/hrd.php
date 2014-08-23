@@ -76,7 +76,13 @@ class hrd extends CI_Controller {
 		$data['limit'] = 10;
 		
 		$data['page'] = $page;
-
+		  
+		$data['parent'] = $this->Mhrd->employeecat_parent();
+		 
+		foreach($data['parent'] as $pr){
+			 $data['catparent'][$pr['employee_catID']] = $pr['employee_catName'];
+		}
+		  
 		$data['employee_cat'] = $this->Mhrd->employee_cat($this->input->post(),$data['page'],$data['limit']);		
 		
 		$data['countdata'] = $this->Mhrd->employee_cat_count($this->input->post());	
