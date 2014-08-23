@@ -39,16 +39,14 @@
 													<label  class="col-sm-3 control-label">Department : </label>
 													<div class="control col-md-6">
 														<input name="employee_divisionID" id="employee_divisionID" class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_divisionID'];?>"/>
-														<button class="alert-box btn"><i class="icon-plus ">
-														</i>New Department</button>
+														 <i class="icon-plus "> </i> 
 													</div>
 												</div>
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Position :</label>
 													<div class="control col-md-6">
 														<input name="employee_positionID"  class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_positionID'];?>"/>
-														<button class="alert-box btn"><i class="icon-plus ">
-														</i>New Position</button>
+														 <i class="icon-plus "></i>  
 													</div>
 												</div>
 												<div class="form-group">
