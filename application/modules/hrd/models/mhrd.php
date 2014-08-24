@@ -229,6 +229,134 @@ class Mhrd extends CI_Model {
 		}
 		 
 	}
+	
+	
+	function department_parent(){
+	$this->db->where('department_parentID','0');
+	$query = $this->db->get('department');
+	
+	if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
+	function department_data($data=null,$page=null,$limit=null){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->where('deleted', '0');
+		
+		$this->db->like('department_name', $data['search']);
+		  
+		if($page==null){
+			$query = $this->db->get('department');
+		}else{
+			$query = $this->db->get('department',$limit,$a);
+		}
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
+	function department_data_count($data){
+	
+		$this->db->select('count(*) as totdata');
+		$this->db->where('deleted', '0');
+		$this->db->like('department_name', $data['search']);
+		
+		$query = $this->db->get('department');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
+	function department_add($data){
+	
+		$idparent = $this->generate_code->getUID();
+		
+		if($data['parent'] == '-1' && $data['parent_new'] !=""){
+		$this->db->set('department_ID', $idparent);	
+		$this->db->set('department_name',$data['parent_new']);
+		$this->db->insert('department');
+		
+			if($data['child']){
+				$this->db->set('department_ID', $this->generate_code->getUID());	
+				$this->db->set('department_name',$data['child']);
+				$this->db->set('department_parentID',$idparent);
+				$this->db->insert('department');
+			}
+		}
+		 
+		if($data['parent'] != '-1' && $data['child'] !=""){
+		
+				$this->db->set('department_ID', $this->generate_code->getUID());	
+				$this->db->set('department_name',$data['child']);
+				$this->db->set('department_parentID',$data['parent']);
+				$this->db->insert('department');
+		
+		}
+		 
+	}
+	
+	function job_data($data=null,$page=null,$limit=null){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->join('department','department.department_ID = job.department_ID');
+		
+		$this->db->where('job.deleted', '0');
+		
+		$this->db->like('job_name', $data['search']);
+		   
+		$query = $this->db->get('job',$limit,$a);
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
+	function job_data_count($data){
+	
+		$this->db->select('count(*) as totdata');
+		$this->db->where('deleted', '0');
+		$this->db->like('job_name', $data['search']);
+		
+		$query = $this->db->get('job');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
 }
 	
 ?>
