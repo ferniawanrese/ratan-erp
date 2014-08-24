@@ -60,13 +60,13 @@
 					if($menu_name== "HRD"):?>
 					
 				<div class="tab-pane active" id="forms">
-					<h4 class="side-head"><?php echo $module_name;?></h4>
+					<h4 class="side-head"><a href="<?php echo base_url('hrd');?>"><?php echo $module_name;?></a></h4>
 					<ul class="accordion-nav">
 						<li><a href="#"><i class="icon-cogs"></i> Configurations</a>
 						<ul>
 							<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Categories of Employee</a></li>
-							<li><a href="page-405.html"><i class=" icon-file-alt"></i> Job Positions</a></li>
-							<li><a href="page-500.html"><i class=" icon-file-alt"></i> Departments</a></li>
+							<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i> Job Positions</a></li>
+							<li><a href="<?php echo base_url('hrd/department');?>"><i class=" icon-file-alt"></i> Departments</a></li>
 						</ul>
 						</li>
 						<li><a href="login.html"><i class=" icon-table"></i> Reporting</a></li>                               

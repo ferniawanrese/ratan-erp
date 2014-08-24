@@ -193,6 +193,13 @@ class hrd extends CI_Controller {
 		
 	function hrd_addemployee($employee_hexaID= null){
 	
+		$data['parent'] = $this->Mhrd->department_parent();
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+		
+		$data['department_data'] = $this->Mhrd->department_data( );		
+	
 		$data['data_detail'] = $this->Mhrd->employee_data_detail($employee_hexaID);
 				
 		$data['country'] = $this->Mhrd->get_country();
@@ -200,14 +207,102 @@ class hrd extends CI_Controller {
 		$this->load->view('hrd_addemployee', $data);
 		
 	}
-
-
+ 
 	function hrd_delete_employee($employee_hexaID){
 
 		$this->Mhrd->employee_delete($employee_hexaID);
 		
 	}
+ 
+	function department(){
+	 
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['content'] = "hrd/department";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function department_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		  
+		$data['parent'] = $this->Mhrd->department_parent();
+		 
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+		 
+		$data['department_data'] = $this->Mhrd->department_data($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->department_data_count($this->input->post());	
 
+		$this->load->view('department_data', $data);
+
+	}
+	
+	
+	function department_add(){
+	 
+		$data['parent'] = $this->Mhrd->department_parent();
+		 
+		$data['country'] = $this->Mhrd->get_country();
+				
+		$this->load->view('department_add', $data);
+		
+	}
+	
+	function department_add_action(){
+	
+		$this->Mhrd->department_add($this->input->post());
+		
+		redirect(base_url('hrd/department'));
+		
+	}
+	
+	function job_position(){
+	 
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['content'] = "hrd/job_position";
+		
+		$output['parent'] = $this->Mhrd->department_parent();
+		 
+		foreach($output['parent'] as $pr){
+			 $output['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+		
+		$output['department_data'] = $this->Mhrd->department_data( );		
+		 
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function job_position_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['job_data'] = $this->Mhrd->job_data($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->job_data_count($this->input->post());	
+
+		$this->load->view('job_position_data', $data);
+
+	}
+	
 	
 }
 

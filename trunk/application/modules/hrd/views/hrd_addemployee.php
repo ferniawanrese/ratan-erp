@@ -34,28 +34,55 @@
 														
 													</div>
 												</div>
-												
-												<div class="form-group">
+												 
+												<div class="form-group ">
 													<label  class="col-sm-3 control-label">Department : </label>
-													<div class="control col-md-6">
-														<input name="employee_divisionID" id="employee_divisionID" class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_divisionID'];?>"/>
-														 <i class="icon-plus "> </i> 
+													<div class="control col-sm-4 col-md-4" data-validate="number">
+														 <span class = "input-group  ">
+														
+															<select id = "department_ID" name="department_ID"  class="form-control">
+															
+																<option >-- Choose Department --</option>
+														<?php foreach($department_data as $dep):?>
+															<?php if($dep['department_parentID'] == 0):?>
+																<option value = "<?php echo  $dep['department_ID'];?>"><?php echo  $dep['department_name'];?></option>
+															<?php else:?>
+																<option value="<?php echo  $dep['department_ID'];?>"><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
+															<?php endif;?>										
+														<?php endforeach;?>	 
+																
+															</select>
+														 
+															<span class="input-group-addon ">
+																<i class="icon-plus " style="cursor:pointer;" title="Ascending"></i>
+															</span>
+														</span>
 													</div>
 												</div>
-												<div class="form-group">
-													<label  class="col-sm-3 control-label">Position :</label>
-													<div class="control col-md-6">
-														<input name="employee_positionID"  class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_positionID'];?>"/>
-														 <i class="icon-plus "></i>  
+												
+												<div class="form-group ">
+													<label  class="col-sm-3 control-label">Position : </label>
+													<div class="control col-sm-4 col-md-4" data-validate="number">
+														 <span class = "input-group  ">
+														
+															<select id = "job_ID" name="job_ID"  class="form-control"> 
+																<option >-- Choose Position --</option> 
+															</select>
+														 
+															<span class="input-group-addon ">
+																<i class="icon-plus " style="cursor:pointer;" title="Ascending"></i>
+															</span>
+														</span>
 													</div>
 												</div>
+												 
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Manager :</label>
 													<div class="control col-md-6">
-														<input name="employee_managerID" class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_managerID'];?>"/>
-														
+														<input name="employee_managerID" class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_managerID'];?>"/>														
 													</div>
 												</div>
+												
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Badge :</label>
 													<div class="control col-md-6">
