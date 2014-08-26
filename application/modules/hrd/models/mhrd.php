@@ -150,7 +150,7 @@ class Mhrd extends CI_Model {
 	}
 
 	function save_employee($data,$img){
-	
+			unset($data['employee_managerName']);
 		if ($data['employee_hexaID']==""){
 			unset($data['employee_hexaID']);
 			
@@ -374,14 +374,12 @@ class Mhrd extends CI_Model {
 	}
 	
 	function get_employee_name($name){ 
-	
-		$this->db->select('employee_name as label');
-		
-		$this->db->select('employee_ID as value');
-	
-		$this->db->like('employee_name',$name); 
-		
-		$query = $this->db->get('employee');
+	  
+		 $querynya = "select CONCAT ( employee.employee_name, '/', employee.employee_badge ) AS label,
+								CONCAT ( employee.employee_name, '/', employee.employee_badge ) as value, employee_ID
+								from employee where employee_name like '%".$name."%'" ;
+		 
+		$query = $this->db->query($querynya);
 
 			if ($query->num_rows())
 			{

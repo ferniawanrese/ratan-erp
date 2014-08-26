@@ -75,94 +75,18 @@
 														</span>
 													</div>
 												</div>
-	 
-<script>
-$(function() {
-	$( "#employee_managerID" ).autocomplete({ 
-	 
-		source: "<?php echo base_url('hrd/get_employee_name/');?>" + "/" + $('#employee_managerID').val(),
-		   
-	}); 
-}); 
- 
-</script>  
-	
+	  
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Manager :</label>
 													<div class="control col-md-6">
-														<input id = "employee_managerID" name="employee_managerID" class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_managerID'];?>"/>														
+														<input id = "employee_managerName" name="employee_managerName" class="form-control employee_managerName" type="text" value = "<?php echo $data_detail[0]['employee_managerID'];?>"/>
+														<input id = "employee_managerID" name="employee_managerID" class="form-control employee_managerID" type="hidden" value = "<?php echo $data_detail[0]['employee_managerID'];?>"/>
 													</div>
 												</div>
-	 
-
-		
-																				 
-<script>
-
-	$( "select#department_ID" ).change(function() {
-		
-		var a = $('select#department_ID option:selected').val();
-		 
-		$.ajax({
-			
-			url: "<?php echo base_url('hrd/get_position/');?>" + '/' +a,
-			
-			
-			success: function (data) {
-			$( "#job_ID" ).html("<option value = '-1'>-- Choose Position --</option>");
-			var jsonData = JSON.parse(data);
-				optmin = "<option value = '-1'>-- Choose Position --</option>";
-				for (var i = 0; i < jsonData.positionnya.length; i++) {
-					var datanya = jsonData.positionnya[i];
-					
-					if(datanya.job_ID > 0){
-						
-							optmin += "<option value ='"+ datanya.job_ID +"'>"+ datanya.job_name +"</option>";
-							
-					}
-											
-					$( "#job_ID" ).html(optmin); 
-				}
-				
-			}
-		});
-		
-	});
-	
-
-var availableTags = [
-	"ActionScript",
-	"AppleScript",
-	"Asp",
-	"BASIC",
-	"C",
-	"C++",
-	"Clojure",
-	"COBOL",
-	"ColdFusion",
-	"Erlang",
-	"Fortran",
-	"Groovy",
-	"Haskell",
-	"Java",
-	"JavaScript",
-	"Lisp",
-	"Perl",
-	"PHP",
-	"Python",
-	"Ruby",
-	"Scala",
-	"Scheme"
-];
-$( "#employee_managerID" ).autocomplete({
-	source: "<?php echo base_url('hrd/get_employee_name/');?>" + "/" + $("#employee_managerID").val(),
-});
-	 
-</script>
-												
+	  
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Badge :</label>
-													<div class="control col-md-6">
+													<div class="control col-md-4">
 														<input name="employee_badge" class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_badge'];?>"/>
 													</div>
 												</div>
@@ -403,7 +327,50 @@ $(document).ready(function() {
         });
 </script>
 
-
+<script>
+	$(function() {
+		$( ".employee_managerName" ).autocomplete({ 
+		 
+			source: "<?php echo base_url('hrd/get_employee_name/');?>" + "/" + $('.employee_managerName').val(),
+				select: function (event, ui) {
+				var id = ui.item.employee_ID;
+				$("#employee_managerID").val(id);
+				}  
+		}); 
+	}); 
+	 
+					 
+	$( "select#department_ID" ).change(function() {
+		
+		var a = $('select#department_ID option:selected').val();
+		 
+		$.ajax({
+			
+			url: "<?php echo base_url('hrd/get_position/');?>" + '/' +a,
+			
+			
+			success: function (data) {
+			$( "#job_ID" ).html("<option value = '-1'>-- Choose Position --</option>");
+			var jsonData = JSON.parse(data);
+				optmin = "<option value = '-1'>-- Choose Position --</option>";
+				for (var i = 0; i < jsonData.positionnya.length; i++) {
+					var datanya = jsonData.positionnya[i];
+					
+					if(datanya.job_ID > 0){
+						
+							optmin += "<option value ='"+ datanya.job_ID +"'>"+ datanya.job_name +"</option>";
+							
+					}
+											
+					$( "#job_ID" ).html(optmin); 
+				}
+				
+			}
+		});
+		
+	});
+	 
+</script>
 
 						
 							
