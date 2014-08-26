@@ -303,6 +303,20 @@ class hrd extends CI_Controller {
 
 	}
 	
+	function get_position($department_ID){
+		
+		$json['positionnya']  = $this->Mhrd->get_position($department_ID);
+		 
+		 echo json_encode($json, JSON_UNESCAPED_SLASHES);
+		
+	}
+	
+	function get_employee_name($name){
+		 
+		$data['employee_name']  = $this->Mhrd->get_employee_name($name);
+		echo json_encode($data['employee_name']);
+			
+	}
 	
 }
 
