@@ -311,9 +311,10 @@ class hrd extends CI_Controller {
 		
 	}
 	
-	function get_employee_name($name){
+	function get_employee_name(){
 		 
-		$data['employee_name']  = $this->Mhrd->get_employee_name($name);
+		$data['employee_name']  = $this->Mhrd->get_employee_name($this->input->get('term'));
+		 
 		echo json_encode($data['employee_name']);
 			
 	}

@@ -63,8 +63,7 @@
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-number"></label>
 													<div class="input-group col-sm-12 col-md-12" data-validate="number">
-														<input type="text" class="form-control" name="employee_managerID" id="employee_managerID" placeholder="manager" >
-														 
+														<input type="text" class="form-control employee_managerName" name="employee_managerID " id="employee_managerID " placeholder="manager" > 
 													</div>
 												</div>
 												
