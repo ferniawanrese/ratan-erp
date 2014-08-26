@@ -357,6 +357,42 @@ class Mhrd extends CI_Model {
 			}		
 	}
 	
+	function get_position($department_ID){ 
+	
+		$this->db->where('department_ID',$department_ID); 
+		
+		$query = $this->db->get('job');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
+	function get_employee_name($name){ 
+	
+		$this->db->select('employee_name as label');
+		
+		$this->db->select('employee_ID as value');
+	
+		$this->db->like('employee_name',$name); 
+		
+		$query = $this->db->get('employee');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
 }
 	
 ?>
