@@ -1,4 +1,4 @@
-<form  class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
+<form  id = "depAdd" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
 							 
 						 
 						<div class="form-group">
@@ -48,4 +48,22 @@ $('#parent').on('change', function() {
   $('#parent_new').attr("disabled", false);
   }
 });
-</script>
+
+$("form#depAdd").submit(function(e){
+	
+	e.preventDefault();
+	
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('hrd/department_add_action/');?>",
+				data: $("#depAdd").serialize(),
+				success: function(data)
+				{
+					display_data();
+					$('#myModal').modal('hide');
+				}
+			});
+			
+			return false;
+	});
+</script> 

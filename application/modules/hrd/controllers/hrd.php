@@ -319,6 +319,26 @@ class hrd extends CI_Controller {
 			
 	}
 	
+	function job_position_add(){
+	
+	$data['parent'] = $this->Mhrd->department_parent();
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+		
+	$data['department_data'] = $this->Mhrd->department_data( );	
+	 
+	$this->load->view('job_position_add', $data);
+		
+	}
+	
+	function job_position_add_action(){
+	 
+		$this->Mhrd->job_add($this->input->post());
+		 
+	}
+		 
+	
 }
 
 /* End of file welcome.php */
