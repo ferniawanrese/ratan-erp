@@ -391,6 +391,15 @@ class Mhrd extends CI_Model {
 			}		
 	}
 	
+	function job_add($data){
+	
+				$id  = $this->generate_code->getUID();
+ 
+				$this->db->set('job_ID',$id);
+				$this->db->insert('job',$data);
+		 
+	}
+	
 }
 	
 ?>

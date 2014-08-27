@@ -35,7 +35,7 @@
 							</div>
 						</form>	
 							<div class = "col-md-3 btn-create form-group "  >
-							 <button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_employee_cat()"  > Create</button>
+							 <button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "job_position_add()"  > Create</button>
 							</div>
 							<div   id = "btn-list" class="form-group">
 								<button class="btn btn-inverse  icon-arrow-left" type="button" onclick = "display_data()" > Back to Data</button>
@@ -73,13 +73,13 @@ $("#search").val("");
 display_data();
 }
 
-function add_employee_cat(){
+function job_position_add(){
  
 	$('#btn-list').show();
 	$('.btn-create').hide();
 	$.ajax({
 				
-				url: "<?php echo base_url('hrd/employee_cat_add/');?>",
+				url: "<?php echo base_url('hrd/job_position_add/');?>",
 				success: function(data){     
 
 					$( ".list" ).html(data); 		
