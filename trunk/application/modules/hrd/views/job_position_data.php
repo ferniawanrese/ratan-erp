@@ -26,7 +26,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<td class="center">
 							<div class="btn-toolbar row-action">
 									<?php //echo $keys['employee_catParentID'];?>
-									<button class="btn btn-info" title="Edit" onclick=edit_employee("<?php echo $keys['job_ID'];?>")><i class="icon-edit"></i></button>
+									<button class="btn btn-info" title="Edit" onclick=job_position_update("<?php echo $keys['job_ID'];?>")><i class="icon-edit"></i></button>
 									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['job_ID'];?>")><i class="icon-trash "></i></button>
 								
 							</div>
@@ -77,7 +77,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					$('.progress-bar').show();
 					$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('hrd/employee_cat_data/');?>" + "/" + page,
+					url: "<?php echo base_url('hrd/job_position_data/');?>" + "/" + page,
 					data: $("#form_filter").serialize(),
 					
 						success: function(data){     
