@@ -91,22 +91,40 @@ class hrd extends CI_Controller {
 
 	}
 	
-	function employee_cat_add(){
+	function employee_cat_add($employee_catID=null){
 	 
 		$data['parent'] = $this->Mhrd->employeecat_parent();
-		 
-		$data['country'] = $this->Mhrd->get_country();
-				
+		  
 		$this->load->view('employee_cat_add', $data);
 		
+	}
+	
+	function employee_cat_update($employee_catID){
+	
+		$data['cat_detail'] = $this->Mhrd->employee_cat_detail($employee_catID);
+	 
+		$data['parent'] = $this->Mhrd->employeecat_parent();
+		  
+		$this->load->view('employee_cat_update', $data);
+		
+	}
+	
+	function employee_cat_deleted($employee_catID){
+	
+	$this->Mhrd->employee_cat_deleted($employee_catID);
+	
 	}
 	
 	function employee_cat_add_action(){
 	
 		$this->Mhrd->employee_cat_add($this->input->post());
-		
-		redirect(base_url('hrd/employee_cat'));
-		
+		 
+	}
+	
+	function employee_cat_update_action(){
+
+		$this->Mhrd->employee_cat_update($this->input->post());
+	 
 	}
 	
 	function employee_structure()
@@ -259,12 +277,28 @@ class hrd extends CI_Controller {
 		
 	}
 	
+	function department_update($department_ID){
+	
+		$data['dat'] = $this->Mhrd->department_detail($department_ID);
+		 
+		$data['parent'] = $this->Mhrd->department_parent();
+		 
+		$data['country'] = $this->Mhrd->get_country();
+				
+		$this->load->view('department_update', $data);
+		
+	}
+	
 	function department_add_action(){
 	
 		$this->Mhrd->department_add($this->input->post());
-		
-		redirect(base_url('hrd/department'));
-		
+		 
+	}
+	
+	function department_update_action(){
+	
+		$this->Mhrd->department_update($this->input->post());
+		 
 	}
 	
 	function job_position(){
@@ -319,14 +353,16 @@ class hrd extends CI_Controller {
 			
 	}
 	
-	function job_position_add(){
+	function job_position_add($job_ID=null){
 	
+	$data['dat'] = $this->Mhrd->job_data_detail($job_ID);
+	 
 	$data['parent'] = $this->Mhrd->department_parent();
 		foreach($data['parent'] as $pr){
 			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
 		}
 		
-	$data['department_data'] = $this->Mhrd->department_data( );	
+	$data['department_data'] = $this->Mhrd->department_data();	
 	 
 	$this->load->view('job_position_add', $data);
 		
@@ -337,7 +373,18 @@ class hrd extends CI_Controller {
 		$this->Mhrd->job_add($this->input->post());
 		 
 	}
+	
+	function job_position_deleted($job_ID){
+	
+		$this->Mhrd->job_position_deleted($job_ID);
+	
+	}
 		 
+	function department_delete($department_ID){
+		
+		$this->Mhrd->department_delete($department_ID);
+		
+	}
 	
 }
 

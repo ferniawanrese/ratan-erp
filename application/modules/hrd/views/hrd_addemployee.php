@@ -400,6 +400,9 @@ $(document).ready(function() {
 	 
 	 })
  }
+ 
+ function display_data(){ 
+ }
  </script>
 						
 							

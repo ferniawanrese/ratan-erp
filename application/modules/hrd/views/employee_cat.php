@@ -77,4 +77,39 @@ function add_employee_cat(){
 			});
 
 }
+
+
+function edit_employee_cat(catID){
+ 
+	$('#btn-list').show();
+	$('.btn-create').hide();
+	$.ajax({
+				
+				url: "<?php echo base_url('hrd/employee_cat_update/');?>" + "/" +catID,
+				success: function(data){     
+
+					$( ".list" ).html(data); 		
+					$('body').loadie(1);
+				}  
+			});
+
+}
+
+		
+function delete_post(a){
+	
+	bootbox.confirm("Are you sure?", function (result) {
+                  
+					if(result == true){						
+						$.ajax({
+									url: "<?php echo base_url('hrd/employee_cat_deleted/')?>/" + a,									
+									success: function(data)
+									{											
+											display_data();
+									}
+						});
+					}
+					
+                });
+}
 </script>	

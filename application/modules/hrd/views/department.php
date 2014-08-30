@@ -20,7 +20,7 @@
 												<input type ="text" name ="search" id="search" class="form-control" placeholder="Department Name">
 											</div>
 											<div class = "col-md-3 btn-create">
-												<input type ="text" name ="manager_ID" id="manager_ID" class="form-control" placeholder="Manager Name">
+												<input type ="text" name ="manager_IDx" id="manager_IDx" class="form-control" placeholder="Manager Name">
 											</div>
 											<div class = "btn-create form-group"> 
 												<button class="btn btn-default btn-large  " type="button" onclick = "display_data()"> Seacrh!</button>
@@ -79,5 +79,40 @@ function add_department(){
 				}  
 			});
 
+}
+
+function update_department(a){
+ 
+	$('#btn-list').show();
+	$('.btn-create').hide();
+	$.ajax({
+				
+				url: "<?php echo base_url('hrd/department_update/');?>" + "/" + a,
+				success: function(data){     
+
+					$( ".list" ).html(data); 		
+					$('body').loadie(1);
+				}  
+			});
+
+}
+
+
+		
+function delete_post(a){
+	
+	bootbox.confirm("Are you sure?", function (result) {
+                  
+					if(result == true){						
+						$.ajax({
+									url: "<?php echo base_url('hrd/department_delete/')?>/" + a,									
+									success: function(data)
+									{											
+											display_data();
+									}
+						});
+					}
+					
+                });
 }
 </script>	
