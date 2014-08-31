@@ -26,7 +26,7 @@ class backend extends CI_Controller {
 	
 		$output['data']['module_name'] = "Dasboard";
 		
-		$output['data']['main_menu'] = $this->Mbackend->cek_menu($this->session->userdata('employee_hexaID'));
+		$output['data']['main_menu'] = $this->Mbackend->cek_menu($this->session->userdata('employee_ID'));
 		
 		$output['content'] = "backend/backend";
 		
