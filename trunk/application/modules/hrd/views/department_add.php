@@ -21,14 +21,14 @@
 								<input name="child"  id = "child" class="form-control " type="text"    /> 
 							</div>
 						</div>
-						
 						<div class="form-group">
 							<label  class="col-sm-3 control-label">Manager Name:</label>
 							<div class="control col-md-4">
-								<input name="manager_ID"  id = "manager_ID" class="form-control " type="text"    /> 
+								<input id = "employee_managerName" name="employee_managerName" class="form-control employee_managerName" type="text" value = " "/>
+								<input id = "manager_ID" name="manager_ID"  class = "manager_ID" type="hidden"  />
 							</div>
 						</div>
-						
+						  
 						<div class="form-group">
 							<label  class="col-sm-3 control-label"> </label>
 							<div class="control col-md-4">
@@ -58,7 +58,8 @@ $("form#depAdd").submit(function(e){
 				url: "<?php echo base_url('hrd/department_add_action/');?>",
 				data: $("#depAdd").serialize(),
 				success: function(data)
-				{
+				{ 
+					clean();
 					display_data();
 					$('#myModal').modal('hide');
 				}
@@ -66,4 +67,15 @@ $("form#depAdd").submit(function(e){
 			
 			return false;
 	});
+	
+	$(function() {
+		$( ".employee_managerName" ).autocomplete({ 
+		 
+			source: "<?php echo base_url('hrd/get_employee_name/');?>" + "/" + $('.employee_managerName').val(),
+				select: function (event, ui) {
+				var id = ui.item.employee_ID; 
+				$(".manager_ID").val(id);
+				}  
+		}); 
+	}); 
 </script> 
