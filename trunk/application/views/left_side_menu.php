@@ -33,7 +33,9 @@
 					
 						<?php if(isset($menu_name)){
 							if($menu_name== "HRD"):?>
-						<li class="active" ><a href="#forms" class="icon-th-large" title="Dashboard"></a></li>
+						<li class="active" ><a href="#forms" class="icon-th-large" title="Main Module"></a></li>
+						<li   ><a href="#Configuration" class="icon-cogs" title="Configuration"></a></li>
+						<li   ><a href="#Report" class="icon-bar-chart" title="Report"></a></li>
 						<?php endif;?>
 						<?php };?>
 						
@@ -60,16 +62,61 @@
 					if($menu_name== "HRD"):?>
 					
 				<div class="tab-pane active" id="forms">
-					<h4 class="side-head"><a href="<?php echo base_url('hrd');?>"><?php echo $module_name;?></a></h4>
+					<h4 class="side-head"> <?php echo $module_name;?>  </h4>
+					 
 					<ul class="accordion-nav">
-						<li><a href="#"><i class="icon-cogs"></i> Configurations</a>
+						<li><a href="<?php echo base_url('hrd');?>" >  Employee Data</a></li>     
+						<li><a href="#"><i class="icon-caret-right"></i> Time Tracking</a>
+						<ul>
+							<li><a href="http://facebook.com"><i class=" icon-file-alt"></i> Categories of Employee</a></li>
+							<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i> Job Positions</a></li>
+							<li><a href="<?php echo base_url('hrd/department');?>"><i class=" icon-file-alt"></i> Departments</a></li>
+						</ul>
+						</li>
+						<li><a href="#"><i class="icon-caret-right"></i> Attendances</a>
 						<ul>
 							<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Categories of Employee</a></li>
 							<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i> Job Positions</a></li>
 							<li><a href="<?php echo base_url('hrd/department');?>"><i class=" icon-file-alt"></i> Departments</a></li>
 						</ul>
 						</li>
-						<li><a href="login.html"><i class=" icon-table"></i> Reporting</a></li>                               
+						<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
+						<ul>
+							<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Categories of Employee</a></li>
+							<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i> Job Positions</a></li>
+							<li><a href="<?php echo base_url('hrd/department');?>"><i class=" icon-file-alt"></i> Departments</a></li>
+						</ul> 
+						</li>          
+					</ul>
+				</div>
+				<div class="tab-pane " id="Configuration">
+					<h4 class="side-head"> <?php //echo $module_name;?> Configuration</h4>
+					 
+					<ul class="accordion-nav">
+						 <li><a href="#"><i class="icon-caret-right"></i> Human Resources</a>
+						<ul>
+							<li><a href="<?php echo base_url('hrd/employee_cat');?>">  Categories of Employee</a></li>
+							<li  ><a href="<?php echo base_url('hrd/job_position');?>">  Job Positions</a></li>
+							<li><a href="<?php echo base_url('hrd/department');?>">  Departments</a></li>
+						 </ul>   
+						</li>
+					</ul>
+					<ul class="accordion-nav">
+						 <li><a href="#"><i class="icon-caret-right"></i> Periodic Appraisal</a>
+						<ul>
+							<li><a href="<?php echo base_url('hrd/employee_cat');?>">  Categories of Employee</a></li>
+							<li  ><a href="<?php echo base_url('hrd/job_position');?>">  Job Positions</a></li>
+							<li><a href="<?php echo base_url('hrd/department');?>">  Departments</a></li>
+						 </ul>   
+						</li>
+					</ul>
+				</div>
+				<div class="tab-pane " id="Report">
+					<h4 class="side-head"> <?php //echo $module_name;?> Report</h4>
+					 
+					<ul class="accordion-nav"> 
+						<li><a href="login.html">  Employee Data</a></li>    
+						<li><a href="login.html">  Time Tracking</a></li>
 					</ul>
 				</div>
 				

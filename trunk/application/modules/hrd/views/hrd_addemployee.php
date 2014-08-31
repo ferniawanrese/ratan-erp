@@ -17,7 +17,7 @@
 							<form id="stepy_form" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/hrd_save_employee/');?>" method="post">
 								<div class="row setup-content " id="step-1">
 										
-												<input name="employee_hexaID" type="hidden" value = "<?php echo $data_detail[0]['employee_hexaID'];?>"/>
+												<input name="employee_ID" type="hidden" value = "<?php echo $data_detail[0]['employee_ID'];?>"/>
 												
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Name :</label>
@@ -38,15 +38,16 @@
 												<div class="form-group ">
 													<label  class="col-sm-3 control-label">Department : </label>
 													<div class="control col-sm-4 col-md-4" data-validate="number">
-														 <span class = "input-group  ">
-														
-															<select id = "department_ID" name="department_ID"  class="form-control"> 
+														 <span class = "input-group  "> 
+															<select id = "department_ID" name="department_ID"  class="form-control {validate:{required:true}}"> 
 																<option >-- Choose Department --</option>
 																	<?php foreach($department_data as $dep):?>
+																	
+																		<?php if($data_detail[0]['department_ID']==$dep['department_ID']){$selected = "selected";}else{$selected = "";} ;?>
 																		<?php if($dep['department_parentID'] == 0):?>
-																			<option value = "<?php echo  $dep['department_ID'];?>"><?php echo  $dep['department_name'];?></option>
+																			<option value = "<?php echo  $dep['department_ID'];?>" <?php echo $selected;?>><?php echo  $dep['department_name'];?></option>
 																		<?php else:?>
-																			<option value="<?php echo  $dep['department_ID'];?>"><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
+																			<option value="<?php echo  $dep['department_ID'];?>" <?php echo $selected;?>><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
 																		<?php endif;?>										
 																	<?php endforeach;?>	  
 															</select>
@@ -56,8 +57,7 @@
 															</span>
 														</span>
 													</div>
-												</div>
-												  
+												</div> 
 												<div class="form-group ">
 													<label  class="col-sm-3 control-label">Position : </label>
 													<div class="control col-sm-4 col-md-4" data-validate="number">
@@ -65,6 +65,9 @@
 														
 															<select id = "job_ID" name="job_ID"  class="form-control"> 
 																<option >-- Choose Position --</option> 
+																 <?php if($data_detail[0]['job_ID']!=""):?>
+																 <option value = "<?php echo $data_detail[0]['job_ID'];?>" selected><?php echo $data_detail[0]['job_name'];?></option> 
+																 <?php endif;?>
 															</select>
 														 
 															<span class="input-group-addon ">
@@ -77,7 +80,7 @@
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Manager :</label>
 													<div class="control col-md-6">
-														<input id = "employee_managerName" name="employee_managerName" class="form-control employee_managerName" type="text" value = "<?php echo $data_detail[0]['employee_managerID'];?>"/>
+														<input id = "employee_managerName" name="employee_managerName" class="form-control employee_managerName" type="text" value = "<?php echo $manager_name[0]['employee_name']."/".$manager_name[0]['employee_badge'];?>"/>
 														<input id = "employee_managerID" name="employee_managerID" class="form-control employee_managerID" type="hidden" value = "<?php echo $data_detail[0]['employee_managerID'];?>"/>
 													</div>
 												</div>
@@ -400,9 +403,7 @@ $(document).ready(function() {
 	 
 	 })
  }
- 
- function display_data(){ 
- }
+  
  </script>
 						
 							

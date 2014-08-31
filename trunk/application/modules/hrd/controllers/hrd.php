@@ -209,7 +209,7 @@ class hrd extends CI_Controller {
 		redirect('hrd');
 	}
 		
-	function hrd_addemployee($employee_hexaID= null){
+	function hrd_addemployee($employee_ID= null){
 	
 		$data['parent'] = $this->Mhrd->department_parent();
 		foreach($data['parent'] as $pr){
@@ -218,17 +218,19 @@ class hrd extends CI_Controller {
 		
 		$data['department_data'] = $this->Mhrd->department_data( );		
 	
-		$data['data_detail'] = $this->Mhrd->employee_data_detail($employee_hexaID);
-				
+		$data['data_detail'] = $this->Mhrd->employee_data_detail($employee_ID);
+		
+		$data['manager_name']  = $this->Mhrd->get_employee_detail($data['data_detail'][0]['employee_managerID']);
+		   
 		$data['country'] = $this->Mhrd->get_country();
 				
 		$this->load->view('hrd_addemployee', $data);
 		
 	}
  
-	function hrd_delete_employee($employee_hexaID){
+	function hrd_delete_employee($employee_ID){
 
-		$this->Mhrd->employee_delete($employee_hexaID);
+		$this->Mhrd->employee_delete($employee_ID);
 		
 	}
  

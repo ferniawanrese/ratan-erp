@@ -34,7 +34,7 @@ $(function() {
 
     /*
         add expand/collapse icons
-    */
+    
     $('.accordion-nav li').each(function () {
         if ($(this).children('ul').length > 0) {
             if ($(this).children('ul').is(":visible")) {
@@ -45,14 +45,14 @@ $(function() {
             }
         }
     });
-    
+    */
     /*
         open/close current each list on click
     */
-    $('.accordion-nav img').click(function() {
+    $('.accordion-nav a').click(function() {
         if ($(this).parent('li').children('ul').html() != null) {
             $(this).parent('li').parent('ul').children('li').children('ul').hide(slideSpeed);
-            $(this).parent('li').parent('ul').children('li').children('img').attr('src', baseurl + 'images/imgOffClosed.png');
+           // $(this).parent('li').parent('ul').children('li').children('img').attr('src', baseurl + 'images/imgOffClosed.png');
             $(this).delay(100).is(':hidden');
             if ($(this).parent('li').children('ul').css('display') == "block") {
                 $(this).parent('li').children('ul').hide(slideSpeed);
