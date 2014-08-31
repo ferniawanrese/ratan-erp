@@ -279,9 +279,17 @@ class Mhrd extends CI_Model {
 		$a = ($page-1) * $limit;
 		$limitnya = ",".$a.",".$limit;
 		
-		$this->db->where('deleted', '0');
+		$this->db->select('department.*, employee.employee_name');
+		
+		$this->db->where('department.deleted', '0');
+		
+		if($data['manager_ID']!=""){
+		$this->db->where('manager_ID', $data['manager_ID']);
+		}
 		
 		$this->db->like('department_name', $data['search']);
+		
+		$this->db->join('employee','employee.employee_ID =  department.manager_ID');
 		  
 		if($page==null){
 			$query = $this->db->get('department');
@@ -324,12 +332,14 @@ class Mhrd extends CI_Model {
 		if($data['parent'] == '-1' && $data['parent_new'] !=""){
 		$this->db->set('department_ID', $idparent);	
 		$this->db->set('department_name',$data['parent_new']);
+		$this->db->set('manager_ID',$data['manager_ID']);
 		$this->db->insert('department');
 		
 			if($data['child']){
 				$this->db->set('department_ID', $this->generate_code->getUID());	
 				$this->db->set('department_name',$data['child']);
 				$this->db->set('department_parentID',$idparent);
+				$this->db->set('manager_ID',$data['manager_ID']);
 				$this->db->insert('department');
 			}
 		}
@@ -339,6 +349,7 @@ class Mhrd extends CI_Model {
 				$this->db->set('department_ID', $this->generate_code->getUID());	
 				$this->db->set('department_name',$data['child']);
 				$this->db->set('department_parentID',$data['parent']);
+				$this->db->set('manager_ID',$data['manager_ID']);
 				$this->db->insert('department');
 		
 		}
@@ -360,6 +371,10 @@ class Mhrd extends CI_Model {
 		$this->db->join('department','department.department_ID = job.department_ID');
 		
 		$this->db->where('job.deleted', '0');
+		
+		if($data['department_ID']!=""){
+		$this->db->where('job.department_ID',$data['department_ID']);
+		}
 		
 		$this->db->like('job_name', $data['search']);
 		   

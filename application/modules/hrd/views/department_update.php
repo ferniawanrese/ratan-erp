@@ -29,7 +29,7 @@
 							<label  class="col-sm-3 control-label">Manager Name:</label>
 							<div class="control col-md-4">
 								<input id = "employee_managerName" name="employee_managerName" class="form-control employee_managerName" type="text" value = "<?php echo $dat[0]['employee_name'].'/'.$dat[0]['employee_badge'];?>"/>
-								<input id = "manager_ID" name="manager_ID"   type="hidden" value = "<?php echo $dat[0]['employee_ID'];?>"/>
+								<input id = "manager_ID" name="manager_ID"  class = "manager_ID" type="hidden" value = "<?php echo $dat[0]['employee_ID'];?>"/>
 							</div>
 						</div>
 						
@@ -63,6 +63,7 @@ $("form#depAdd").submit(function(e){
 				data: $("#depAdd").serialize(),
 				success: function(data)
 				{
+					clean();
 					display_data();
 					$('#myModal').modal('hide');
 				}
@@ -77,7 +78,7 @@ $("form#depAdd").submit(function(e){
 			source: "<?php echo base_url('hrd/get_employee_name/');?>" + "/" + $('.employee_managerName').val(),
 				select: function (event, ui) {
 				var id = ui.item.employee_ID; 
-				$("#manager_ID").val(id);
+				$(".manager_ID").val(id);
 				}  
 		}); 
 	}); 

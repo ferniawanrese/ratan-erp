@@ -13,13 +13,13 @@
 						</div>
 															
 						<div class="well col-sm-12 col-md-12">
-						<form id = "form_filter" action ="<?php echo base_url('hrd/hrd_save_employee/');?>" method="post">
+						<form id = "form_filter"  method="post">
 							<div class = "col-md-3 btn-create">
 								<input type ="text" name ="search" id="search" class="form-control" placeholder="Job Name">
 							</div>
 							<div class = "col-md-3 btn-create">
-								 <select class = "form-control">
-											<option >-- Choose Department --</option>
+								 <select class = "form-control" id = "department_ID" name = "department_ID">
+											<option value = "">-- Choose Department --</option>
 									<?php foreach($department_data as $dep):?>
 										<?php if($dep['department_parentID'] == 0):?>
 											<option value = "<?php echo  $dep['department_ID'];?>"><?php echo  $dep['department_name'];?></option>
@@ -70,6 +70,7 @@ function display_data(){
 
 function clean(){
 $("#search").val("");
+$("#department_ID").val("");
 display_data();
 }
 

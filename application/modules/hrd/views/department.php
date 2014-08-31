@@ -20,7 +20,8 @@
 												<input type ="text" name ="search" id="search" class="form-control" placeholder="Department Name">
 											</div>
 											<div class = "col-md-3 btn-create">
-												<input type ="text" name ="manager_IDx" id="manager_IDx" class="form-control" placeholder="Manager Name">
+												<input type ="text" name ="employee_managerName" id="employee_managerName" class="form-control employee_managerName" placeholder="Manager Name">
+												<input type ="hidden" name ="manager_ID" id="manager_ID" class="manager_ID" >
 											</div>
 											<div class = "btn-create form-group"> 
 												<button class="btn btn-default btn-large  " type="button" onclick = "display_data()"> Seacrh!</button>
@@ -62,6 +63,8 @@ function display_data(){
 
 function clean(){
 $("#search").val("");
+$("#employee_managerName").val("");
+$("#manager_ID").val("");
 display_data();
 }
 
@@ -115,4 +118,15 @@ function delete_post(a){
 					
                 });
 }
+
+$(function() {
+		$( ".employee_managerName" ).autocomplete({ 
+		 
+			source: "<?php echo base_url('hrd/get_employee_name/');?>" + "/" + $('.employee_managerName').val(),
+				select: function (event, ui) {
+				var id = ui.item.employee_ID; 
+				$(".manager_ID").val(id);
+				}  
+		}); 
+	}); 
 </script>	
