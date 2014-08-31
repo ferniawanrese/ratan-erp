@@ -162,8 +162,7 @@ $( "#"+e).remove();
 
 display_data();
 
-function display_data(){
-	
+function display_data(){ 
 	$('#btn-list').hide();
 	$('#btn-create').show();
 	$.ajax({

@@ -125,12 +125,37 @@ class Mhrd extends CI_Model {
 				return FALSE;
 			}		
 	}
-
-	function employee_data_detail($employee_hexaID){
 	
-		$this->db->where('employee_hexaID', $employee_hexaID);
+	function get_employee_detail($employee_ID){
+	
+		$this->db->select('employee_badge, employee_name, employee_ID');
+	
+		$this->db->where('employee_ID', $employee_ID);
+		  
+		$query = $this->db->get('employee');
 		
-		$this->db->where('deleted', '0');
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+
+			}
+			else
+			{
+				return FALSE;
+			}	
+				
+	}
+		 
+
+	function employee_data_detail($employee_ID){
+	
+		$this->db->select('employee.*,job.job_ID,job.job_name');
+	
+		$this->db->where('employee_ID', $employee_ID);
+		
+		$this->db->where('employee.deleted', '0');
+		
+		$this->db->join('job', 'job.job_ID = employee.job_ID'); 
 			
 		$query = $this->db->get('employee');
 		
@@ -160,13 +185,13 @@ class Mhrd extends CI_Model {
 			}		
 	}
 
-	function employee_delete($employee_hexaID){
+	function employee_delete($employee_ID){
 		
 		$data = array(
                'deleted' => '1'              
             );
 
-		$this->db->where('employee_hexaID', $employee_hexaID);
+		$this->db->where('employee_ID', $employee_ID);
 		$this->db->update('employee', $data); 
 
 
@@ -174,14 +199,14 @@ class Mhrd extends CI_Model {
 
 	function save_employee($data,$img){
 			unset($data['employee_managerName']);
-		if ($data['employee_hexaID']==""){
-			unset($data['employee_hexaID']);
+		if ($data['employee_ID']==""){
+			unset($data['employee_ID']);
 			
 			if($img!= null){
 			$this->db->set('employee_photo', $img);	
 			}
 			
-			$this->db->set('employee_hexaID', $this->generate_code->getUID());	
+			$this->db->set('employee_ID', $this->generate_code->getUID());	
 			$this->db->insert('employee', $data); 
 		}else{
 			
@@ -189,7 +214,7 @@ class Mhrd extends CI_Model {
 			$this->db->set('employee_photo', $img);	
 			}
 			
-			$this->db->where('employee_hexaID',$data['employee_hexaID']);
+			$this->db->where('employee_ID',$data['employee_ID']);
 			$this->db->update('employee', $data); 			
 		}
 	
