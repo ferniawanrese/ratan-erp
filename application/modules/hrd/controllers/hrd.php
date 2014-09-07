@@ -388,6 +388,76 @@ class hrd extends CI_Controller {
 		
 	}
 	
+	function register_time(){
+	
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['content'] = "hrd/timesheet_register";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function timesheet_registerdata($page=1){
+	 
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['timesheet_data'] = $this->Mhrd->timesheet_registerdata($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->timesheet_registerdata_count($this->input->post());	
+
+		$this->load->view('timesheet_registerdata', $data);
+	
+	}
+	
+	function timesheet(){
+	
+	$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['content'] = "hrd/timesheet";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function timesheet_data($page=1){
+	 
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['timesheet_data'] = $this->Mhrd->timesheet_registerdata($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->timesheet_registerdata_count($this->input->post());	
+
+		$this->load->view('timesheet_data', $data);
+	
+	}
+	
+	function timesheet_line(){
+	
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['content'] = "hrd/timesheet_line";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
 }
 
 /* End of file welcome.php */
