@@ -17,22 +17,26 @@
 																			
 										<div class="well col-sm-12 col-md-12">
 										
-										<form id = "form_filter" action ="<?php echo base_url('hrd/hrd_save_employee/');?>" method="post">
+										<form id = "form_add" action ="<?php echo base_url('hrd/timesheet_add/');?>" method="post">
 											<fieldset class="default panel">
 													<legend> Add New Timesheet </legend>
 												
 													<div class="form-group col-sm-12 col-md-3">
 														<label for="validate-text"></label>
-														<div class="input-group col-sm-12 col-md-12">
-															<input id="employee_name" class="form-control" type="text" placeholder="Register Date" name="filter[employee_name]">
+														<div id="datetimepicker4" class="input-append ">
+															<span class="add-on">
+															<input id="register_date" name = "register_date" placeholder = "Register Date" class="form-control" type="text" data-format="dd/MM/yyyy">
+															</span>
 														</div>
-													</div>
-													
+													</div> 
 													<div class="form-group col-sm-12 col-md-3">
 														<label for="validate-text"></label>
 														<div class="input-group col-sm-12 col-md-12">
-															<select class="form-control">
-																<option val = "" >-- Choose Project --</option>
+															<select class="form-control" name = "project_ID" id = "project_ID"> 
+																<option val = "-1" >-- Choose Project --</option>
+																<?php foreach($project as $projects):?>
+																<option value = "<?php echo $projects['project_ID'];?>"><?php echo $projects['project_name'];?></option>
+																<?php endforeach;?>
 															</select>
 															<span class="input-group-addon ">
 															<i class="icon-plus" style="cursor:pointer;" title="Ascending"></i>
@@ -43,34 +47,52 @@
 													<div class="form-group col-sm-12 col-md-3">
 														<label for="validate-text"></label>
 														<div class="input-group col-sm-12 col-md-12">
-															<select class="form-control">
-																<option val = "" >-- Choose Task --</option>
+															<select class="form-control" name = "task_ID" id = "task_ID">
+																<option val = "-1" >-- Choose Task --</option>
+																<?php foreach($task as $tasks):?>
+																<option value = "<?php echo $tasks['task_ID'];?>"><?php echo $tasks['task_name'];?></option>
+																<?php endforeach;?>
+																
 															</select>
 															<span class="input-group-addon ">
 															<i class="icon-plus" style="cursor:pointer;" title="Ascending"></i>
 															</span>
 														</div>
 													</div>
-													
-													<div class="form-group col-sm-12 col-md-3">
+													  		
+													<div class="form-group col-sm-12 col-md-3"> 
 														<label for="validate-text"></label>
-														<div class="input-group col-sm-12 col-md-12">
-															<input id="employee_name" class="form-control" type="text" placeholder="Employee Name" name="filter[employee_name]">
+														<div >
+														 
+															<input id = "employee_name" placeholder="Employee Name" name="employee_name" class="form-control employee_name" type="text" value = ""/>
+															<input id = "employee_ID" name="employee_ID" class="form-control employee_ID" type="hidden" value = " "/>
+														 
 														</div>
 													</div>
+													
 													<div class="form-group col-sm-12 col-md-3"> 
-														<div class="input-group col-sm-12 col-md-12">
-															<input id="employee_name" class="form-control" type="text" placeholder="Ammount Billable " name="filter[employee_name]"> 
+														<div  >
+														<span class="add-on">
+															<input id="ammount_expenses" class="form-control" type="text" placeholder="Ammount Billable" name="ammount_expenses"> 
+														</span>
 														</div>
 													</div>
-													<div class="form-group col-sm-12 col-md-3"> 
+													
+													<div class="form-group col-sm-12 col-md-1"> 
 														<div class="input-group col-sm-12 col-md-12">
-															<input id="employee_name" class="form-control" type="text" placeholder="HH:mm " name="filter[employee_name]"> 
+															<input id="ammount_timeH" class="form-control" type="text" placeholder="HH" name="ammount_timeH" size = "5"> 
 														</div>
 													</div>
+													
+													<div class="form-group col-sm-12 col-md-1"> 
+														<div class="input-group col-sm-12 col-md-12">
+															<input id="ammount_timeM" class="form-control" type="text" placeholder="mm" name="ammount_timeM" size = "5"> 
+														</div>
+													</div>
+													
 													<div class="form-group col-sm-12 col-md-12"> 
 														<div class="input-group col-sm-12 col-md-12">
-															 <textarea class="form-control" placeholder = "Notes"></textarea>
+															 <textarea class="form-control" placeholder = "Notes" id = "description" name = "description"></textarea>
 														</div>
 													</div>
 													<div class="form-group col-sm-12 col-md-3"> 
@@ -78,6 +100,7 @@
 															<button class="btn btn-default" type="submit">Save</button>
 														</div>
 													</div>
+													
 												</fieldset>
 										</form>	
 										 
@@ -90,7 +113,44 @@
 						</div>
 </div>			
 
+
 <script>
+  
+	$("form#form_add").submit(function(e){
+	
+	e.preventDefault();
+	
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('hrd/timesheet_add');?>",
+				data: $("#form_add").serialize(),
+				success: function(data)
+				{
+					display_data();
+					$('body').loadie(1);
+				}
+			});
+			
+			return false;
+	});
+
+
+$(function() {
+		$( ".employee_name" ).autocomplete({ 
+		 
+			source: "<?php echo base_url('hrd/get_employee_name/');?>" + "/" + $('.employee_name').val(),
+				select: function (event, ui) {
+				var id = ui.item.employee_ID;
+				$("#employee_ID").val(id);
+				}  
+		}); 
+	}); 
+
+
+$('#datetimepicker4').datetimepicker({
+            pickTime: false
+        });
+		
 display_data();
 
 function display_data(){ 
