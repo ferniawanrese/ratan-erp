@@ -395,6 +395,10 @@ class hrd extends CI_Controller {
 		$output['data']['menu_name'] = "HRD";
 		
 		$output['content'] = "hrd/timesheet_register";
+		 
+		$output['project'] = $this->Mhrd->get_project();	
+		
+		$output['task'] = $this->Mhrd->get_task();	
 		
 		$output['filterplus'] = $this->core->filterplus('employee');
 		
@@ -418,12 +422,12 @@ class hrd extends CI_Controller {
 	
 	function timesheet(){
 	
-	$output['data']['module_name'] = "Human Resources";
+		$output['data']['module_name'] = "Human Resources";
 		
 		$output['data']['menu_name'] = "HRD";
 		
 		$output['content'] = "hrd/timesheet";
-		
+		 
 		$output['filterplus'] = $this->core->filterplus('employee');
 		
 		$this->load->view('template', $output);
@@ -455,6 +459,12 @@ class hrd extends CI_Controller {
 		$output['filterplus'] = $this->core->filterplus('employee');
 		
 		$this->load->view('template', $output);
+	
+	}
+	
+	function timesheet_add(){
+	
+		$this->Mhrd->timesheet_add($this->input->post());
 	
 	}
 	

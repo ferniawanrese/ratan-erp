@@ -574,6 +574,43 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function timesheet_add($data){
+	
+		unset($data['employee_name']);
+		$this->db->set('timetracking_ID',$this->generate_code->getUID());	
+		$this->db->insert('timetracking',$data);
+	}
+	
+	function get_project(){
+	 
+		$query = $this->db->get('project');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+		function get_task(){
+	 
+		$query = $this->db->get('task');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
 }
 	
 ?>

@@ -89,7 +89,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					$('.progress-bar').show();
 					$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('hrd/job_position_data/');?>" + "/" + page,
+					url: "<?php echo base_url('hrd/timesheet_registerdata/');?>" + "/" + page,
 					data: $("#form_filter").serialize(),
 					
 						success: function(data){     
