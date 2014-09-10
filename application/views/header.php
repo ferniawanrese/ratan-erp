@@ -8,10 +8,13 @@
 <meta name="author" content="Westilian: Kamrujaman Shohel">
 <!-- styles -->
 <link href="<?php echo base_url('css/bootstrap.css');?>" rel="stylesheet">
+
 <link rel="stylesheet" href="<?php echo base_url('css/font-awesome.css');?>">
+
 <!--[if IE 7]>
             <link rel="stylesheet" href="css/font-awesome-ie7.min.css');?>">
-        <![endif]-->
+<![endif]-->
+
 <link href="<?php echo base_url('css/loadie.css');?>" rel="stylesheet">  
 
 <link href="<?php echo base_url('css/styles.css');?>" rel="stylesheet"> 
@@ -21,6 +24,9 @@
 <link href="<?php echo base_url('css/tablecloth.css');?>" rel="stylesheet">
 
 <link href="<?php echo base_url('css/responsive-tables.css');?>" rel="stylesheet">
+
+<link href="<?php echo base_url('css/chosen.css');?>" rel="stylesheet">
+
 <!--[if IE 7]>
             <link rel="stylesheet" type="text/css" href="css/ie/ie7.css');?>" />
         <![endif]-->
@@ -53,6 +59,7 @@
 <script src="<?php echo base_url('js/jquery.loadie.js');?>"></script>
 <script src="<?php echo base_url('js/jquery.validate.js');?>"></script>
 <script src="<?php echo base_url('js/jquery.metadata.js');?>"></script>
+<script src="<?php echo base_url('js/chosen.jquery.js');?>"></script>
 </head>
 
 <script>

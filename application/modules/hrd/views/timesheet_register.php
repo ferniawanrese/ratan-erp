@@ -17,23 +17,31 @@
 																			
 										<div class="well col-sm-12 col-md-12">
 										
-										<form id = "form_add" action ="<?php echo base_url('hrd/timesheet_add/');?>" method="post">
+										<form id = "form_add" action ="<?php echo base_url('hrd/timesheet_add/');?>" method="post" class="form-validate" >
 											<fieldset class="default panel">
 													<legend> Add New Timesheet </legend>
 												
 													<div class="form-group col-sm-12 col-md-3">
 														<label for="validate-text"></label>
-														<div id="datetimepicker4" class="input-append ">
+														<div   class="input-append datetimepicker4">
 															<span class="add-on">
-															<input id="register_date" name = "register_date" placeholder = "Register Date" class="form-control" type="text" data-format="dd/MM/yyyy">
+															<input id="register_date" name = "register_date" placeholder = "Register Date" class="form-control {validate:{required:true}}" type="text" data-format="dd/MM/yyyy">
+															</span>
+														</div>
+													</div> 
+													<div class="form-group col-sm-12 col-md-3">
+														<label for="validate-text"></label>
+														<div   class="input-append datetimepicker4">
+															<span class="add-on">
+															<input id="deadline_date" name = "deadline_date" placeholder = "Dealine Date" class="form-control {validate:{required:true}}" type="text" data-format="dd/MM/yyyy">
 															</span>
 														</div>
 													</div> 
 													<div class="form-group col-sm-12 col-md-3">
 														<label for="validate-text"></label>
 														<div class="input-group col-sm-12 col-md-12">
-															<select class="form-control" name = "project_ID" id = "project_ID"> 
-																<option val = "-1" >-- Choose Project --</option>
+															<select class="form-control {validate:{required:true}}" name = "project_ID" id = "project_ID"> 
+																<option value = "" >-- Choose Project --</option>
 																<?php foreach($project as $projects):?>
 																<option value = "<?php echo $projects['project_ID'];?>"><?php echo $projects['project_name'];?></option>
 																<?php endforeach;?>
@@ -47,8 +55,8 @@
 													<div class="form-group col-sm-12 col-md-3">
 														<label for="validate-text"></label>
 														<div class="input-group col-sm-12 col-md-12">
-															<select class="form-control" name = "task_ID" id = "task_ID">
-																<option val = "-1" >-- Choose Task --</option>
+															<select class="form-control {validate:{required:true}}" name = "task_ID" id = "task_ID">
+																<option value = "" >-- Choose Task --</option>
 																<?php foreach($task as $tasks):?>
 																<option value = "<?php echo $tasks['task_ID'];?>"><?php echo $tasks['task_name'];?></option>
 																<?php endforeach;?>
@@ -59,41 +67,57 @@
 															</span>
 														</div>
 													</div>
-													  		
-													<div class="form-group col-sm-12 col-md-3"> 
+													 
+													<!--<div class="form-group col-sm-12 col-md-3"> 
 														<label for="validate-text"></label>
 														<div >
 														 
-															<input id = "employee_name" placeholder="Employee Name" name="employee_name" class="form-control employee_name" type="text" value = ""/>
+															<input id = "employee_name" placeholder="Employee Name" name="employee_name" class="form-control employee_name {validate:{required:true}}" type="text" value = ""/>
 															<input id = "employee_ID" name="employee_ID" class="form-control employee_ID" type="hidden" value = " "/>
 														 
 														</div>
-													</div>
+													</div>-->
 													
-													<div class="form-group col-sm-12 col-md-3"> 
-														<div  >
+													<div class="form-group col-sm-12 col-md-3">  
 														<span class="add-on">
 															<input id="ammount_expenses" class="form-control" type="text" placeholder="Ammount Billable" name="ammount_expenses"> 
-														</span>
-														</div>
+														</span> 
 													</div>
 													
-													<div class="form-group col-sm-12 col-md-1"> 
-														<div class="input-group col-sm-12 col-md-12">
-															<input id="ammount_timeH" class="form-control" type="text" placeholder="HH" name="ammount_timeH" size = "5"> 
-														</div>
+													<div class="form-group col-sm-12 col-md-3">  
+															<input id="ammount_timeH" class="form-control" type="number" placeholder="Hours" name="ammount_timeH" size = "5">  
 													</div>
 													
-													<div class="form-group col-sm-12 col-md-1"> 
-														<div class="input-group col-sm-12 col-md-12">
-															<input id="ammount_timeM" class="form-control" type="text" placeholder="mm" name="ammount_timeM" size = "5"> 
-														</div>
+													<div class="form-group col-sm-12 col-md-3">  
+															<input id="ammount_timeM" class="form-control" type="number" placeholder="Minutes" name="ammount_timeM" size = "5">  
 													</div>
 													
 													<div class="form-group col-sm-12 col-md-12"> 
-														<div class="input-group col-sm-12 col-md-12">
-															 <textarea class="form-control" placeholder = "Notes" id = "description" name = "description"></textarea>
-														</div>
+															<div class="input-group col-sm-12 col-md-12">
+																<select data-placeholder="Employee Name, Department Name or Position Name" multiple class="chzn-select form-control" tabindex="8">
+																	<option value=""></option>
+																	<option>American Black Bear</option>
+																	<option>Asiatic Black Bear</option>
+																	<option>Brown Bear</option>
+																	<option>Giant Panda</option>
+																	<!--<option selected>Sloth Bear</option>-->
+																	<option disabled>Sun Bear</option> 
+																	<option disabled>Spectacled Bear</option>
+																</select>  
+															</div>
+													</div>	
+								<script>
+								    /*====Select Box====*/
+    $(function () {
+    $(".chzn-select").chosen();
+    $(".chzn-select-deselect").chosen({
+    allow_single_deselect: true
+    });
+    });
+								</script>
+													
+													<div class="form-group col-sm-12 col-md-12">  
+															 <textarea class="form-control {validate:{required:true}}" placeholder = "Notes" id = "description" name = "description"></textarea> 
 													</div>
 													<div class="form-group col-sm-12 col-md-3"> 
 														<div class="input-group col-sm-12 col-md-12">
@@ -147,7 +171,7 @@ $(function() {
 	}); 
 
 
-$('#datetimepicker4').datetimepicker({
+$('.datetimepicker4').datetimepicker({
             pickTime: false
         });
 		
@@ -166,5 +190,25 @@ function display_data(){
 			});
 
 }
+</script>
+
+<script type="text/javascript">
+            
+			cek_validate();
+			function cek_validate(){
+				
+				 var container = $('div.error-container ');
+                // validate the form when it is submitted
+                var validator = $(".form-validate").validate({
+                    errorContainer: container,
+                    errorLabelContainer: $("ol", container),
+                    wrapper: 'span',
+                    meta: "validate"
+                });
+				
+                $(".cancel").click(function () {
+                    validator.resetForm();
+                });
+			}
 </script>
 	

@@ -4,12 +4,14 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 <table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
 	<thead>
 		  <tr>
-				<th>   Active Timers </th> 
+				<!--<th>   Active Timers </th> -->
 				<th>  Date </th> 
 				<th>  Project </th> 
 				<th> Task Name </th> 
 				<th> Employee </th> 
+				<th> Notes </th> 
 				<th> Ammount Billable </th> 
+				<th> Timing </th> 
 				<th> Action </th> 
 		  </tr>
 	</thead> 
@@ -18,11 +20,11 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 			<?php if($timesheet_data):?>
 			 <?php foreach($timesheet_data as $dat):?>
 				<tr>				
+					<!--<td>
+					<i class ="icon-play" style="cursor:pointer"></i> &nbsp <i class ="icon-pause" style="cursor:pointer"></i> &nbsp <i class ="icon-stop" style="cursor:pointer"></i> &nbsp    <label>01:55</label>
+					</td> -->
 					<td>
-					<i class ="icon-play"></i> &nbsp <i class ="icon-pause"></i> &nbsp <i class ="icon-stop"></i> &nbsp    <label>01:55</label>
-					</td> 
-					<td>
-					<?php echo $dat['register_date'];?>	 <?php echo date('d M Y');?>
+					<?php echo date('D, d M Y', strtotime($dat['register_date']));?>
 					</td> 
 					<td>
 					<?php echo $dat['project_name'];?>		
@@ -34,7 +36,14 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<?php echo $dat['employee_name'];?>		
 					</td> 
 					<td>
+					<?php echo $dat['description'];?>		
+					</td> 
+					<td>
 					<?php echo $dat['ammount_expenses'];?>		
+					</td>
+					<td>
+					<i class ="icon-play" style="cursor:pointer"></i> &nbsp <i class ="icon-pause" style="cursor:pointer"></i> &nbsp <i class ="icon-stop" style="cursor:pointer"></i> &nbsp  
+					<?php  echo $dat['ammount_timeH']." : ".$dat['ammount_timeM'];?>		
 					</td>
 					<td class="center">
 							<div class="btn-toolbar row-action"> 

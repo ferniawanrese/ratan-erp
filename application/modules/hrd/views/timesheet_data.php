@@ -3,11 +3,10 @@ Attendance : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 <div></br></div>
 <table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
 	<thead>
-		  <tr>
-				<th>  Atendance </th>
-				<th>  Active All Timers </th>
+		  <tr> 
 				<th>  Date </th> 
-				<th>  Excerpt </th>  
+				<th>  Sign In </th> 
+				<th>  Sign Out </th>  
 				<th> Action </th> 
 		  </tr>
 	</thead> 
@@ -16,18 +15,18 @@ Attendance : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 			<?php if($timesheet_data):?>
 			 <?php foreach($timesheet_data as $dat):?>
 				<tr>			
-					<td>
+					<!--<td>
 					 <i class ="icon-signin"></i> Sign In | <i class ="icon-signout"></i> Sign Out
-					</td> 
+					</td>  -->
 					<td>
-					<i class ="icon-play"></i> &nbsp <i class ="icon-pause"></i> &nbsp <i class ="icon-stop"></i> 
-					</td> 
-					<td>
-					<?php echo $dat['register_date'];?>	<?php echo date('d M Y');?>
+					<?php //echo $dat['register_date'];?>	<?php echo date('d M Y');?>
 					</td>  
 					<td>
-					<input type ="text" >		
+					<?php //echo $dat['register_date'];?>	<?php echo date('H:i a');?>
 					</td>
+					<td>
+					<?php //echo $dat['register_date'];?>	<?php echo date('H:i a');?>
+					</td> 
 					<td class="center">
 							<div class="btn-toolbar row-action"> 
 									<button class="btn btn-info" title="Edit" onclick=job_position_update("<?php echo $dat['timetracking_ID'];?>")><i class="icon-edit"></i></button>
