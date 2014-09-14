@@ -4,51 +4,30 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 <table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
 	<thead>
 		  <tr>
-				<!--<th>   Active Timers </th> -->
-				<th>  Date </th> 
-				<th>  Project </th> 
-				<th> Task Name </th> 
-				<th> Employee </th> 
-				<th> Notes </th> 
-				<th> Ammount Billable </th> 
-				<!--<th> Timing </th> -->
+				<th>  Task Name </th> 
+				<th>  Job Name </th> 
 				<th> Action </th> 
 		  </tr>
 	</thead> 
 	<tbody>
-	 
-			<?php if($timesheet_data):?>
-			 <?php foreach($timesheet_data as $dat):?>
+			<?php if($task_data):?>		
+			<?php foreach($task_data as $keys):?>
 				<tr>				
-					<!--<td>
-					<i class ="icon-play" style="cursor:pointer"></i> &nbsp <i class ="icon-pause" style="cursor:pointer"></i> &nbsp <i class ="icon-stop" style="cursor:pointer"></i> &nbsp    <label>01:55</label>
-					</td> -->
 					<td>
-					<?php echo date('D, d M Y', strtotime($dat['register_date']));?>
+					
+					<?php 	echo $keys['task_name'];		 				 
+					?>
+					
 					</td> 
-					<td>
-					<?php echo $dat['project_name'];?>		
+					<td>					
+					<?php 	echo $keys['job_name'];		 				 
+					?> 			
 					</td> 
-					<td>
-					<?php echo $dat['task_name'];?>		
-					</td> 
-					<td>
-					<?php echo $dat['employee_name'];?>		
-					</td> 
-					<td>
-					<?php echo $dat['description'];?>		
-					</td> 
-					<td>
-					<?php echo $dat['ammount_expenses'];?>		
-					</td>
-					<!--<td>
-					<i class ="icon-play" style="cursor:pointer"></i> &nbsp <i class ="icon-pause" style="cursor:pointer"></i> &nbsp <i class ="icon-stop" style="cursor:pointer"></i> &nbsp  
-					<?php  echo $dat['ammount_timeH']." : ".$dat['ammount_timeM'];?>		
-					</td>-->
 					<td class="center">
-							<div class="btn-toolbar row-action"> 
-									<button class="btn btn-info" title="Edit" onclick=job_position_update("<?php echo $dat['timetracking_ID'];?>")><i class="icon-edit"></i></button>
-									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $dat['timetracking_ID'];?>")><i class="icon-trash "></i></button>
+							<div class="btn-toolbar row-action">
+									<?php //echo $keys['employee_catParentID'];?>
+									<button class="btn btn-info" title="Edit" onclick=task_add_update("<?php echo $keys['task_ID'];?>")><i class="icon-edit"></i></button>
+									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['task_ID'];?>")><i class="icon-trash "></i></button>
 								
 							</div>
 					 </td>
@@ -98,7 +77,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					$('.progress-bar').show();
 					$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('hrd/timesheet_registerdata/');?>" + "/" + page,
+					url: "<?php echo base_url('hrd/project_data/');?>" + "/" + page,
 					data: $("#form_filter").serialize(),
 					
 						success: function(data){     

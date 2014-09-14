@@ -123,8 +123,8 @@
 					<ul class="accordion-nav">
 						 <li><a href="#"><i class="icon-caret-right"></i> Time Tracking</a>
 						<ul>
-							<li><a href="<?php echo base_url('hrd/employee_cat');?>"> Project </a></li>
-							<li  ><a href="<?php echo base_url('hrd/job_position');?>">  Task </a></li> 
+							<li><a href="<?php echo base_url('hrd/project');?>"> Project </a></li>
+							<li  ><a href="<?php echo base_url('hrd/task');?>">  Task </a></li> 
 						 </ul>   
 						</li>
 					</ul>

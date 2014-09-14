@@ -403,8 +403,12 @@ class Mhrd extends CI_Model {
 		
 		$this->db->like('job_name', $data['search']);
 		   
-		$query = $this->db->get('job',$limit,$a);
-	 
+		if($page==null){
+			$query = $this->db->get('job');
+		}else{
+			$query = $this->db->get('job',$limit,$a);
+		}   
+		   
 			if ($query->num_rows())
 			{
 				return $query->result_array();
@@ -618,6 +622,189 @@ class Mhrd extends CI_Model {
 			{
 				return FALSE;
 			}	
+	
+	}
+	
+	function project_data($data,$page,$limit){
+		
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->join('department','department.department_ID = project.department_ID');
+		
+		$this->db->where('project.deleted', '0');
+		 		
+		$this->db->like('project.project_name', $data['search']);
+		   
+		$query = $this->db->get('project',$limit,$a);
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	}
+	
+	function project_data_count($data){
+	
+		$this->db->select('count(*) as totdata');
+		 
+		$this->db->join('department','department.department_ID = project.department_ID');
+		
+		$this->db->where('project.deleted', '0');
+		 		
+		$this->db->like('project.project_name', $data['search']);
+		   
+		$query = $this->db->get('project');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	}
+	
+	function project_add($data){
+		 
+		if ($data['project_ID']==""){
+			unset($data['project_ID']);
+			 
+			$this->db->set('project_ID',$this->generate_code->getUID());
+			$this->db->insert('project',$data);
+		}else{
+			 
+			$this->db->where('project_ID',$data['project_ID']);
+			$this->db->update('project', $data); 			
+		}
+	
+	}
+	
+	function project_detail($project_ID){
+	
+		$this->db->where('project_ID',$project_ID);
+	 
+		$this->db->join('department','department.department_ID = project.department_ID');
+		
+		$this->db->where('project.deleted', '0');
+		 		 
+		$query = $this->db->get('project');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	}
+	
+	function project_deleted($project_ID){
+	
+		$this->db->where('project_ID',$project_ID);
+		$this->db->set('deleted','1');
+		$this->db->update('project');
+	
+	}
+	
+	function task_data($data,$page,$limit){
+		
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->join('job','job.job_ID = task.job_ID');
+		
+		$this->db->where('task.deleted', '0');
+		 		
+		$this->db->like('task.task_name', $data['search']);
+		   
+		$query = $this->db->get('task',$limit,$a);
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	}
+	
+	function task_data_count($data){
+	
+		$this->db->select('count(*) as totdata');
+		 
+		$this->db->join('job','job.job_ID = task.job_ID');
+		
+		$this->db->where('task.deleted', '0');
+		 		
+		$this->db->like('task.task_name', $data['search']);
+		   
+		$query = $this->db->get('task');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	}
+	
+	function task_add($data){
+		 
+		if ($data['task_ID']==""){
+			unset($data['task_ID']);
+			 
+			$this->db->set('task_ID',$this->generate_code->getUID());
+			$this->db->insert('task',$data);
+		}else{
+			 
+			$this->db->where('task_ID',$data['task_ID']);
+			$this->db->update('task', $data); 			
+		}
+	
+	}
+	
+	
+	function task_detail($task_detail){
+	
+		$this->db->where('task_ID',$task_detail);
+	 
+		$this->db->join('job','job.job_ID = task.job_ID');
+		
+		$this->db->where('task.deleted', '0');
+		 		 
+		$query = $this->db->get('task');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	}
+	
+	function task_deleted($task_ID){
+	
+		$this->db->where('task_ID',$task_ID);
+		$this->db->set('deleted','1');
+		$this->db->update('task');
 	
 	}
 	

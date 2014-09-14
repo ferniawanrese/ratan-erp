@@ -468,6 +468,130 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function opt_employee(){
+	
+		$json['statenya']  = $this->Mhrd->get_state();
+		echo json_encode($json, JSON_UNESCAPED_SLASHES);
+	
+	}
+	
+	function project(){
+	 
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['content'] = "hrd/project";
+		
+		$output['parent'] = $this->Mhrd->department_parent();
+		 
+		foreach($output['parent'] as $pr){
+			 $output['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+		
+		$output['department_data'] = $this->Mhrd->department_data( );		
+		 
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function project_add($project_ID=null){
+	
+	$data['dat'] = $this->Mhrd->project_detail($project_ID);
+	  
+	$data['department_data'] = $this->Mhrd->department_data();	
+	 
+	$this->load->view('project_add', $data);
+		
+	}
+	
+	function project_add_action(){
+	 
+		$this->Mhrd->project_add($this->input->post());
+		 
+	}
+	
+	function project_deleted($project_ID){
+	
+		$this->Mhrd->project_deleted($project_ID);
+	
+	}
+	
+	function project_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['project_data'] = $this->Mhrd->project_data($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->project_data_count($this->input->post());	
+
+		$this->load->view('project_data', $data);
+
+	}
+	
+	function task(){
+	 
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['content'] = "hrd/task";
+		
+		$output['parent'] = $this->Mhrd->department_parent();
+		 
+		foreach($output['parent'] as $pr){
+			 $output['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+		
+		$output['department_data'] = $this->Mhrd->department_data( );		
+		 
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function task_add($task_detail=null){
+	
+	$data['dat'] = $this->Mhrd->task_detail($task_detail);
+	  
+	$data['job_data'] = $this->Mhrd->job_data();	
+	 
+	$this->load->view('task_add', $data);
+		
+	}
+	
+	function task_add_action(){
+	 
+		$this->Mhrd->task_add($this->input->post());
+		 
+	}
+	
+	function task_deleted($project_ID){
+	
+		$this->Mhrd->task_deleted($project_ID);
+	
+	}
+	
+	function task_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['task_data'] = $this->Mhrd->task_data($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->task_data_count($this->input->post());	
+
+		$this->load->view('task_data', $data);
+
+	}
+	
+	
 }
 
 /* End of file welcome.php */
