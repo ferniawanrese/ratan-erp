@@ -94,28 +94,12 @@
 													
 													<div class="form-group col-sm-12 col-md-12"> 
 															<div class="input-group col-sm-12 col-md-12">
-																<select data-placeholder="Employee Name, Department Name or Position Name" multiple class="chzn-select form-control" tabindex="8">
-																	<option value=""></option>
-																	<option>American Black Bear</option>
-																	<option>Asiatic Black Bear</option>
-																	<option>Brown Bear</option>
-																	<option>Giant Panda</option>
-																	<!--<option selected>Sloth Bear</option>-->
-																	<option disabled>Sun Bear</option> 
-																	<option disabled>Spectacled Bear</option>
+																<select id = "employee_name_opt" data-placeholder="Employee Name, Department Name or Position Name" multiple class="chzn-select form-control" tabindex="8">
+																	 
 																</select>  
 															</div>
 													</div>	
-								<script>
-								    /*====Select Box====*/
-    $(function () {
-    $(".chzn-select").chosen();
-    $(".chzn-select-deselect").chosen({
-    allow_single_deselect: true
-    });
-    });
-								</script>
-													
+													 
 													<div class="form-group col-sm-12 col-md-12">  
 															 <textarea class="form-control {validate:{required:true}}" placeholder = "Notes" id = "description" name = "description"></textarea> 
 													</div>
@@ -137,7 +121,35 @@
 						</div>
 </div>			
 
-
+<script>
+		/*====Select Box====*/
+	$(function () {
+		$(".chzn-select").chosen();
+		$(".chzn-select-deselect").chosen({
+			allow_single_deselect: true
+		}); 
+		$('.chzn-choices input').autocomplete({
+			 	
+			  source: function( request, response ) {
+				$.ajax({
+				  url: "<?php echo base_url('hrd/get_employee_name');?>"+"/"+request.term+"/",
+				  dataType: "json",
+				  beforeSend: function(){$('ul.chzn-results').empty();},
+				  success: function( data ) {  
+					response( $.map( data, function( item ) {   
+					
+						  $('.chzn-select').append('<option value = "'+ item.employee_ID +'">' + item.value + '</option>');					  
+						  $('ul.chzn-results').append('<li class="active-result"  >' + item.value + '</li>');  
+					      $(".chzn-select").trigger("liszt:updated");
+						  
+					}));
+				  }
+				});
+			  }
+			});
+	});
+</script>
+		
 <script>
   
 	$("form#form_add").submit(function(e){
