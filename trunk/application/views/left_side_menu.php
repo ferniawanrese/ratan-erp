@@ -61,83 +61,80 @@
 				<?php if(isset($menu_name)){
 					if($menu_name== "HRD"):?>
 					
-				<div class="tab-pane active" id="forms">
-					<h4 class="side-head"> <?php echo $module_name;?>  </h4>
-					 
-					<ul class="accordion-nav">
-						<li><a href="<?php echo base_url('hrd');?>" ><i class="icon-file-alt"></i>  Employee Data</a></li>     
-						<li><a href="#"><i class="icon-caret-right"></i> Time Tracking</a>
-						<ul>
-							<li><a href="<?php echo base_url('hrd/register_time');?>"><i class=" icon-file-alt"></i> Register Time</a></li>
-							<li  ><a href="<?php echo base_url('hrd/timesheet');?>"><i class=" icon-file-alt"></i> My Timesheets</a></li>
-							<li><a href="<?php echo base_url('hrd/timesheet_line');?>"><i class=" icon-file-alt"></i> Timesheet Lines</a></li>
-						</ul>
-						</li>
-						<li><a href="#"><i class="icon-caret-right"></i> Attendances</a>
-						<ul>
-							<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Sign In / Sign Out</a></li>
-							<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i> Attendances</a></li> 
-						</ul>
-						</li>
-						<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
-						<ul>
-							<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Appraisal</a></li>
-							<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i> Interview Request</a></li> 
-						</ul> 
-						</li>         
-						<li><a href="#"><i class="icon-caret-right"></i> Leaves</a>
-						<ul>
-							<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Leaves Request</a></li>
-							<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Leaves Request to Approve</a></li> 
-							<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Allocation Requests</a></li> 
-							<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Leaves Summary</a></li> 
-						</ul> 
-						</li>
-						<li><a href="#"><i class="icon-caret-right"></i> Payroll</a>
-						<ul>
-							<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Employee Payslips</a></li>
-							<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Payslips Batches</a></li>  
-						</ul> 
-						</li>		
-						<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class="icon-file-alt"></i>  Expends</a></li>	
-						<li><a href="#"><i class="icon-caret-right"></i> Recruitment</a>
-						<ul>
-							<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Applicants</a></li>
-							<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Job Positions</a></li>  
-						</ul> 
-						</li>		 		
-					</ul>
-				</div>
-				<div class="tab-pane " id="Configuration">
-					<h4 class="side-head"> <?php //echo $module_name;?> Configuration</h4>
-					 
-					<ul class="accordion-nav">
-						 <li><a href="#"><i class="icon-caret-right"></i> Human Resources</a>
-						<ul>
-							<li><a href="<?php echo base_url('hrd/department');?>">  Company</a></li>
-							<li><a href="<?php echo base_url('hrd/department');?>">  Departments & Division</a></li>
-							<li  ><a href="<?php echo base_url('hrd/job_position');?>">  Job Positions</a></li>
-							<li><a href="<?php echo base_url('hrd/employee_cat');?>">  Categories of Employee</a></li>
-						 </ul>   
-						</li>
-					</ul>
-					<ul class="accordion-nav">
-						 <li><a href="#"><i class="icon-caret-right"></i> Time Tracking</a>
-						<ul>
-							<li><a href="<?php echo base_url('hrd/project');?>"> Project </a></li>
-							<li  ><a href="<?php echo base_url('hrd/task');?>">  Task </a></li> 
-						 </ul>   
-						</li>
-					</ul>
-				</div>
-				<div class="tab-pane " id="Report">
-					<h4 class="side-head"> <?php //echo $module_name;?> Report</h4>
-					 
-					<ul class="accordion-nav"> 
-						<li><a href="login.html">  Employee Data</a></li>    
-						<li><a href="login.html">  Time Tracking</a></li>
-					</ul>
-				</div>
+							<div class="tab-pane active" id="forms">
+								<h4 class="side-head"> <?php echo $module_name;?>  </h4>
+								 
+								<ul class="accordion-nav">
+									<li><a href="<?php echo base_url('hrd');?>" ><i class="icon-file-alt"></i>  Employee Data</a></li>     
+									<li ><a href="#"><i class="icon-caret-right"></i> Time Tracking</a>
+									<ul >
+										<li  ><a href="<?php echo base_url('hrd/register_time');?>"  ><i class=" icon-file-alt"></i> Register Time</a></li>
+										<li  ><a href="<?php echo base_url('hrd/timesheet');?>"><i class=" icon-file-alt"></i> My Timesheets</a></li>
+										<li><a href="<?php echo base_url('hrd/timesheet_line');?>"><i class=" icon-file-alt"></i> Timesheet Lines</a></li>
+									</ul>
+									</li>
+									<li><a href="#"><i class="icon-caret-right"></i> Attendances</a>
+									<ul >
+										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Sign In / Sign Out</a></li>
+										<li ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i> Attendances</a></li> 
+									</ul>
+									</li>
+									<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
+									<ul>
+										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Appraisal</a></li>
+										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i> Interview Request</a></li> 
+									</ul> 
+									</li>         
+									<li><a href="#"><i class="icon-caret-right"></i> Leaves</a>
+									<ul>
+										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Leaves Request</a></li>
+										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Leaves Request to Approve</a></li> 
+										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Allocation Requests</a></li> 
+										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Leaves Summary</a></li> 
+									</ul> 
+									</li>
+									<li><a href="#"><i class="icon-caret-right"></i> Payroll</a>
+									<ul>
+										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Employee Payslips</a></li>
+										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Payslips Batches</a></li>  
+									</ul> 
+									</li>		
+									<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class="icon-file-alt"></i>  Expends</a></li>	
+									<li><a href="#"><i class="icon-caret-right"></i> Recruitment</a>
+									<ul>
+										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Applicants</a></li>
+										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Job Positions</a></li>  
+									</ul> 
+									</li>		 		
+								</ul>
+							</div>
+							<div class="tab-pane " id="Configuration">
+								<h4 class="side-head"> <?php //echo $module_name;?> Configuration</h4> 
+								<ul class="accordion-nav">
+									 <li><a href="#"><i class="icon-caret-right"></i> Organization Resource</a>
+										<ul>
+											<li><a href="<?php echo base_url('hrd/department');?>">  Companies</a></li>
+											<li><a href="<?php echo base_url('hrd/department');?>">  Department & Division</a></li>
+											<li  ><a href="<?php echo base_url('hrd/job_position');?>">  Job Positions</a></li>
+											<li><a href="<?php echo base_url('hrd/employee_cat');?>">  Employee Categories</a></li>
+										 </ul>   
+									</li> 
+									 <li><a href="#"><i class="icon-caret-right"></i> Time Tracking</a>
+										<ul>
+											<li><a href="<?php echo base_url('hrd/project');?>"> Project </a></li>
+											<li  ><a href="<?php echo base_url('hrd/task');?>">  Task </a></li> 
+										 </ul>   
+									</li>
+								</ul>
+							</div>
+							<div class="tab-pane " id="Report">
+								<h4 class="side-head"> <?php //echo $module_name;?> Report</h4>
+								 
+								<ul class="accordion-nav"> 
+									<li><a href="login.html">  Employee Data</a></li>    
+									<li><a href="login.html">  Time Tracking</a></li>
+								</ul>
+							</div>
 				
 				<?php endif;?>
 				<?php };?>	

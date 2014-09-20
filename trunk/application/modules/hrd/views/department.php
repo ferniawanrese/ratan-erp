@@ -1,8 +1,9 @@
 <ul class="breadcrumb">
 	<li><a href="<?php echo base_url('backend');?>" class="icon-home"></a><span class="divider "><i class="icon-angle-right"></i></span></li>
 	<li><a href="<?php echo  base_url('hrd');?>">HRD</a><span class="divider"><i class="icon-angle-right"></i></span></li>
-	<li class="active">Department</li>
-	
+	<li class="active">Configuration</li>
+	<li class="active">Organization Resource</li>
+	<li class="active">Department & Division</li>
 </ul>
 
 <div class="primary-head">
@@ -11,7 +12,6 @@
 									<div class="content-widgets gray">
 										<div class="widget-head blue clearfix">
 										  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">Department Data </h3>
-											
 										</div>
 																			
 										<div class="well col-sm-12 col-md-12">
