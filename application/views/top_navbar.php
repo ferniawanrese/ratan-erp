@@ -3,52 +3,59 @@
 	<div class="nav navbar-inverse top-nav">
 		<div class="container">
 				<div class="navbar-header">
-					&nbsp <img src="<?php echo base_url('images/logo-merp.gif');?>" width="103" height="50" alt="Media ERP"> &nbsp &nbsp &nbsp 
-					
+					&nbsp <img src="<?php echo base_url('images/logo-merp.gif');?>" width="103" height="50" alt="Media ERP"> &nbsp &nbsp &nbsp  
 				<span class="home-link"><a href="<?php echo base_url('backend');?>" class="icon-home"></a></span>
 				</div>
 				
 				<?php if(isset($menu_name)){
 					if($menu_name== "HRD"):?>
-				<div class="navbar-collapse col-sm-12 col-md-5">
-					<ul class="nav navbar-nav">
-						
+				<div class="navbar-collapse col-sm-12 col-md-12">
+					<ul class="nav navbar-nav"> 
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="icon-cogs"></i> Human Resource Configuration <b class="icon-angle-down"></b>
+								<i class="icon-cogs"></i> Organization Resource  <b class="icon-angle-down"></b>
 							</a>
-						<div class="dropdown-menu">
+						<div class="dropdown-menu col-sm-12 col-md-12">
 							<ul>
-								<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class="icon-file-alt"></i> Categories of Employee </a></li>		
-								<li><a href="<?php echo base_url('hrd/employee_structure');?>"><i class="icon-file-alt"></i> Categories Structure </a></li>
-								<li><a href="form-elements.html"><i class="icon-file-alt"></i> Job Positions </a></li>			
-								<li><a href="form-elements.html"><i class="icon-file-alt"></i> Departments </a></li>			
-							</ul>
-							
+								<li><a href="<?php echo base_url('hrd/companies');?>"><i class="icon-file-alt"></i> Companies </a></li>	
+								<li><a href="<?php echo base_url('hrd/department');?>"><i class="icon-file-alt"></i> Department & Division </a></li>	
+								<li><a href="<?php echo base_url('hrd/job');?>"><i class="icon-file-alt"></i> Job Positions </a></li>
+								<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class="icon-file-alt"></i>  Employee Categories</a></li>	  
+							</ul> 
 						</div>
 						</li>					
 					</ul>
-					<ul class="nav navbar-nav">
-						
+					<ul class="nav navbar-nav"> 
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="icon-cogs"></i> Time Tracking <b class="icon-angle-down"></b>
 							</a>
-						<div class="dropdown-menu">
+						<div class="dropdown-menu col-sm-12 col-md-12">
 							<ul>
 								<li><a href="<?php echo base_url('hrd/project');?>"><i class="icon-file-alt"></i> Project </a></li>		
 								<li><a href="<?php echo base_url('hrd/task');?>"><i class="icon-file-alt"></i> Task </a></li> 
-							</ul>
-							
+							</ul> 
 						</div>
+						</li>					
+					</ul>
+					<ul class="nav navbar-nav "> 
+						<li class="dropdown">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<i class="icon-building"></i> PT. Ratan Software Indonesia <b class="icon-angle-down"></b>
+							</a>
+							<div class="dropdown-menu col-sm-12 col-md-12">
+								<ul>
+									<li><a href="<?php echo base_url('hrd/project');?>"><i class="icon-building"></i> PT. Anasher Groupindo </a></li>		
+									<li><a href="<?php echo base_url('hrd/task');?>"><i class="icon-building"></i> PT.  Harubiru Groupindo</a></li> 
+								</ul> 
+							</div>
 						</li>					
 					</ul>
 				</div>
 				<?php endif;?>
 				<?php };?>	
 				
-				<div class="btn-toolbar pull-right notification-nav">
-					
+				<div class="btn-toolbar pull-right notification-nav"> 
 					<div class="btn-group" style="padding-right:20px">
 						<div class="dropdown">
 							<a class="btn btn-notification dropdown-toggle btn-default" data-toggle="dropdown"><i class="icon-globe">
@@ -65,7 +72,6 @@
 							<span class="home-link"><a href="<?php echo base_url();?>" class="icon-lock"></a></span>
 						</div>
 					</div>
-				</div>
-			 
+				</div> 
 		</div>
 	</div>
