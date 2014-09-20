@@ -4,8 +4,8 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 <table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
 	<thead>
 		  <tr>
-				<th>  Parent </th> 
-				<th>  Child </th> 
+				<th>  Department </th> 
+				<th>  Division </th> 
 				<th>  Manager </th> 
 				<th> Action </th> 
 		  </tr>
@@ -17,16 +17,16 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<td>
 					
 					<?php 
-					if($keys['department_parentID']==0){
-					echo $keys['department_name'];
-					}else{
-					echo $depparent[$keys['department_parentID']];
+					if($keys['department_parentID']=='0'){
+						echo $keys['department_name'];
+					}else{ 
+						echo $depparent[$keys['department_parentID']];
 					}					 
 					?>
 					
 					</td> 
 					<td>					
-					<?php if($keys['department_parentID']!=0){echo $keys['department_name'];}?>					
+					<?php if($keys['department_parentID']!='0'){echo $keys['department_name'];}?>					
 					</td> 
 					<td>					
 					<?php  echo $keys['employee_name']; ?>					

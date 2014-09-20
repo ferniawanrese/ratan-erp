@@ -172,6 +172,8 @@ class Mhrd extends CI_Model {
 	}
 
 	function get_country(){
+	
+		$this->db->order_by('countryName','ASC');
 		
 		$query = $this->db->get('countries');
 
@@ -315,6 +317,8 @@ class Mhrd extends CI_Model {
 		$this->db->like('department_name', $data['search']);
 		
 		$this->db->join('employee','employee.employee_ID =  department.manager_ID');
+		
+		$this->db->order_by('department.dateCreated','desc');
 		  
 		if($page==null){
 			$query = $this->db->get('department');
@@ -625,18 +629,25 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function project_data($data,$page,$limit){
+	function project_data($data=null,$page=null,$limit=null){
 		
+		if($data){
 		$a = ($page-1) * $limit;
 		$limitnya = ",".$a.",".$limit;
+		}
 		
 		$this->db->join('department','department.department_ID = project.department_ID');
 		
 		$this->db->where('project.deleted', '0');
 		 		
 		$this->db->like('project.project_name', $data['search']);
-		   
+		
+		
+		if($data){   
 		$query = $this->db->get('project',$limit,$a);
+		}else{
+		$query = $this->db->get('project');
+		}
 	 
 			if ($query->num_rows())
 			{
@@ -721,7 +732,7 @@ class Mhrd extends CI_Model {
 		$a = ($page-1) * $limit;
 		$limitnya = ",".$a.",".$limit;
 		
-		$this->db->join('job','job.job_ID = task.job_ID');
+		$this->db->join('project','project.project_ID = task.project_ID');
 		
 		$this->db->where('task.deleted', '0');
 		 		
@@ -744,7 +755,7 @@ class Mhrd extends CI_Model {
 	
 		$this->db->select('count(*) as totdata');
 		 
-		$this->db->join('job','job.job_ID = task.job_ID');
+		$this->db->join('project','project.project_ID = task.project_ID');
 		
 		$this->db->where('task.deleted', '0');
 		 		
@@ -783,7 +794,7 @@ class Mhrd extends CI_Model {
 	
 		$this->db->where('task_ID',$task_detail);
 	 
-		$this->db->join('job','job.job_ID = task.job_ID');
+		$this->db->join('project','project.project_ID = task.project_ID');
 		
 		$this->db->where('task.deleted', '0');
 		 		 

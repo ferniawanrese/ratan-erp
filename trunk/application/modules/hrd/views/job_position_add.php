@@ -7,7 +7,7 @@
 										<option >-- Choose Department --</option>
 											<?php foreach($department_data as $dep):?>
 											<?php if($dep['department_ID']==$dat[0]['department_ID']){$selected = "selected";}else{$selected = "";}?>
-												<?php if($dep['department_parentID'] == 0):?>
+												<?php if($dep['department_parentID'] == '0'):?>
 													<option value = "<?php echo  $dep['department_ID'];?>" <?php echo $selected;?>><?php echo  $dep['department_name'];?></option>
 												<?php else:?>
 													<option value="<?php echo  $dep['department_ID'];?>"  <?php echo $selected;?>><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>

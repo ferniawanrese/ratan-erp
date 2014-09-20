@@ -11,7 +11,7 @@ class Mbackend extends CI_Model {
 		
 		$querynya = "SELECT * FROM menu 
 			INNER JOIN access
-			ON menu.menu_hexaID = access.menu_hexaID
+			ON menu.menu_ID = access.menu_ID
 			WHERE access.employee_ID = '$employee_ID'";
 			
 		$query = $this->db->query($querynya);

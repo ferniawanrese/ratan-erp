@@ -220,8 +220,8 @@ class hrd extends CI_Controller {
 	
 		$data['data_detail'] = $this->Mhrd->employee_data_detail($employee_ID);
 		
-		$data['manager_name']  = $this->Mhrd->get_employee_detail($data['data_detail'][0]['employee_managerID']);
-		   
+		$data['manager_name']  = $this->Mhrd->get_employee_detail($data['data_detail'][0]['manager_ID']);
+		 
 		$data['country'] = $this->Mhrd->get_country();
 				
 		$this->load->view('hrd_addemployee', $data);
@@ -255,6 +255,7 @@ class hrd extends CI_Controller {
 		$data['page'] = $page;
 		  
 		$data['parent'] = $this->Mhrd->department_parent();
+		 
 		 
 		foreach($data['parent'] as $pr){
 			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
@@ -333,6 +334,12 @@ class hrd extends CI_Controller {
 	 
 		$data['job_data'] = $this->Mhrd->job_data($this->input->post(),$data['page'],$data['limit']);		
 		
+		$data['parent'] = $this->Mhrd->department_parent();
+		 
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+		
 		$data['countdata'] = $this->Mhrd->job_data_count($this->input->post());	
 
 		$this->load->view('job_position_data', $data);
@@ -344,6 +351,19 @@ class hrd extends CI_Controller {
 		$json['positionnya']  = $this->Mhrd->get_position($department_ID);
 		 
 		 echo json_encode($json, JSON_UNESCAPED_SLASHES);
+		
+	}
+	
+	function get_department(){
+	
+		$data['parent'] = $this->Mhrd->department_parent();
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+		
+		$data['department_data'] = $this->Mhrd->department_data( );	 
+		 
+		echo json_encode($json, JSON_UNESCAPED_SLASHES);
 		
 	}
 	
@@ -500,6 +520,11 @@ class hrd extends CI_Controller {
 	function project_add($project_ID=null){
 	
 	$data['dat'] = $this->Mhrd->project_detail($project_ID);
+	 
+	$data['parent'] = $this->Mhrd->department_parent();
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
 	  
 	$data['department_data'] = $this->Mhrd->department_data();	
 	 
@@ -527,6 +552,12 @@ class hrd extends CI_Controller {
 	 
 		$data['project_data'] = $this->Mhrd->project_data($this->input->post(),$data['page'],$data['limit']);		
 		
+		$data['parent'] = $this->Mhrd->department_parent();
+		 
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+		
 		$data['countdata'] = $this->Mhrd->project_data_count($this->input->post());	
 
 		$this->load->view('project_data', $data);
@@ -540,14 +571,7 @@ class hrd extends CI_Controller {
 		$output['data']['menu_name'] = "HRD";
 		
 		$output['content'] = "hrd/task";
-		
-		$output['parent'] = $this->Mhrd->department_parent();
-		 
-		foreach($output['parent'] as $pr){
-			 $output['depparent'][$pr['department_ID']] = $pr['department_name'];
-		}
-		
-		$output['department_data'] = $this->Mhrd->department_data( );		
+		  
 		 
 		$output['filterplus'] = $this->core->filterplus('employee');
 		
@@ -559,8 +583,8 @@ class hrd extends CI_Controller {
 	
 	$data['dat'] = $this->Mhrd->task_detail($task_detail);
 	  
-	$data['job_data'] = $this->Mhrd->job_data();	
-	 
+	$data['project_data'] = $this->Mhrd->project_data();	
+	  
 	$this->load->view('task_add', $data);
 		
 	}

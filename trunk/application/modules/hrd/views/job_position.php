@@ -21,7 +21,7 @@
 								 <select class = "form-control" id = "department_ID" name = "department_ID">
 											<option value = "">-- Choose Department --</option>
 									<?php foreach($department_data as $dep):?>
-										<?php if($dep['department_parentID'] == 0):?>
+										<?php if($dep['department_parentID'] == '0'):?>
 											<option value = "<?php echo  $dep['department_ID'];?>"><?php echo  $dep['department_name'];?></option>
 										<?php else:?>
 											<option value="<?php echo  $dep['department_ID'];?>"><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
