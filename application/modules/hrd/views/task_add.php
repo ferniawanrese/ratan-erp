@@ -1,23 +1,24 @@
 <form  id = "catAdd" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/employee_cat_add_action/');?>" method="post">
 						<input name="task_ID"  id = "task_ID" class="form-control " type="hidden"  value = "<?php echo $dat[0]['task_ID'];?>"  /> 	 
 						<div class="form-group">
-							<label  class="col-sm-3 control-label"> Task Name:</label>
+							<label  class="col-sm-3 control-label"> Project Name:</label>
+							<div class="control col-md-4"> 
+								<select class = "form-control" id = "project_ID" name = "project_ID"> 
+									<?php foreach ($project_data as $keys):?>
+									<option value="<?php echo $keys['project_ID'];?>"><?php echo $keys['project_name'];?></option>
+									<?php endforeach;?> 
+								</select>
+							</div>
+						</div> 
+						
+						<div class="form-group">
+							<label  class="col-sm-3 control-label"> Task Name :</label>
 							<div class="control col-md-4">
 								<input name="task_name"  id = "task_name" class="form-control " type="text"  value = "<?php echo $dat[0]['task_name'];?>"  /> 
 							</div>
 						</div>
 						 
-						<div class="form-group">
-							<label  class="col-sm-3 control-label"> Job:</label>
-							<div class="control col-md-4"> 
-								<select class = "form-control" id = "job_ID" name = "job_ID"> 
-									<?php foreach ($job_data as $keys):?>
-									<option value="<?php echo $keys['job_ID'];?>"><?php echo $keys['job_name'];?></option>
-									<?php endforeach;?>
-									<option value="-1">+ Add Jobs</option>
-								</select>
-							</div>
-						</div> 
+						
 						 
 						<div class="form-group">
 							<label  class="col-sm-3 control-label"> </label>

@@ -3,9 +3,9 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 <div></br></div>
 <table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
 	<thead>
-		  <tr>
+		  <tr> 
+				<th>  Project Name </th> 
 				<th>  Task Name </th> 
-				<th>  Job Name </th> 
 				<th> Action </th> 
 		  </tr>
 	</thead> 
@@ -13,16 +13,17 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 			<?php if($task_data):?>		
 			<?php foreach($task_data as $keys):?>
 				<tr>				
+					
+					<td>					
+					<?php 	echo $keys['project_name'];		 				 
+					?> 			
+					</td>
 					<td>
 					
 					<?php 	echo $keys['task_name'];		 				 
 					?>
 					
-					</td> 
-					<td>					
-					<?php 	echo $keys['job_name'];		 				 
-					?> 			
-					</td> 
+					</td> 					
 					<td class="center">
 							<div class="btn-toolbar row-action">
 									<?php //echo $keys['employee_catParentID'];?>

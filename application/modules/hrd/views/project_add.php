@@ -9,24 +9,30 @@
 						 
 						<div class="form-group">
 							<label  class="col-sm-3 control-label"> Department:</label>
-							<div class="control col-md-4"> 
-								<select class = "form-control" id = "department_ID" name = "department_ID"> 
-									<?php foreach ($department_data as $keys):?>
-									<option value="<?php echo $keys['department_ID'];?>"><?php echo $keys['department_name'];?></option>
-									<?php endforeach;?>
-									<option value="-1">+ Add Department</option>
-								</select>
-							</div>
+								<div class="control col-md-4">
+										 <select id = "department_ID" name="department_ID"  class="form-control"> 
+												<option >-- Choose Department --</option>
+													<?php foreach($department_data as $dep):?>
+													<?php if($dep['department_ID']==$dat[0]['department_ID']){$selected = "selected";}else{$selected = "";}?>
+														<?php if($dep['department_parentID'] == '0'):?>
+															<option value = "<?php echo  $dep['department_ID'];?>" <?php echo $selected;?>><?php echo  $dep['department_name'];?></option>
+														<?php else:?>
+															<option value="<?php echo  $dep['department_ID'];?>"  <?php echo $selected;?>><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
+														<?php endif;?>	
+														
+													<?php endforeach;?>	  
+											</select>
+									</div>
 						</div> 
 						
 						<div class="form-group">
 							<label  class="col-sm-3 control-label"> Status:</label>
-							<div class="control col-md-4"> 
-								<select class = "form-control" id = "status" name = "status"> 
-									<option  >active</option>
-									<option  >finish</option>									
-									<option  >pending</option>
-								</select>
+							<div class="control col-md-4">  
+									<select class = "form-control" id = "status" name = "status"> 
+										<option  >active</option>
+										<option  >finish</option>									
+										<option  >pending</option>
+									</select>  
 							</div>
 						</div> 
 						
@@ -45,6 +51,25 @@
 						</div>
 						
 </form>
+
+				
+<!-- dialog contents on hidden div -->   
+ 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-header-primary">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class = "icon-remove"></i></button>
+				<h1><span id = "modal_label"></span></h1>
+			</div>
+			<div class="modal-body" id = "modal_body">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
  
 
 <script>
@@ -75,5 +100,17 @@
 			
 			return false;
 	});
+	
+		  
+ function add_department(){
+	 $.ajax({
+			 url: "<?php echo base_url('hrd/department_add/');?>",
+			success: function(data){      
+			$( "#modal_body" ).html(data); 		 
+			$( "#modal_label" ).html("Add Department"); 	
+			}  
+	 
+	 })
+ }
 	
 </script>

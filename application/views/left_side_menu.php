@@ -114,9 +114,10 @@
 					<ul class="accordion-nav">
 						 <li><a href="#"><i class="icon-caret-right"></i> Human Resources</a>
 						<ul>
-							<li><a href="<?php echo base_url('hrd/employee_cat');?>">  Categories of Employee</a></li>
+							<li><a href="<?php echo base_url('hrd/department');?>">  Company</a></li>
+							<li><a href="<?php echo base_url('hrd/department');?>">  Departments & Division</a></li>
 							<li  ><a href="<?php echo base_url('hrd/job_position');?>">  Job Positions</a></li>
-							<li><a href="<?php echo base_url('hrd/department');?>">  Departments</a></li>
+							<li><a href="<?php echo base_url('hrd/employee_cat');?>">  Categories of Employee</a></li>
 						 </ul>   
 						</li>
 					</ul>

@@ -40,11 +40,11 @@
 													<div class="control col-sm-4 col-md-4" data-validate="number">
 														 <span class = "input-group  "> 
 															<select id = "department_ID" name="department_ID"  class="form-control {validate:{required:true}}"> 
-																<option >-- Choose Department --</option>
+																<option  value="">-- Choose Department --</option>
 																	<?php foreach($department_data as $dep):?>
 																	
 																		<?php if($data_detail[0]['department_ID']==$dep['department_ID']){$selected = "selected";}else{$selected = "";} ;?>
-																		<?php if($dep['department_parentID'] == 0):?>
+																		<?php if($dep['department_parentID'] == '0'):?>
 																			<option value = "<?php echo  $dep['department_ID'];?>" <?php echo $selected;?>><?php echo  $dep['department_name'];?></option>
 																		<?php else:?>
 																			<option value="<?php echo  $dep['department_ID'];?>" <?php echo $selected;?>><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
@@ -59,12 +59,12 @@
 													</div>
 												</div> 
 												<div class="form-group ">
-													<label  class="col-sm-3 control-label">Position : </label>
+													<label  class="col-sm-3 control-label">Job Position : </label>
 													<div class="control col-sm-4 col-md-4" data-validate="number">
 														 <span class = "input-group  ">
 														
-															<select id = "job_ID" name="job_ID"  class="form-control"> 
-																<option >-- Choose Position --</option> 
+															<select id = "job_ID" name="job_ID"  class="form-control {validate:{required:true}}"> 
+																<option value="">-- Choose Position --</option> 
 																 <?php if($data_detail[0]['job_ID']!=""):?>
 																 <option value = "<?php echo $data_detail[0]['job_ID'];?>" selected><?php echo $data_detail[0]['job_name'];?></option> 
 																 <?php endif;?>
@@ -80,8 +80,8 @@
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Manager :</label>
 													<div class="control col-md-6">
-														<input id = "employee_managerName" name="employee_managerName" class="form-control employee_managerName" type="text" value = "<?php echo $manager_name[0]['employee_name']."/".$manager_name[0]['employee_badge'];?>"/>
-														<input id = "employee_managerID" name="employee_managerID" class="form-control employee_managerID" type="hidden" value = "<?php echo $data_detail[0]['employee_managerID'];?>"/>
+														<input id = "employee_managerName" name="employee_managerName" class="form-control employee_managerName" type="text" value = "<?php if($manager_name[0]['employee_name']){echo $manager_name[0]['employee_name']."/".$manager_name[0]['employee_badge'];};?>"/>
+														<input id = "manager_ID" name="manager_ID"  class = "manager_ID" type="hidden"   value = "<?php echo $data_detail[0]['manager_ID'];?>" />
 													</div>
 												</div>
 	  
@@ -307,6 +307,10 @@
 <script>
 // Tab step
 
+function clean(){
+
+}
+
 $(document).ready(function() {
     
     var navListItems = $('ul.setup-panel li a'),
@@ -345,7 +349,7 @@ $(document).ready(function() {
 			source: "<?php echo base_url('hrd/get_employee_name/');?>" + "/" + $('.employee_managerName').val(),
 				select: function (event, ui) {
 				var id = ui.item.employee_ID;
-				$("#employee_managerID").val(id);
+				$("#manager_ID").val(id);
 				}  
 		}); 
 	}); 
@@ -361,13 +365,14 @@ $(document).ready(function() {
 			
 			
 			success: function (data) {
-			$( "#job_ID" ).html("<option value = '-1'>-- Choose Position --</option>");
+			$( "#job_ID" ).html("<option value = ''>-- Choose Position --</option>");
 			var jsonData = JSON.parse(data);
-				optmin = "<option value = '-1'>-- Choose Position --</option>";
-				for (var i = 0; i < jsonData.positionnya.length; i++) {
+			 
+				optmin = "<option value = ''>-- Choose Position --</option>";
+				for (var i = '0'; i < jsonData.positionnya.length; i++) {
 					var datanya = jsonData.positionnya[i];
 					
-					if(datanya.job_ID > 0){
+					if(datanya.job_ID > '0'){
 						
 							optmin += "<option value ='"+ datanya.job_ID +"'>"+ datanya.job_name +"</option>";
 							
@@ -380,6 +385,7 @@ $(document).ready(function() {
 		});
 		
 	});
+	  
 	  
  function add_department(){
 	 $.ajax({

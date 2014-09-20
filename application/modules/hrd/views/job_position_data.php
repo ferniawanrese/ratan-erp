@@ -6,6 +6,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 		  <tr>
 				<th>  Name </th> 
 				<th>  Department </th> 
+				<th>  Division </th>
 				<th> Action </th> 
 		  </tr>
 	</thead> 
@@ -17,11 +18,22 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					
 					<?php 	echo $keys['job_name'];		 				 
 					?>
+					 
+					</td> 
+					<td>
+					
+					<?php 
+					if($keys['department_parentID']=='0'){
+						echo $keys['department_name'];
+					}else{ 
+						echo $depparent[$keys['department_parentID']];
+					}					 
+					?>
 					
 					</td> 
 					<td>					
-					<?php 	echo $keys['department_name'];		 				 
-					?> 			
+					<?php if($keys['department_parentID']!='0'){echo $keys['department_name'];}?>	
+					  			
 					</td> 
 					<td class="center">
 							<div class="btn-toolbar row-action">

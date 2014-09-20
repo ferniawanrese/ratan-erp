@@ -3,14 +3,14 @@
 	<div class="nav navbar-inverse top-nav">
 		<div class="container">
 				<div class="navbar-header">
-					&nbsp <img src="<?php echo base_url('images/logo-merp.gif');?>" width="103" height="50" alt="Media ERP"> &nbsp &nbsp &nbsp
+					&nbsp <img src="<?php echo base_url('images/logo-merp.gif');?>" width="103" height="50" alt="Media ERP"> &nbsp &nbsp &nbsp 
 					
-				</div>
 				<span class="home-link"><a href="<?php echo base_url('backend');?>" class="icon-home"></a></span>
+				</div>
 				
 				<?php if(isset($menu_name)){
 					if($menu_name== "HRD"):?>
-				<div class="navbar-collapse col-sm-5 col-md-5">
+				<div class="navbar-collapse col-sm-12 col-md-5">
 					<ul class="nav navbar-nav">
 						
 						<li class="dropdown">
@@ -23,6 +23,21 @@
 								<li><a href="<?php echo base_url('hrd/employee_structure');?>"><i class="icon-file-alt"></i> Categories Structure </a></li>
 								<li><a href="form-elements.html"><i class="icon-file-alt"></i> Job Positions </a></li>			
 								<li><a href="form-elements.html"><i class="icon-file-alt"></i> Departments </a></li>			
+							</ul>
+							
+						</div>
+						</li>					
+					</ul>
+					<ul class="nav navbar-nav">
+						
+						<li class="dropdown">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<i class="icon-cogs"></i> Time Tracking <b class="icon-angle-down"></b>
+							</a>
+						<div class="dropdown-menu">
+							<ul>
+								<li><a href="<?php echo base_url('hrd/project');?>"><i class="icon-file-alt"></i> Project </a></li>		
+								<li><a href="<?php echo base_url('hrd/task');?>"><i class="icon-file-alt"></i> Task </a></li> 
 							</ul>
 							
 						</div>
