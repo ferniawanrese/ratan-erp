@@ -483,8 +483,12 @@ class hrd extends CI_Controller {
 	}
 	
 	function timesheet_add(){
+	 
+		$data['department_data'] = $this->Mhrd->department_data( );		
+	 				
+		$this->load->view('timesheet_registeradd', $data);
 	
-		$this->Mhrd->timesheet_add($this->input->post());
+		//$this->Mhrd->timesheet_add($this->input->post());
 	
 	}
 	

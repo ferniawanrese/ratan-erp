@@ -547,13 +547,11 @@ class Mhrd extends CI_Model {
 	function timesheet_registerdata($data,$page,$limit){
 	
 	$a = ($page-1) * $limit;
-	
-	$this->db->join('project', 'timetracking.project_ID = project.project_ID');
-	
+		
 	$this->db->join('task', 'timetracking.task_ID = task.task_ID');
 	
-	$this->db->join('employee', 'employee.employee_ID = timetracking.employee_ID');
-	
+	$this->db->join('project', 'task.project_ID = project.project_ID');
+	 
 	$this->db->order_by('timetracking.dateCreated','desc');
 	 
 	$query = $this->db->get('timetracking',$limit,$a);
@@ -573,11 +571,11 @@ class Mhrd extends CI_Model {
 	
 	$this->db->select('count(*) as totdata');
 	
-	$this->db->join('project', 'timetracking.project_ID = project.project_ID');
-	
 	$this->db->join('task', 'timetracking.task_ID = task.task_ID');
 	
-	$this->db->join('employee', 'employee.employee_ID = timetracking.employee_ID');
+	$this->db->join('project', 'task.project_ID = project.project_ID');
+	 
+	$this->db->order_by('timetracking.dateCreated','desc');
 	 
 	$query = $this->db->get('timetracking');
 

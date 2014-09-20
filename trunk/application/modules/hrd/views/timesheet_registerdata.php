@@ -7,8 +7,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 				<!--<th>   Active Timers </th> -->
 				<th>  Date </th> 
 				<th>  Project </th> 
-				<th> Task Name </th> 
-				<th> Employee </th> 
+				<th> Task Name </th>  
 				<th> Notes </th> 
 				<th> Ammount Billable </th> 
 				<!--<th> Timing </th> -->
@@ -31,10 +30,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					</td> 
 					<td>
 					<?php echo $dat['task_name'];?>		
-					</td> 
-					<td>
-					<?php echo $dat['employee_name'];?>		
-					</td> 
+					</td>  
 					<td>
 					<?php echo $dat['description'];?>		
 					</td> 
