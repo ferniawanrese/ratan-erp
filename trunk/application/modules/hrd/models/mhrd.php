@@ -461,8 +461,8 @@ class Mhrd extends CI_Model {
 	  
 		 $querynya = "select CONCAT ( employee.employee_name, '/', employee.employee_badge ) AS label,
 								CONCAT ( employee.employee_name, '/', employee.employee_badge ) as value, employee_ID
-								from employee where employee_name like '%".$name."%'" ;
-		 
+								from employee where employee_name like '%".$name."%' limit 10" ;
+								 
 		$query = $this->db->query($querynya);
 
 			if ($query->num_rows())
@@ -547,14 +547,43 @@ class Mhrd extends CI_Model {
 	function timesheet_registerdata($data,$page,$limit){
 	
 	$a = ($page-1) * $limit;
-		
+	 
 	$this->db->join('task', 'timetracking.task_ID = task.task_ID');
 	
 	$this->db->join('project', 'task.project_ID = project.project_ID');
+	
+	$this->db->join('department', 'department.department_ID = project.department_ID');
+	
+	$this->db->where('timetracking.deleted','0');
 	 
 	$this->db->order_by('timetracking.dateCreated','desc');
 	 
 	$query = $this->db->get('timetracking',$limit,$a);
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function timeheet_data_detail($timetracking_ID){
+	
+	$this->db->where('timetracking_ID',$timetracking_ID);
+	 
+	$this->db->join('task', 'timetracking.task_ID = task.task_ID');
+	
+	$this->db->join('project', 'task.project_ID = project.project_ID');
+	
+	$this->db->join('department', 'department.department_ID = project.department_ID');
+	 
+	$this->db->order_by('timetracking.dateCreated','desc');
+	 
+	$query = $this->db->get('timetracking');
 
 			if ($query->num_rows())
 			{
@@ -576,6 +605,8 @@ class Mhrd extends CI_Model {
 	$this->db->join('project', 'task.project_ID = project.project_ID');
 	 
 	$this->db->order_by('timetracking.dateCreated','desc');
+	
+	$this->db->where('timetracking.deleted','0');
 	 
 	$query = $this->db->get('timetracking');
 
@@ -593,6 +624,16 @@ class Mhrd extends CI_Model {
 	function timesheet_add($data){
 	
 		unset($data['employee_name']);
+		unset($data['project_ID']);
+		unset($data['department_ID']);
+		 
+		  
+		echo $this->db->set('deadline',  date("Y-m-d H:i:s", strtotime($data['deadline']))); 
+		unset($data['deadline']);
+		
+		$this->db->set('register_date',  date("Y-m-d H:i:s", strtotime($data['register_date']))); 
+		unset($data['register_date']);
+		
 		$this->db->set('timetracking_ID',$this->generate_code->getUID());	
 		$this->db->insert('timetracking',$data);
 	}
@@ -627,6 +668,23 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function get_task_detail($project_ID){
+	
+		$this->db->where('project_ID',$project_ID);
+		
+		$query = $this->db->get('task');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
 	function project_data($data=null,$page=null,$limit=null){
 		
 		if($data){
@@ -646,6 +704,26 @@ class Mhrd extends CI_Model {
 		}else{
 		$query = $this->db->get('project');
 		}
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	}
+	
+	function get_project_detail($department_ID){
+		 
+		$this->db->join('department','department.department_ID = project.department_ID');
+		
+		$this->db->where('department.department_ID', $department_ID);
+		 		  
+		$query = $this->db->get('project');
+		  
 	 
 			if ($query->num_rows())
 			{
@@ -735,6 +813,8 @@ class Mhrd extends CI_Model {
 		$this->db->where('task.deleted', '0');
 		 		
 		$this->db->like('task.task_name', $data['search']);
+		
+		$this->db->order_by('task.datecreated', 'desc');
 		   
 		$query = $this->db->get('task',$limit,$a);
 	 
@@ -815,6 +895,32 @@ class Mhrd extends CI_Model {
 		$this->db->set('deleted','1');
 		$this->db->update('task');
 	
+	}
+	
+	function timesheet_deleted($timetracking_ID){
+	
+	$this->db->where('timetracking_ID',$timetracking_ID);
+		$this->db->set('deleted','1');
+		$this->db->update('timetracking');
+	
+	}
+	
+	function get_employee_department($department_ID){ 
+	  
+		 $querynya = "select CONCAT ( employee.employee_name, '/', employee.employee_badge ) AS label,
+								CONCAT ( employee.employee_name, '/', employee.employee_badge ) as value, employee_ID
+								from employee where department_ID = '".$department_ID."' limit 10" ;
+								 
+		$query = $this->db->query($querynya);
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
 	}
 	
 }
