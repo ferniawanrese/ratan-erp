@@ -48,6 +48,10 @@ class hrd extends CI_Controller {
 		
 		$output['data']['menu_name'] = "HRD";
 		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['data']['submenu_active'] = "hrd";
+		
 		$output['content'] = "hrd/hrd";
 		
 		$output['filterplus'] = $this->core->filterplus('employee');
@@ -62,6 +66,8 @@ class hrd extends CI_Controller {
 		$output['data']['module_name'] = "Human Resources";
 		
 		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Configuration";
 		
 		$output['content'] = "hrd/employee_cat";
 		
@@ -126,22 +132,7 @@ class hrd extends CI_Controller {
 		$this->Mhrd->employee_cat_update($this->input->post());
 	 
 	}
-	
-	function employee_structure()
-	{
-		
-		$output['data']['module_name'] = "Human Resources";
-		
-		$output['data']['menu_name'] = "HRD";
-		
-		$output['content'] = "hrd/employee_structure";
-		
-		$output['filterplus'] = $this->core->filterplus('employee');
-		
-		$this->load->view('template', $output);
-		
-	}
-
+	 
 	function hrd_employe_data($page=1){
 	
 		$data['limit'] = $this->input->post('limit');
@@ -239,7 +230,9 @@ class hrd extends CI_Controller {
 		$output['data']['module_name'] = "Human Resources";
 		
 		$output['data']['menu_name'] = "HRD";
-		
+		 
+		$output['data']['menu_active'] = "Configuration";
+		 
 		$output['content'] = "hrd/department";
 		
 		$output['filterplus'] = $this->core->filterplus('employee');
@@ -310,6 +303,8 @@ class hrd extends CI_Controller {
 		
 		$output['data']['menu_name'] = "HRD";
 		
+		$output['data']['menu_active'] = "Configuration";
+		
 		$output['content'] = "hrd/job_position";
 		
 		$output['parent'] = $this->Mhrd->department_parent();
@@ -369,9 +364,17 @@ class hrd extends CI_Controller {
 	
 	function get_employee_name(){
 		 
-		$data['employee_name']  = $this->Mhrd->get_employee_name($this->input->get('term'));
+		$json['employee_name']  = $this->Mhrd->get_employee_name($this->input->get('term'));
 		 
-		echo json_encode($data['employee_name']);
+		echo json_encode($json, JSON_UNESCAPED_SLASHES);
+			
+	}
+	
+	function get_employee_department($department_ID){
+		  
+		$json['employee_name']  =  $this->Mhrd->get_employee_department($department_ID);
+	 
+		echo json_encode($json, JSON_UNESCAPED_SLASHES);
 			
 	}
 	
@@ -414,6 +417,8 @@ class hrd extends CI_Controller {
 		
 		$output['data']['menu_name'] = "HRD";
 		
+		$output['data']['menu_active'] = "Main";
+		
 		$output['content'] = "hrd/timesheet_register";
 		 
 		$output['project'] = $this->Mhrd->get_project();	
@@ -446,6 +451,8 @@ class hrd extends CI_Controller {
 		
 		$output['data']['menu_name'] = "HRD";
 		
+		$output['data']['menu_active'] = "Main";
+		
 		$output['content'] = "hrd/timesheet";
 		 
 		$output['filterplus'] = $this->core->filterplus('employee');
@@ -474,6 +481,8 @@ class hrd extends CI_Controller {
 		
 		$output['data']['menu_name'] = "HRD";
 		
+		$output['data']['menu_active'] = "Main";
+		
 		$output['content'] = "hrd/timesheet_line";
 		
 		$output['filterplus'] = $this->core->filterplus('employee');
@@ -482,13 +491,46 @@ class hrd extends CI_Controller {
 	
 	}
 	
-	function timesheet_add(){
-	 
-		$data['department_data'] = $this->Mhrd->department_data( );		
+	function timesheet_add($timetracking_ID=null){
+	
+		$data['parent'] = $this->Mhrd->department_parent();
+			foreach($data['parent'] as $pr){
+				 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+			}
+		  
+		$data['department_data'] = $this->Mhrd->department_data();	
+	  
+		$data['timesheet_detail'] = $this->Mhrd->timeheet_data_detail($timetracking_ID);
 	 				
 		$this->load->view('timesheet_registeradd', $data);
+	 
+	}
 	
-		//$this->Mhrd->timesheet_add($this->input->post());
+	function timesheet_deleted($timetracking_ID){
+	
+		$this->Mhrd->timesheet_deleted($timetracking_ID);
+	
+	}
+	
+	function get_project_detail($department_ID){
+	
+		$json['projectnya']  =  $this->Mhrd->get_project_detail($department_ID);
+	 
+		echo json_encode($json, JSON_UNESCAPED_SLASHES);
+	
+	}
+	
+	function timesheet_addaction(){
+	
+	$this->Mhrd->timesheet_add($this->input->post());
+	 
+	}	
+	
+	function get_task_detail($project_ID){
+		
+		$json['tasknya']  =  $this->Mhrd->get_task_detail($project_ID);
+	 
+		echo json_encode($json, JSON_UNESCAPED_SLASHES);
 	
 	}
 	
@@ -504,6 +546,8 @@ class hrd extends CI_Controller {
 		$output['data']['module_name'] = "Human Resources";
 		
 		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Configuration";
 		
 		$output['content'] = "hrd/project";
 		
@@ -574,8 +618,9 @@ class hrd extends CI_Controller {
 		
 		$output['data']['menu_name'] = "HRD";
 		
-		$output['content'] = "hrd/task";
-		  
+		$output['data']['menu_active'] = "Configuration";
+		
+		$output['content'] = "hrd/task";		  
 		 
 		$output['filterplus'] = $this->core->filterplus('employee');
 		

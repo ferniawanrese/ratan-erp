@@ -54,7 +54,7 @@
 															<label for="validate-text"></label>
 															<div class="input-group col-sm-12 col-md-12">
 																<select class="form-control {validate:{required:true}}" name = "project_ID" id = "project_ID"> 
-																	<option value = "" >-- Choose Project --</option>
+																	<option value = "" >-- Choose Department --</option>
 																	<?php foreach($project as $projects):?>
 																	<option value = "<?php echo $projects['project_ID'];?>"><?php echo $projects['project_name'];?></option>
 																	<?php endforeach;?>
@@ -64,9 +64,21 @@
 																</span>
 															</div>
 														</div>
-														
 														<div class="form-group col-sm-12 col-md-3">
 															<label for="validate-text"></label>
+															<div class="input-group col-sm-12 col-md-12">
+																<select class="form-control {validate:{required:true}}" name = "project_ID" id = "project_ID"> 
+																	<option value = "" >-- Choose Project --</option>
+																	<?php foreach($project as $projects):?>
+																	<option value = "<?php echo $projects['project_ID'];?>"><?php echo $projects['project_name'];?></option>
+																	<?php endforeach;?>
+																</select>
+																<span class="input-group-addon ">
+																<i class="icon-plus" style="cursor:pointer;" title="Ascending"></i>
+																</span>
+															</div>
+														</div>														
+														<div class="form-group col-sm-12 col-md-3"> 
 															<div class="input-group col-sm-12 col-md-12">
 																<select class="form-control {validate:{required:true}}" name = "task_ID" id = "task_ID">
 																	<option value = "" >-- Choose Task --</option>
@@ -153,6 +165,41 @@ function add_timesheet(){
 				}  
 			});
 
+}
+
+function update_timesheet(a){
+
+	$('#search').hide();
+	$('#btn-list').show();
+	$('#btn-create').hide();
+	$.ajax({
+				
+				url: "<?php echo base_url('hrd/timesheet_add/');?>" +"/"+ a,
+				success: function(data){     
+
+					$( ".list" ).html(data); 		
+					$('body').loadie(1);
+				}  
+			});
+
+}
+
+
+function delete_post(a){
+	
+	bootbox.confirm("Are you sure you want to delete this?", function (result) {
+                  
+					if(result == true){						
+						$.ajax({
+									url: "<?php echo base_url('hrd/timesheet_deleted/')?>/" + a,									
+									success: function(data)
+									{											
+											display_data();
+									}
+						});
+					}
+					
+                });
 }
 </script>
 	
