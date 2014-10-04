@@ -1,7 +1,7 @@
 <form  id = "jobAdd" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/employee_cat_add_action/');?>" method="post">
 						<input name="job_ID"  id = "job_ID" class="form-control " type="hidden"  value = "<?php echo $dat[0]['job_ID'];?>"  /> 	 
 						<div class="form-group">
-							<label  class="col-sm-3 control-label">Department :</label>
+							<label  class="col-sm-4 control-label">Department :</label>
 							<div class="control col-md-4">
 								 <select id = "department_ID" name="department_ID"  class="form-control"> 
 										<option >-- Choose Department --</option>
@@ -18,31 +18,31 @@
 							</div>
 						</div> 
 						<div class="form-group">
-							<label  class="col-sm-3 control-label">Job Name :</label>
+							<label  class="col-sm-4 control-label">Job Name :</label>
 							<div class="control col-md-4">
 								<input name="job_name"  id = "job_name" class="form-control " type="text"  value = "<?php echo $dat[0]['job_name'];?>"  /> 
 							</div>
 						</div>
 						<div class="form-group">
-							<label  class="col-sm-3 control-label">Job Description :</label>
+							<label  class="col-sm-4 control-label">Job Description :</label>
 							<div class="control col-md-4">
 								<input name="job_desc"  id = "job_desc" class="form-control " type="text"  value = "<?php echo $dat[0]['job_desc'];?>"  /> 
 							</div>
 						</div>
 						<div class="form-group">
-							<label  class="col-sm-3 control-label">Job Requirement :</label>
+							<label  class="col-sm-4 control-label">Job Requirement :</label>
 							<div class="control col-md-6">
 								<textarea class="form-control " id = "job_requirement" name = "job_requirement"><?php echo $dat[0]['job_requirement'];?></textarea>
 							</div>
 						</div>
 						<div class="form-group">
-							<label  class="col-sm-3 control-label">Job Expected Num Requirement :</label>
+							<label  class="col-sm-4 control-label">Job Expected Num Requirement :</label>
 							<div class="control col-md-2">
 								<input name="job_expected_requirement"  id = "job_expected_requirement" class="form-control " type="text"  value = "<?php echo $dat[0]['job_expected_requirement'];?>"   /> 
 							</div>
 						</div>
 						<div class="form-group">
-							<label  class="col-sm-3 control-label"> </label>
+							<label  class="col-sm-4 control-label"> </label>
 							<div class="control col-md-4">
 								<button class="alert-box btn" type = "submit" >Finish</button>
 							</div> 
@@ -70,11 +70,15 @@
 				data: $("#jobAdd").serialize(),
 				success: function(data)
 				{
-					display_data();
-					$('#myModal').modal('hide');
+					
+					$('#myModal').modal('hide'); 
+					what_next2(); 
+					
 				}
 			});
 			
 			return false;
 	});
+	
+	
 </script>

@@ -240,10 +240,7 @@
 														</div>																												
 													</div>																									
 												</div>
-												
-												
-												
-												
+												 
 								</div>
 								<div class="row setup-content " id="step-last">
 								
@@ -282,6 +279,79 @@
 </div><!-- /.modal -->
  
 <script type="text/javascript">
+
+			function what_next(){
+					get_department();
+			}
+			
+			function what_next2(){
+					get_position();
+			}
+						
+						
+			function  get_department(){
+						 
+					$.ajax({
+						
+						url: "<?php echo base_url('hrd/get_department/');?>",
+						
+						
+						success: function (data) {
+						$( "#department_ID" ).html("<option value = '-1'>-- Choose Department --</option>");
+						var jsonData = JSON.parse(data); 
+							optmin = "<option value = '-1'>-- Choose Department --</option>";
+							for (var i = 0; i < jsonData.departmentnya.length; i++) {
+							
+										var datanya = jsonData.departmentnya[i];
+										 
+										if(datanya.department_parentID == '0'){
+								 
+										optmin += "<option value ='"+ datanya.department_ID +"'>"+ datanya.department_name +"</option>";
+										
+										}else{
+										 
+										optmin += "<option value ='"+ datanya.department_ID +"'>"+ jsonData.depparent[datanya.department_parentID] +'/'+ datanya.department_name +"</option>";
+										
+										}
+										 
+										$( "#department_ID" ).html(optmin); 
+							}
+							
+						}
+					});
+					
+				};
+	
+			function  get_position(){
+					
+					if($('#department_ID').val()!='-1'){
+					var depID = $('#department_ID').val();
+					}else{
+					var depID = null;
+					}
+					 
+					$.ajax({
+						
+						url: "<?php echo base_url('hrd/get_position/');?>" + '/' +depID,
+						
+						
+						success: function (data) {
+						$( "#job_ID" ).html("<option value = '-1'>-- Choose Position --</option>");
+						var jsonData = JSON.parse(data); 
+							optmin = "<option value = '-1'>-- Choose Position --</option>";
+							for (var i = 0; i < jsonData.positionnya.length; i++) {
+							
+										var datanya = jsonData.positionnya[i];
+										  
+										optmin += "<option value ='"+ datanya.job_ID +"'>"+ datanya.job_name +"</option>";
+										  
+										$( "#job_ID" ).html(optmin); 
+							}
+							
+						}
+					});
+					
+				};
             
 			cek_validate();
 			function cek_validate(){

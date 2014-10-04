@@ -63,46 +63,14 @@ $("form#depAdd").submit(function(e){
 				success: function(data)
 				{ 
 
-					$('#myModal').modal('hide');
-					get_department();
-
-					clean();
-					display_data(); 
+					$('#myModal').modal('hide'); 
+					what_next(); 
 				}
 			});
 			
 			return false;
 	});
-	
-	
-function  get_department(){
-		
-		$.ajax({
-			
-			url: "<?php echo base_url('hrd/get_department/');?>",
-			
-			
-			success: function (data) {
-			$( "#department_ID" ).html("<option value = '-1'>-- Choose Department --</option>");
-			var jsonData = JSON.parse(data);
-				optmin = "<option value = '-1'>-- Choose Department --</option>";
-				for (var i = 0; i < jsonData.departmentnya.length; i++) {
-					var datanya = jsonData.departmentnya[i];
-					
-					if(datanya.department_ID > 0){
-						
-							optmin += "<option value ='"+ datanya.department_ID +"'>"+ datanya.department_name +"</option>";
-							
-					}
-											
-					$( "#department_ID" ).html(optmin); 
-				}
-				
-			}
-		});
-		
-	};
-	
+	  
 	$(function() {
 		$( ".employee_managerName_dep" ).autocomplete({ 
 		 

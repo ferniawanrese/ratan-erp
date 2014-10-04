@@ -406,6 +406,8 @@ class Mhrd extends CI_Model {
 		}
 		
 		$this->db->like('job_name', $data['search']);
+		
+		$this->db->order_by('job.datecreated', 'desc');
 		   
 		if($page==null){
 			$query = $this->db->get('job');
@@ -443,7 +445,15 @@ class Mhrd extends CI_Model {
 	
 	function get_position($department_ID){ 
 	
-		$this->db->where('department_ID',$department_ID); 
+		$this->db->where('deleted','0'); 
+		
+		if($department_ID != null){
+	
+			$this->db->where('department_ID',$department_ID); 
+		
+		}
+		
+		$this->db->order_by('datecreated','desc');
 		
 		$query = $this->db->get('job');
 

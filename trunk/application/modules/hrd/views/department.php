@@ -44,6 +44,11 @@
 </div>					
 
 <script>
+function what_next(){
+clean();
+display_data(); 
+}
+
 display_data();
 
 function display_data(){ 
