@@ -341,7 +341,7 @@ class hrd extends CI_Controller {
 
 	}
 	
-	function get_position($department_ID){
+	function get_position($department_ID=null){
 		
 		$json['positionnya']  = $this->Mhrd->get_position($department_ID);
 		 
@@ -351,22 +351,22 @@ class hrd extends CI_Controller {
 	
 	function get_department(){
 	
-		$data['parent'] = $this->Mhrd->department_parent();
-		foreach($data['parent'] as $pr){
-			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		$json['parent'] = $this->Mhrd->department_parent();
+		foreach($json['parent'] as $pr){
+			 $json['depparent'][$pr['department_ID']] = $pr['department_name'];
 		}
-		
-		$data['department_data'] = $this->Mhrd->department_data( );	 
 		 
-		echo json_encode($json, JSON_UNESCAPED_SLASHES);
+		$json['departmentnya'] = $this->Mhrd->department_data( );	 
+		 
+		 echo json_encode($json, JSON_UNESCAPED_SLASHES);
 		
 	}
 	
 	function get_employee_name(){
 		 
-		$json['employee_name']  = $this->Mhrd->get_employee_name($this->input->get('term'));
+		$data['employee_name']  = $this->Mhrd->get_employee_name($this->input->get('term'));
 		 
-		echo json_encode($json, JSON_UNESCAPED_SLASHES);
+		echo json_encode($data['employee_name']);
 			
 	}
 	

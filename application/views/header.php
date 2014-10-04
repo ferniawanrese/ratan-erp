@@ -10,7 +10,7 @@
 <link href="<?php echo base_url('css/bootstrap.css');?>" rel="stylesheet">
 
 <link rel="stylesheet" href="<?php echo base_url('css/font-awesome.css');?>">
-
+<link rel="icon" href="<?php echo base_url('images/fav.ico');?>" sizes="16x16" type="image/png">
 <!--[if IE 7]>
             <link rel="stylesheet" href="css/font-awesome-ie7.min.css');?>">
 <![endif]-->
