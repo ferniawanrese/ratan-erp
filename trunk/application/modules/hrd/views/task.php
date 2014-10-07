@@ -40,6 +40,11 @@
 
 
 <script>
+function what_next3(){
+	display_data();
+}
+
+
 display_data();
 
 function display_data(){ 
@@ -72,7 +77,7 @@ function task_add(){
 				url: "<?php echo base_url('hrd/task_add/');?>",
 				success: function(data){     
 
-					$( ".list" ).html(data); 		
+					$( ".list" ).html(data); 	 	
 					$('body').loadie(1);
 				}  
 			});
