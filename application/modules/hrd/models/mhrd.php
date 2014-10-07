@@ -288,6 +288,7 @@ class Mhrd extends CI_Model {
 	}
 	
 	function department_parent(){
+	$this->db->where('department.deleted','0');
 	$this->db->where('department_parentID','0');
 	$query = $this->db->get('department');
 	
@@ -682,6 +683,10 @@ class Mhrd extends CI_Model {
 	
 		$this->db->where('project_ID',$project_ID);
 		
+		$this->db->where('deleted','0');
+		
+		$this->db->order_by('datecreated','desc');
+		
 		$query = $this->db->get('task');
 
 			if ($query->num_rows())
@@ -727,6 +732,8 @@ class Mhrd extends CI_Model {
 	}
 	
 	function get_project_detail($department_ID){
+	
+		$this->db->where('project.deleted','0');
 		 
 		$this->db->join('department','department.department_ID = project.department_ID');
 		
@@ -863,7 +870,7 @@ class Mhrd extends CI_Model {
 	}
 	
 	function task_add($data){
-		 
+		 unset($data['department_ID']);
 		if ($data['task_ID']==""){
 			unset($data['task_ID']);
 			 

@@ -630,12 +630,27 @@ class hrd extends CI_Controller {
 	
 	function task_add($task_detail=null){
 	
+	$data['parent'] = $this->Mhrd->department_parent();
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+	
+	$data['department_data'] = $this->Mhrd->department_data();
+	 
 	$data['dat'] = $this->Mhrd->task_detail($task_detail);
 	  
 	$data['project_data'] = $this->Mhrd->project_data();	
 	  
 	$this->load->view('task_add', $data);
 		
+	}
+	
+	function task_add_direct($project_ID=null){
+	
+		$data['project_ID'] = $project_ID;	
+	 
+		$this->load->view('task_add', $data);
+		 
 	}
 	
 	function task_add_action(){

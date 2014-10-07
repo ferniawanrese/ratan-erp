@@ -92,9 +92,9 @@
 				url: "<?php echo base_url('hrd/project_add_action/');?>",
 				data: $("#catAdd").serialize(),
 				success: function(data)
-				{
-					display_data();
+				{ 
 					$('#myModal').modal('hide');
+					what_next2(); 
 				}
 			});
 			

@@ -40,6 +40,11 @@
 
 
 <script>
+
+function what_next2(){ 
+		display_data();
+}
+
 display_data();
 
 function display_data(){ 
