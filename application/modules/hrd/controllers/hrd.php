@@ -370,7 +370,7 @@ class hrd extends CI_Controller {
 			
 	}
 	
-	function get_employee_department($department_ID){
+	function get_employee_department($department_ID=null){
 		  
 		$json['employee_name']  =  $this->Mhrd->get_employee_department($department_ID);
 	 
@@ -437,7 +437,19 @@ class hrd extends CI_Controller {
 		
 		$data['page'] = $page;
 	 
-		$data['timesheet_data'] = $this->Mhrd->timesheet_registerdata($this->input->post(),$data['page'],$data['limit']);		
+		$data['timesheet_data'] = $this->Mhrd->timesheet_registerdata($this->input->post(),$data['page'],$data['limit']);	
+		
+		$data['parent'] = $this->Mhrd->department_parent();
+		 
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+ 
+		$data['status'] = array( 
+			'active' => 'Active',
+			'pause' => 'Pause',
+			'close' => 'Close'
+		);
 		
 		$data['countdata'] = $this->Mhrd->timesheet_registerdata_count($this->input->post());	
 
@@ -491,6 +503,20 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function timeregister_employeelist($timetracking_ID){
+	
+	$data['employee'] = $this->Mhrd->employee_task($timetracking_ID); 
+	
+	$data['status'] = array( 
+			'active' => 'Active',
+			'pause' => 'Pause',
+			'close' => 'Close'
+		);
+	
+	$this->load->view('timesheet_register_employee', $data);
+		
+	}
+	
 	function timesheet_add($timetracking_ID=null){
 	
 		$data['parent'] = $this->Mhrd->department_parent();
@@ -512,7 +538,7 @@ class hrd extends CI_Controller {
 	
 	}
 	
-	function get_project_detail($department_ID){
+	function get_project_detail($department_ID=null){
 	
 		$json['projectnya']  =  $this->Mhrd->get_project_detail($department_ID);
 	 
@@ -534,6 +560,7 @@ class hrd extends CI_Controller {
 	
 	}
 	
+  
 	function opt_employee(){
 	
 		$json['statenya']  = $this->Mhrd->get_state();
@@ -677,6 +704,18 @@ class hrd extends CI_Controller {
 
 		$this->load->view('task_data', $data);
 
+	}
+	
+	function update_taskstatus($timetracking_ID,$status){
+	
+	 $this->Mhrd->update_taskstatus($timetracking_ID,$status);		
+	
+	}
+	
+	function update_taskstatusmap($timetrackingmapID,$status){
+	
+	$this->Mhrd->update_taskstatusmap($timetrackingmapID,$status);		
+	
 	}
 	
 	

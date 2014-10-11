@@ -4,10 +4,12 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 <table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
 	<thead>
 		  <tr>   
+				
+				<th> Department </th> 
 				<th> Project </th> 
-				<th> Task Name </th>  
-				<th> Notes </th>  
-				<th> Spend Time </th>
+				<th> Task Name </th>   
+				<th> Notes </th>
+				<th> Employee </th>
 				<th> Status </th>
 				<th>  Dead Line </th>
 				<th> Action </th> 
@@ -21,7 +23,16 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<!--<td>
 					<i class ="icon-play" style="cursor:pointer"></i> &nbsp <i class ="icon-pause" style="cursor:pointer"></i> &nbsp <i class ="icon-stop" style="cursor:pointer"></i> &nbsp    <label>01:55</label>
 					</td> -->
+					 <td>
 					 
+					<?php 
+					if($dat['department_parentID']=='0'){
+						echo $dat['department_name'];
+					}else{ 
+						echo $depparent[$dat['department_parentID']].'/'.$dat['department_name'];
+					}					 
+					?> 	
+					</td> 
 					<td>
 					<?php echo $dat['project_name'];?>		
 					</td> 
@@ -30,26 +41,67 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					</td>  
 					<td>
 					<?php echo $dat['description'];?>		
-					</td> 
-					 
-					 <td>
-					1 Days 5 Hours
-					</td>
-					 <td>
-					Active	
+					</td>  
+					 <td> 
+					 <button class="btn btn-default" title="Edit" onclick="list_employee('<?php echo $dat['timetracking_ID'];?>')" data-target="#myModal" data-toggle="modal"><i class="icon-group"></i> list</button>
+					 </td>
+					 <td> 
+					 <?php echo form_dropdown('status', $status,  $dat['status_task'],'class = "form-control" id="status'.$dat['timetracking_ID'].'"') ;?>
 					</td>
 					<td>
-					<?php echo date('d M Y h:i', strtotime($dat['register_date']));?> AM
+					<?php echo date('d M Y h:i:s', strtotime($dat['deadline']));?> 
 					</td>
 					<td class="center">
-							<div class="btn-toolbar row-action"> 
-									<button class="btn btn-default" title="Edit" onclick=timesheet_position_update("<?php echo $dat['timetracking_ID'];?>")><i class="icon-pause"></i></button>
-									<button class="delete btn btn-default" title="Delete" onclick=delete_post("<?php echo $dat['timetracking_ID'];?>")><i class="icon-stop "></i></button>
+							<div class="btn-toolbar row-action">  
 									<button class="btn btn-info" title="Edit" onclick=update_timesheet("<?php echo $dat['timetracking_ID'];?>")><i class="icon-edit"></i></button>
 									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $dat['timetracking_ID'];?>")><i class="icon-trash "></i></button>									
 							</div>
 					 </td>
 				</tr>
+				
+				<script>
+				
+								
+				function delete_post(a){
+					
+					bootbox.confirm("Are you sure you want to delete this?", function (result) {
+								  
+									if(result == true){						
+										$.ajax({
+													url: "<?php echo base_url('hrd/timesheet_deleted/')?>/" + a,									
+													success: function(data)
+													{											
+															display_data();
+													}
+										});
+									}
+									
+								});
+				}
+									
+					$( "select#status<?php echo $dat['timetracking_ID'];?>" ).change(function() {
+						
+							var a = $('select#status<?php echo $dat['timetracking_ID'];?> option:selected').val();
+							
+							var timetracking_ID = "<?php echo $dat['timetracking_ID'];?>";
+							  
+							bootbox.confirm("This action will change employee task status who listed in this task, are you sure ?", function (result) {
+								  
+									if(result == true){						
+										$.ajax({
+								
+											url: "<?php echo base_url('hrd/update_taskstatus/');?>" + '/' + timetracking_ID + '/' + a,
+											 
+											success: function (data) {
+											  
+											}
+										});
+									}else{
+										display_data();
+									}
+							});
+						});
+				</script>
 			<?php endforeach;?>
 			<?php else:?>
 				 <tr>
@@ -116,6 +168,7 @@ function remove_addcolums(a){
 $('.'+a).remove();
 }
 </script>
+ 
 
 
 					
