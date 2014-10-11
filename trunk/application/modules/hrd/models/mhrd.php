@@ -637,16 +637,28 @@ class Mhrd extends CI_Model {
 		unset($data['employee_name']);
 		unset($data['project_ID']);
 		unset($data['department_ID']);
-		 
-		  
-		echo $this->db->set('deadline',  date("Y-m-d H:i:s", strtotime($data['deadline']))); 
-		unset($data['deadline']);
+		$datax = $data['employee_name_opt'];
+		unset($data['employee_name_opt']);		
 		
+		$timetracking_ID = $this->generate_code->getUID();
+		
+	 
+		 $this->db->set('deadline',  date("Y-m-d H:i:s", strtotime($data['deadline']))); 
+		unset($data['deadline']);
 		$this->db->set('register_date',  date("Y-m-d H:i:s", strtotime($data['register_date']))); 
 		unset($data['register_date']);
 		
-		$this->db->set('timetracking_ID',$this->generate_code->getUID());	
+		$this->db->set('timetracking_ID',$timetracking_ID);	
 		$this->db->insert('timetracking',$data);
+		 
+		foreach($datax as $dat){
+		    $this->db->set('timetracking_ID',$timetracking_ID);
+			$this->db->set('timetrackingmapID',$this->generate_code->getUID());
+			$this->db->set('employee_ID',$dat);
+			$this->db->insert('timetrackingmap');
+		
+		}
+  
 	}
 	
 	function get_project(){
@@ -905,6 +917,7 @@ class Mhrd extends CI_Model {
 			}		
 		
 	}
+	 
 	
 	function task_deleted($task_ID){
 	
@@ -923,10 +936,17 @@ class Mhrd extends CI_Model {
 	}
 	
 	function get_employee_department($department_ID){ 
-	  
+	 
+		 $querynyax = "select CONCAT ( employee.employee_name, '/', employee.employee_badge ) AS label,
+								CONCAT ( employee.employee_name, '/', employee.employee_badge ) as value, employee_ID
+								from employee 
+								where department_ID = '".$department_ID."' 
+								limit 10" ;
+								
 		 $querynya = "select CONCAT ( employee.employee_name, '/', employee.employee_badge ) AS label,
 								CONCAT ( employee.employee_name, '/', employee.employee_badge ) as value, employee_ID
-								from employee where department_ID = '".$department_ID."' limit 10" ;
+								from employee 
+							 " ;
 								 
 		$query = $this->db->query($querynya);
 
@@ -938,6 +958,42 @@ class Mhrd extends CI_Model {
 			{
 				return FALSE;
 			}		
+	}
+	
+	function employee_task($timetracking_ID){
+	
+		$this->db->join('employee','timetrackingmap.employee_ID = employee.employee_ID ');
+		
+		$this->db->where('timetrackingmap.timetracking_ID',$timetracking_ID);
+		 
+		$query = $this->db->get('timetrackingmap');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	
+	}
+	
+	function update_taskstatus($timetracking_ID,$status){
+	
+		$this->db->where('timetracking_ID',$timetracking_ID);
+		$this->db->set('status_task',$status);
+		$this->db->update('timetracking');
+	
+	}
+	
+	function update_taskstatusmap($timetrackingmapID,$status){
+	
+		$this->db->where('timetrackingmapID',$timetrackingmapID);
+		$this->db->set('status_taskmap',$status);
+		$this->db->update('timetrackingmap');
+	
 	}
 	
 }

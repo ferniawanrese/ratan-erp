@@ -5,7 +5,7 @@
 					<div class="control col-md-3">
 						<div id="datetimepicker4" class="input-append datetimepicker">
 								<span class="add-on">
-									<input data-format="dd-MM-yyyy hh:mm:ss" type="text" class = "form-control" id = "register_date" name = "register_date" value = "<?php echo $timesheet_detail[0]['register_date'];?>"> 
+									<input data-format="dd-MM-yyyy hh:mm:ss" type="text" class = "form-control" id = "register_date" name = "register_date" value = "<?php if($timesheet_detail[0]['register_date']){echo date("d-m-Y h:i:s", strtotime($timesheet_detail[0]['register_date']));};?>"> 
 								</span>	
 						</div>		 
 					</div>		 
@@ -15,19 +15,19 @@
 					<div class="control col-md-3">
 						<div id="datetimepicker4" class="input-append datetimepicker">
 								<span class="add-on">
-								<input data-format="dd-MM-yyyy hh:mm:ss" type="text" class = "form-control" id = "deadline" name = "deadline" value = "<?php echo $timesheet_detail[0]['deadline'];?>">
+								<input data-format="dd-MM-yyyy hh:mm:ss" type="text" class = "form-control" id = "deadline" name = "deadline" value = "<?php if($timesheet_detail[0]['register_date']){echo date("d-m-Y h:i:s", strtotime($timesheet_detail[0]['deadline']));};?>">
 								</span>																	
 						</div>																												
 					</div>	 
 				</div> 
 				<div class="form-group">
-					<label  class="col-sm-3 control-label"> Department:</label>
+					<label  class="col-sm-3 control-label"> Department: </label>
 						<div class="control col-md-4">
 								 <span class = "input-group  "> 
 								 <select id = "department_ID" name="department_ID"  class="form-control"> 
-										<option >-- Choose Department --</option>
+										<option value="">-- Choose Department --</option>
 											<?php foreach($department_data as $dep):?>
-											<?php if($dep['department_ID']==$dat[0]['department_ID']){$selected = "selected";}else{$selected = "";}?>
+											<?php if($dep['department_ID']==$timesheet_detail[0]['department_ID']){$selected = "selected";}else{$selected = "";}?>
 												<?php if($dep['department_parentID'] == '0'):?>
 													<option value = "<?php echo  $dep['department_ID'];?>" <?php echo $selected;?>><?php echo  $dep['department_name'];?></option>
 												<?php else:?>
@@ -77,7 +77,7 @@
 				<div class="form-group">
 					<label  class="col-sm-3 control-label">Employees :</label>
 					<div class="control col-md-9">
-							<select id = "employee_name_opt" name = "employee_name_opt" data-placeholder="Employee Name " multiple class="chzn-select form-control" tabindex="8"> 
+							<select id = "employee_name_opt" name = "employee_name_opt[]" data-placeholder="Employee Name " multiple class="chzn-select form-control" tabindex="8"> 
 							</select> 
 					</div>
 				</div>
@@ -114,7 +114,7 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-	
+
 	
 <script type="text/javascript">
 
@@ -130,13 +130,21 @@
 					get_task();
 			}
 			
+			 
+			
 			function get_task(){
 							
-				var a = $('select#project_IDx option:selected').val();
+				var project_IDx = $('select#project_IDx option:selected').val();
+				
+				if(project_IDx == ""){
+				var project_IDx = "<?php echo $timesheet_detail[0]['project_ID'];?>";
+				}
+				
+				var task_ID = "<?php echo $timesheet_detail[0]['task_ID'];?>";
 				 
 				$.ajax({
 					
-					url: "<?php echo base_url('hrd/get_task_detail/');?>" + '/' +a,
+					url: "<?php echo base_url('hrd/get_task_detail/');?>" + '/' +project_IDx,
 					 
 					success: function (data) {
 					
@@ -149,9 +157,11 @@
 							var datanya = jsonData.tasknya[i];
 							
 							if(datanya.task_ID > '0'){
-								
+									if(datanya.task_ID == task_ID){
+									optmin += "<option value ='"+ datanya.task_ID +"' selected>"+ datanya.task_name +"</option>";
+									}else{
 									optmin += "<option value ='"+ datanya.task_ID +"'>"+ datanya.task_name +"</option>";
-									
+									}
 							}
 													
 							$( "#task_IDx" ).html(optmin); 
@@ -161,7 +171,7 @@
 				});
 					
 			}
-			
+			 			
 			function  get_project(){
 			
 					if($('#department_ID').val()!='-1'){
@@ -176,14 +186,23 @@
 						
 						
 						success: function (data) {
-						$( "#project_IDx" ).html("<option value = '-1'>-- Choose Project --</option>");
+						$( "#project_IDx" ).html("<option value = ''>-- Choose Project --</option>");
 						var jsonData = JSON.parse(data); 
-							optmin = "<option value = '-1'>-- Choose Project --</option>";
+							optmin = "<option value = ''>-- Choose Project --</option>";
+							
+							var idselect = "<?php echo $timesheet_detail[0]['project_ID'];?>";
+							 
 							for (var i = 0; i < jsonData.projectnya.length; i++) {
 							
 										var datanya = jsonData.projectnya[i];
-										  
+										
+										if(datanya.project_ID == idselect){
+										optmin += "<option value ='"+ datanya.project_ID +"'selected >"+ datanya.project_name +"</option>";
+										}else{
 										optmin += "<option value ='"+ datanya.project_ID +"'>"+ datanya.project_name +"</option>";
+										}
+										  
+										
 										  
 										$( "#project_IDx" ).html(optmin); 
 							}
@@ -243,34 +262,14 @@
                 });
 			} 
 			
-	$( "select#department_ID" ).change(function() {
+</script>
+
+
+<script>
+$( "select#department_ID" ).change(function() {
 	
 		var a = $('select#department_ID option:selected').val();
-	
-			$.ajax({
-				  url: "<?php echo base_url('hrd/get_employee_department');?>"+"/"+a,
-				  
-				  success: function( data ) {    		
-				
-					var jsonData = JSON.parse(data);
-					
-						optmin = "";
-						liopmin = "";
-						for (var i = '0'; i < jsonData.employee_name.length; i++) {
-							var datanya = jsonData.employee_name[i];
-							 
-									optmin += "<option value ='"+ datanya.employee_ID +"'>"+ datanya.value +"</option>";
-									liopmin += '<li class="active-result"  >' + datanya.value + '</li>';
-									
-							$('ul.chzn-results').html(liopmin);  
-												
-							$( "#employee_name_opt" ).html(optmin); 
-							
-							$(".chzn-select").trigger("liszt:updated"); 
-						}
-				  }
-				});
-		 
+		
 		$.ajax({
 			
 			url: "<?php echo base_url('hrd/get_project_detail/');?>" + '/' +a,
@@ -278,6 +277,8 @@
 			success: function (data) {
 			 
 			$( "#project_IDx" ).html("<option value = ''>-- Choose Project --</option>");
+			
+			$( "#task_IDx" ).html("<option value = ''>-- Choose Task --</option>");
 			
 			var jsonData = JSON.parse(data);
 			 
@@ -386,5 +387,41 @@
 	 
 	 })
  }
+</script>
+
+
+<script>		 
+			var a = $('select#department_ID option:selected').val();
+			
+			if(a!=''){
+			get_project(); 
+			get_task(); 
+			}
+			  
+			$.ajax({
+				  url: "<?php echo base_url('hrd/get_employee_department');?>"+"/"+a,
+				  
+				  success: function( data ) {    		
+				
+					var jsonData = JSON.parse(data);
+					
+						optmin = "";
+						liopmin = "";
+						for (var i = '0'; i < jsonData.employee_name.length; i++) {
+							var datanya = jsonData.employee_name[i];
+							 
+									optmin += "<option value ='"+ datanya.employee_ID +"'>"+ datanya.value +"</option>";
+									liopmin += '<li class="active-result"  >' + datanya.value + '</li>';
+									
+							$('ul.chzn-results').html(liopmin);  
+												
+							$( "#employee_name_opt" ).html(optmin); 
+							
+							$(".chzn-select").trigger("liszt:updated"); 
+						}
+				  }
+				});
+			
+	
 	 
 </script>
