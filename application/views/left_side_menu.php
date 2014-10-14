@@ -70,7 +70,7 @@
 									<ul >
 										<li  ><a href="<?php echo base_url('hrd/register_time');?>"  ><i class=" icon-file-alt"></i> Register Time</a></li>
 										<li  ><a href="<?php echo base_url('hrd/timesheet');?>"><i class=" icon-file-alt"></i> My Timesheets</a></li>
-										<li><a href="<?php echo base_url('hrd/timesheet_line');?>"><i class=" icon-file-alt"></i> Timesheet Lines</a></li>
+										<!--<li><a href="<?php echo base_url('hrd/timesheet_line');?>"><i class=" icon-file-alt"></i> Timesheet Lines</a></li>-->
 									</ul>
 									</li>
 									<li><a href="#"><i class="icon-caret-right"></i> Attendances</a>

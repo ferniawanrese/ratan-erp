@@ -634,28 +634,60 @@ class Mhrd extends CI_Model {
 	
 	function timesheet_add($data){
 	
-		unset($data['employee_name']);
-		unset($data['project_ID']);
-		unset($data['department_ID']);
-		$datax = $data['employee_name_opt'];
-		unset($data['employee_name_opt']);		
-		
-		$timetracking_ID = $this->generate_code->getUID();
-		
-	 
-		 $this->db->set('deadline',  date("Y-m-d H:i:s", strtotime($data['deadline']))); 
-		unset($data['deadline']);
-		$this->db->set('register_date',  date("Y-m-d H:i:s", strtotime($data['register_date']))); 
-		unset($data['register_date']);
-		
-		$this->db->set('timetracking_ID',$timetracking_ID);	
-		$this->db->insert('timetracking',$data);
+		//add
+		if($data['timetracking_ID']==''){
+	
+			unset($data['timetracking_ID']);
+			unset($data['employee_name']);
+			unset($data['project_ID']);
+			unset($data['department_ID']);
+			$datax = $data['employee_name_opt'];
+			unset($data['employee_name_opt']);		
+			
+			$timetracking_ID = $this->generate_code->getUID();
+			
 		 
-		foreach($datax as $dat){
-		    $this->db->set('timetracking_ID',$timetracking_ID);
-			$this->db->set('timetrackingmapID',$this->generate_code->getUID());
-			$this->db->set('employee_ID',$dat);
-			$this->db->insert('timetrackingmap');
+			 $this->db->set('deadline',  date("Y-m-d H:i:s", strtotime($data['deadline']))); 
+			unset($data['deadline']);
+			$this->db->set('register_date',  date("Y-m-d H:i:s", strtotime($data['register_date']))); 
+			unset($data['register_date']);
+			
+			$this->db->set('timetracking_ID',$timetracking_ID);	
+			$this->db->insert('timetracking',$data);
+			 
+			foreach($datax as $dat){
+				$this->db->set('timetracking_ID',$timetracking_ID);
+				$this->db->set('timetrackingmapID',$this->generate_code->getUID());
+				$this->db->set('employee_ID',$dat);
+				$this->db->insert('timetrackingmap');
+			
+			}
+		
+		}
+		//update
+		else{
+		
+			unset($data['employee_name']);
+			unset($data['project_ID']);
+			unset($data['department_ID']);
+			$datax = $data['employee_name_opt'];
+			unset($data['employee_name_opt']);	
+		
+			$this->db->set('deadline',  date("Y-m-d H:i:s", strtotime($data['deadline']))); 
+			unset($data['deadline']);
+			$this->db->set('register_date',  date("Y-m-d H:i:s", strtotime($data['register_date']))); 
+			unset($data['register_date']);
+			
+			$this->db->where('timetracking_ID',$data['timetracking_ID']);	
+			$this->db->update('timetracking',$data);
+			
+			foreach($datax as $dat){
+				$this->db->set('timetracking_ID',$data['timetracking_ID']);
+				$this->db->set('timetrackingmapID',$this->generate_code->getUID());
+				$this->db->set('employee_ID',$dat);
+				$this->db->insert('timetrackingmap');
+			
+			}
 		
 		}
   
@@ -935,18 +967,28 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function get_employee_department($department_ID){ 
+	function get_employee_department($department_ID,$timetracking_ID){ 
 	 
-		 $querynyax = "select CONCAT ( employee.employee_name, '/', employee.employee_badge ) AS label,
-								CONCAT ( employee.employee_name, '/', employee.employee_badge ) as value, employee_ID
-								from employee 
-								where department_ID = '".$department_ID."' 
-								limit 10" ;
+		 $querynya = "
+			SELECT
+			CONCAT ( employee.employee_name, '/', employee.employee_badge ) AS label,
+			CONCAT ( employee.employee_name, '/', employee.employee_badge ) AS VALUE,
+			employee.employee_ID,timetrackingmap.timetracking_ID,
+			IF(timetrackingmap.timetracking_ID != '', 'selected', '') AS selectnya
+			FROM employee
+			LEFT JOIN timetrackingmap
+			ON employee.employee_ID = timetrackingmap.employee_ID
+			AND timetrackingmap.timetracking_ID = '".$timetracking_ID."'
+				" ;
+				 
 								
-		 $querynya = "select CONCAT ( employee.employee_name, '/', employee.employee_badge ) AS label,
-								CONCAT ( employee.employee_name, '/', employee.employee_badge ) as value, employee_ID
-								from employee 
+		 $querynyax = "select CONCAT ( employee.employee_name, '/', employee.employee_badge ) AS label,
+								CONCAT ( employee.employee_name, '/', employee.employee_badge ) as value, employee.employee_ID
+								from employee left join timetrackingmap on  employee.employee_ID = timetrackingmap.employee_ID
+								where timetrackingmap.timetracking_ID = '".$timetracking_ID."'
 							 " ;
+							 
+							// echo  $querynya;
 								 
 		$query = $this->db->query($querynya);
 

@@ -1,5 +1,6 @@
  
 	<form  id = "form_add" class="form-horizontal form-validate"   method="post"> 
+				<input name="timetracking_ID"  id = "timetracking_ID" class="form-control " type="hidden"  placeholder="0.00"  value = "<?php echo $timesheet_detail[0]['timetracking_ID'];?>" /> 
 				<div class="form-group">
 					<label  class="col-sm-3 control-label">Start Date :</label>
 					<div class="control col-md-3">
@@ -78,6 +79,7 @@
 					<label  class="col-sm-3 control-label">Employees :</label>
 					<div class="control col-md-9">
 							<select id = "employee_name_opt" name = "employee_name_opt[]" data-placeholder="Employee Name " multiple class="chzn-select form-control" tabindex="8"> 
+							 
 							</select> 
 					</div>
 				</div>
@@ -392,14 +394,15 @@ $( "select#department_ID" ).change(function() {
 
 <script>		 
 			var a = $('select#department_ID option:selected').val();
-			
+			var b = "<?php echo $timesheet_detail[0]['timetracking_ID'];?>";
 			if(a!=''){
 			get_project(); 
 			get_task(); 
 			}
-			  
+			
+
 			$.ajax({
-				  url: "<?php echo base_url('hrd/get_employee_department');?>"+"/"+a,
+				  url: "<?php echo base_url('hrd/get_employee_department');?>"+"/"+a+ "/"+b,
 				  
 				  success: function( data ) {    		
 				
@@ -410,8 +413,10 @@ $( "select#department_ID" ).change(function() {
 						for (var i = '0'; i < jsonData.employee_name.length; i++) {
 							var datanya = jsonData.employee_name[i];
 							 
-									optmin += "<option value ='"+ datanya.employee_ID +"'>"+ datanya.value +"</option>";
-									liopmin += '<li class="active-result"  >' + datanya.value + '</li>';
+							 
+									optmin += "<option value ='"+ datanya.employee_ID +" '"+ datanya.selectnya +"  >"+ datanya.VALUE +"</option>";
+									 
+									liopmin += '<li class="active-result"  >' + datanya.VALUE + '</li>';
 									
 							$('ul.chzn-results').html(liopmin);  
 												

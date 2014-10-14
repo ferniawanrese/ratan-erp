@@ -370,10 +370,10 @@ class hrd extends CI_Controller {
 			
 	}
 	
-	function get_employee_department($department_ID=null){
+	function get_employee_department($department_ID=null,$timetracking_ID=null){
 		  
-		$json['employee_name']  =  $this->Mhrd->get_employee_department($department_ID);
-	 
+		$json['employee_name']  =  $this->Mhrd->get_employee_department($department_ID,$timetracking_ID);
+		 	 
 		echo json_encode($json, JSON_UNESCAPED_SLASHES);
 			
 	}
@@ -525,6 +525,8 @@ class hrd extends CI_Controller {
 			}
 		  
 		$data['department_data'] = $this->Mhrd->department_data();	
+		
+		
 	  
 		$data['timesheet_detail'] = $this->Mhrd->timeheet_data_detail($timetracking_ID);
 	 				
