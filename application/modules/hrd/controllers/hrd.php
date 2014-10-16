@@ -189,7 +189,7 @@ class hrd extends CI_Controller {
 			$this->core->resize_im(array_merge($config,$data));
 		}
 		
-		if($data['file_name']){
+		if(isset($data['file_name'])){
 		$img = $config['upload_path'].$data['file_name'];
 		}else{
 		$img = null;
@@ -345,7 +345,7 @@ class hrd extends CI_Controller {
 		
 		$json['positionnya']  = $this->Mhrd->get_position($department_ID);
 		 
-		 echo json_encode($json, JSON_UNESCAPED_SLASHES);
+		 echo json_encode($json);
 		
 	}
 	
@@ -358,7 +358,7 @@ class hrd extends CI_Controller {
 		 
 		$json['departmentnya'] = $this->Mhrd->department_data( );	 
 		 
-		 echo json_encode($json, JSON_UNESCAPED_SLASHES);
+		 echo json_encode($json);
 		
 	}
 	
@@ -374,7 +374,7 @@ class hrd extends CI_Controller {
 		  
 		$json['employee_name']  =  $this->Mhrd->get_employee_department($department_ID,$timetracking_ID);
 		 	 
-		echo json_encode($json, JSON_UNESCAPED_SLASHES);
+		echo json_encode($json);
 			
 	}
 	
@@ -525,10 +525,10 @@ class hrd extends CI_Controller {
 			}
 		  
 		$data['department_data'] = $this->Mhrd->department_data();	
-		
-		
-	  
+		 
 		$data['timesheet_detail'] = $this->Mhrd->timeheet_data_detail($timetracking_ID);
+		
+		
 	 				
 		$this->load->view('timesheet_registeradd', $data);
 	 
@@ -544,13 +544,21 @@ class hrd extends CI_Controller {
 	
 		$json['projectnya']  =  $this->Mhrd->get_project_detail($department_ID);
 	 
-		echo json_encode($json, JSON_UNESCAPED_SLASHES);
+		echo json_encode($json);
 	
 	}
 	
 	function timesheet_addaction(){
 	
-	$this->Mhrd->timesheet_add($this->input->post());
+		if($this->input->post('timetracking_ID')){
+		
+		$data['timesheetmap'] = $this->Mhrd->get_timesheetmap($this->input->post('timetracking_ID'));
+		 
+		}else{
+		$data['timesheetmap'] = null;
+		}
+	
+		$this->Mhrd->timesheet_add($this->input->post(),$data['timesheetmap'] );
 	 
 	}	
 	
@@ -558,7 +566,7 @@ class hrd extends CI_Controller {
 		
 		$json['tasknya']  =  $this->Mhrd->get_task_detail($project_ID);
 	 
-		echo json_encode($json, JSON_UNESCAPED_SLASHES);
+		echo json_encode($json);
 	
 	}
 	
@@ -566,7 +574,7 @@ class hrd extends CI_Controller {
 	function opt_employee(){
 	
 		$json['statenya']  = $this->Mhrd->get_state();
-		echo json_encode($json, JSON_UNESCAPED_SLASHES);
+		echo json_encode($json);
 	
 	}
 	
@@ -720,7 +728,11 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function timetrackingmap_del($employee_ID,$timetracking_ID){
 	
+	$this->Mhrd->timetrackingmap_del($employee_ID,$timetracking_ID);		
+	
+	}
 }
 
 /* End of file welcome.php */

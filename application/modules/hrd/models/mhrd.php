@@ -632,7 +632,7 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function timesheet_add($data){
+	function timesheet_add($data,$original_update){
 	
 		//add
 		if($data['timetracking_ID']==''){
@@ -666,7 +666,7 @@ class Mhrd extends CI_Model {
 		}
 		//update
 		else{
-		
+		 
 			unset($data['employee_name']);
 			unset($data['project_ID']);
 			unset($data['department_ID']);
@@ -680,15 +680,33 @@ class Mhrd extends CI_Model {
 			
 			$this->db->where('timetracking_ID',$data['timetracking_ID']);	
 			$this->db->update('timetracking',$data);
-			
+			 
 			foreach($datax as $dat){
+			
+				$pieces = explode("|", $dat);
+				
+				if($pieces[1] != "selected"){
+				
 				$this->db->set('timetracking_ID',$data['timetracking_ID']);
 				$this->db->set('timetrackingmapID',$this->generate_code->getUID());
 				$this->db->set('employee_ID',$dat);
 				$this->db->insert('timetrackingmap');
-			
+				 
+				}
+				 
+				unset($original_update[$pieces[0]]); 
+				 
 			}
-		
+			 
+			foreach($original_update as $key){
+			
+				$this->db->where('timetracking_ID',$data['timetracking_ID']);
+				$this->db->where('employee_ID',$key);
+				$this->db->delete('timetrackingmap');
+			
+			}		
+			
+			 
 		}
   
 	}
@@ -970,15 +988,15 @@ class Mhrd extends CI_Model {
 	function get_employee_department($department_ID,$timetracking_ID){ 
 	 
 		 $querynya = "
-			SELECT
+			SELECT distinct employee.employee_ID,
 			CONCAT ( employee.employee_name, '/', employee.employee_badge ) AS label,
 			CONCAT ( employee.employee_name, '/', employee.employee_badge ) AS VALUE,
 			employee.employee_ID,timetrackingmap.timetracking_ID,
-			IF(timetrackingmap.timetracking_ID != '', 'selected', '') AS selectnya
+			IF(timetrackingmap.timetracking_ID != '' , 'selected', '') AS selectnya
 			FROM employee
 			LEFT JOIN timetrackingmap
 			ON employee.employee_ID = timetrackingmap.employee_ID
-			AND timetrackingmap.timetracking_ID = '".$timetracking_ID."'
+			AND timetrackingmap.timetracking_ID = '".$timetracking_ID."' 
 				" ;
 				 
 								
@@ -1035,6 +1053,37 @@ class Mhrd extends CI_Model {
 		$this->db->where('timetrackingmapID',$timetrackingmapID);
 		$this->db->set('status_taskmap',$status);
 		$this->db->update('timetrackingmap');
+	
+	}
+	
+	function timetrackingmap_del($employee_ID,$timetracking_ID){ 
+		$this->db->where('employee_ID',$employee_ID);
+		$this->db->where('timetracking_ID',$timetracking_ID); 
+		$this->db->delete('timetrackingmap');
+	
+	}
+	
+	function get_timesheetmap($timetracking_ID){
+	
+	$this->db->select('employee_ID');
+	
+	$this->db->where('timetrackingmap.timetracking_ID',$timetracking_ID);
+	
+	$query = $this->db->get('timetrackingmap');
+	 
+			if ($query->num_rows() )
+			{
+				 foreach ($query->result() as $row)
+						   {
+							  $dataemployee[$row->employee_ID] =  $row->employee_ID; 
+						   }
+						   
+						   return $dataemployee;
+			}
+			else
+			{
+				return FALSE;
+			}		
 	
 	}
 	
