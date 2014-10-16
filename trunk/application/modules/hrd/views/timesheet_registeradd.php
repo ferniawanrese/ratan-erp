@@ -390,9 +390,9 @@ $( "select#department_ID" ).change(function() {
 	 })
  }
 </script>
-
-
+ 
 <script>		 
+	   
 			var a = $('select#department_ID option:selected').val();
 			var b = "<?php echo $timesheet_detail[0]['timetracking_ID'];?>";
 			if(a!=''){
@@ -412,11 +412,16 @@ $( "select#department_ID" ).change(function() {
 						liopmin = "";
 						for (var i = '0'; i < jsonData.employee_name.length; i++) {
 							var datanya = jsonData.employee_name[i];
-							 
-							 
-									optmin += "<option value ='"+ datanya.employee_ID +" '"+ datanya.selectnya +"  >"+ datanya.VALUE +"</option>";
+									if(datanya.selectnya == "selected"){
+									var separate = "|";
+									}else{
+									var separate = "";
+									}
+									 
+									optmin += "<option value ='"+ datanya.employee_ID + separate + datanya.selectnya +"' "+ datanya.selectnya +"  >"+ datanya.VALUE +"</option>";
 									 
 									liopmin += '<li class="active-result"  >' + datanya.VALUE + '</li>';
+								 							 
 									
 							$('ul.chzn-results').html(liopmin);  
 												

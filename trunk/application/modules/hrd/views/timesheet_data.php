@@ -4,9 +4,12 @@ Attendance : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 <table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
 	<thead>
 		  <tr> 
-				<th>  Date </th> 
-				<th>  Sign In </th> 
-				<th>  Sign Out </th>  
+				<th> Department </th> 
+				<th> Project </th> 
+				<th> Task Name </th>   
+				<th> Notes </th> 
+				<th> Status </th>
+				<th>  Dead Line </th>
 				<th> Action </th> 
 		  </tr>
 	</thead> 
@@ -45,64 +48,8 @@ Attendance : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 	
 </table>
 <div class = "pagination pagination-large col-sm-12 col-md-12"></div>
-
-Total Timesheet Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];?></span>
-<div></br></div>
-<table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
-	<thead>
-		  <tr> 
-				<th>  Active Timers </th>
-				<th>  Date </th> 
-				<th>  Project </th> 
-				<th> Task Name </th> 
-				<th> Employee </th> 
-				<th> Ammount Billable </th> 
-				<th> Action </th> 
-		  </tr>
-	</thead> 
-	<tbody>
-	 
-			<?php if($timesheet_data):?>
-			 <?php foreach($timesheet_data as $dat):?>
-				<tr>			
-					 
-					<td>
-					<i class ="icon-play"></i> &nbsp <i class ="icon-pause"></i> &nbsp <i class ="icon-stop"></i> 
-					</td> 
-					<td>
-					<?php echo $dat['register_date'];?>	<?php echo date('d M Y');?>
-					</td> 
-					<td>
-					<?php echo $dat['project_name'];?>		
-					</td> 
-					<td>
-					<?php echo $dat['task_name'];?>		
-					</td> 
-					<td>
-					<?php echo $dat['employee_name'];?>		
-					</td> 
-					<td>
-					<?php echo $dat['ammount_expenses'];?>		
-					</td>
-					<td class="center">
-							<div class="btn-toolbar row-action"> 
-									<button class="btn btn-info" title="Edit" onclick=job_position_update("<?php echo $dat['timetracking_ID'];?>")><i class="icon-edit"></i></button>
-									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $dat['timetracking_ID'];?>")><i class="icon-trash "></i></button>
-								
-							</div>
-					 </td>
-				</tr>
-			<?php endforeach;?>
-			<?php else:?>
-				 <tr>
-					<td colspan='9'><center>no data</center></td>
-				  </tr>
-			<?php endif;?>
-	</tbody>
-	
-</table>
-
-<div class = "pagination pagination-large col-sm-12 col-md-12"></div>
+ 
+  
 
 <?php 	
 	$alldata =  $countdata[0]['totdata'];
