@@ -60,25 +60,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 				</tr>
 				
 				<script>
-				
-								
-				function delete_post(a){
-					
-					bootbox.confirm("Are you sure you want to delete this?", function (result) {
-								  
-									if(result == true){						
-										$.ajax({
-													url: "<?php echo base_url('hrd/timesheet_deleted/')?>/" + a,									
-													success: function(data)
-													{											
-															display_data();
-													}
-										});
-									}
-									
-								});
-				}
-									
+				 
 					$( "select#status<?php echo $dat['timetracking_ID'];?>" ).change(function() {
 						
 							var a = $('select#status<?php echo $dat['timetracking_ID'];?> option:selected').val();
@@ -167,6 +149,23 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 function remove_addcolums(a){
 $('.'+a).remove();
 }
+
+function delete_post(a){
+					
+					bootbox.confirm("Are you sure you want to delete this?", function (result) {
+								  
+									if(result == true){						
+										$.ajax({
+													url: "<?php echo base_url('hrd/timesheet_deleted/')?>/" + a,									
+													success: function(data)
+													{											
+															display_data();
+													}
+										});
+									}
+									
+								});
+				}
 </script>
  
 

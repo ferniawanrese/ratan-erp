@@ -3,41 +3,67 @@ Attendance : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 <div></br></div>
 <table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
 	<thead>
-		  <tr> 
+		  <tr>  
 				<th> Department </th> 
 				<th> Project </th> 
 				<th> Task Name </th>   
 				<th> Notes </th> 
 				<th> Status </th>
-				<th>  Dead Line </th>
-				<th> Action </th> 
+				<th>  Dead Line </th> 
 		  </tr>
 	</thead> 
 	<tbody>
-	 
+	 <?php //$this->core->print_rr($timesheet_data);?>
 			<?php if($timesheet_data):?>
 			 <?php foreach($timesheet_data as $dat):?>
 				<tr>			
-					<!--<td>
-					 <i class ="icon-signin"></i> Sign In | <i class ="icon-signout"></i> Sign Out
-					</td>  -->
 					<td>
-					<?php //echo $dat['register_date'];?>	<?php echo date('d M Y');?>
-					</td>  
-					<td>
-					<?php //echo $dat['register_date'];?>	<?php echo date('H:i a');?>
+					 <?php 
+					if($dat['department_parentID']=='0'){
+						echo $dat['department_name'];
+					}else{ 
+						echo $depparent[$dat['department_parentID']].'/'.$dat['department_name'];
+					}					 
+					?> 	
 					</td>
 					<td>
-					<?php //echo $dat['register_date'];?>	<?php echo date('H:i a');?>
+					<?php echo $dat['project_name'];?>	 
+					</td>
+					<td>
+					<?php echo $dat['task_name'];?>	 
 					</td> 
-					<td class="center">
-							<div class="btn-toolbar row-action"> 
-									<button class="btn btn-info" title="Edit" onclick=job_position_update("<?php echo $dat['timetracking_ID'];?>")><i class="icon-edit"></i></button>
-									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $dat['timetracking_ID'];?>")><i class="icon-trash "></i></button>
-								
-							</div>
-					 </td>
+					<td>
+					<?php echo $dat['description'];?>	 
+					</td> 
+					 <td> 
+					 <?php echo form_dropdown('status', $status,  $dat['status_taskmap'],'class = "form-control" id="status'.$dat['timetrackingmapID'].'"') ;?>
+					</td>
+					<td>
+					<?php echo date('d M Y h:i:s',strtotime($dat['deadline']));?>	 
+					</td> 
+					 
 				</tr>
+				
+				<script>
+				 
+					$( "select#status<?php echo $dat['timetrackingmapID'];?>" ).change(function() {
+						
+							var a = $('select#status<?php echo $dat['timetrackingmapID'];?> option:selected').val();
+							
+							var timetrackingmapID = "<?php echo $dat['timetrackingmapID'];?>";
+							   					
+										$.ajax({
+								
+											url: "<?php echo base_url('hrd/update_taskstatus_map/');?>" + '/' + timetrackingmapID + '/' + a,
+											 
+											success: function (data) {
+											  
+											}
+										});
+									  
+						});
+				</script>
+				
 			<?php endforeach;?>
 			<?php else:?>
 				 <tr>
@@ -84,7 +110,7 @@ Attendance : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					$('.progress-bar').show();
 					$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('hrd/job_position_data/');?>" + "/" + page,
+					url: "<?php echo base_url('hrd/timesheet_data/');?>" + "/" + page,
 					data: $("#form_filter").serialize(),
 					
 						success: function(data){     
