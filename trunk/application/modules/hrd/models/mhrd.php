@@ -555,6 +555,64 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function timesheet_mapdata($data,$page,$limit){
+	
+	$a = ($page-1) * $limit;
+	
+	$this->db->join('timetracking', 'timetracking.timetracking_ID = timetrackingmap.timetracking_ID');
+	 
+	$this->db->join('task', 'timetracking.task_ID = task.task_ID');
+	
+	$this->db->join('project', 'task.project_ID = project.project_ID');
+	
+	$this->db->join('department', 'department.department_ID = project.department_ID');
+	
+	$this->db->where('timetrackingmap.employee_ID',$this->session->userdata('employee_ID'));
+		 
+	$this->db->order_by('timetracking.dateCreated','desc');
+	 
+	$query = $this->db->get('timetrackingmap',$limit,$a);
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function timesheet_mapdata_count($data){
+	
+	$this->db->select('count(*) as totdata');
+	
+	$this->db->join('timetracking', 'timetracking.timetracking_ID = timetrackingmap.timetracking_ID');
+	 
+	$this->db->join('task', 'timetracking.task_ID = task.task_ID');
+	
+	$this->db->join('project', 'task.project_ID = project.project_ID');
+	
+	$this->db->join('department', 'department.department_ID = project.department_ID');
+	
+	$this->db->where('timetrackingmap.employee_ID',$this->session->userdata('employee_ID'));
+		 
+	$this->db->order_by('timetracking.dateCreated','desc');
+	 
+	$query = $this->db->get('timetrackingmap');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
 	function timesheet_registerdata($data,$page,$limit){
 	
 	$a = ($page-1) * $limit;
@@ -1045,6 +1103,14 @@ class Mhrd extends CI_Model {
 		$this->db->where('timetracking_ID',$timetracking_ID);
 		$this->db->set('status_task',$status);
 		$this->db->update('timetracking');
+	
+	}
+	
+	function update_taskstatus_map($timetrackingmapID,$status){
+	
+		$this->db->where('timetrackingmapID',$timetrackingmapID);
+		$this->db->set('status_taskmap',$status);
+		$this->db->update('timetrackingmap');
 	
 	}
 	

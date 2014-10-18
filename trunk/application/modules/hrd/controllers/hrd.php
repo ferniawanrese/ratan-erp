@@ -478,10 +478,22 @@ class hrd extends CI_Controller {
 		$data['limit'] = 10;
 		
 		$data['page'] = $page;
-	 
-		$data['timesheet_data'] = $this->Mhrd->timesheet_registerdata($this->input->post(),$data['page'],$data['limit']);		
 		
-		$data['countdata'] = $this->Mhrd->timesheet_registerdata_count($this->input->post());	
+		$data['status'] = array( 
+			'active' => 'Active',
+			'pause' => 'Pause',
+			'close' => 'Close'
+		);
+		
+		$data['parent'] = $this->Mhrd->department_parent();
+		 
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+	 
+		$data['timesheet_data'] = $this->Mhrd->timesheet_mapdata($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->timesheet_mapdata_count($this->input->post());	
 
 		$this->load->view('timesheet_data', $data);
 	
@@ -719,6 +731,13 @@ class hrd extends CI_Controller {
 	function update_taskstatus($timetracking_ID,$status){
 	
 	 $this->Mhrd->update_taskstatus($timetracking_ID,$status);		
+	
+	}
+	 
+	
+	function update_taskstatus_map($timetrackingmapID,$status){
+	
+	 $this->Mhrd->update_taskstatus_map($timetrackingmapID,$status);		
 	
 	}
 	
