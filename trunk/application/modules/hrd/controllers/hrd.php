@@ -425,7 +425,7 @@ class hrd extends CI_Controller {
 		
 		$output['task'] = $this->Mhrd->get_task();	
 		
-		$output['filterplus'] = $this->core->filterplus('employee');
+		$output['filterplus'] = $this->core->filterplus('timetracking');
 		
 		$this->load->view('template', $output);
 	
@@ -433,7 +433,7 @@ class hrd extends CI_Controller {
 	
 	function timesheet_registerdata($page=1){
 	 
-		$data['limit'] = 10;
+		$data['limit'] = $this->input->post('limit');
 		
 		$data['page'] = $page;
 	 

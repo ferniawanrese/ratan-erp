@@ -16,59 +16,16 @@
 										</div>
 																			
 										<div class="well col-sm-12 col-md-12">
-										
-										<div  id = "btn-create" class="form-group"> 
-											<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "open_filter()" id = "Show"> Show Filter</button>
-											<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "close_filter()" id = "Hide" style = "display: none;"> Hide Filter</button>
-										</div>
-										<span  id ="search" style = "display: none;">
+										 
+										<span  id ="search"  >
 										<form id = "form_filter" action ="<?php echo base_url('hrd/hrd_save_employee/');?>" method="post">
-											<fieldset class="default panel">
-													<legend>Filtering </legend>
-												
+										    
 													<div class="form-group col-sm-12 col-md-3">
 														<label for="validate-text"></label>
 														<div class="input-group col-sm-12 col-md-12">
-															<input id="employee_name" class="form-control" type="text" placeholder="Register Date" name="filter[employee_name]">
+															<input id="description" class="form-control" type="text" placeholder="Notes " name="filter[description]"> 
 														</div>
-													</div>
-													
-													<div class="form-group col-sm-12 col-md-3">
-														<label for="validate-text"></label>
-														<div class="input-group col-sm-12 col-md-12">
-															<select class="form-control">
-																<option val = "" >-- Choose Project --</option>
-															</select>
-															<span class="input-group-addon ">
-															<i class="icon-plus" style="cursor:pointer;" title="Ascending"></i>
-															</span>
-														</div>
-													</div>
-													
-													<div class="form-group col-sm-12 col-md-3">
-														<label for="validate-text"></label>
-														<div class="input-group col-sm-12 col-md-12">
-															<select class="form-control">
-																<option val = "" >-- Choose Task --</option>
-															</select>
-															<span class="input-group-addon ">
-															<i class="icon-plus" style="cursor:pointer;" title="Ascending"></i>
-															</span>
-														</div>
-													</div>
-													
-													<div class="form-group col-sm-12 col-md-3">
-														<label for="validate-text"></label>
-														<div class="input-group col-sm-12 col-md-12">
-															<input id="employee_name" class="form-control" type="text" placeholder="Employee Name" name="filter[employee_name]">
-														</div>
-													</div>
-													<div class="form-group col-sm-12 col-md-3">
-														<label for="validate-text"></label>
-														<div class="input-group col-sm-12 col-md-12">
-															<input id="employee_name" class="form-control" type="text" placeholder="Notes " name="filter[employee_name]"> 
-														</div>
-													</div> 
+													</div>  
 													<div class="form-group col-sm-12 col-md-3">
 														<label for="validate-text"></label>
 														<div class="input-group col-sm-12 col-md-12">
@@ -78,7 +35,7 @@
 															</span>
 														</div>
 													</div>
-												</fieldset>
+											 
 										</form>	
 										</span>
 											<div class = "list col-sm-12 col-md-12">
@@ -120,4 +77,29 @@ $("#search").fadeIn();
 $("#Hide").show();
 $("#Show").hide();
 }
+ 
+	$("form#form_filter").submit(function(e){
+	
+	e.preventDefault();
+	
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('hrd/timesheet_data');?>",
+				data: $("#form_filter").serialize(),
+				success: function(data)
+				{
+					$( ".list" ).html(data);
+					$('body').loadie(1);
+				}
+			});
+			
+			return false;
+	});
+	
+function clearfilter(){
+$('#description').val('');
+display_data();
+
+}
+	
 </script>
