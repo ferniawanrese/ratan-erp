@@ -568,6 +568,10 @@ class Mhrd extends CI_Model {
 	$this->db->join('department', 'department.department_ID = project.department_ID');
 	
 	$this->db->where('timetrackingmap.employee_ID',$this->session->userdata('employee_ID'));
+	
+	if(isset($data['filter'])){
+	$this->db->like($data['filter']);
+	}
 		 
 	$this->db->order_by('timetracking.dateCreated','desc');
 	 
@@ -597,6 +601,10 @@ class Mhrd extends CI_Model {
 	$this->db->join('department', 'department.department_ID = project.department_ID');
 	
 	$this->db->where('timetrackingmap.employee_ID',$this->session->userdata('employee_ID'));
+	
+	if(isset($data['filter'])){
+	$this->db->like($data['filter']);
+	}
 		 
 	$this->db->order_by('timetracking.dateCreated','desc');
 	 
@@ -623,11 +631,19 @@ class Mhrd extends CI_Model {
 	
 	$this->db->join('department', 'department.department_ID = project.department_ID');
 	
+	if(isset($data['filter'])){
+	$this->db->like($data['filter']);
+	}
+	
+	if(isset($data['filterplus'])){
+		$this->db->like($data['filterplus']);
+	}
+	
 	$this->db->where('timetracking.deleted','0');
 	 
 	$this->db->order_by('timetracking.dateCreated','desc');
 	 
-	$query = $this->db->get('timetracking',$limit,$a);
+	$query = $this->db->get('timetracking', $limit,$a);
 
 			if ($query->num_rows())
 			{
@@ -665,13 +681,21 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function timesheet_registerdata_count(){
+	function timesheet_registerdata_count($data){
 	
 	$this->db->select('count(*) as totdata');
 	
 	$this->db->join('task', 'timetracking.task_ID = task.task_ID');
 	
 	$this->db->join('project', 'task.project_ID = project.project_ID');
+	
+	if(isset($data['filter'])){
+	$this->db->like($data['filter']);
+	}
+	
+	if(isset($data['filterplus'])){
+		$this->db->like($data['filterplus']);
+	}
 	 
 	$this->db->order_by('timetracking.dateCreated','desc');
 	
