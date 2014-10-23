@@ -75,8 +75,8 @@
 									</li>
 									<li><a href="#"><i class="icon-caret-right"></i> Attendances</a>
 									<ul >
-										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Sign In / Sign Out</a></li>
-										<li ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i> Attendances</a></li> 
+										<li><a href="<?php echo base_url('hrd/signin');?>"><i class=" icon-file-alt"></i> Sign In / Sign Out</a></li>
+										<li ><a href="<?php echo base_url('hrd/attendances');?>"><i class=" icon-file-alt"></i> Attendances</a></li> 
 									</ul>
 									</li>
 									<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>

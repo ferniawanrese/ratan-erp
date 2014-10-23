@@ -752,6 +752,69 @@ class hrd extends CI_Controller {
 	$this->Mhrd->timetrackingmap_del($employee_ID,$timetracking_ID);		
 	
 	}
+	
+	function signin(){
+	
+		$output['data']['module_name'] = "Sign In/Sign Out";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['content'] = "hrd/signin";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	function signin_upload(){
+	
+		$this->load->library('excel_reader'); 
+	
+		// upload file/image
+				
+		$config['file_name'] 		= $this->generate_code->getUID();
+		$config['upload_path'] 	= './upload/temp_upload/'.$config['file_name'].'/';
+		$config['allowed_types'] 	= 'gif|jpg|png|xls|csv';
+		
+		@mkdir($config['upload_path'], 0777);
+		
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());	 
+		}
+		else
+		{
+			$data = $this->upload->data();		 
+		}
+		
+			$file =  $data['full_path'];
+			
+			$this->excel_reader->read($file);
+			
+			$datax = $this->excel_reader->sheets[0] ;
+			 
+			if($datax['numRows']>0){
+			
+				foreach($datax['cells'] as $key) {
+				
+					$uid = $this->generate_code->getUID();
+					$keys[$uid]['attendance_ID']= $uid;
+					$keys[$uid]['employee_ID']= $key['1'];
+					$keys[$uid]['dateCreated']= $key['2'];
+					$keys[$uid]['status']= $key['3'];
+					
+					$this->db->insert('attendance',$keys[$uid]);
+					 
+				}
+			
+			}
+			  
+		  redirect(base_url('hrd/signin/success'));
+	}
 }
 
 /* End of file welcome.php */
