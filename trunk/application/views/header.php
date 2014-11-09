@@ -60,6 +60,7 @@
 <script src="<?php echo base_url('js/jquery.validate.js');?>"></script>
 <script src="<?php echo base_url('js/jquery.metadata.js');?>"></script>
 <script src="<?php echo base_url('js/chosen.jquery.js');?>"></script>
+<script src="<?php echo base_url('js/stepy.jquery.js');?>"></script>
 </head>
 
 <script>

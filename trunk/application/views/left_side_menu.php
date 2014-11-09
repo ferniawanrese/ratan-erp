@@ -81,8 +81,8 @@
 									</li>
 									<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
 									<ul>
-										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Appraisal</a></li>
-										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i> Interview Request</a></li> 
+										<li><a href="<?php echo base_url('hrd/appraisal');?>"><i class=" icon-file-alt"></i> Appraisal</a></li>
+										<li  ><a href="<?php echo base_url('hrd/interview_req');?>"><i class=" icon-file-alt"></i> Interview Request</a></li> 
 									</ul> 
 									</li>         
 									<li><a href="#"><i class="icon-caret-right"></i> Leaves</a>
@@ -123,6 +123,13 @@
 										<ul>
 											<li><a href="<?php echo base_url('hrd/project');?>"> Project </a></li>
 											<li  ><a href="<?php echo base_url('hrd/task');?>">  Task </a></li> 
+										 </ul>   
+									</li>
+									<li ><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
+										<ul> 
+											<li  ><a href="<?php echo base_url('hrd/task');?>">  Appraisal Form </a></li>
+											<li><a href="<?php echo base_url('hrd/project');?>"> Plan </a></li>
+											<li><a href="<?php echo base_url('hrd/project');?>"> Survey </a></li>											
 										 </ul>   
 									</li>
 								</ul>
