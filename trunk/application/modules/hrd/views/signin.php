@@ -31,8 +31,7 @@
 													</div> 
 													
 													<div class="form-action">
-														<button type="submit" class="btn btn-info"><i class="icon-upload-alt"></i> Upload</button>
-														<button type="button" class="btn btn-danger">Cancel</button>
+														<button type="submit" class="btn btn-info"><i class="icon-upload-alt"></i> Upload</button> 
 													</div>
 												</form>
 											
