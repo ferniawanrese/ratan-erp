@@ -815,6 +815,114 @@ class hrd extends CI_Controller {
 			  
 		  redirect(base_url('hrd/signin/success'));
 	}
+	
+	function attendances(){
+	
+		$output['data']['module_name'] = "Attendances";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['content'] = "hrd/attendances";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function attendances_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['attandances_data'] = $this->Mhrd->attendances_data($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->attendances_data_count($this->input->post());	
+
+		$this->load->view('attendances_data', $data);
+	
+	}
+	
+	function appraisal(){
+	
+		$output['data']['module_name'] = "Appraisal";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['content'] = "hrd/appraisal";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function add_appraisal(){
+	
+		$data['asd'] = 'asd';
+		 
+		$this->load->view('appraisal_add', $data);
+	
+	}
+	
+	function appraisal_data($page = 1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['attandances_data'] = $this->Mhrd->appraisal_data($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->appraisal_data_count($this->input->post());	
+
+		$this->load->view('appraisal_data', $data);
+	
+	}
+	
+	function interview_req(){
+	
+		$output['data']['module_name'] = "Interview Request";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['content'] = "hrd/interview_req";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function add_interview_req(){
+	
+		$data['asd'] = 'asd';
+		 
+		$this->load->view('appraisal_add', $data);
+	
+	}
+	
+	function interview_req_data($page = 1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['attandances_data'] = $this->Mhrd->appraisal_data($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->appraisal_data_count($this->input->post());	
+
+		$this->load->view('interview_req_data', $data);
+	
+	}
+	
+	
 }
 
 /* End of file welcome.php */

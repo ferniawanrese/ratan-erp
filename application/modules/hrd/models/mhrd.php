@@ -1177,6 +1177,84 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function attendances_data($data,$page,$limit){
+		
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		 
+		$this->db->join('employee','employee.employee_ID = attendance.employee_ID');
+		 
+		$query = $this->db->get('attendance',$limit,$a);
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	}
+	
+	function attendances_data_count($data){
+	
+		$this->db->select('count(*) as totdata');
+		
+		$this->db->join('employee','employee.employee_ID = attendance.employee_ID');
+		  
+		$query = $this->db->get('attendance');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	}
+	
+	function appraisal_data($data,$page,$limit){
+		
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		 
+		$this->db->join('employee','employee.employee_ID = appraisal.employee_ID');
+		 
+		$query = $this->db->get('appraisal',$limit,$a);
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	}
+	
+	function appraisal_data_count($data){
+	
+		$this->db->select('count(*) as totdata');
+		
+		$this->db->join('employee','employee.employee_ID = appraisal.employee_ID');
+		  
+		$query = $this->db->get('appraisal');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	}
+	
 }
 	
 ?>
