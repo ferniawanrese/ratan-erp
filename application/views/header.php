@@ -14,18 +14,21 @@
 <!--[if IE 7]>
             <link rel="stylesheet" href="css/font-awesome-ie7.min.css');?>">
 <![endif]-->
-
-<link href="<?php echo base_url('css/loadie.css');?>" rel="stylesheet">  
+ 
 
 <link href="<?php echo base_url('css/styles.css');?>" rel="stylesheet"> 
 
 <link href="<?php echo base_url('css/jquery-ui.css');?>" rel="stylesheet">
-
+  
 <link href="<?php echo base_url('css/tablecloth.css');?>" rel="stylesheet">
+
+<link href="<?php echo base_url('css/datepicker.css');?>" rel="stylesheet">
 
 <link href="<?php echo base_url('css/responsive-tables.css');?>" rel="stylesheet">
 
 <link href="<?php echo base_url('css/chosen.css');?>" rel="stylesheet">
+
+<link rel='stylesheet' href="<?php echo base_url('css/nprogress.css');?>"/>
 
 <!--[if IE 7]>
             <link rel="stylesheet" type="text/css" href="css/ie/ie7.css');?>" />
@@ -39,38 +42,28 @@
 <!--fav and touch icons -->
 
 <!--============ javascript ===========-->
-
-<script type="text/javascript">
-  var baseurl = "<?php print base_url(); ?>";
  
-
-
-</script>
 <script src="<?php echo base_url('js/jquery.js');?>"></script>
 <script src="<?php echo base_url('js/jquery-ui.js');?>"></script>
 <script src="<?php echo base_url('js/bootstrap.js');?>"></script>
 <script src="<?php echo base_url('js/custom.js');?>"></script>
 <script src="<?php echo base_url('js/responsive-tables.js');?>"></script>
-<script src="<?php echo base_url('js/bootstrap-datetimepicker.min.js');?>"></script>
+<script src="<?php echo base_url('js/bootstrap-datepicker.js');?>"></script>
 <script src="<?php echo base_url('js/bootstrap-fileupload.js');?>"></script>
 <script src="<?php echo base_url('js/bootbox.js');?>"></script>
 <script src="<?php echo base_url('js/bootstrap-paginator.js');?>"></script>
-<script src="<?php echo base_url('js/accordion.nav.js');?>"></script>
-<script src="<?php echo base_url('js/jquery.loadie.js');?>"></script>
+<script src="<?php echo base_url('js/accordion.nav.js');?>"></script> 
 <script src="<?php echo base_url('js/jquery.validate.js');?>"></script>
 <script src="<?php echo base_url('js/jquery.metadata.js');?>"></script>
 <script src="<?php echo base_url('js/chosen.jquery.js');?>"></script>
-<script src="<?php echo base_url('js/stepy.jquery.js');?>"></script>
+<script src="<?php echo base_url('js/stepy.jquery.js');?>"></script> 
+<script src="<?php echo base_url('js/nprogress.js');?>"></script>  
+
 </head>
-
-<script>
-
- $(function() {					
  
-		$('body').loadie();   
-	})
-</script>
-
 
 <body id = "smashinglogo">
 <div class="my_loadie_container" ></div>
+
+
+
