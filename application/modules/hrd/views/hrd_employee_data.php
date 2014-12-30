@@ -7,7 +7,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 				<th> Full Name </th>
 				<th> Address </th>
 				<th> Email </th>
-				<th> Phone </th>
+				<th> Mobile Phone </th>
 				<th> Badge </th>		
 				<th class = "additionalcolums_name" style="display:none"></th>
 				<th> Action </th> 
@@ -21,7 +21,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<td><?php echo $keys['employee_name'];?></td>
 					<td> <?php echo $keys['employee_address'];?> </td>
 					<td class="center"> <?php echo $keys['employee_email'];?> </td>
-					<td class="center"> <?php echo $keys['employee_phone'];?> </td>
+					<td class="center"> <?php echo $keys['employee_mobilephone'];?> </td>
 					<td class="center"> <?php echo $keys['employee_badge'];?> </td>	
 					<td class = "additionalcolums_data" style="display:none"></td>
 					<!--<td class="additionalcolums1"> <?php echo date("d M Y", strtotime($keys['employee_startworking']));?> </td>		-->				

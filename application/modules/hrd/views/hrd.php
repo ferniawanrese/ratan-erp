@@ -44,22 +44,29 @@
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-optional"></label>
 													<div class="input-group col-sm-12 col-md-12">
-														<select class="form-control" name="employee_divisionID" id="employee_divisionID" >
-															<option value = "">[division]</option>
-														</select>
-														
-													</div>
+														<select class = "form-control" id = "sdepartment_ID" name = "sdepartment_ID">
+																<option value = "-1">-- Choose Department --</option>
+														<?php foreach($department_data as $dep):?>
+															<?php if($dep['department_parentID'] == '0'):?>
+																<option value = "<?php echo  $dep['department_ID'];?>"><?php echo  $dep['department_name'];?></option>
+															<?php else:?>
+																<option value="<?php echo  $dep['department_ID'];?>"><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
+															<?php endif;?>										
+														<?php endforeach;?>	 
+													 </select>
+													</div> 
 												</div>
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-email"></label>
 													<div class="input-group col-sm-12 col-md-12" >
 														<select class="form-control" name="employee_positionID" id="employee_positionID" >
 															<option  value = "">[position]</option>
+															
 														</select>
 														
 													</div>
 												</div>
-												
+												 
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-number"></label>
 													<div class="input-group col-sm-12 col-md-12" data-validate="number">
@@ -163,6 +170,8 @@ $( "#"+e).remove();
 display_data();
 
 function display_data(){ 
+
+	NProgress.inc();
 	$('#btn-list').hide();
 	$('#btn-create').show();
 	$.ajax({
@@ -171,14 +180,15 @@ function display_data(){
 				data: $("#form_filter").serialize(),
 				success: function(data){     
 					$( ".list" ).html(data); 								
-					$('.my_loadie_container').loadie(1);
+					NProgress.done(true);
 				}			
 			});
 
 }
 
 function add_employee(){
-
+	
+	NProgress.inc();
 	$('#search').hide();
 	$('#btn-list').show();
 	$('#btn-create').hide();
@@ -188,7 +198,7 @@ function add_employee(){
 				success: function(data){     
 
 					$( ".list" ).html(data); 		
-					$('body').loadie(1);
+					NProgress.done(true);
 				}  
 			});
 
@@ -199,7 +209,7 @@ function add_employee(){
 <script>
 
 	$("form#form_filter").submit(function(e){
-	
+	NProgress.inc();
 	e.preventDefault();
 	
 			$.ajax({
@@ -209,7 +219,7 @@ function add_employee(){
 				success: function(data)
 				{
 					$( ".list" ).html(data);
-					$('body').loadie(1);
+					NProgress.done(true);
 				}
 			});
 			
@@ -218,14 +228,14 @@ function add_employee(){
 
 
 function exportdata(){
-
+NProgress.inc();
 $.ajax({
 				type: "POST",
 				url: "<?php echo base_url('hrd/hrd_employe_data_export');?>",
 				data: $("#form_filter").serialize(),
 				success: function(data)
 				{
-						$('body').loadie(1);
+						NProgress.done(true);
 				}
 			});
 			
@@ -236,7 +246,7 @@ $.ajax({
 <script>
 
 function edit_employee(a){
-
+	NProgress.inc();
 	$('#search').hide();
 	$('#btn-list').show();
 	$('#btn-create').hide();
@@ -246,13 +256,14 @@ function edit_employee(a){
 				url: "<?php echo base_url('hrd/hrd_addemployee/');?>/" + a,
 				success: function(data){     
 					$( ".list" ).html(data); 
-					$('body').loadie(1);
+					NProgress.done(true);
 				}  
 			});
 
 }
 
 function clearfilter(){
+
 $('#limit').val('10');
 $('#employee_divisionID').val('');
 $('#employee_positionID').val('');
@@ -269,13 +280,15 @@ display_data();
 			
 function delete_post(a){
 	
-	bootbox.confirm("Are you sure?", function (result) {
+	bootbox.confirm("Are you sure you want to delete this post?", function (result) {
                   
-					if(result == true){						
+					if(result == true){	
+					 	NProgress.inc();	
 						$.ajax({
 									url: "<?php echo base_url('hrd/hrd_delete_employee/')?>/" + a,									
 									success: function(data)
-									{											
+									{								
+											NProgress.done(true);
 											display_data();
 									}
 						});
@@ -283,6 +296,45 @@ function delete_post(a){
 					
                 });
 }
+ 
+		$("#sdepartment_ID").change(function() {		
+					if($('#sdepartment_ID').val()!='-1'){
+					var depID = $('#sdepartment_ID').val();
+					}else{
+					var depID = null;
+					}
+					 
+					$.ajax({
+						
+						url: "<?php echo base_url('hrd/get_position/');?>" + '/' +depID,
+						
+						
+						success: function (data) {
+						 
+						$( "#job_ID" ).html("<option value = '-1'>-- Choose Position --</option>");
+						var jsonData = JSON.parse(data); 
+						
+						optmin = "<option value = '-1'>-- Choose Position --</option>";
+							
+							if(jsonData.positionnya.length > 0){
+							 
+							for (var i = 0; i < jsonData.positionnya.length; i++) {
+							
+										var datanya = jsonData.positionnya[i];
+										  
+										optmin += "<option value ='"+ datanya.job_ID +"'>"+ datanya.job_name +"</option>";
+										  
+										$( "#employee_positionID" ).html(optmin); 
+							}
+							
+						}else{
+										$( "#employee_positionID" ).html(optmin); 
+						}						
+							
+						}
+					});
+					
+				});
 </script>
 
 	

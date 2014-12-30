@@ -131,7 +131,7 @@
 display_data();
 function display_data(){
 	$.ajax({
-		url:'<?php echo base_url('hrd/interview_req_data');?>',
+		url:'<?php echo base_url('hrd/appraisal_datac');?>',
 		success: function(data){     
 		 
 					$( ".list" ).html(data); 		
