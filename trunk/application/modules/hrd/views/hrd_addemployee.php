@@ -91,6 +91,18 @@
 														<input name="employee_badge" class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_badge'];?>"/>
 													</div>
 												</div>
+														 
+												<div class="form-group">
+													<label  class="col-sm-3 control-label">Place / Date of Birth :</label>
+													<div class="control col-md-3">
+														<input name="employee_placeofbirth" id = "employee_placeofbirth" class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_placeofbirth'];?>"/>
+													</div>
+													 
+													<div class="control col-md-3 "> 
+															<input   class = "form-control datepicker" id = "employee_dateofbirth" name = "employee_dateofbirth" value = "<?php echo date("d-m-Y", strtotime($data_detail[0]['employee_dateofbirth']));?>">
+												 	</div>	 
+												</div>
+												 
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Work Phone :</label>
 													<div class="control col-md-3">
@@ -151,6 +163,12 @@
 													<label  class="col-sm-3 control-label">SSN No :</label>
 													<div class="control col-md-6">
 														<input type="text" id = "employee_SSN" name = "employee_SSN" value = "<?php echo $data_detail[0]['employee_SSN'];?>" class="form-control" placeholder="Social Security Number" class="input-large">
+													</div>
+												</div>
+												<div class="form-group">
+													<label  class="col-sm-3 control-label">Tax Obligation Main No :</label>
+													<div class="control col-md-6">
+														<input type="text" id = "employee_tax_obligation_number" name = "employee_tax_obligation_number" value = "<?php echo $data_detail[0]['employee_tax_obligation_number'];?>" class="form-control" placeholder="Taxation Identification Number" class="input-large">
 													</div>
 												</div>
 												<div class="form-group">
@@ -219,27 +237,19 @@
 												</div>
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Nationality :</label>
-													<div class="control col-md-6">
+													<div class="control col-md-6"> 
 														<select name = "employee_countryID" id = "employee_countryID" class="form-control">
 
 															<?php foreach($country as $key_country):?>
-															<option value = "<?php echo $key_country['idCountry'];?>">
-																<?php echo $key_country['countryName'];?></option>
+															<?php if($key_country['idCountry']==$data_detail[0]['employee_countryID']){$selected = "selected";}else{$selected = ""; };?>
+															<option value = "<?php echo $key_country['idCountry'];?>" <?php echo $selected;?>><?php echo $key_country['countryName'];?></option>
+															
 															<?php endforeach;?>
 														</select>
 
 													</div>
 												</div>
-												<div class="form-group">
-													<label  class="col-sm-3 control-label">Date Picker :</label>
-													<div class="control col-md-3">
-														<div id="datetimepicker4" class="input-append ">
-																<span class="add-on">
-																<input data-format="dd/MM/yyyy" type="text" class = "form-control" id = "employee_dob">
-																</span>																	
-														</div>																												
-													</div>																									
-												</div>
+											
 												 
 								</div>
 								<div class="row setup-content " id="step-last">
@@ -406,10 +416,7 @@ $(document).ready(function() {
     
    
 });
-
- $('#datetimepicker4').datetimepicker({
-            pickTime: false
-        });
+ 
 </script>
 
 <script>
@@ -481,5 +488,9 @@ $(document).ready(function() {
  }
   
  </script>
-						
+ <script>
+  $('.datepicker').datepicker({
+  format:"dd-mm-yyyy"
+  });
+</script>						
 							

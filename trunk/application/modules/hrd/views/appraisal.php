@@ -124,8 +124,7 @@
 											</span>
 										
 											<div class = "list col-sm-12 col-md-12">
-												<!-- content ajax -->	
-														 
+												<!-- content ajax -->	 
 											</div>
 										 
 										</div> 

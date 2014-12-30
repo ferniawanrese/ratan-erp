@@ -52,6 +52,14 @@ class hrd extends CI_Controller {
 		
 		$output['data']['submenu_active'] = "hrd";
 		
+		$output['data']['parent'] = $this->Mhrd->department_parent();
+		 
+		foreach($output['data']['parent'] as $pr){
+			 $output['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+		
+		$output['data']['department_data'] = $this->Mhrd->department_data();
+		
 		$output['content'] = "hrd/hrd";
 		
 		$output['filterplus'] = $this->core->filterplus('employee');
@@ -884,6 +892,20 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function appraisal_datac($page = 1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['appraisal_datac'] = $this->Mhrd->appraisal_datac($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->appraisal_data_count($this->input->post());	
+
+		$this->load->view('appraisal_datac', $data);
+	
+	}
+	
 	function interview_req(){
 	
 		$output['data']['module_name'] = "Interview Request";
@@ -922,6 +944,16 @@ class hrd extends CI_Controller {
 	
 	}
 	
+		
+	function  interview_add(){
+	 
+		$data['parent'] = $this->Mhrd->department_parent();
+		 
+		$data['country'] = $this->Mhrd->get_country();
+				
+		$this->load->view('interview_req_add', $data);
+		
+	}
 	
 }
 

@@ -41,6 +41,7 @@
                 });
             });
         </script> 
+		 
 		
 	<form  id = "depAdd" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
 				
@@ -115,48 +116,27 @@
 						<div class="form-container">
 							<span id="stepy1" class=" form-horizontal left-align form-well" >
 								<fieldset title="Appraisal">
-									<legend> </legend>
-									 
+									<legend>Interview Appraisal</legend>
+									 <span class = "data_load"></span>
 								</fieldset>
 								<fieldset title="Internal Notes">
-									<legend> </legend>
+									<legend>  Notes</legend>
 									<div class="control-group">
-										<label class="control-label">First Name</label>
+										<label class="control-label"> </label>
 										<div class="controls">
-											<input type="text" placeholder="First Name" class="input-large">
+											<textarea rows="5" cols="80" style="width: 80%" class="tinymce-simple"></textarea> 
 										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Last Name</label>
-										<div class="controls">
-											<input type="text" placeholder="Last Name" class="input-large">
-										</div>
-									</div>
+									</div> 
 								</fieldset>
 								<fieldset title="Public Notes">
-									<legend> </legend>
+									<legend>  Notes</legend>
 									<div class="control-group">
-										<label class="control-label">Text Input</label>
+										<label class="control-label"> </label>
 										<div class="controls">
-											<input type="text" placeholder="Text Input" class="input-large">
+											<textarea rows="5" cols="80" style="width: 80%" class="tinymce-simple"></textarea>
 										</div>
 									</div>
-									<div class="control-group">
-										<label class="control-label">Checkbox</label>
-										<div class="controls">
-											<label class="checkbox">
-											<input type="checkbox" value="">
-											Option one is this and that—be sure to include why it's great </label>
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Radio</label>
-										<div class="controls">
-											<label class="radio">
-											<input type="radio" name="optionsRadios" value="option1" checked>
-											Option one is this and that—be sure to include why it's great </label>
-										</div>
-									</div>
+									 
 								</fieldset>
 								<button type="submit" class="finish btn btn-extend"> Finish!</button>
 							</span>
@@ -164,10 +144,40 @@
 					</div>
 				</div>
 			</div>							  
-</form>		 
+</form>		
 
+<!-- dialog contents on hidden div -->   
+ 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-header-primary">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class = "icon-remove"></i></button>
+				<h1><span id = "modal_label"></span></h1>
+			</div>
+			<div class="modal-body" id = "modal_body">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal --> 
+ 
 <script>
- $('.dating').datetimepicker({
-            pickTime: false
-        });
+load_data();
+function load_data(){
+
+	$.ajax({
+	
+		url:"<?php echo base_url('hrd/appraisal_datac');?>",
+		success: function(data){      
+					$( ".data_load" ).html(data); 		 
+		} 
+	 
+	});
+
+}
 </script>
+
+

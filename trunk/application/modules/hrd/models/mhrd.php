@@ -200,6 +200,8 @@ class Mhrd extends CI_Model {
 	}
 
 	function save_employee($data,$img){
+	
+	 
 			unset($data['employee_managerName']);
 		if ($data['employee_ID']==""){
 			unset($data['employee_ID']);
@@ -209,13 +211,16 @@ class Mhrd extends CI_Model {
 			}
 			
 			$this->db->set('employee_ID', $this->generate_code->getUID());	
+			$this->db->set('employee_dateofbirth',date("Y-m-d", strtotime($data['employee_dateofbirth'])));
+			unset($data['employee_dateofbirth']);
 			$this->db->insert('employee', $data); 
 		}else{
 			
 			if($img!= null){
 			$this->db->set('employee_photo', $img);	
 			}
-			
+			$this->db->set('employee_dateofbirth',date("Y-m-d", strtotime($data['employee_dateofbirth'])));
+			unset($data['employee_dateofbirth']);
 			$this->db->where('employee_ID',$data['employee_ID']);
 			$this->db->update('employee', $data); 			
 		}
@@ -1224,6 +1229,26 @@ class Mhrd extends CI_Model {
 		$this->db->join('employee','employee.employee_ID = appraisal.employee_ID');
 		 
 		$query = $this->db->get('appraisal',$limit,$a);
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+		
+	}
+	
+		function appraisal_datac($data,$page,$limit){
+		
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		 
+		$this->db->join('employee','employee.employee_ID = interview.employee_ID');
+		 
+		$query = $this->db->get('interview',$limit,$a);
 	 
 			if ($query->num_rows())
 			{
