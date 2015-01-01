@@ -111,6 +111,7 @@
 							<div class="tab-pane  <?php  if($menu_active == "Configuration"){echo "active";};?>" id="Configuration">
 								<h4 class="side-head">  Configuration</h4> 
 								<ul class="accordion-nav">
+									 <li><a href="<?php echo base_url('hrd/autobadge');?>" ><i class="icon-file-alt"></i>  Auto Badge</a></li>  
 									 <li  ><a href="#" ><i class="icon-caret-right"></i> Organization Resource</a>
 										<ul >
 											<li  ><a href="<?php echo base_url('hrd/department');?>" >  Companies</a></li>

@@ -955,6 +955,30 @@ class hrd extends CI_Controller {
 		
 	}
 	
+	function autobadge(){
+		
+		if($_POST){
+		
+		$this->Mhrd->autobadge($this->input->post());	
+		
+		}
+	 
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		 
+		$output['data']['menu_active'] = "Configuration";
+		 
+		$output['content'] = "hrd/autobadge";
+		
+		$output['autobadge_data'] =  $this->Mhrd->autobadge_data();
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
 }
 
 /* End of file welcome.php */
