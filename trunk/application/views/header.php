@@ -14,8 +14,7 @@
 <!--[if IE 7]>
             <link rel="stylesheet" href="css/font-awesome-ie7.min.css');?>">
 <![endif]-->
- 
-
+  
 <link href="<?php echo base_url('css/styles.css');?>" rel="stylesheet"> 
 
 <link href="<?php echo base_url('css/jquery-ui.css');?>" rel="stylesheet">

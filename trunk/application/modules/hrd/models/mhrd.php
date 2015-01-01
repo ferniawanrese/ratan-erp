@@ -1280,6 +1280,28 @@ class Mhrd extends CI_Model {
 		
 	}
 	
+	function autobadge($data){
+	
+	$this->db->where('company_ID','1');
+	$this->db->update('company',$data);
+	
+	}
+	
+	function autobadge_data(){
+	 
+		$query = $this->db->get('company');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
 }
 	
 ?>
