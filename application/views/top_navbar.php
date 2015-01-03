@@ -10,34 +10,7 @@
 				<?php if(isset($menu_name)){
 					if($menu_name== "HRD"):?>
 				<div class="navbar-collapse col-sm-12 col-md-12">
-					<ul class="nav navbar-nav"> 
-						<li class="dropdown">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="icon-cogs"></i> Organization Resource  <b class="icon-angle-down"></b>
-							</a>
-						<div class="dropdown-menu col-sm-12 col-md-12">
-							<ul>
-								<li><a href="<?php echo base_url('hrd/companies');?>"><i class="icon-file-alt"></i> Companies </a></li>	
-								<li><a href="<?php echo base_url('hrd/department');?>"><i class="icon-file-alt"></i> Department & Division </a></li>	
-								<li><a href="<?php echo base_url('hrd/job');?>"><i class="icon-file-alt"></i> Job Positions </a></li>
-								<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class="icon-file-alt"></i>  Employee Categories</a></li>	  
-							</ul> 
-						</div>
-						</li>					
-					</ul>
-					<ul class="nav navbar-nav"> 
-						<li class="dropdown">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="icon-cogs"></i> Time Tracking <b class="icon-angle-down"></b>
-							</a>
-						<div class="dropdown-menu col-sm-12 col-md-12">
-							<ul>
-								<li><a href="<?php echo base_url('hrd/project');?>"><i class="icon-file-alt"></i> Project </a></li>		
-								<li><a href="<?php echo base_url('hrd/task');?>"><i class="icon-file-alt"></i> Task </a></li> 
-							</ul> 
-						</div>
-						</li>					
-					</ul>
+					  
 					<ul class="nav navbar-nav "> 
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">

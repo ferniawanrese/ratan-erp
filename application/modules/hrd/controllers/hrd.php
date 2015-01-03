@@ -43,7 +43,7 @@ class hrd extends CI_Controller {
 	
 	public function index()
 	{
-		
+	 
 		$output['data']['module_name'] = "Human Resources";
 		
 		$output['data']['menu_name'] = "HRD";

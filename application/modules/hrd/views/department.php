@@ -54,13 +54,14 @@ display_data();
 function display_data(){ 
 	$('#btn-list').hide();
 	$('.btn-create').show();
+	NProgress.inc();
 	$.ajax({
 				type: "POST",
 				url: "<?php echo base_url('hrd/department_data/');?>",
 				data: $("#form_filter").serialize(),
 				success: function(data){     
 					$( ".list" ).html(data); 								
-					$('.my_loadie_container').loadie(1);
+					NProgress.done(true);
 				}			
 			});
 
