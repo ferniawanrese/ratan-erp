@@ -40,6 +40,100 @@ class Mbackend extends CI_Model {
 				return FALSE;
 			}		
 	}
+	
+	function companies_det($company_ID){
+	
+		$this->db->select("company.*,employee.employee_name,employee.employee_badge");
+	  
+		$this->db->where("company.company_ID",$company_ID);
+		
+		$this->db->join("employee","company.employee_ID = employee.employee_ID","left");
+		 
+		$this->db->where('company.deleted',0);
+		$query = $this->db->get('company');
+	
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function companies($limit,$page,$search){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->like('company_name',$search);
+	   
+		$this->db->where('deleted',0);
+		$query = $this->db->get('company',$limit,$a);
+	
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function companies_count($search){
+	
+		$this->db->select("count(*) as totdata");
+		
+		$this->db->like('company_name',$search);
+	   
+		$this->db->where('deleted',0);
+		$query = $this->db->get('company');
+	
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function company_add($data){
+	
+	unset($data['employee_IDx']);
+	
+	if($data['company_ID']==""){
+	
+	$this->db->set('company_ID', $this->generate_code->getUID());	
+	
+	$this->db->insert('company',$data);
+	
+	}else{
+	
+	$this->db->where('company_ID', $data['company_ID']);
+	
+	$this->db->update('company',$data);
+	
+	}
+	
+	}
+	
+	function delete_company($company_ID){
+	
+	$this->db->set("deleted",1);
+	
+	$this->db->where('company_ID',$company_ID);
+	
+	$this->db->update('company');
+	
+	}
+	
 }
 	
 ?>

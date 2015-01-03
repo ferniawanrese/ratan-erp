@@ -5,6 +5,7 @@
 	<li class="active">Organization Resource</li>
 	<li class="active">Auto Badge</li>
 </ul> 
+
 <div class="primary-head">
 						<!--content-->
 						<div class="row-fluid">
@@ -39,8 +40,7 @@
  
 
 <style>
- 
-
+   
 @media ( max-width: 585px ) {
     .input-group span.input-group-btn,.input-group input,.input-group button{
         display: block;

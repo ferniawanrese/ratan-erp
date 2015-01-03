@@ -11,6 +11,7 @@ class backend extends CI_Controller {
 		$this->load->database();
 		$this->load->library('session');
 		$this->load->helper('url');  
+		$this->load->library('generate_code'); 
 		$this->load->library('core');
 		$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
@@ -35,6 +36,62 @@ class backend extends CI_Controller {
 	}
 	
 	
+	public function company()
+	{
 	
+		$output['data']['module_name'] = "Dasboard";
+		
+		$output['data']['main_menu'] = $this->Mbackend->cek_menu($this->session->userdata('employee_ID'));
+		
+		$output['content'] = "backend/company";
+		
+		$this->load->view('template', $output);
+		
+	}
+	
+	public function company_data($page = 1)
+	{
+	
+		$data['limit'] = "10";
+		
+		$data['page'] = $page;
+		
+		$search = $this->input->post('search');
+	
+		$data['companies'] = $this->Mbackend->companies($data['limit'],$data['page'],$search);
+		
+		$data['countdata'] = $this->Mbackend->companies_count($search);
+		 
+		$this->load->view('company_data', $data);
+		
+	}
+	
+	public function add_company($company_ID=null){
+	
+	$data['companies'] = $this->Mbackend->companies_det($company_ID);
+	 
+	$this->load->view('company_add',$data);
+	
+	}
+	
+	function company_add_action(){
+	
+	$this->Mbackend->company_add($this->input->post());
+	
+	}
+	
+	function edit_company($company_ID=null){
+	
+	$data['companies'] = $this->Mbackend->companies_det($company_ID);
+	
+	$this->load->view('company_add', $data);
+	 
+	}
+	
+	function delete_company($company_ID){
+	
+	$this->Mbackend->delete_company($company_ID);
+	 
+	}
 	
 }

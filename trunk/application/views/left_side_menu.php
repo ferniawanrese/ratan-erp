@@ -143,7 +143,7 @@
 								</ul>
 							</div>
 				
-					<?php endif;?>
+				<?php endif;?>
 					<!-- end menu HRD -->
 					
 				<?php endif;?>	
@@ -153,10 +153,12 @@
 						<div class="tab-pane active" id="main">
 							<h4 class="side-head"><?php echo $module_name;?></h4>						
 							<ul class="metro-sidenav clearfix">								
-									<li><span class="notify-tip">30</span><a href="#" class="brown"><i class="icon-user"></i><span>User</span></a></li>
-									<li><a href="#" class="orange"><i class="icon-cogs"></i><span>Settings</span></a></li>
-									<li><a href="#" class=" bondi-blue"><i class="icon-time"></i><span>Events</span></a></li>
-									<li><a href="#" class=" blue-violate"><i class="icon-lightbulb"></i><span>Support</span></a></li>
+									<li><span class="notify-tip">5</span><a href="#" class="brown"><i class="icon-envelope"></i><span>Inbox</span></a></li>
+									<li><a href="#" class="grey"><i class="icon-user "></i><span>Account</span></a></li>
+									
+									<li><span class="notify-tip">2</span><a href="#" class=" bondi-blue"><i class="icon-time"></i><span>Events</span></a></li>
+									<li><a href="<?php echo base_url('backend/company');?>" class="orange"><i class="icon-building"></i><span>Companies</span></a></li>
+									 
 							</ul>						
 						</div>
 				<?php };?>
