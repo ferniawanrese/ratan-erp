@@ -14,6 +14,8 @@ class Mhrd extends CI_Model {
 		
 		$this->db->where('deleted', '0');
 		
+		$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
+		
 		//orderby
 		if($data['orderby']!=""){
 		$this->db->order_by($data['orderby'],$data['ascdsc']);
@@ -107,6 +109,7 @@ class Mhrd extends CI_Model {
 	
 		$this->db->select('count(*) as totdata');
 		$this->db->where('deleted', '0');
+		$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
 		$this->db->order_by('datecreated','desc');	
 		if(isset($data['filterplus'])){
 		$this->db->like($data['filterplus']);
@@ -200,7 +203,6 @@ class Mhrd extends CI_Model {
 	}
 
 	function save_employee($data,$img){
-	
 	 
 			unset($data['employee_managerName']);
 		if ($data['employee_ID']==""){
@@ -213,6 +215,11 @@ class Mhrd extends CI_Model {
 			$this->db->set('employee_ID', $this->generate_code->getUID());	
 			$this->db->set('employee_dateofbirth',date("Y-m-d", strtotime($data['employee_dateofbirth'])));
 			unset($data['employee_dateofbirth']);
+			
+			$this->db->set('company_ID',  $this->session->userdata('current_companyID'));	
+			
+			$this->db->set('company_groupID',  $this->session->userdata('current_companygroupID'));
+			
 			$this->db->insert('employee', $data); 
 		}else{
 			
@@ -293,6 +300,7 @@ class Mhrd extends CI_Model {
 	}
 	
 	function department_parent(){
+	$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
 	$this->db->where('department.deleted','0');
 	$this->db->where('department_parentID','0');
 	$query = $this->db->get('department');
@@ -348,6 +356,7 @@ class Mhrd extends CI_Model {
 	
 		$this->db->select('count(*) as totdata');
 		$this->db->where('deleted', '0');
+		$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
 		$this->db->like('department_name', $data['search']);
 		
 		$query = $this->db->get('department');
@@ -370,6 +379,7 @@ class Mhrd extends CI_Model {
 		$this->db->set('department_ID', $idparent);	
 		$this->db->set('department_name',$data['parent_new']);
 		$this->db->set('manager_ID',$data['manager_ID']);
+		$this->db->set('company_ID', $this->session->userdata('current_companyID'));
 		$this->db->insert('department');
 		
 			if($data['child']){
@@ -377,6 +387,7 @@ class Mhrd extends CI_Model {
 				$this->db->set('department_name',$data['child']);
 				$this->db->set('department_parentID',$idparent);
 				$this->db->set('manager_ID',$data['manager_ID']);
+				$this->db->set('company_ID', $this->session->userdata('current_companyID'));
 				$this->db->insert('department');
 			}
 		}
@@ -387,6 +398,7 @@ class Mhrd extends CI_Model {
 				$this->db->set('department_name',$data['child']);
 				$this->db->set('department_parentID',$data['parent']);
 				$this->db->set('manager_ID',$data['manager_ID']);
+				$this->db->set('company_ID', $this->session->userdata('current_companyID'));
 				$this->db->insert('department');
 		
 		}
@@ -404,6 +416,8 @@ class Mhrd extends CI_Model {
 	
 		$a = ($page-1) * $limit;
 		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->where('department.company_ID', $this->session->userdata('current_companyID'));
 		
 		$this->db->join('department','department.department_ID = job.department_ID');
 		
@@ -436,7 +450,11 @@ class Mhrd extends CI_Model {
 	function job_data_count($data){
 	
 		$this->db->select('count(*) as totdata');
-		$this->db->where('deleted', '0');
+		$this->db->where('job.deleted', '0');
+		$this->db->where('department.company_ID', $this->session->userdata('current_companyID'));
+		
+		$this->db->join('department','department.department_ID = job.department_ID');
+		
 		$this->db->like('job_name', $data['search']);
 		
 		$query = $this->db->get('job');
@@ -1284,12 +1302,14 @@ class Mhrd extends CI_Model {
 	
 	function autobadge($data){
 	
-	$this->db->where('company_ID','1');
+	$this->db->where('company_ID', $this->session->userdata('current_companyID'));
 	$this->db->update('company',$data);
 	
 	}
 	
 	function autobadge_data(){
+	
+		$this->db->where('company_ID', $this->session->userdata('current_companyID'));
 	 
 		$query = $this->db->get('company');
 	 

@@ -51,6 +51,7 @@ class Welcome extends CI_Controller {
 				if($output['data']){
 				$this->session->set_userdata($sessian_all);
 				$this->session->set_userdata('current_companyID', $output['data']['company_ID']);
+				$this->session->set_userdata('current_companygroupID', $output['data']['company_groupID']);
 				$this->session->set_userdata('current_companyName', $output['data']['company_name']);
 				
 				redirect(base_url('backend'));

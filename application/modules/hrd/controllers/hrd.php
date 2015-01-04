@@ -53,11 +53,11 @@ class hrd extends CI_Controller {
 		$output['data']['submenu_active'] = "hrd";
 		
 		$output['data']['parent'] = $this->Mhrd->department_parent();
-		 
-		foreach($output['data']['parent'] as $pr){
-			 $output['depparent'][$pr['department_ID']] = $pr['department_name'];
+		if($output['data']['parent']){
+			foreach($output['data']['parent'] as $pr){
+				 $output['depparent'][$pr['department_ID']] = $pr['department_name'];
+			}
 		}
-		
 		$output['data']['department_data'] = $this->Mhrd->department_data();
 		
 		$output['content'] = "hrd/hrd";
@@ -211,8 +211,10 @@ class hrd extends CI_Controller {
 	function hrd_addemployee($employee_ID= null){
 	
 		$data['parent'] = $this->Mhrd->department_parent();
-		foreach($data['parent'] as $pr){
-			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		if($data['parent']){
+			foreach($data['parent'] as $pr){
+				 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+			}
 		}
 		
 		$data['department_data'] = $this->Mhrd->department_data( );		
@@ -257,9 +259,10 @@ class hrd extends CI_Controller {
 		  
 		$data['parent'] = $this->Mhrd->department_parent();
 		 
-		 
-		foreach($data['parent'] as $pr){
-			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		if($data['parent']){
+			foreach($data['parent'] as $pr){
+				 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+			}
 		}
 		 
 		$data['department_data'] = $this->Mhrd->department_data($this->input->post(),$data['page'],$data['limit']);		
@@ -338,9 +341,11 @@ class hrd extends CI_Controller {
 		$data['job_data'] = $this->Mhrd->job_data($this->input->post(),$data['page'],$data['limit']);		
 		
 		$data['parent'] = $this->Mhrd->department_parent();
-		 
-		foreach($data['parent'] as $pr){
-			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		
+		if($data['parent']){ 
+			foreach($data['parent'] as $pr){
+				 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+			} 
 		}
 		
 		$data['countdata'] = $this->Mhrd->job_data_count($this->input->post());	
@@ -391,10 +396,13 @@ class hrd extends CI_Controller {
 	$data['dat'] = $this->Mhrd->job_data_detail($job_ID);
 	 
 	$data['parent'] = $this->Mhrd->department_parent();
+	
+	if($data['parent'] ){
 		foreach($data['parent'] as $pr){
 			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
 		}
-		
+	}
+	
 	$data['department_data'] = $this->Mhrd->department_data();	
 	 
 	$this->load->view('job_position_add', $data);

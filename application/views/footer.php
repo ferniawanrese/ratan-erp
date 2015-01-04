@@ -1,5 +1,5 @@
 <div class="copyright"> 
-<img src = "<?php echo base_url('images/adp.png');?>" class = "img-responsive">
+<!--<img src = "<?php echo base_url('images/adp.png');?>" class = "img-responsive">-->
 		<p>
 			 &copy; 2014 Ratan Software Indonesia
 		</p>

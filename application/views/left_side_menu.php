@@ -113,11 +113,10 @@
 								<ul class="accordion-nav">
 									 <li><a href="<?php echo base_url('hrd/autobadge');?>" ><i class="icon-file-alt"></i>  Auto Badge</a></li>  
 									 <li  ><a href="#" ><i class="icon-caret-right"></i> Organization Resource</a>
-										<ul >
-											<li  ><a href="<?php echo base_url('hrd/department');?>" >  Companies</a></li>
+										<ul > 
 											<li><a href="<?php echo base_url('hrd/department');?>"  >  Department & Division</a></li>
 											<li><a href="<?php echo base_url('hrd/job_position');?>">  Job Positions</a></li>
-											<li><a href="<?php echo base_url('hrd/employee_cat');?>">  Employee Categories</a></li>
+											<!--<li><a href="<?php echo base_url('hrd/employee_cat');?>">  Employee Categories</a></li>-->
 										 </ul>   
 									</li> 
 									 <li ><a href="#"><i class="icon-caret-right"></i> Time Tracking</a>
