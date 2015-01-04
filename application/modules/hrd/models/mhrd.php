@@ -316,6 +316,8 @@ class Mhrd extends CI_Model {
 		
 		$this->db->where('department.deleted', '0');
 		
+		$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
+		
 		if($data['manager_ID']!=""){
 		$this->db->where('manager_ID', $data['manager_ID']);
 		}
