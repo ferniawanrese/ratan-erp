@@ -60,7 +60,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 	$alldata =  $countdata[0]['totdata'];
 	$totpage = ceil($alldata/$limit);
 ?>
-
+<?php if($job_data):?>	
 <script type='text/javascript'>
 			var options = {
 				currentPage: <?php echo $page;?>,
@@ -86,7 +86,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					placement: 'bottom'
 				},
 				onPageClicked: function changepage(e,originalEvent,type,page){
-					$('.progress-bar').show();
+					NProgress.inc();	
 					$.ajax({
 					type: "POST",
 					url: "<?php echo base_url('hrd/job_position_data/');?>" + "/" + page,
@@ -94,7 +94,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					
 						success: function(data){     
 							$( ".list" ).html(data); 							
-							$('.progress-bar').hide();
+							NProgress.done(true);
 							
 						}  
 					});
@@ -104,7 +104,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 
 			$('.pagination').bootstrapPaginator(options);
 </script>
-
+<?php endif;?>
 <script>
 function remove_addcolums(a){
 $('.'+a).remove();

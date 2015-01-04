@@ -61,13 +61,14 @@ display_data();
 function display_data(){ 
 	$('#btn-list').hide();
 	$('.btn-create').show();
+	NProgress.inc();	
 	$.ajax({
 				type: "POST",
 				url: "<?php echo base_url('hrd/job_position_data/');?>",
 				data: $("#form_filter").serialize(),
 				success: function(data){     
 					$( ".list" ).html(data); 								
-					$('.my_loadie_container').loadie(1);
+					NProgress.done(true);
 				}			
 			});
 
@@ -80,7 +81,7 @@ display_data();
 }
 
 function job_position_add(){
- 
+    NProgress.inc();	
 	$('#btn-list').show();
 	$('.btn-create').hide();
 	$.ajax({
@@ -89,7 +90,7 @@ function job_position_add(){
 				success: function(data){     
 
 					$( ".list" ).html(data); 		
-					$('body').loadie(1);
+					NProgress.done(true);
 				}  
 			});
 
@@ -97,7 +98,7 @@ function job_position_add(){
 
 
 function job_position_update(a){
- 
+	NProgress.inc();	
 	$('#btn-list').show();
 	$('.btn-create').hide();
 	$.ajax({
@@ -106,7 +107,7 @@ function job_position_update(a){
 				success: function(data){     
 
 					$( ".list" ).html(data); 		
-					$('body').loadie(1);
+					NProgress.done(true);
 				}  
 			});
 

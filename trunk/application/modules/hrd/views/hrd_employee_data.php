@@ -50,7 +50,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 	$alldata =  $countdata[0]['totdata'];
 	$totpage = ceil($alldata/$limit);
 ?>
-
+<?php if($employee_data):?>
 <script type='text/javascript'>
 			var options = {
 				currentPage: <?php echo $page;?>,
@@ -94,7 +94,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 
 			$('.pagination').bootstrapPaginator(options);
 </script>
-
+<?php endif;?>
 <script>
 function remove_addcolums(a){
 $('.'+a).remove();

@@ -78,13 +78,14 @@ function add_department(){
  
 	$('#btn-list').show();
 	$('.btn-create').hide();
+	NProgress.inc();
 	$.ajax({
 				
 				url: "<?php echo base_url('hrd/department_add/');?>",
 				success: function(data){     
 
 					$( ".list" ).html(data); 		
-					$('body').loadie(1);
+					NProgress.done(true);
 				}  
 			});
 

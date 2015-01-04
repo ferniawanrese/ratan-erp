@@ -11,6 +11,13 @@
 								<?php foreach ($parent as $parents):?>
 									<option value="<?php echo $parents['department_ID'];?>"><?php echo $parents['department_name'];?></option>
 								<?php endforeach;?>
+								
+								<?php if(!$parent):?>
+								<script>
+								$('#parent_new').show();
+								</script>
+								<?php endif;?>
+								
 								<option value="-1">+ Add new department </option>
 								</select>
 						</div>

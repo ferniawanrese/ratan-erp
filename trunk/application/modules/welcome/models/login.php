@@ -12,7 +12,7 @@ class Login extends CI_Model {
 	
 	function cek_login($username,$pass){
 	
-		$this->db->select('employee.*,company.company_name as company_name');
+		$this->db->select('employee.*,company.company_name as company_name, company.company_groupID');
 	 
 		$this->db->where('employee_email',$username);
 		
