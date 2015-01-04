@@ -24,6 +24,7 @@ class Welcome extends CI_Controller {
 		$this->load->model('login');
 		$this->load->helper('form');
 		$this->load->database();
+		$this->load->library('core');
 		$this->load->library('session');
 		$this->load->helper('url');  
 		$this->load->library('encrypt');
@@ -42,8 +43,16 @@ class Welcome extends CI_Controller {
 				$username = $this->input->post('username');
 				$pass = md5(md5($this->input->post('pass')));
 				$output['data'] = $this->login->cek_login($username,$pass);
+				 
+				$output['company']['company'] = $this->login->company($output['data']['company_groupID']);
+				
+				$sessian_all = array_merge($output['data'],$output['company']);
+				 
 				if($output['data']){
-				$this->session->set_userdata($output['data']);
+				$this->session->set_userdata($sessian_all);
+				$this->session->set_userdata('current_companyID', $output['data']['company_ID']);
+				$this->session->set_userdata('current_companyName', $output['data']['company_name']);
+				
 				redirect(base_url('backend'));
 				
 				}else{
