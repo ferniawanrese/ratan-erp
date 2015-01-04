@@ -7,22 +7,28 @@
 				<span class="home-link"><a href="<?php echo base_url('backend');?>" class="icon-home"></a></span>
 				</div>
 				
+				<?php //$this->core->print_rr($this->session->all_userdata());?>
+				
 				<?php if(isset($menu_name)){
 					if($menu_name== "HRD"):?>
 				<div class="navbar-collapse col-sm-12 col-md-12">
 					  
 					<ul class="nav navbar-nav "> 
+					 
 						<li class="dropdown">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="icon-building"></i> PT. Anasher Corpindo Nusantara <b class="icon-angle-down"></b>
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#" >
+								<i class="icon-building"></i> <?php echo $this->session->userdata('current_companyName');?>  <b class="icon-angle-down"></b> 
 							</a>
-							<div class="dropdown-menu col-sm-12 col-md-12">
+							<div class="dropdown-menu">
 								<ul>
-									<li><a href="<?php echo base_url('hrd/project');?>"><i class="icon-building"></i> PT. Ratan Software Indonesia </a></li>		
-									<li><a href="<?php echo base_url('hrd/task');?>"><i class="icon-building"></i> PT.  Harubiru Groupindo</a></li> 
+									<?php foreach($this->session->userdata('company') as $companies):?>
+										<?php if($companies['company_ID'] ==  $this->session->userdata('current_companyID')){continue;} ;?>
+										<li><a href="<?php echo base_url('backend/changecompany/'.$companies['company_ID']);?>"><i class="icon-building"></i> <?php echo $companies['company_name'] ;?></a></li>		
+									 <?php endforeach;?>
 								</ul> 
 							</div>
 						</li>					
+						 
 					</ul>
 				</div>
 				<?php endif;?>

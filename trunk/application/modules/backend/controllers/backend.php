@@ -94,4 +94,15 @@ class backend extends CI_Controller {
 	 
 	}
 	
+	function changecompany($company_ID){
+	
+	$data['companies'] = $this->Mbackend->companies_det($company_ID);
+	 
+	$this->session->set_userdata('current_companyID', $company_ID);
+	$this->session->set_userdata('current_companyName', $data['companies'][0]['company_name']);
+	
+	redirect('backend');
+	
+	}
+	
 }
