@@ -88,7 +88,37 @@
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Badge :  </label>
 													<div class="control col-md-4"> 
+													
+														<?php if($data_detail):?>
+														<span id = "ori">
+															<input name="employee_badge" class="form-control " type="text" value = "<?php echo $final_badge;?>" readonly/>
+														</span>
+														
+														<span id = "kw" style="display:none;">
+															<input name="employee_badge" class="form-control  {validate:{required:true,user_badge:true}}" type="text" value = "<?php echo $final_badge;?>" />
+														</span>
+														
+														<script>
+														$('#orikw_badge').click(function() {
+															var bool = $('#orikw_badge').prop('checked');
+															
+															if(bool == true){
+																$("#ori").hide();
+																$("#kw").show();
+															}else{
+																$("#ori").show();
+																$("#kw").hide();
+															}
+															 
+														});
+														</script>
+														
+														
+														<input type = "checkbox" id = "orikw_badge" > Change
+														<?php else:?>
 														<input name="employee_badge" class="form-control  {validate:{required:true,user_badge:true}}" type="text" value = "<?php echo $final_badge;?>"/>
+														<?php endif;?>
+														
 													</div>
 												</div>
 														 
