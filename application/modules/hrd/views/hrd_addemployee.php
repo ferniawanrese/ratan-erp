@@ -86,9 +86,9 @@
 												</div>
 	  
 												<div class="form-group">
-													<label  class="col-sm-3 control-label">Badge :</label>
-													<div class="control col-md-4">
-														<input name="employee_badge" class="form-control" type="text" value = "<?php echo $data_detail[0]['employee_badge'];?>"/>
+													<label  class="col-sm-3 control-label">Badge :  </label>
+													<div class="control col-md-4"> 
+														<input name="employee_badge" class="form-control  {validate:{required:true,user_badge:true}}" type="text" value = "<?php echo $final_badge;?>"/>
 													</div>
 												</div>
 														 
@@ -489,8 +489,9 @@ $(document).ready(function() {
   
  </script>
  <script>
-  $('.datepicker').datepicker({
+  $('#employee_dateofbirth').datepicker({
   format:"dd-mm-yyyy"
   });
+  
 </script>						
 							

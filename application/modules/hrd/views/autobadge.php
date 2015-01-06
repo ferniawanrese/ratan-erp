@@ -23,6 +23,17 @@
 													<span class="input-group-btn data-down ">
 														<button type="button"  class="btn btn-default btn-info" data-dir="dwn" ><i class="glyphicon glyphicon-minus"></i></button>
 													</span>
+													<input type="text" id = "badge_leadingzeros" name = "badge_leadingzeros" class="form-control text-center"   min="0" max="100000" title="Leading Zeros" value = "<?php echo $autobadge_data[0]['badge_leadingzeros'];?>">
+													<span class="input-group-btn data-up ">
+														<button type="button"  class="btn btn-default btn-info "  data-dir="up" ><i class="glyphicon glyphicon-plus"></i></button>
+													</span>
+												</div>
+											</div>
+											<div class = "col-md-3 btn-create">
+												<div class="input-group number-spinner">
+													<span class="input-group-btn data-down ">
+														<button type="button"  class="btn btn-default btn-info" data-dir="dwn" ><i class="glyphicon glyphicon-minus"></i></button>
+													</span>
 													<input type="text" id = "badge_inc" name = "badge_inc" class="form-control text-center"   min="0" max="100000" title="Initial Increment" value = "<?php echo $autobadge_data[0]['badge_inc'];?>">
 													<span class="input-group-btn data-up ">
 														<button type="button"  class="btn btn-default btn-info "  data-dir="up" ><i class="glyphicon glyphicon-plus"></i></button>

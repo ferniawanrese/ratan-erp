@@ -41,6 +41,8 @@
 <!--fav and touch icons -->
 
 <!--============ javascript ===========-->
+
+<script>base_url = "http://localhost/ratan-erp/";</script>
  
 <script src="<?php echo base_url('js/jquery.js');?>"></script>
 <script src="<?php echo base_url('js/jquery-ui.js');?>"></script>

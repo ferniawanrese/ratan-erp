@@ -1324,6 +1324,73 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function badge_inc(){
+	
+	$this->db->select("employee.employee_badge_int, company.badge,company.badge_leadingzeros");
+	 
+	$this->db->where("employee.company_ID", $this->session->userdata('current_companyID'));
+	
+	$this->db->join("company", "employee.company_ID = company.company_ID");
+	
+	$this->db->order_by("employee_badge_int","desc");
+	
+	$this->db->limit("1");
+	
+	$query = $this->db->get('employee');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function company_detail(){
+	
+	$this->db->where("company.company_ID", $this->session->userdata('current_companyID'));
+	
+	$query = $this->db->get('company');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	}
+	
+	function badge_cek($badge_code){
+	
+	/*$querynya = "SELECT IF( EXISTS(
+             SELECT *
+             FROM employee
+             WHERE employee_badge=  '".$badge_code."'), 1, 0) as exist";
+	*/
+	
+	$querynya = " 
+             SELECT employee_badge
+             FROM employee
+             WHERE employee_badge=  '".$badge_code."'";	 
+	
+			$query = $this->db->query($querynya);
+				
+					if ($query->num_rows())
+					{
+					return $query->result_array();
+					}
+					else
+					{
+					return FALSE;
+					}
+	
+	}
+	
 }
 	
 ?>

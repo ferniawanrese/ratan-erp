@@ -52,6 +52,22 @@
 						</div>
 						
 						<div class="form-group"> 
+							<label  class="col-sm-3 control-label">Leading Zeros :</label>
+							<div class="control col-md-4">
+								<div class="input-group number-spinner">
+									<span class="input-group-btn data-down ">
+										<button type="button"  class="btn btn-default btn-info" data-dir="dwn" ><i class="glyphicon glyphicon-minus"></i></button>
+									</span>
+									<input type="text" id = "badge_leadingzeros" name = "badge_leadingzeros" class="form-control text-center"   min="0" max="100000" title="Initial Increment" 
+									value = "<?php if(isset($companies[0]['badge_leadingzeros'])){ echo $companies[0]['badge_leadingzeros'];}else{echo "1";};?>">
+									<span class="input-group-btn data-up ">
+										<button type="button"  class="btn btn-default btn-info "  data-dir="up" ><i class="glyphicon glyphicon-plus"></i></button>
+									</span>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group"> 
 							<label  class="col-sm-3 control-label">Initial Badge Increment :</label>
 							<div class="control col-md-4">
 								<div class="input-group number-spinner">
@@ -66,7 +82,6 @@
 								</div>
 							</div>
 						</div>
-						
 						
 						<div class="form-group">
 							<label  class="col-sm-3 control-label"> </label>

@@ -211,15 +211,48 @@ class hrd extends CI_Controller {
 	function hrd_addemployee($employee_ID= null){
 	
 		$data['parent'] = $this->Mhrd->department_parent();
+		
 		if($data['parent']){
 			foreach($data['parent'] as $pr){
 				 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
 			}
 		}
 		
+		$data['badge'] = $this->Mhrd->badge_inc($this->session->userdata('current_companyID'));		
+		 
+		if($data['badge']){ 
+			$data['final_badge'] = "exist";
+		}else{ 
+			$data['final_badge'] = $data['badge'][0]['badge']."-".$data['badge'][0]['employee_badge_int'];
+		}
+		
+		$data['final_badge'] = "exist";
+		
+		
+		
 		$data['department_data'] = $this->Mhrd->department_data( );		
 	
 		$data['data_detail'] = $this->Mhrd->employee_data_detail($employee_ID);
+		
+		if($data['data_detail'] ){
+			$data['final_badge'] = $data['data_detail'][0]['employee_badge'];
+		}else{
+		
+				$data['badge'] = $this->Mhrd->badge_inc($this->session->userdata('current_companyID'));		
+				
+			if($data['badge']){ 
+			
+				$i = sprintf('%0'.$data['badge'][0]['badge_leadingzeros'].'d',$data['badge'][0]['employee_badge_int']+1);
+			 
+				$data['final_badge'] = $data['badge'][0]['badge'].$i;
+			}else{ 
+			
+				$data['company'] = $this->Mhrd->company_detail();	
+				$i = sprintf('%0'.$data['company']['badge_leadingzeros'].'d',$data['company'][0]['badge_inc']);
+				
+				$data['final_badge'] = $data['company'][0]['badge'].$i;
+			} 
+		}
 		
 		$data['manager_name']  = $this->Mhrd->get_employee_detail($data['data_detail'][0]['manager_ID']);
 		 
@@ -984,6 +1017,20 @@ class hrd extends CI_Controller {
 		$output['filterplus'] = $this->core->filterplus('employee');
 		
 		$this->load->view('template', $output);
+	
+	}
+	
+	function badge_cek($badge_code){
+	
+	$json['badge_cek']  = $this->Mhrd->badge_cek($badge_code);
+	
+	if(!$json['badge_cek']){
+	$json['badge_cek'][] = array("employee_badge" => "");
+	}
+	 
+	//$this->core->print_rr($json['badge_cek']);
+		 
+		 echo json_encode($json);
 	
 	}
 	
