@@ -59,8 +59,8 @@
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-email"></label>
 													<div class="input-group col-sm-12 col-md-12" >
-														<select class="form-control" name="employee_positionID" id="employee_positionID" >
-															<option  value = "">[position]</option>
+														<select class="form-control" name="semployee_positionID" id="semployee_positionID" >
+															<option  value = "-1">[position]</option>
 															
 														</select>
 														
@@ -265,8 +265,8 @@ function edit_employee(a){
 function clearfilter(){
 
 $('#limit').val('10');
-$('#employee_divisionID').val('');
-$('#employee_positionID').val('');
+$('#sdepartment_ID').val('');
+$('#semployee_positionID').val('');
 $('#employee_managerID').val('');
 $('#orderby').val('');
 $('#ascdsc').val('');
@@ -311,7 +311,7 @@ function delete_post(a){
 						
 						success: function (data) {
 						 
-						$( "#job_ID" ).html("<option value = '-1'>-- Choose Position --</option>");
+						$( "#semployee_positionID" ).html("<option value = '-1'>-- Choose Position --</option>");
 						var jsonData = JSON.parse(data); 
 						
 						optmin = "<option value = '-1'>-- Choose Position --</option>";
@@ -324,11 +324,11 @@ function delete_post(a){
 										  
 										optmin += "<option value ='"+ datanya.job_ID +"'>"+ datanya.job_name +"</option>";
 										  
-										$( "#employee_positionID" ).html(optmin); 
+										$( "#semployee_positionID" ).html(optmin); 
 							}
 							
 						}else{
-										$( "#employee_positionID" ).html(optmin); 
+										$( "#semployee_positionID" ).html(optmin); 
 						}						
 							
 						}
