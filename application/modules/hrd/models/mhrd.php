@@ -12,7 +12,7 @@ class Mhrd extends CI_Model {
 		$a = ($page-1) * $limit;
 		$limitnya = ",".$a.",".$limit;
 		
-		$this->db->where('deleted', '0');
+		$this->db->where('employee.deleted', '0');
 		
 		$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
 		
@@ -20,12 +20,22 @@ class Mhrd extends CI_Model {
 		if($data['orderby']!=""){
 		$this->db->order_by($data['orderby'],$data['ascdsc']);
 		}else{
-		$this->db->order_by('dateCreated','DESC');
+		$this->db->order_by('employee.dateCreated','DESC');
 		}
 		
 		if(isset($data['filterplus'])){
 		$this->db->like($data['filterplus']);
 		}
+		
+		if($data['sdepartment_ID'] != "-1"){
+		$this->db->join('job','employee.job_ID = job.job_ID');
+		$this->db->join('department','job.department_ID = department.department_ID ');
+		$this->db->where('department.department_ID',$data['sdepartment_ID']);
+		}
+		
+		if($data['semployee_positionID'] != "-1"){
+		$this->db->where('employee.job_ID',$data['semployee_positionID']);
+		}	
 		
 		if(isset($data['filter'])){
 		$this->db->like($data['filter']);
@@ -108,9 +118,20 @@ class Mhrd extends CI_Model {
 	function employee_data_count($data){
 	
 		$this->db->select('count(*) as totdata');
-		$this->db->where('deleted', '0');
+		$this->db->where('employee.deleted', '0');
 		$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
-		$this->db->order_by('datecreated','desc');	
+		
+		if($data['sdepartment_ID'] != "-1"){
+		$this->db->join('job','employee.job_ID = job.job_ID');
+		$this->db->join('department','job.department_ID = department.department_ID ');
+		$this->db->where('department.department_ID',$data['sdepartment_ID']);
+		}
+		
+		if($data['semployee_positionID'] != "-1"){
+		$this->db->where('employee.job_ID',$data['semployee_positionID']);
+		}	
+		
+		$this->db->order_by('employee.datecreated','desc');	
 		if(isset($data['filterplus'])){
 		$this->db->like($data['filterplus']);
 		}
