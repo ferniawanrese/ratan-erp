@@ -50,13 +50,14 @@ display_data();
 function display_data(){ 
 	$('#btn-list').hide();
 	$('.btn-create').show();
+	NProgress.inc();
 	$.ajax({
 				type: "POST",
 				url: "<?php echo base_url('hrd/task_data/');?>",
 				data: $("#form_filter").serialize(),
 				success: function(data){     
 					$( ".list" ).html(data); 								
-					$('.my_loadie_container').loadie(1);
+					NProgress.done(true);
 				}			
 			});
 
@@ -72,13 +73,14 @@ function task_add(){
  
 	$('#btn-list').show();
 	$('.btn-create').hide();
+	NProgress.inc();
 	$.ajax({
 				
 				url: "<?php echo base_url('hrd/task_add/');?>",
 				success: function(data){     
 
 					$( ".list" ).html(data); 	 	
-					$('body').loadie(1);
+					NProgress.done(true);
 				}  
 			});
 
@@ -89,13 +91,14 @@ function task_add_update(a){
  
 	$('#btn-list').show();
 	$('.btn-create').hide();
+	NProgress.inc();
 	$.ajax({
 				
 				url: "<?php echo base_url('hrd/task_add/');?>" +"/"+ a,
 				success: function(data){     
 
 					$( ".list" ).html(data); 		
-					$('body').loadie(1);
+					NProgress.done(true);
 				}  
 			});
 

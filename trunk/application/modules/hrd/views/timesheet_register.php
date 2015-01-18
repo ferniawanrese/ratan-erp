@@ -211,13 +211,14 @@ display_data();
 function display_data(){ 
 	 $('#btn-list').hide();
 	$('#btn-create').show();
+	NProgress.inc();
 	$.ajax({
 				type: "POST",
 				url: "<?php echo base_url('hrd/timesheet_registerdata/');?>",
 				data: $("#form_filter").serialize(),
 				success: function(data){     
 					$( ".list" ).html(data); 								
-					$('.my_loadie_container').loadie(1);
+					NProgress.done(true);
 				}			
 			});
 
@@ -233,13 +234,14 @@ function add_timesheet(){
 	$('#search').hide();
 	$('#btn-list').show();
 	$('#btn-create').hide();
+	NProgress.inc();
 	$.ajax({
 				
 				url: "<?php echo base_url('hrd/timesheet_add/');?>",
 				success: function(data){     
 
 					$( ".list" ).html(data); 		
-					$('body').loadie(1);
+					NProgress.done(true);
 				}  
 			});
 
@@ -250,13 +252,14 @@ function update_timesheet(a){
 	$('#search').hide();
 	$('#btn-list').show();
 	$('#btn-create').hide();
+	NProgress.inc();
 	$.ajax({
 				
 				url: "<?php echo base_url('hrd/timesheet_add/');?>" +"/"+ a,
 				success: function(data){     
 
 					$( ".list" ).html(data); 		
-					$('body').loadie(1);
+					NProgress.done(true);
 				}  
 			});
 
@@ -287,7 +290,7 @@ function delete_post(a){
 	$("form#form_filter").submit(function(e){
 	
 	e.preventDefault();
-	
+			NProgress.inc();
 			$.ajax({
 				type: "POST",
 				url: "<?php echo base_url('hrd/timesheet_registerdata');?>",
@@ -295,7 +298,7 @@ function delete_post(a){
 				success: function(data)
 				{
 					$( ".list" ).html(data);
-					$('body').loadie(1);
+					NProgress.done(true);
 				}
 			});
 			
@@ -310,9 +313,6 @@ function delete_post(a){
 			display_data();
 	}
 	
-		$('.datetimepicker').datetimepicker({
-            language: 'en',
-			pickTime: false
-        });
+	 
 </script>
 	
