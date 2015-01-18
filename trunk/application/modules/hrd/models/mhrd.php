@@ -695,6 +695,8 @@ class Mhrd extends CI_Model {
 	
 	$this->db->join('department', 'department.department_ID = project.department_ID');
 	
+	$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
+	
 	if(isset($data['filter'])){
 	$this->db->like($data['filter']);
 	}
@@ -752,6 +754,10 @@ class Mhrd extends CI_Model {
 	$this->db->join('task', 'timetracking.task_ID = task.task_ID');
 	
 	$this->db->join('project', 'task.project_ID = project.project_ID');
+	
+	$this->db->join('department', 'department.department_ID = project.department_ID');
+	
+	$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
 	
 	if(isset($data['filter'])){
 	$this->db->like($data['filter']);
@@ -1039,6 +1045,10 @@ class Mhrd extends CI_Model {
 		
 		$this->db->join('project','project.project_ID = task.project_ID');
 		
+		$this->db->join('department','department.department_ID = project.department_ID');
+		
+		$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
+		
 		$this->db->where('task.deleted', '0');
 		 		
 		$this->db->like('task.task_name', $data['search']);
@@ -1063,6 +1073,10 @@ class Mhrd extends CI_Model {
 		$this->db->select('count(*) as totdata');
 		 
 		$this->db->join('project','project.project_ID = task.project_ID');
+		
+		$this->db->join('department','department.department_ID = project.department_ID');
+		
+		$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
 		
 		$this->db->where('task.deleted', '0');
 		 		
