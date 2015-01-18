@@ -237,17 +237,35 @@ class Mhrd extends CI_Model {
 			$this->db->set('employee_dateofbirth',date("Y-m-d", strtotime($data['employee_dateofbirth'])));
 			unset($data['employee_dateofbirth']);
 			
+			if($data['employee_badge']){
+			
+			$badgeint =  preg_replace('/\D/', '', $data['employee_badge']) *1;
+			
+			$this->db->set('employee_badge_int',$badgeint);
+			
+			}
+			
 			$this->db->set('company_ID',  $this->session->userdata('current_companyID'));	
 			
 			$this->db->set('company_groupID',  $this->session->userdata('current_companygroupID'));
 			
 			$this->db->insert('employee', $data); 
+			
 		}else{
 			
 			if($img!= null){
 			$this->db->set('employee_photo', $img);	
 			}
 			$this->db->set('employee_dateofbirth',date("Y-m-d", strtotime($data['employee_dateofbirth'])));
+			
+			if($data['employee_badge']){
+			
+			$badgeint =  preg_replace('/\D/', '', $data['employee_badge']) *1;
+			
+			$this->db->set('employee_badge_int',$badgeint);
+			
+			}
+			
 			unset($data['employee_dateofbirth']);
 			$this->db->where('employee_ID',$data['employee_ID']);
 			$this->db->update('employee', $data); 			
@@ -899,6 +917,8 @@ class Mhrd extends CI_Model {
 		
 		$this->db->join('department','department.department_ID = project.department_ID');
 		
+		$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
+		
 		$this->db->where('project.deleted', '0');
 		 		
 		$this->db->like('project.project_name', $data['search']);
@@ -949,6 +969,8 @@ class Mhrd extends CI_Model {
 		 
 		$this->db->join('department','department.department_ID = project.department_ID');
 		
+		$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
+				
 		$this->db->where('project.deleted', '0');
 		 		
 		$this->db->like('project.project_name', $data['search']);

@@ -239,16 +239,17 @@ class hrd extends CI_Controller {
 		}else{
 		
 				$data['badge'] = $this->Mhrd->badge_inc($this->session->userdata('current_companyID'));		
-				
+				 
 			if($data['badge']){ 
-			
+			 
 				$i = sprintf('%0'.$data['badge'][0]['badge_leadingzeros'].'d',$data['badge'][0]['employee_badge_int']+1);
 			 
 				$data['final_badge'] = $data['badge'][0]['badge'].$i;
+				
 			}else{ 
-			
+			 
 				$data['company'] = $this->Mhrd->company_detail();	
-				$i = sprintf('%0'.$data['company']['badge_leadingzeros'].'d',$data['company'][0]['badge_inc']);
+				$i = sprintf('%0'.$data['company'][0]['badge_leadingzeros'].'d',$data['company'][0]['badge_inc']);
 				
 				$data['final_badge'] = $data['company'][0]['badge'].$i;
 			} 
