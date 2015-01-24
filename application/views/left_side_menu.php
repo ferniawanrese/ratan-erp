@@ -79,12 +79,12 @@
 										<li ><a href="<?php echo base_url('hrd/attendances');?>"><i class=" icon-file-alt"></i> Attendances</a></li> 
 									</ul>
 									</li>
-									<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
+									<!--<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
 									<ul>
 										<li><a href="<?php echo base_url('hrd/appraisal');?>"><i class=" icon-file-alt"></i> Appraisal</a></li>
 										<li  ><a href="<?php echo base_url('hrd/interview_req');?>"><i class=" icon-file-alt"></i> Interview Request</a></li> 
 									</ul> 
-									</li>         
+									</li>-->         
 									<li><a href="#"><i class="icon-caret-right"></i> Leaves</a>
 									<ul>
 										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Leaves Request</a></li>
