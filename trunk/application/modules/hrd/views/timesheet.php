@@ -51,14 +51,14 @@
 display_data();
 
 function display_data(){ 
-	 
+	 NProgress.inc();
 	$.ajax({
 				type: "POST",
 				url: "<?php echo base_url('hrd/timesheet_data/');?>",
 				data: $("#form_filter").serialize(),
 				success: function(data){     
 					$( ".list" ).html(data); 								
-					$('.my_loadie_container').loadie(1);
+					NProgress.done(true);
 				}			
 			});
 
@@ -79,9 +79,9 @@ $("#Show").hide();
 }
  
 	$("form#form_filter").submit(function(e){
-	
+	NProgress.inc();
 	e.preventDefault();
-	
+		
 			$.ajax({
 				type: "POST",
 				url: "<?php echo base_url('hrd/timesheet_data');?>",
@@ -89,7 +89,7 @@ $("#Show").hide();
 				success: function(data)
 				{
 					$( ".list" ).html(data);
-					$('body').loadie(1);
+					NProgress.done(true);
 				}
 			});
 			

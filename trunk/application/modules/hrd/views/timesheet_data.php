@@ -81,7 +81,7 @@ Attendance : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 	$alldata =  $countdata[0]['totdata'];
 	$totpage = ceil($alldata/$limit);
 ?>
-
+<?php if($timesheet_data):?>
 <script type='text/javascript'>
 			var options = {
 				currentPage: <?php echo $page;?>,
@@ -107,7 +107,7 @@ Attendance : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					placement: 'bottom'
 				},
 				onPageClicked: function changepage(e,originalEvent,type,page){
-					$('.progress-bar').show();
+					NProgress.inc();
 					$.ajax({
 					type: "POST",
 					url: "<?php echo base_url('hrd/timesheet_data/');?>" + "/" + page,
@@ -115,7 +115,7 @@ Attendance : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					
 						success: function(data){     
 							$( ".list" ).html(data); 							
-							$('.progress-bar').hide();
+							NProgress.done(true);
 							
 						}  
 					});
@@ -125,7 +125,7 @@ Attendance : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 
 			$('.pagination').bootstrapPaginator(options);
 </script>
-
+<?php endif;?>
 <script>
 function remove_addcolums(a){
 $('.'+a).remove();

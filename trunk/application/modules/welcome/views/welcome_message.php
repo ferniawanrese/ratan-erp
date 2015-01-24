@@ -25,7 +25,7 @@
 		<form class="form-signin" action = "welcome/ceklog" method="POST">
 			<h3 class="form-signin-heading">Please sign in</h3>
 			<div class="controls input-icon">
-				<i class=" icon-user-md"></i>
+				<i class=" icon-user"></i>
 				<input type="text" id = "username" name = "username"class="input-block-level" placeholder="Email address">
 			</div>
 			<div class="controls input-icon">
