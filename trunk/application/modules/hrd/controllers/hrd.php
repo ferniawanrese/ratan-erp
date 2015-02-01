@@ -1104,12 +1104,34 @@ class hrd extends CI_Controller {
 	 
 	}
 	
+	function expends_detail_add_action(){
+	
+			$data['id'] = $this->generate_code->getUID();
+	 
+			$data['datanya'] =  $this->input->post(); 	 
+			
+			$this->load->view('expends_detail_draft', $data);
+			
+	}
+	
 	function get_product_name(){
 		 
 		$data['product_name']  = $this->Mhrd->get_product_name($this->input->get('term'));
 		 
 		echo json_encode($data['product_name']);
 			
+	}
+	 
+	function expends_add_action(){
+	
+	$data['datanya'] =  $this->input->post(); 	 
+	
+	//$this->core->print_rr($data['datanya']);
+	
+	}
+	
+	function expends_detail_data(){
+	
 	}
 	
 }

@@ -1,5 +1,23 @@
-  
-	<form  id = "depAdd" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
+ <style>
+.btn-breadcrumb .btn:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
+}
+ 
+</style> 
+
+
+<form  id = "form-expends" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
 				
 		<div class="col-md-12">	
 				<div class="form-group"  >    
@@ -47,9 +65,8 @@
 					</div> 
 					  
 				</div>
- 
-				<div class="stepy-widget">
-					 
+				 
+				<div class="stepy-widget"> 
 					<div class="widget-container gray ">
 						Expense Lines <button class="btn btn-blue icon-plus" onclick="add_detail()" type="button" data-target="#myModal" data-toggle="modal"  > Create</button><div></br></div>
 						 <table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
@@ -60,49 +77,33 @@
 										<th> Reference </th>   
 										<th> Unit Price </th> 
 										<th> Quantity </th>
-										<th>  Total </th> 
-										<th>  Action </th>
+										<th> UoM </th>
+										<th> Sub Total </th> 
+										<th> Action </th>
 								  </tr>
 							</thead> 
-							<tbody>
-										<tr>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-										</tr>
-										<tr>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-										</tr>
-										<tr>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-											<td>asd</td>
-										</tr>
-							</tbody>
-	
-						<table>
-					</div>
+							<tbody id = "draft">
+								 	 
+							</tbody> 
+						</table> 
+					</div> 
 				</div>
 				 
 		</div>							  
-</form>		
+	 
+		<div id="bc1" class="col-md-6 btn-group btn-breadcrumb"> 
+			<a href="#" class="btn btn-success"><div>New</div></a>
+			<a href="#" class="btn btn-default"><div>Awaiting Approval</div></a>
+			<a href="#" class="btn btn-default"><div>Approved</div></a>
+			<a href="#" class="btn btn-default"><div>Invoice</div></a> 
+		</div>
 
-<!-- dialog contents on hidden div -->   
- 
+		<div id="bc1" class="col-md-6 btn-group btn-breadcrumb"> 
+		<button class="btn btn-default  icon-ok" type = "submit" > Submit to Manager</button> 
+		</div>
+		
+</form>	
+		 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -137,13 +138,12 @@ function load_data(){
 
 	$.ajax({
 	
-		url:"<?php echo base_url('hrd/appraisal_datac');?>",
+		url:"<?php echo base_url('hrd/expends_detail_data');?>",
 		success: function(data){      
 					$( ".data_load" ).html(data); 		 
 		} 
 	 
-	});
-
+	}); 
 }
 
 $(function() {
@@ -156,12 +156,36 @@ $(function() {
 				}  
 		}); 
 	}); 
-</script>
  
-<script>
-  $('#date').datepicker({
+$('#date').datepicker({
   format:"dd-mm-yyyy"
-  }); 
-</script>	
+});  
+
+function delete_draft(a){
+
+	$("#"+a).remove();
+
+}
+
+
+$("form#form-expends").submit(function(e){
+	
+	//e.preventDefault();
+			NProgress.inc();	
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('hrd/expends_add_action');?>",
+				data: $("#form-expends").serialize(),
+				success: function(data)
+				{
+					$('#myModal').modal('hide');
+					$( "#draft" ).append(data); 	
+					NProgress.done(true);
+				}
+			});
+			
+			return false;
+	});
+</script>
 
 
