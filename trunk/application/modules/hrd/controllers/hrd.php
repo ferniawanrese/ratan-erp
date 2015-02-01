@@ -1124,9 +1124,9 @@ class hrd extends CI_Controller {
 	 
 	function expends_add_action(){
 	
-	$data['datanya'] =  $this->input->post(); 	 
-	
-	//$this->core->print_rr($data['datanya']);
+		$data['datanya'] =  $this->input->post(); 	 
+		 
+		$this->Mhrd->expends_add_action($data['datanya']);
 	
 	}
 	

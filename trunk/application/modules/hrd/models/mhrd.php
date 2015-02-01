@@ -1536,6 +1536,34 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function expends_add_action($data){
+	
+		$expense_ID = $this->generate_code->getUID();	
+		
+		$expends_detail = $data['expends_detail'];	
+		
+		unset($data['expense']);
+		
+		unset($data['employee']);
+		
+		unset($data['expends_detail']);
+		
+		$this->db->set('expense_ID',$expense_ID);
+	 
+		$this->db->insert('expense',$data);
+		
+		foreach($expends_detail as $det){
+		
+		$this->db->set('expense_detaiID',$this->generate_code->getUID());
+		
+		$this->db->set('expense_ID', $expense_ID);
+		  
+		$this->db->insert('expense_detail',$det);
+		
+		}
+	  
+	}
+	
 }
 	
 ?>

@@ -41,9 +41,9 @@
 						<label  class="col-sm-3 control-label">Currency :</label>
 						<div class="control col-md-4">
 							<span class = "input-group  "> 
-								<select class = "form-control">
+								<select class = "form-control" name = "currency_ID" id = "currency_ID">
 									<?php foreach($currency as $cur):?>
-									<option><?php echo $cur['currency_code'];?></option> 
+									<option value = "<?php echo $cur['currency_ID'];?>"><?php echo $cur['currency_code'];?></option> 
 									<?php endforeach;?>
 								</select>
 								<span class="input-group-addon ">
@@ -177,10 +177,9 @@ $("form#form-expends").submit(function(e){
 				url: "<?php echo base_url('hrd/expends_add_action');?>",
 				data: $("#form-expends").serialize(),
 				success: function(data)
-				{
-					$('#myModal').modal('hide');
-					$( "#draft" ).append(data); 	
+				{ 
 					NProgress.done(true);
+					load_data();
 				}
 			});
 			
