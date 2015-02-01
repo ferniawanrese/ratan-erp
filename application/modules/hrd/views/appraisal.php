@@ -136,6 +136,8 @@
 <script>
 display_data();
 function display_data(){
+
+	NProgress.inc();
 	$('#btn-list').hide();
 	$('#btn-create').show();
 	$.ajax({
@@ -143,7 +145,7 @@ function display_data(){
 		success: function(data){     
 		 
 					$( ".list" ).html(data); 		
-					$('body').loadie(1);
+					NProgress.done(true);
 				} 
 	})
 }
@@ -153,14 +155,14 @@ function add_appraisal(){
 	$('#search').hide();
 	$('#btn-list').show();
 	$('#btn-create').hide();
-	
+	NProgress.inc();
 	$.ajax({
 				
 				url: "<?php echo base_url('hrd/add_appraisal/');?>",
 				success: function(data){     
 
 					$( ".list" ).html(data); 		
-					$('body').loadie(1);
+					NProgress.done(true);
 				}  
 			});
 
