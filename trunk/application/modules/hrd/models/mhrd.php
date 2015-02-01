@@ -550,6 +550,25 @@ class Mhrd extends CI_Model {
 			}		
 	}
 	
+	function get_product_name($name){ 
+	
+		$this->db->select('product_name as label, product_name as value, product_ID');
+	  
+		$this->db->like('product_name',$name);
+		
+		$query = $this->db->get('product');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	 
+			
+	}
+	
 	function job_add($data){
 	
 			if($data['job_ID']!=""){ 
@@ -1445,6 +1464,75 @@ class Mhrd extends CI_Model {
 					{
 					return FALSE;
 					}
+	
+	}
+	
+	function expends_data(){
+	
+			$this->db->select('expense.*,employee.employee_name, currency.currency_code ');
+			
+			$this->db->join("currency", "currency.currency_ID = expense.currency_ID");
+	
+			$this->db->join("employee", "employee.employee_ID = expense.employee_ID");
+	
+			$query = $this->db->get('expense');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function expends_data_count(){
+	
+			$this->db->select('count(*) as totdata');
+	
+			$query = $this->db->get('expense');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function currency(){
+	 
+			$query = $this->db->get('currency');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	
+	function uom(){
+	 
+			$query = $this->db->get('uom');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
 	
 	}
 	

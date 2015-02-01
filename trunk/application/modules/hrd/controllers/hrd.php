@@ -1029,10 +1029,87 @@ class hrd extends CI_Controller {
 	$json['badge_cek'][] = array("employee_badge" => "");
 	}
 	 
-	//$this->core->print_rr($json['badge_cek']);
-		 
 		 echo json_encode($json);
 	
+	}
+	
+	function leaves(){
+	
+		$output['data']['module_name'] = "Leaves";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['content'] = "hrd/leaves";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function add_leaves(){
+	
+		$data['asd'] = 'asd';
+		 
+		$this->load->view('add_leaves', $data);
+	
+	}
+	
+	function expends(){
+	
+		$output['data']['module_name'] = "Expends";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['content'] = "hrd/expends";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	  
+	function expends_data($page=1){
+	 
+		$data['limit'] = $this->input->post('limit');
+		
+		$data['page'] = $page;
+		 
+		$data['expends_data'] = $this->Mhrd->expends_data($this->input->post(),$data['page'],$data['limit']);	
+		 
+		$data['countdata'] = $this->Mhrd->expends_data_count($this->input->post());	
+
+		$this->load->view('expends_data', $data);
+	
+	}
+	 
+	
+	function expends_add(){
+	 
+		$data['currency'] = $this->Mhrd->currency();	
+		  
+		$this->load->view('expends_add', $data);
+	 
+	}
+	
+	function expends_detail_add(){
+	 
+		$data['uom'] = $this->Mhrd->uom();	
+		  
+		$this->load->view('expends_detail_add', $data);
+	 
+	}
+	
+	function get_product_name(){
+		 
+		$data['product_name']  = $this->Mhrd->get_product_name($this->input->get('term'));
+		 
+		echo json_encode($data['product_name']);
+			
 	}
 	
 }
