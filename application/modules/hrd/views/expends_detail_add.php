@@ -1,4 +1,4 @@
-<form  id = "depAdd" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
+<form  id = "form-expendsdetail" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
 				 	
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Product :</label>
@@ -16,20 +16,20 @@
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Unit Price :</label>
 		<div class="control col-md-4">
-			<input name="product"  id = "product" class="form-control " type="text"    /> 
+			<input name="unit_price"  id = "unit_price" class="form-control " type="text" /> 
 		</div>
 	</div>
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Quantity :</label>
 		<div class="control col-md-4">
-			<input name="product"  id = "product" class="form-control numonly" type="text" /> 
+			<input name="quantity"  id = "quantity" class="form-control numonly" type="text" /> 
 		</div>
 	</div>
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">UoM :</label>
 		<div class="control col-md-4">
 			<span class = "input-group  "> 
-			<select class = "form-control">
+			<select class = "form-control" id = "UoM" name = "UoM">
 			<?php foreach($uom as $uom):?>
 			<option><?php echo $uom['uom_name'];?></option>
 			<?php endforeach;?>
@@ -43,8 +43,7 @@
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Reference:</label>
 		<div class="control col-md-6">
-			<input id = "employee_managerName_dep" name="employee_managerName_dep" class="form-control employee_managerName_dep" type="text" value = ""/>
-			<input id = "manager_ID" name="manager_ID"  class = "manager_ID" type="hidden"  />
+			<input id = "reference" name="reference" class="form-control" type="text" value = ""/> 
 		</div>
 	</div>
 	 
@@ -80,6 +79,25 @@ $(function() {
 				}  
 				
 		}); 
-	}); 
+}); 
+
+$("form#form-expendsdetail").submit(function(e){
+	
+	//e.preventDefault();
+			NProgress.inc();	
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('hrd/expends_detail_add_action');?>",
+				data: $("#form-expendsdetail").serialize(),
+				success: function(data)
+				{
+					$('#myModal').modal('hide');
+					$( "#draft" ).append(data); 	
+					NProgress.done(true);
+				}
+			});
+			
+			return false;
+	});
 
 </script>
