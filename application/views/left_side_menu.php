@@ -79,28 +79,28 @@
 										<li ><a href="<?php echo base_url('hrd/attendances');?>"><i class=" icon-file-alt"></i> Attendances</a></li> 
 									</ul>
 									</li>
-									<!--<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
+									<li><a href="<?php echo base_url('hrd/expends');?>"><i class="icon-file-alt"></i>  Expenses</a></li>	
+									<li><a href="#"><i class="icon-caret-right"></i> Leaves</a>
+									<ul>
+										<li><a href="<?php echo base_url('hrd/leaves');?>"><i class=" icon-file-alt"></i> Leaves Request</a></li>
+										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Leaves Approval</a></li> 
+										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Allocation Requests</a></li> 
+										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Leaves Summary</a></li> 
+									</ul> 
+									</li> 
+									<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
 									<ul>
 										<li><a href="<?php echo base_url('hrd/appraisal');?>"><i class=" icon-file-alt"></i> Appraisal</a></li>
 										<li  ><a href="<?php echo base_url('hrd/interview_req');?>"><i class=" icon-file-alt"></i> Interview Request</a></li> 
 									</ul> 
-									</li>-->         
-									<li><a href="#"><i class="icon-caret-right"></i> Leaves</a>
-									<ul>
-										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Leaves Request</a></li>
-										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Leaves Request to Approve</a></li> 
-										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Allocation Requests</a></li> 
-										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Leaves Summary</a></li> 
-									</ul> 
-									</li>
+									</li>      
 									<li><a href="#"><i class="icon-caret-right"></i> Payroll</a>
 									<ul>
 										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Employee Payslips</a></li>
 										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Payslips Batches</a></li>  
 									</ul> 
-									</li>		
-									<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class="icon-file-alt"></i>  Expends</a></li>	
-									<li><a href="#"><i class="icon-caret-right"></i> Recruitment</a>
+									</li>	
+									<li><a href="#"><i class="icon-caret-right"></i> Recruitment</a> 
 									<ul>
 										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Applicants</a></li>
 										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Job Positions</a></li>  
@@ -130,6 +130,11 @@
 											<li  ><a href="<?php echo base_url('hrd/task');?>">  Appraisal Form </a></li>
 											<li><a href="<?php echo base_url('hrd/project');?>"> Plan </a></li>
 											<li><a href="<?php echo base_url('hrd/project');?>"> Survey </a></li>											
+										 </ul>   
+									</li>
+									<li ><a href="#"><i class="icon-caret-right"></i> Leaves</a>
+										<ul> 
+											<li  ><a href="<?php echo base_url('hrd/leave_type');?>">  Leave Type </a></li> 							
 										 </ul>   
 									</li>
 								</ul>
