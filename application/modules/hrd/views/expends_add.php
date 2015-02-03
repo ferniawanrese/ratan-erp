@@ -25,7 +25,7 @@
 					<div class="form-group">
 						<label  class="col-sm-3 control-label">Employee :</label>
 						<div class="control col-md-4">
-							<input name="employee"  id = "employee" class="form-control employee" type="text"    /> 
+							<input name="employee"  id = "employee" class="form-control employee {validate:{required:true}}" type="text"    /> 
 							<input name="employee_ID"  id = "employee_ID" class="form-control " type="hidden"    />
 						</div>
 					</div>
@@ -58,7 +58,7 @@
 						<div class="control col-md-3">
 							<div id="datetimepicker4" class="input-append datetimepicker">
 								<span class="add-on">
-								<input  type="text" class = "form-control datepicker" id = "date" name = "date" value = "">
+								<input  type="text" class = "form-control datepicker {validate:{required:true}}" id = "date" name = "date" value = "">
 								</span>																	
 						</div>																													
 						</div>																									
@@ -179,12 +179,29 @@ $("form#form-expends").submit(function(e){
 				success: function(data)
 				{ 
 					NProgress.done(true);
-					load_data();
+					display_data();
 				}
 			});
 			
 			return false;
 	});
+	
+		cek_validate();
+			function cek_validate(){
+				
+				 var container = $('div.error-container ');
+                // validate the form when it is submitted
+                var validator = $(".form-validate").validate({
+                    errorContainer: container,
+                    errorLabelContainer: $("ol", container),
+                    wrapper: 'span',
+                    meta: "validate"
+                });
+				
+                $(".cancel").click(function () {
+                    validator.resetForm();
+                });
+			} 
 </script>
 
 
