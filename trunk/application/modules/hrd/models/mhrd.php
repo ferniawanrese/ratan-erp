@@ -1548,9 +1548,15 @@ class Mhrd extends CI_Model {
 		
 		unset($data['expends_detail']);
 		
+		$this->db->set('date',date('y-m-d',strtotime($data['date'])));
+		
+		unset($data['date']);
+		
 		$this->db->set('expense_ID',$expense_ID);
-	 
+		 
 		$this->db->insert('expense',$data);
+		
+		$total=0;
 		
 		foreach($expends_detail as $det){
 		
@@ -1560,7 +1566,15 @@ class Mhrd extends CI_Model {
 		  
 		$this->db->insert('expense_detail',$det);
 		
+		$total = $det['sub_total'] + $total;
+		
 		}
+		
+		$this->db->where('expense_ID',$expense_ID);
+		
+		$this->db->set('total_amount',$total);
+		
+		$this->db->update('expense');
 	  
 	}
 	

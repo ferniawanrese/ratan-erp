@@ -3,7 +3,7 @@
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Product :</label>
 		<div class="control col-md-6">
-			<input name="product"  id = "product" class="form-control product" type="text"    /> 
+			<input name="product"  id = "product" class="form-control product {validate:{required:true}}" type="text"    /> 
 			<input id = "product_ID" name="product_ID"  class = "product_ID" type="hidden"  />
 		</div>
 	</div>
@@ -16,13 +16,13 @@
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Unit Price :</label>
 		<div class="control col-md-4">
-			<input name="unit_price"  id = "unit_price" class="form-control " type="text" /> 
+			<input name="unit_price"  id = "unit_price" class="form-control numonly {validate:{required:true}}" type="text" /> 
 		</div>
 	</div>
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Quantity :</label>
 		<div class="control col-md-4">
-			<input name="quantity"  id = "quantity" class="form-control numonly" type="text" /> 
+			<input name="quantity"  id = "quantity" class="form-control numonly {validate:{required:true}}" type="text" /> 
 		</div>
 	</div>
 	<div class="form-group">
@@ -99,5 +99,22 @@ $("form#form-expendsdetail").submit(function(e){
 			
 			return false;
 	});
+	
+	cek_validate();
+			function cek_validate(){
+				
+				 var container = $('div.error-container ');
+                // validate the form when it is submitted
+                var validator = $(".form-validate").validate({
+                    errorContainer: container,
+                    errorLabelContainer: $("ol", container),
+                    wrapper: 'span',
+                    meta: "validate"
+                });
+				
+                $(".cancel").click(function () {
+                    validator.resetForm();
+                });
+			} 
 
 </script>
