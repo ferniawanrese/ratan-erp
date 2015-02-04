@@ -1088,7 +1088,9 @@ class hrd extends CI_Controller {
 	}
 	 
 	
-	function expends_add(){
+	function expends_add($expend_ID=null){
+	
+		$data['expends_data'] = $this->Mhrd->get_expends_data($expend_ID);	
 	 
 		$data['currency'] = $this->Mhrd->currency();	
 		  

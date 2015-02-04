@@ -1542,6 +1542,8 @@ class Mhrd extends CI_Model {
 		
 		$expends_detail = $data['expends_detail'];	
 		
+		unset($data['expense_ID']);
+		
 		unset($data['expense']);
 		
 		unset($data['employee']);
@@ -1576,6 +1578,23 @@ class Mhrd extends CI_Model {
 		
 		$this->db->update('expense');
 	  
+	}
+	
+	function get_expends_data($expense_ID){
+	
+		$this->db->where('expense_ID',$expense_ID);
+	
+		$query = $this->db->get('expense');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
 	}
 	
 }

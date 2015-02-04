@@ -111,7 +111,7 @@ function display_data(){
 }
 
 
-function expends_add(){
+function expends_add(a){
 
 	$('#search').hide();
 	$('#btn-list').show();
@@ -119,7 +119,7 @@ function expends_add(){
 	NProgress.inc();
 	$.ajax({
 				
-				url: "<?php echo base_url('hrd/expends_add/');?>",
+				url: "<?php echo base_url('hrd/expends_add/');?>"+"/"+a,
 				success: function(data){     
 
 					$( ".list" ).html(data); 		
