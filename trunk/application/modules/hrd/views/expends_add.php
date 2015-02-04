@@ -18,7 +18,7 @@
 
 
 <form  id = "form-expends" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
-				
+		<input name="expense_ID"  id = "expense_ID" class="form-control " type="hidden"  value="<?php echo $expends_data[0]['expense_ID'];?>"  />		
 		<div class="col-md-12">	
 				<div class="form-group"  >    
 					
@@ -33,7 +33,7 @@
 					<div class="form-group">
 						<label  class="col-sm-3 control-label">Description :</label>
 						<div class="control col-md-4">
-							<textarea name= "description" id = "description" class = "form-control"></textarea>
+							<textarea name= "description" id = "description" class = "form-control"><?php echo $expends_data[0]['description'];?></textarea>
 						</div>
 					</div>
 				 
