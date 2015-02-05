@@ -34,13 +34,17 @@ Expenses Data : <span class="label label-info"><?php echo $countdata[0]['totdata
 					  <?php echo $dat['total_amount'];?>	 
 					</td>
 					<td>
-					<?php echo $dat['state'];?>	
+					
+						<div class="btn-toolbar row-action">  
+									<?php echo $dat['state'];?>	
+									 <a href = ""><i class="icon-ok-sign"></i> Confirm </a>
+									 <a href = ""><i class="icon-remove-sign"></i> Refuse</a>
+						</div>
 					</td> 
 					<td class="center">
 							<div class="btn-toolbar row-action">  
 									<button class="btn btn-info" title="Edit" onclick=expends_add("<?php echo $dat['expense_ID'];?>")><i class="icon-edit"></i></button>
-									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $dat['expense_ID'];?>")><i class="icon-trash "></i></button>
-								
+									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $dat['expense_ID'];?>")><i class="icon-trash "></i></button> 
 							</div>
 					 </td>
 				</tr>

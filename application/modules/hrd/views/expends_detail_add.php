@@ -1,28 +1,28 @@
 <form  id = "form-expendsdetail" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
-				 	
+	<input name="expense_detaiID"  id = "expense_detaiID"   type="hidden" value = "<?php echo $expends_detail[0]['expense_detaiID'];?>"   /> 			 	
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Product :</label>
 		<div class="control col-md-6">
 			<input name="product"  id = "product" class="form-control product {validate:{required:true}}" type="text"    /> 
-			<input id = "product_ID" name="product_ID"  class = "product_ID" type="hidden"  />
+			<input id = "product_ID" name="product_ID"  class = "product_ID" type="hidden" value = "<?php echo $expends_detail[0]['product_name'];?>" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Expense Note:</label>
 		<div class="control col-md-6">
-			<input id = "expense_note" name="expense_note" class="form-control expense_note" type="text" value = ""/>
+			<input id = "expense_note" name="expense_note" class="form-control expense_note" type="text" value = "<?php echo $expends_detail[0]['product_name'];?>"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Unit Price :</label>
 		<div class="control col-md-4">
-			<input name="unit_price"  id = "unit_price" class="form-control numonly {validate:{required:true}}" type="text" /> 
+			<input name="unit_price"  id = "unit_price" class="form-control numonly {validate:{required:true}}" type="text" value = "<?php echo $expends_detail[0]['product_name'];?>"/> 
 		</div>
 	</div>
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Quantity :</label>
 		<div class="control col-md-4">
-			<input name="quantity"  id = "quantity" class="form-control numonly {validate:{required:true}}" type="text" /> 
+			<input name="quantity"  id = "quantity" class="form-control numonly {validate:{required:true}}" type="text" value = "<?php echo $expends_detail[0]['product_name'];?>" /> 
 		</div>
 	</div>
 	<div class="form-group">
@@ -43,7 +43,7 @@
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Reference:</label>
 		<div class="control col-md-6">
-			<input id = "reference" name="reference" class="form-control" type="text" value = ""/> 
+			<input id = "reference" name="reference" class="form-control" type="text" value = "<?php echo $expends_detail[0]['product_name'];?>"/> 
 		</div>
 	</div>
 	 

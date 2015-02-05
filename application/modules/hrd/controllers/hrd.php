@@ -1091,6 +1091,8 @@ class hrd extends CI_Controller {
 	function expends_add($expend_ID=null){
 	
 		$data['expends_data'] = $this->Mhrd->get_expends_data($expend_ID);	
+		
+		$data['expends_detail'] = $this->Mhrd->get_expends_data_detail($expend_ID);	
 	 
 		$data['currency'] = $this->Mhrd->currency();	
 		  
@@ -1098,7 +1100,9 @@ class hrd extends CI_Controller {
 	 
 	}
 	
-	function expends_detail_add(){
+	function expends_detail_add($expend_detailID=null){
+	
+		$data['expends_detail'] = $this->Mhrd->get_expends_detail($expend_detailID);	
 	 
 		$data['uom'] = $this->Mhrd->uom();	
 		  
