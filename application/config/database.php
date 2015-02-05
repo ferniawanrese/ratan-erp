@@ -45,7 +45,7 @@
 | the active record class
 */
 
-$active_group = 'default';
+$active_group = 'merp';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
@@ -63,6 +63,25 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
+
+
+$db['merp']['hostname'] = 'localhost';
+$db['merp']['username'] = 'k1377424_root';
+$db['merp']['password'] = 'klapauciusly01';
+$db['merp']['database'] = 'k1377424_merp';
+$db['merp']['dbdriver'] = 'mysql';
+$db['merp']['dbprefix'] = '';
+$db['merp']['pconnect'] = TRUE;
+$db['merp']['db_debug'] = TRUE;
+$db['merp']['cache_on'] = FALSE;
+$db['merp']['cachedir'] = '';
+$db['merp']['char_set'] = 'utf8';
+$db['merp']['dbcollat'] = 'utf8_general_ci';
+$db['merp']['swap_pre'] = '';
+$db['merp']['autoinit'] = TRUE;
+$db['merp']['stricton'] = FALSE;
+
+
 
 
 /* End of file database.php */

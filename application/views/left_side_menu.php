@@ -137,6 +137,17 @@
 											<li  ><a href="<?php echo base_url('hrd/leave_type');?>">  Leave Type </a></li> 							
 										 </ul>   
 									</li>
+									<li ><a href="#"><i class="icon-caret-right"></i> Goods</a>
+										<ul> 
+											<li  ><a href="<?php echo base_url('hrd/leave_type');?>"> Add Product </a></li> 							
+										 </ul>  
+										<ul> 
+											<li  ><a href="<?php echo base_url('hrd/leave_type');?>"> UoM </a></li> 							
+										 </ul>
+										 <ul> 
+											<li  ><a href="<?php echo base_url('hrd/leave_type');?>"> Currencies </a></li> 							
+										 </ul>
+									</li>
 								</ul>
 							</div>
 							<div class="tab-pane  <?php  if($menu_active == "Report"){echo "active";};?>" id="Report">
