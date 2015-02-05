@@ -83,6 +83,47 @@
 								  </tr>
 							</thead> 
 							<tbody id = "draft">
+							 
+							<?php if($expends_detail):?>
+								<?php foreach($expends_detail as $det):?>
+									<tr id = "<?php echo $det['expense_detaiID'];?>">
+										<td>
+										<?php echo $det['product_name'];?>
+										<input type = "hidden" id = "expends_detail[<?php echo $det['expense_detaiID'];?>][product_ID]" name = "expends_detail[<?php echo $det['expense_detaiID'];?>][product_ID]" value = "<?php echo $det['product_ID'];?>">
+										</td>
+										<td> 
+										<?php echo $det['expense_note'];?>
+										<input type = "hidden" id = "expends_detail[<?php echo $det['expense_detaiID'];?>][expense_note]" name = "expends_detail[<?php echo $det['expense_detaiID'];?>][expense_note]" value = "<?php echo $det['expense_note'];?>">
+										</td>
+										<td> 
+										<?php echo $det['reference'];?>
+										<input type = "hidden" id = "expends_detail[<?php echo $det['expense_detaiID'];?>][reference]" name = "expends_detail[<?php echo $det['expense_detaiID'];?>][reference]" value = "<?php echo $det['reference'];?>">
+										</td>
+										<td>
+										<?php echo $det['unit_price'];?>
+										<input type = "hidden" id = "expends_detail[<?php echo $det['expense_detaiID'];?>][unit_price]" name = "expends_detail[<?php echo $det['expense_detaiID'];?>][unit_price]" value = "<?php echo $det['unit_price'];?>">
+										</td>
+										<td>
+										<?php echo $det['quantity'];?>
+										<input type = "hidden" id = "expends_detail[<?php echo $det['expense_detaiID'];?>][quantity]" name = "expends_detail[<?php echo $det['expense_detaiID'];?>][quantity]" value = "<?php echo $det['quantity'];?>">
+										</td>
+										<td>
+										<?php echo $det['uom'];?>
+										<input type = "hidden" id = "expends_detail[<?php echo $det['expense_detaiID'];?>][UoM]" name = "expends_detail[<?php echo $det['expense_detaiID'];?>][UoM]" value = "<?php echo $det['uom'];?>">
+										</td>
+										<td>
+										<?php echo $det['unit_price'] * $det['quantity'];?>
+										<input type = "hidden" id = "expends_detail[<?php echo $det['expense_detaiID'];?>][sub_total]" name = "expends_detail[<?php echo $det['expense_detaiID'];?>][sub_total]" value = "<?php echo $det['unit_price'] * $det['quantity'];?>">
+										</td> 
+										<td class="center">
+												<div class="btn-toolbar row-action"> 
+														<button class="btn btn-info" title="Edit" onclick="add_detail('<?php echo $det['expense_detaiID'];?>')" type="button" data-target="#myModal" data-toggle="modal"><i class="icon-edit"></i></button>
+														<button class="delete btn btn-danger" title="Delete" onclick=delete_draft("<?php echo $det['expense_detaiID'];?>")><i class="icon-trash "></i></button> 
+												</div>
+										 </td>
+									</tr> 
+								<?php endforeach;?>
+							<?php endif;?>
 								 	 
 							</tbody> 
 						</table> 
@@ -122,9 +163,9 @@
  
 <script>
  
- function add_detail(){
+ function add_detail(a){
 	 $.ajax({
-			 url: "<?php echo base_url('hrd/expends_detail_add/');?>",
+			 url: "<?php echo base_url('hrd/expends_detail_add/');?>"+"/"+a,
 			success: function(data){      
 			$( "#modal_body" ).html(data); 		
 			$( "#modal_label" ).html("Expense Lines"); 		 

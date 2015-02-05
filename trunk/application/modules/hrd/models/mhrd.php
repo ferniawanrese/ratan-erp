@@ -1474,6 +1474,8 @@ class Mhrd extends CI_Model {
 			$this->db->join("currency", "currency.currency_ID = expense.currency_ID");
 	
 			$this->db->join("employee", "employee.employee_ID = expense.employee_ID");
+
+			$this->db->order_by('expense.dateCreated', 'desc');
 	
 			$query = $this->db->get('expense');
 	 
@@ -1583,8 +1585,50 @@ class Mhrd extends CI_Model {
 	function get_expends_data($expense_ID){
 	
 		$this->db->where('expense_ID',$expense_ID);
+		
+		$this->db->order_by('dateCreated', 'desc');
 	
 		$query = $this->db->get('expense');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function get_expends_data_detail($expense_ID){
+	
+		$this->db->where('expense_ID',$expense_ID);
+		
+		$this->db->join('product', 'expense_detail.product_ID = product.product_ID');
+		
+		$this->db->order_by('expense_detail.dateCreated', 'asc');
+	
+		$query = $this->db->get('expense_detail');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function get_expends_detail($expense_detailID){
+	
+		$this->db->where('expense_detaiID',$expense_detailID);
+		
+		$this->db->join('product', 'expense_detail.product_ID = product.product_ID');
+		 
+		$query = $this->db->get('expense_detail');
 	 
 			if ($query->num_rows())
 			{
