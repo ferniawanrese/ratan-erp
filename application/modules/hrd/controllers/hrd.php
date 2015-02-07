@@ -1243,6 +1243,56 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function currency(){
+	
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		 
+		$output['data']['menu_active'] = "Configuration";
+		 
+		$output['content'] = "hrd/currency";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function currency_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		   
+		$data['currency_data'] = $this->Mhrd->currency_data($this->input->post(),$data['page'],$data['limit']);		
+		 
+		$data['countdata'] = $this->Mhrd->currency_data_count($this->input->post());	
+
+		$this->load->view('currency_data', $data);
+	
+	}
+	
+	function currency_add($currency_ID=null){
+	
+		$data['currency_add'] = $this->Mhrd->currency_data_detail($currency_ID);	
+	  
+		$this->load->view('currency_add', $data);
+	
+	}
+	
+	function currency_add_action(){
+	
+		$this->Mhrd->currency_add($this->input->post());
+	
+	}
+	
+	function currency_delete($currency_ID){
+	
+		$this->Mhrd->currency_delete($currency_ID);
+	
+	}
+	
 	
 }
 
