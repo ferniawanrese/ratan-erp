@@ -1641,6 +1641,110 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function product_data($data,$page,$limit){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->like('product.product_name',$data['search']);
+	
+		$this->db->join('uom','product.UoM_ID = uom.UoM_ID');
+		
+		$this->db->where('product.deleted',0);
+		
+		$this->db->order_by('product.dateCreated','desc');
+	
+		$query = $this->db->get('product',$limit,$a);
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function product_data_count($data){
+	
+		$this->db->select('count(*) as totdata');
+		
+		$this->db->like('product.product_name',$data['search']);
+		
+		$this->db->where('product.deleted',0);
+	
+		$query = $this->db->get('product');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function product_add($data){
+	
+		if($data['product_ID']==""){
+		
+		unset($data['product_ID']);
+		
+		if($data['product_code']==""){
+		
+		unset($data['product_code']);
+		
+		$code = date('Ymdhis').rand(10,100);
+		
+		$this->db->set('product_code',$code);	
+		
+		}
+	
+		$this->db->set('product_ID',$this->generate_code->getUID());	
+	
+		$this->db->insert('product',$data);
+		
+		}else{
+		
+		$this->db->where('product_ID',$data['product_ID']);
+		
+		$this->db->update('product',$data);
+		
+		}
+	
+	}
+	
+	function product_data_detail($product_ID){
+		
+		$this->db->where('product_ID',$product_ID);
+	
+		$query = $this->db->get('product');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function product_delete($product_ID){
+	
+		$this->db->where('product_ID',$product_ID);
+	
+		$this->db->set('deleted','1');
+	
+		$this->db->update('product');
+	
+	}
+	
 }
 	
 ?>
