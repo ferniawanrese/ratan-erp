@@ -1140,6 +1140,63 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function product(){
+	
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		 
+		$output['data']['menu_active'] = "Configuration";
+		 
+		$output['content'] = "hrd/product";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	 
+	function product_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		   
+		$data['product_data'] = $this->Mhrd->product_data($this->input->post(),$data['page'],$data['limit']);		
+		 
+		$data['countdata'] = $this->Mhrd->product_data_count($this->input->post());	
+
+		$this->load->view('product_data', $data);
+
+	}
+	
+	 
+	function product_add_action(){
+	
+		$this->Mhrd->product_add($this->input->post());
+	
+	}
+	
+	function product_add($product_ID=null){
+	
+		$data['uom'] = $this->Mhrd->uom();	
+	 
+		$data['product_data'] = $this->Mhrd->product_data_detail($product_ID);	
+		 
+		$this->load->view('product_add', $data);
+	
+	}
+	
+	function product_delete($product_ID){
+	
+		$this->Mhrd->product_delete($product_ID);
+	
+	}
+	
+	function uom(){
+	
+	}
+	
 }
 
 /* End of file welcome.php */

@@ -3,8 +3,14 @@
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Product :</label>
 		<div class="control col-md-6">
-			<input name="product"  id = "product" class="form-control product {validate:{required:true}}" type="text"    /> 
+			<span class = "input-group  "> 
+			<input name="product"  id = "product" class="form-control product {validate:{required:true}}" type="text"   value = "<?php echo $expends_detail[0]['product_name'];?>"  /> 
 			<input id = "product_ID" name="product_ID"  class = "product_ID" type="hidden" value = "<?php echo $expends_detail[0]['product_name'];?>" />
+			
+			<span class="input-group-addon ">
+				<i class="icon-plus " style="cursor:pointer;" title="Add Department" data-toggle="modal" data-target="#myModal" onclick="add_department()"></i>
+			</span>
+			</span>
 		</div>
 	</div>
 	<div class="form-group">
