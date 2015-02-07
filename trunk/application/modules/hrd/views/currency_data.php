@@ -4,24 +4,35 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 <table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
 	<thead>
 		  <tr>
-				<th>  UoM Name </th>  
+				<th>  Currency Name </th>  
+				<th>  Currency Code </th>  
+				<th>  Symbol </th>  
+				<th>  Exchange Rate </th>
 				<th> Action </th> 
 		  </tr>
 	</thead> 
 	<tbody>
-			<?php if($uom_data):?>		
-			<?php foreach($uom_data as $keys):?>
+			<?php if($currency_data):?>		
+			<?php foreach($currency_data as $keys):?>
 				<tr>				
 					<td> 
-					<?php 	echo $keys['uom_name'];		 				 
-					?> 
+					<?php 	echo $keys['currency_name'];?> 
+					</td> 
+					<td> 
+					<?php 	echo $keys['currency_code'];	?> 
+					</td> 
+					<td> 
+					<?php 	echo $keys['currency_symbol'];	?> 
+					</td> 
+					<td> 
+					<?php 	echo $keys['exchange_rate'];	?> 
 					</td> 
 				 
 					<td class="center">
 							<div class="btn-toolbar row-action">
 									<?php //echo $keys['employee_catParentID'];?>
-									<button class="btn btn-info" title="Edit" onclick=uom_update("<?php echo $keys['UoM_ID'];?>")><i class="icon-edit"></i></button>
-									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['UoM_ID'];?>")><i class="icon-trash "></i></button>
+									<button class="btn btn-info" title="Edit" onclick=uom_update("<?php echo $keys['currency_ID'];?>")><i class="icon-edit"></i></button>
+									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['currency_ID'];?>")><i class="icon-trash "></i></button>
 								
 							</div>
 					 </td>
@@ -43,7 +54,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 	$alldata =  $countdata[0]['totdata'];
 	$totpage = ceil($alldata/$limit);
 ?>
-<?php if($uom_data):?>	
+<?php if($currency_data):?>	
 <script type='text/javascript'>
 			var options = {
 				currentPage: <?php echo $page;?>,
@@ -72,7 +83,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					NProgress.inc();
 					$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('hrd/uom_data/');?>" + "/" + page,
+					url: "<?php echo base_url('hrd/currency_data/');?>" + "/" + page,
 					data: $("#form_filter").serialize(),
 					
 						success: function(data){     

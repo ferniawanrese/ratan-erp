@@ -1837,6 +1837,98 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function currency_data($data,$page,$limit){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->like('currency.currency_name',$data['search']);
+		
+		$this->db->where('currency.deleted',0);
+		
+		$this->db->order_by('currency.dateCreated','desc');
+	
+		$query = $this->db->get('currency',$limit,$a);
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function currency_data_count($data){
+	
+		$this->db->select('count(*) as totdata');
+		
+		$this->db->like('currency.currency_name',$data['search']);
+		
+		$this->db->where('currency.deleted',0);
+	
+		$query = $this->db->get('currency');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function currency_data_detail($currency_ID){
+	
+		$this->db->where('currency_ID',$currency_ID);
+	
+		$query = $this->db->get('currency');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function currency_add($data){
+	
+		if($data['currency_ID']==""){
+		
+		unset($data['currency_ID']);
+		  
+		$this->db->set('currency_ID',$this->generate_code->getUID());	
+	
+		$this->db->insert('currency',$data);
+		
+		}else{
+		
+		$this->db->where('currency_ID',$data['currency_ID']);
+		
+		$this->db->update('currency',$data);
+		
+		}
+	
+	}
+	
+	function currency_delete($currency_ID){
+	
+		$this->db->where('currency_ID',$currency_ID);
+	
+		$this->db->set('deleted','1');
+	
+		$this->db->update('currency');
+	
+	}
+	
 }
 	
 ?>
