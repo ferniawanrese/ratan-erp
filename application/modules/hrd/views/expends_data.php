@@ -37,8 +37,11 @@ Expenses Data : <span class="label label-info"><?php echo $countdata[0]['totdata
 					
 						<div class="btn-toolbar row-action">  
 									<?php echo $dat['state'];?>	
-									 <a href = ""><i class="icon-ok-sign"></i> Confirm </a>
-									 <a href = ""><i class="icon-remove-sign"></i> Refuse</a>
+									
+									<?php if($dat['approved']==0 && $dat['state']!="Refused"):?>
+									 <a href = "#" onclick = "approved('1','<?php echo $dat['expense_ID'];?>')"><i class="icon-ok-sign"></i> Confirm </a>
+									 <a href = "#" onclick = "approved('0','<?php echo $dat['expense_ID'];?>')"><i class="icon-remove-sign"></i> Refuse</a>
+									 <?php endif;?>
 						</div>
 					</td> 
 					<td class="center">

@@ -65,7 +65,7 @@
 				success: function(data)
 				{ 
 					$('#myModal').modal('hide');
-					what_next(); 
+					what_next_currency(); 
 				}
 			});
 			
