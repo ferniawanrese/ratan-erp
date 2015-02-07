@@ -1745,6 +1745,98 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function uom_data($data,$page,$limit){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->like('uom.uom_name',$data['search']);
+		
+		$this->db->where('uom.deleted',0);
+		
+		$this->db->order_by('uom.dateCreated','desc');
+	
+		$query = $this->db->get('uom',$limit,$a);
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function uom_data_count($data){
+	
+		$this->db->select('count(*) as totdata');
+		
+		$this->db->like('uom.uom_name',$data['search']);
+		
+		$this->db->where('uom.deleted',0);
+	
+		$query = $this->db->get('uom');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function uom_data_detail($UoM_ID){
+	
+		$this->db->where('UoM_ID',$UoM_ID);
+	
+		$query = $this->db->get('uom');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function uom_add($data){
+	
+		if($data['UoM_ID']==""){
+		
+		unset($data['UoM_ID']);
+		  
+		$this->db->set('UoM_ID',$this->generate_code->getUID());	
+	
+		$this->db->insert('uom',$data);
+		
+		}else{
+		
+		$this->db->where('UoM_ID',$data['UoM_ID']);
+		
+		$this->db->update('uom',$data);
+		
+		}
+	
+	}
+	
+	function uom_delete($UoM_ID){
+	
+		$this->db->where('UoM_ID',$UoM_ID);
+	
+		$this->db->set('deleted','1');
+	
+		$this->db->update('uom');
+	
+	}
+	
 }
 	
 ?>
