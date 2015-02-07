@@ -8,7 +8,7 @@
 			<input id = "product_ID" name="product_ID"  class = "product_ID" type="hidden" value = "<?php echo $expends_detail[0]['product_name'];?>" />
 			
 			<span class="input-group-addon ">
-				<i class="icon-plus " style="cursor:pointer;" title="Add Department" data-toggle="modal" data-target="#myModal" onclick="add_department()"></i>
+				<i class="icon-plus " style="cursor:pointer;" title="Add Product" onclick="add_product()"></i>
 			</span>
 			</span>
 		</div>
@@ -40,9 +40,11 @@
 			<option><?php echo $uom['uom_name'];?></option>
 			<?php endforeach;?>
 			</select>
+			
 			<span class="input-group-addon ">
-				<i class="icon-plus " style="cursor:pointer;" title="Add Department" data-toggle="modal" data-target="#myModal" onclick="add_department()"></i>
+				<i class="icon-plus " style="cursor:pointer;" title="Add UoM"  onclick="add_uom()"></i>
 			</span>
+			
 			</span>
 		</div>
 	</div> 
@@ -61,7 +63,8 @@
 	</div>
 						
 </form>
-
+ 
+ 
 <script>
 $(document).ready(function () {
   //called when key is pressed in textbox
@@ -122,5 +125,32 @@ $("form#form-expendsdetail").submit(function(e){
                     validator.resetForm();
                 });
 			} 
+	
+	function add_uom(){	
+	 
+	 $.ajax({
+				 url: "<?php echo base_url('hrd/uom_add/');?>",
+				success: function(data){      
+				
+				$( "#modal_body" ).html(data); 		 
+				$( "#modal_label" ).html("Add UoM"); 	
+				}  
+		 
+		 }) 
+	 }
+	 
+	 
+	function add_product(){	
+	 
+	 $.ajax({
+				 url: "<?php echo base_url('hrd/product_add/');?>",
+				success: function(data){      
+				
+				$( "#modal_body" ).html(data); 		 
+				$( "#modal_label" ).html("Add Product"); 	
+				}  
+		 
+		 }) 
+	 }
 
 </script>

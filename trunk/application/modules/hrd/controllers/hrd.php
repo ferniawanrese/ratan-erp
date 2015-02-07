@@ -1120,6 +1120,12 @@ class hrd extends CI_Controller {
 			
 	}
 	
+	function expends_approval($stat,$expense_ID){
+	
+		$this->Mhrd->expends_approval($stat,$expense_ID);
+	
+	}
+	
 	function get_product_name(){
 		 
 		$data['product_name']  = $this->Mhrd->get_product_name($this->input->get('term'));
@@ -1293,7 +1299,19 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function get_currency(){
+	 
+		$json['currencynya'] = $this->Mhrd->get_currency();	 
+		 
+		 echo json_encode($json);
+		
+	}
 	
+	function expense_state($expense_ID){
+	
+		$this->Mhrd->expense_state($expense_ID);
+	
+	}
 }
 
 /* End of file welcome.php */

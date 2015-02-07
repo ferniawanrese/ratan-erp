@@ -553,6 +553,8 @@ class Mhrd extends CI_Model {
 	function get_product_name($name){ 
 	
 		$this->db->select('product_name as label, product_name as value, product_ID');
+		
+		$this->db->where('deleted',0);
 	  
 		$this->db->like('product_name',$name);
 		
@@ -1508,6 +1510,8 @@ class Mhrd extends CI_Model {
 	}
 	
 	function currency(){
+	
+			$this->db->where('deleted',0);
 	 
 			$query = $this->db->get('currency');
 	 
@@ -1524,6 +1528,8 @@ class Mhrd extends CI_Model {
 	
 	
 	function uom(){
+	
+			$this->db->where('deleted',0);
 	 
 			$query = $this->db->get('uom');
 	 
@@ -1584,7 +1590,11 @@ class Mhrd extends CI_Model {
 	
 	function get_expends_data($expense_ID){
 	
+		$this->db->select('expense.*,employee.employee_name');
+	
 		$this->db->where('expense_ID',$expense_ID);
+		
+		$this->db->join('employee','expense.employee_ID = employee.employee_ID');
 		
 		$this->db->order_by('dateCreated', 'desc');
 	
@@ -1926,6 +1936,55 @@ class Mhrd extends CI_Model {
 		$this->db->set('deleted','1');
 	
 		$this->db->update('currency');
+	
+	}
+	
+	function get_currency(){
+	
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('currency');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function expends_approval($stat,$expense_ID){
+	
+		$this->db->where('expense_ID',$expense_ID);
+	
+		$this->db->set('approved	',$stat);
+		
+		if($stat==1){
+		
+		$this->db->set('state','Approved');
+		
+		}
+		
+		if($stat==0){
+		
+		$this->db->set('state','Refused');
+		
+		}
+	
+		$this->db->update('expense');
+	
+	}
+	
+	function expense_state($expense_ID){
+	
+		$this->db->where('expense_ID',$expense_ID);
+	 
+		$this->db->set('state','Invoiced');
+		 
+		$this->db->update('expense');
 	
 	}
 	

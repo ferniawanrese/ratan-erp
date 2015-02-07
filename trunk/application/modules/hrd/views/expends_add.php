@@ -25,8 +25,8 @@
 					<div class="form-group">
 						<label  class="col-sm-3 control-label">Employee :</label>
 						<div class="control col-md-4">
-							<input name="employee"  id = "employee" class="form-control employee {validate:{required:true}}" type="text"    /> 
-							<input name="employee_ID"  id = "employee_ID" class="form-control " type="hidden"    />
+							<input name="employee"  id = "employee" class="form-control employee {validate:{required:true}}" type="text"  value = "<?php echo $expends_data[0]['employee_name'];?>"  /> 
+							<input name="employee_ID"  id = "employee_ID" class="form-control " type="hidden"  value = "<?php echo $expends_data[0]['employee_ID'];?>"   />
 						</div>
 					</div>
 					
@@ -47,7 +47,7 @@
 									<?php endforeach;?>
 								</select>
 								<span class="input-group-addon ">
-									<i class="icon-plus " style="cursor:pointer;" title="Add Department" data-toggle="modal" data-target="#myModal" onclick="add_department()"></i>
+									<i class="icon-plus " style="cursor:pointer;" title="Add Department" data-toggle="modal" data-target="#myModal" onclick="add_currency()"></i>
 								</span>
 							</span>
 						</div>
@@ -58,7 +58,7 @@
 						<div class="control col-md-3">
 							<div id="datetimepicker4" class="input-append datetimepicker">
 								<span class="add-on">
-								<input  type="text" class = "form-control datepicker {validate:{required:true}}" id = "date" name = "date" value = "">
+								<input  type="text" class = "form-control datepicker {validate:{required:true}}" id = "date" name = "date" value = "<?php echo date('d-m-Y',strtotime($expends_data[0]['date']));?>">
 								</span>																	
 						</div>																													
 						</div>																									
@@ -133,11 +133,44 @@
 		</div>							  
 	 
 		<div id="bc1" class="col-md-6 btn-group btn-breadcrumb"> 
+		
+			<?php if(!$expends_data):?>
 			<a href="#" class="btn btn-success"><div>New</div></a>
 			<a href="#" class="btn btn-default"><div>Awaiting Approval</div></a>
 			<a href="#" class="btn btn-default"><div>Approved</div></a>
 			<a href="#" class="btn btn-default"><div>Invoice</div></a> 
+			<?php endif;?>
+			
+			<?php if($expends_data[0]['state']=="Approved"):?>
+			<a href="#" class="btn btn-default"><div>New</div></a>
+			<a href="#" class="btn btn-default"><div>Awaiting Approval</div></a>
+			<a href="#" class="btn btn-success"><div>Approved</div></a>
+			<a href="#" class="btn btn-default" onclick = "expense_state('<?php echo $expends_data[0]['expense_ID'];?>')"><div><i class = "icon-print"></i> Print Invoice</div></a> 
+			<?php endif;?>
+			
+			<?php if($expends_data[0]['state']=="Invoiced"):?>
+			<a href="#" class="btn btn-default"><div>New</div></a>
+			<a href="#" class="btn btn-default"><div>Awaiting Approval</div></a>
+			<a href="#" class="btn btn-default"><div>Approved</div></a>
+			<a href="#" class="btn btn-success"><div><i class = "icon-print"></i> Print Invoice</div></a>  
+			<?php endif;?>
+			
+			<?php if($expends_data[0]['state']=="Refused"):?>
+			<a href="#" class="btn btn-default"><div>New</div></a>
+			<a href="#" class="btn btn-default"><div>Awaiting Approval</div></a>
+			<a href="#" class="btn btn-danger"><div>Refused</div></a>
+			<a href="#" class="btn btn-default"><div>Invoice</div></a> 
+			<?php endif;?>
+			
+			<?php if($expends_data[0]['state']=="Awaiting Approval"):?>
+			<a href="#" class="btn btn-default"><div>New</div></a>
+			<a href="#" class="btn btn-success"><div>Awaiting Approval</div></a>
+			<a href="#" class="btn btn-default"><div>Approved</div></a>
+			<a href="#" class="btn btn-default"><div>Invoice</div></a> 
+			<?php endif;?>
 		</div>
+		
+		
 
 		<div id="bc1" class="col-md-6 btn-group btn-breadcrumb"> 
 		<button class="btn btn-default  icon-ok" type = "submit" > Submit to Manager</button> 
@@ -162,6 +195,20 @@
 </div><!-- /.modal --> 
  
 <script>
+
+function expense_state(a){ 
+	 $.ajax({
+			 url: "<?php echo base_url('hrd/expense_state/');?>"+"/"+a,
+			success: function(data){       	 
+			
+			}  
+	 
+	 })
+}
+
+	function what_next_currency(){
+					get_currency();
+	}
  
  function add_detail(a){
 	 $.ajax({
@@ -243,6 +290,44 @@ $("form#form-expends").submit(function(e){
                     validator.resetForm();
                 });
 			} 
+			
+
+	 function add_currency(){
+		 $.ajax({
+				 url: "<?php echo base_url('hrd/currency_add/');?>",
+				success: function(data){      
+				$( "#modal_body" ).html(data); 		 
+				$( "#modal_label" ).html("Add Currency"); 	
+				}  
+		 
+		 })
+	 }
+	 
+	 
+	 	function  get_currency(){
+						 
+					$.ajax({
+						
+						url: "<?php echo base_url('hrd/get_currency/');?>",
+						
+						
+						success: function (data) {
+						 
+						var jsonData = JSON.parse(data); 
+							optmin = "";
+							for (var i = 0; i < jsonData.currencynya.length; i++) {
+							
+										var datanya = jsonData.currencynya[i];
+										  
+										optmin += "<option value ='"+ datanya.currency_ID +"'>"+ datanya.currency_name +"</option>";
+										 
+										$( "#currency_ID" ).html(optmin); 
+							}
+							
+						}
+					});
+					
+				};
 </script>
 
 

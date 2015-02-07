@@ -153,4 +153,17 @@ function expends_add(a){
 			$('.additional_group').remove();
 			display_data();
 	}
+	
+	function approved(a,b){
+	
+		$.ajax({ 
+				url: "<?php echo base_url('hrd/expends_approval/');?>"+"/"+a+"/"+b,
+				data: '',
+				success: function(data)
+				{
+					display_data();
+				}
+			});
+	
+	}
 </script>
