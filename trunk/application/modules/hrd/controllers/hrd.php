@@ -1195,7 +1195,54 @@ class hrd extends CI_Controller {
 	
 	function uom(){
 	
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		 
+		$output['data']['menu_active'] = "Configuration";
+		 
+		$output['content'] = "hrd/uom";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
 	}
+	
+	function uom_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		   
+		$data['uom_data'] = $this->Mhrd->uom_data($this->input->post(),$data['page'],$data['limit']);		
+		 
+		$data['countdata'] = $this->Mhrd->uom_data_count($this->input->post());	
+
+		$this->load->view('uom_data', $data);
+
+	}
+	
+	function uom_add($UoM_ID=null){
+	
+		$data['uom_data'] = $this->Mhrd->uom_data_detail($UoM_ID);	
+	  
+		$this->load->view('uom_add', $data);
+	
+	}
+	
+	function uom_add_action(){
+	
+		$this->Mhrd->uom_add($this->input->post());
+	
+	}
+	
+	function uom_delete($UoM_ID=null){
+	
+		$this->Mhrd->uom_delete($UoM_ID);
+	
+	}
+	
 	
 }
 
