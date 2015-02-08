@@ -1996,6 +1996,8 @@ class Mhrd extends CI_Model {
 		$this->db->like('leave_type.leave_type_name',$data['search']);
 	
 		$this->db->where('deleted',0);
+		
+		$this->db->order_by('dateCreated','desc');
 	
 		$query = $this->db->get('leave_type',$limit,$a);
 	 
@@ -2052,22 +2054,85 @@ class Mhrd extends CI_Model {
 	}
 	
 	function leave_type_add($data){
-	
+	 
 		if($data['leave_typeID']==""){
 		
-		unset($data['leave_typeID']);
-		  
-		$this->db->set('leave_typeID',$this->generate_code->getUID());	
-	
-		$this->db->insert('leave_type',$data);
+			$data_detail = $data['date_detail'];
+			
+			unset($data['date_detail']);
+			
+			unset($data['leave_typeID']);
+			
+			$leave_typeID = $this->generate_code->getUID();
+			  
+			$this->db->set('leave_typeID',$leave_typeID);	
 		
+			$this->db->insert('leave_type',$data);
+			
+			//--detail
+			
+			foreach($data_detail as $det){
+			
+			$this->db->set('leave_typeID',$leave_typeID);	
+			
+			$this->db->set('leave_type_dateID',$this->generate_code->getUID());	
+			
+			$this->db->set('date_allow',date("Y-m-d", strtotime($det['date_allow']))); 
+			
+			unset($det['date_allow']);
+			
+			unset($det['leave_type_dateID']);
+			
+			$this->db->insert('leave_type_date',$det);
+			
+			}
+			
 		}else{
 		
-		$this->db->where('leave_typeID',$data['leave_typeID']);
+			$data_detail = $data['date_detail'];
+			
+			unset($data['date_detail']);
 		
-		$this->db->update('leave_type',$data);
+			$this->db->where('leave_typeID',$data['leave_typeID']);
+		
+			$this->db->update('leave_type',$data);
+			
+			
+			foreach($data_detail as $det){
+			
+				if($det['leave_type_dateID'] == ""){
+				
+				unset($det['leave_type_dateID']);
+			 
+				$this->db->set('leave_type_dateID',$this->generate_code->getUID());	
+				
+				$this->db->set('leave_typeID',$data['leave_typeID']);
+				
+				$this->db->set('date_allow',date("Y-m-d", strtotime($det['date_allow']))); 
+				
+				unset($det['date_allow']);
+				 
+				$this->db->insert('leave_type_date',$det);
+				
+				}
+				
+				else if($det['leave_type_dateID'] != ""){
+			
+				$this->db->where('leave_type_dateID',$det['leave_type_dateID']);	
+				 
+				$this->db->set('date_allow',date("Y-m-d", strtotime($det['date_allow']))); 
+				
+				unset($det['date_allow']);
+				
+				$this->db->update('leave_type_date',$det);
+				
+				}
+			
+			}
 		
 		}
+		
+		
 	
 	}
 	
@@ -2086,6 +2151,8 @@ class Mhrd extends CI_Model {
 		$this->db->where('leave_type_date.leave_typeID',$leave_typeID);
 	
 		$this->db->where('deleted',0);
+		
+		$this->db->order_by('dateCreated','ASC');
 	
 		$query = $this->db->get('leave_type_date');
 	 
@@ -2118,6 +2185,14 @@ class Mhrd extends CI_Model {
 				return FALSE;
 			}	
 	
+	
+	}
+	
+	function leave_type_datedetail_update($data){
+	
+		$this->db->where('leave_type_dateID',$data['leave_type_dateID']);
+	 
+		$this->db->update('leave_type_date',$data);
 	
 	}
 }
