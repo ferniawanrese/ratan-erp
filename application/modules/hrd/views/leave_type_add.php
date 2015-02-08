@@ -55,20 +55,23 @@
 									<tbody id = "draft">
 									 
 									<?php if($date_detail):?>
-										<?php foreach($date_detail as $det):?>
+										<?php foreach($date_detail as $det):?> 
+											<input type = "hidden" id = "det_deleted<?php echo $det['leave_type_dateID'];?>" name = "date_detail[<?php echo $det['leave_type_dateID'];?>][deleted]" 
+												value = "0"> 
+											<input type = "hidden" id = "date_detail[<?php echo $det['leave_type_dateID'];?>][leave_type_dateID]" name = "date_detail[<?php echo $det['leave_type_dateID'];?>][leave_type_dateID]"  
+												value = "<?php echo $det['leave_type_dateID'];?>" > 
+												 
 											<tr id = "<?php echo $det['leave_type_dateID'];?>">
 												<td>
-												<input type = "hidden" id = "date_detail[<?php echo $det['leave_type_dateID'];?>][leave_type_dateID]" name = "date_detail[<?php echo $det['leave_type_dateID'];?>][leave_type_dateID]" 
-												value = "<?php echo $det['leave_type_dateID'];?>">
-												
-												<?php echo date("d-m-Y", strtotime($det['date_allow']));?>
-												<input type = "hidden" id = "date_detail[<?php echo $det['leave_type_dateID'];?>][date_allow]" name = "date_detail[<?php echo $det['leave_type_dateID'];?>][date_allow]" 
+												 
+												<span id = "det_<?php echo $det['leave_type_dateID'];?>"><?php echo date("d-m-Y", strtotime($det['date_allow']));?></span>
+												<input type = "hidden" id = "date_detail_det<?php echo $det['leave_type_dateID'];?>" name = "date_detail[<?php echo $det['leave_type_dateID'];?>][date_allow]" 
 												value = "<?php echo $det['date_allow'];?>">
 												</td>
 												<td>
 												
-												<?php echo $det['note'];?>
-												<input type = "hidden" id = "date_detail[<?php echo $det['leave_type_dateID'];?>][note]" name = "date_detail[<?php echo $det['leave_type_dateID'];?>][note]" value = "<?php echo $det['note'];?>">
+												<span id = "note_<?php echo $det['leave_type_dateID'];?>"><?php echo $det['note'];?></span>
+												<input type = "hidden" id = "date_detail_note<?php echo $det['leave_type_dateID'];?>" name = "date_detail[<?php echo $det['leave_type_dateID'];?>][note]" value = "<?php echo $det['note'];?>">
 												</td>
 												<td class="center">
 														<div class="btn-toolbar row-action"> 
@@ -165,9 +168,10 @@ function add_detail(a){
  
  
 function delete_draft(a){
-
+	
+	$("#det_deleted"+a).val('1');
 	$("#"+a).remove();
-
+	 
 }
  
 </script>
