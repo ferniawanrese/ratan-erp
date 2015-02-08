@@ -4,7 +4,7 @@
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Date Allow:</label>
 		<div class="control col-md-4">
-			<input id = "date_allow" name="date_allow" class="form-control datepicker" type="text" value = "<?php echo $leave_type_date[0]['date_allow'];?>"/>
+			<input id = "date_allow" name="date_allow" class="form-control datepicker" type="text" value = "<?php echo date("d-m-Y", strtotime($leave_type_date[0]['date_allow']));?>"/>
 		</div>
 	</div>
 	<div class="form-group">
@@ -45,7 +45,21 @@ $("form#form-dateallow").submit(function(e){
 				}
 			});
 		}else{
-			 /*
+		
+			var det_nya = $('#date_allow').val();
+			
+			var note_nya = $('#note').val();
+			 
+			$('#det_<?php echo $leave_type_date[0]['leave_type_dateID'];?>').html(det_nya);
+			
+			$('#note_<?php echo $leave_type_date[0]['leave_type_dateID'];?>').html(note_nya);
+			
+			$('#date_detail_det<?php echo $leave_type_date[0]['leave_type_dateID'];?>').val(det_nya);
+			
+			$('#date_detail_note<?php echo $leave_type_date[0]['leave_type_dateID'];?>').val(note_nya);
+			
+			$('#myModal').modal('hide');
+			/*
 			NProgress.inc();	
 			$.ajax({
 				type: "POST",
@@ -59,8 +73,7 @@ $("form#form-dateallow").submit(function(e){
 				}
 			});
 			*/
-			
-			
+			 
 		}
 			return false;
 	});
