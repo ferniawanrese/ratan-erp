@@ -1383,6 +1383,14 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function leave_type_datedetail_update(){
+	 
+			$data['datanya'] =  $this->input->post(); 	 
+			
+			$this->Mhrd->leave_type_datedetail_update($data['datanya']);	
+			 
+	}
+	
 }
 
 /* End of file welcome.php */

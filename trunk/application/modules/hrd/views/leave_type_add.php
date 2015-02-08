@@ -1,16 +1,17 @@
-<form  id = "catAdd" class="form-horizontal form-validate" enctype="multipart/form-data"   method="post">
+ 
+			<form  id = "form_add" class="form-horizontal form-validate"   method="post"> 
 						<input name="leave_typeID"  id = "leave_typeID" class="form-control " type="hidden"  value = "<?php echo $leave_date[0]['leave_typeID'];?>"  /> 	 
 						
 						<div class="form-group">
 							<label  class="col-sm-3 control-label"> Leave Type:</label>
 							<div class="control col-md-4">
-								<input name="leave_type_name"  id = "leave_type_name" class="form-control " type="text"  value = "<?php echo $leave_date[0]['leave_type_name'];?>"  /> 
+								<input name="leave_type_name"  id = "leave_type_name" class="form-control {validate:{required:true}}" type="text"  value = "<?php echo $leave_date[0]['leave_type_name'];?>"  /> 
 							</div>
 						</div>
 						<div class="form-group">
 							<label  class="col-sm-3 control-label"> Description:</label>
 							<div class="control col-md-4">
-								<textarea class = "form-control" id = "description" name = "description"><?php echo $leave_date[0]['description'];?></textarea>
+								<textarea class = "form-control {validate:{required:true}}" id = "description" name = "description"><?php echo $leave_date[0]['description'];?></textarea>
 							</div>
 						</div>
 						
@@ -57,10 +58,15 @@
 										<?php foreach($date_detail as $det):?>
 											<tr id = "<?php echo $det['leave_type_dateID'];?>">
 												<td>
-												<?php echo $det['date_allow'];?>
-												<input type = "hidden" id = "date_detail[<?php echo $det['leave_type_dateID'];?>][date_allow]" name = "date_detail[<?php echo $det['leave_type_dateID'];?>][date_allow]" value = "<?php echo $det['date_allow'];?>">
+												<input type = "hidden" id = "date_detail[<?php echo $det['leave_type_dateID'];?>][leave_type_dateID]" name = "date_detail[<?php echo $det['leave_type_dateID'];?>][leave_type_dateID]" 
+												value = "<?php echo $det['leave_type_dateID'];?>">
+												
+												<?php echo date("d-m-Y", strtotime($det['date_allow']));?>
+												<input type = "hidden" id = "date_detail[<?php echo $det['leave_type_dateID'];?>][date_allow]" name = "date_detail[<?php echo $det['leave_type_dateID'];?>][date_allow]" 
+												value = "<?php echo $det['date_allow'];?>">
 												</td>
 												<td>
+												
 												<?php echo $det['note'];?>
 												<input type = "hidden" id = "date_detail[<?php echo $det['leave_type_dateID'];?>][note]" name = "date_detail[<?php echo $det['leave_type_dateID'];?>][note]" value = "<?php echo $det['note'];?>">
 												</td>
@@ -85,7 +91,7 @@
 						
 						<div class="form-group">
 							<label  class="col-sm-3 control-label"> </label>
-							<div class="control col-md-4">
+							<div class="control col-md-4">  
 								<button class="alert-box btn" type = "submit" >Finish</button>
 							</div> 
 						</div>
@@ -109,24 +115,41 @@
 </div><!-- /.modal --> 
   
 <script>
+	cek_validate();
+			function cek_validate(){
+				
+				 var container = $('div.error-container ');
+                // validate the form when it is submitted
+                var validator = $(".form-validate").validate({
+                    errorContainer: container,
+                    errorLabelContainer: $("ol", container),
+                    wrapper: 'span',
+                    meta: "validate"
+                });
+				 
+                $(".cancel").click(function () {
+                    validator.resetForm();
+                });
+			}  
+	
+	$("form#form_add").submit(function(e){
 	 
-	$("form#catAdd").submit(function(e){
-	
-	e.preventDefault();
-	
+		//e.preventDefault();
+			NProgress.inc();	
 			$.ajax({
 				type: "POST",
-				url: "<?php echo base_url('hrd/leave_type_add_action/');?>",
-				data: $("#catAdd").serialize(),
+				url: "<?php echo base_url('hrd/leave_type_add_action');?>",
+				data: $("#form_add").serialize(),
 				success: function(data)
-				{ 
-					$('#myModal').modal('hide');
-					what_next_leave_type(); 
+				{
+					display_data();
+					NProgress.done(true);
 				}
 			});
 			
 			return false;
 	});
+	  
 	
 	
 function add_detail(a){
@@ -139,4 +162,12 @@ function add_detail(a){
 	 
 	 })
  }	 
+ 
+ 
+function delete_draft(a){
+
+	$("#"+a).remove();
+
+}
+ 
 </script>

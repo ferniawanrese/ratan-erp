@@ -10,7 +10,7 @@
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Note:</label>
 		<div class="control col-md-6">
-			<input name="note"  id = "note" class="form-control  {validate:{required:true}}" type="text" value = "<?php echo $leave_type_date[0]['note'];?>"/> 
+			<input name="note"  id = "note" class="form-control" type="text" value = "<?php echo $leave_type_date[0]['note'];?>"/> 
 		</div>
 	</div>
 	  
@@ -26,8 +26,9 @@
 <script>
 
 $("form#form-dateallow").submit(function(e){
-	
-	//e.preventDefault();
+		
+		if($('#leave_type_dateID').val()==""){
+			//e.preventDefault();
 			NProgress.inc();	
 			$.ajax({
 				type: "POST",
@@ -37,30 +38,33 @@ $("form#form-dateallow").submit(function(e){
 				{
 					$('#myModal').modal('hide');
 					$('#nodata').hide();
-					$( "#draft" ).append(data); 	
+					
+					$( "#draft" ).append(data); 
+					
 					NProgress.done(true);
 				}
 			});
+		}else{
+			 /*
+			NProgress.inc();	
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('hrd/leave_type_datedetail_update');?>",
+				data: $("#form-dateallow").serialize(),
+				success: function(data)
+				{
+					$('#myModal').modal('hide');
+					
+					NProgress.done(true);
+				}
+			});
+			*/
 			
+			
+		}
 			return false;
 	});
-	
-	cek_validate();
-			function cek_validate(){
-				
-				 var container = $('div.error-container ');
-                // validate the form when it is submitted
-                var validator = $(".form-validate").validate({
-                    errorContainer: container,
-                    errorLabelContainer: $("ol", container),
-                    wrapper: 'span',
-                    meta: "validate"
-                });
-				
-                $(".cancel").click(function () {
-                    validator.resetForm();
-                });
-			} 
+	 
 </script>
  <script>
   $('#date_allow').datepicker({
