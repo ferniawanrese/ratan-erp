@@ -1312,6 +1312,77 @@ class hrd extends CI_Controller {
 		$this->Mhrd->expense_state($expense_ID);
 	
 	}
+	
+	function leave_type(){
+	
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		 
+		$output['data']['menu_active'] = "Configuration";
+		 
+		$output['content'] = "hrd/leave_type";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function leave_type_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		   
+		$data['leave_type_data'] = $this->Mhrd->leave_type_data($this->input->post(),$data['page'],$data['limit']);		
+		 
+		$data['countdata'] = $this->Mhrd->leave_type_data_count($this->input->post());	
+
+		$this->load->view('leave_type_data', $data);
+	
+	}
+	
+	function leave_type_add($leave_typeID=null){
+	
+		$data['leave_date'] = $this->Mhrd->leave_type_data_detail($leave_typeID);	
+		
+		$data['date_detail'] = $this->Mhrd->date_detail($leave_typeID);	
+	  
+		$this->load->view('leave_type_add', $data);
+		
+	}
+	
+	function leave_type_add_action(){
+	
+		$this->Mhrd->leave_type_add($this->input->post());
+	
+	}
+	
+	function leave_type_delete($leave_typeID){
+	
+		$this->Mhrd->leave_type_delete($leave_typeID);
+	
+	}
+	 
+	function leave_type_datedetail($leave_type_dateID=null){
+	
+		$data['leave_type_date'] = $this->Mhrd->leave_type_datedetail($leave_type_dateID);	
+	  
+		$this->load->view('leave_type_datedetail', $data);
+	 
+	}
+	
+	function leave_type_datedetail_action(){
+	
+			$data['id'] = $this->generate_code->getUID();
+		
+			$data['datanya'] =  $this->input->post(); 	 
+			
+			$this->load->view('leave_type_datedraft', $data);
+	
+	}
+	
 }
 
 /* End of file welcome.php */

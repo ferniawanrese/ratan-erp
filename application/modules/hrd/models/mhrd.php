@@ -1988,6 +1988,138 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function leave_type_data($data,$page,$limit){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+	
+		$this->db->like('leave_type.leave_type_name',$data['search']);
+	
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('leave_type',$limit,$a);
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function leave_type_data_count($data){
+	
+		$this->db->select('count(*) as totdata');
+		
+		$this->db->like('leave_type.leave_type_name',$data['search']);
+	
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('leave_type');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function leave_type_data_detail($leave_typeID){
+	
+		$this->db->where('leave_typeID',$leave_typeID);
+	
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('leave_type');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	
+	}
+	
+	function leave_type_add($data){
+	
+		if($data['leave_typeID']==""){
+		
+		unset($data['leave_typeID']);
+		  
+		$this->db->set('leave_typeID',$this->generate_code->getUID());	
+	
+		$this->db->insert('leave_type',$data);
+		
+		}else{
+		
+		$this->db->where('leave_typeID',$data['leave_typeID']);
+		
+		$this->db->update('leave_type',$data);
+		
+		}
+	
+	}
+	
+	function leave_type_delete($leave_typeID){
+	
+		$this->db->where('leave_typeID',$leave_typeID);
+	
+		$this->db->set('deleted','1');
+	
+		$this->db->update('leave_type');
+	
+	}
+	
+	function date_detail($leave_typeID){
+	
+		$this->db->where('leave_type_date.leave_typeID',$leave_typeID);
+	
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('leave_type_date');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	
+	}
+	
+	function leave_type_datedetail($leave_type_dateID){
+	
+		$this->db->where('leave_type_date.leave_type_dateID',$leave_type_dateID);
+	
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('leave_type_date');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	
+	}
 }
 	
 ?>
