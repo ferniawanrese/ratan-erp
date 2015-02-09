@@ -1126,6 +1126,10 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function expends_delete($expense_ID){
+		$this->Mhrd->expends_delete($expense_ID);
+	}
+	
 	function get_product_name(){
 		 
 		$data['product_name']  = $this->Mhrd->get_product_name($this->input->get('term'));

@@ -59,7 +59,7 @@ $("form#productAdd").submit(function(e){
 				{ 
 
 					$('#myModal').modal('hide'); 
-					what_next(); 
+					what_next_product(); 
 				}
 			});
 			

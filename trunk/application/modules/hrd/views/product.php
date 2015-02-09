@@ -41,7 +41,7 @@
 
 <script>
 
-function what_next(){
+function what_next_product(){
 clean(); 
 }
  
