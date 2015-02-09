@@ -1478,6 +1478,8 @@ class Mhrd extends CI_Model {
 			$this->db->join("employee", "employee.employee_ID = expense.employee_ID");
 
 			$this->db->order_by('expense.dateCreated', 'desc');
+			
+			$this->db->where('expense.deleted',0);
 	
 			$query = $this->db->get('expense');
 	 
@@ -1495,6 +1497,13 @@ class Mhrd extends CI_Model {
 	function expends_data_count(){
 	
 			$this->db->select('count(*) as totdata');
+			
+			$this->db->join("currency", "currency.currency_ID = expense.currency_ID");
+	
+			$this->db->join("employee", "employee.employee_ID = expense.employee_ID");
+
+			
+			$this->db->where('expense.deleted',0);
 	
 			$query = $this->db->get('expense');
 	 
@@ -1545,46 +1554,86 @@ class Mhrd extends CI_Model {
 	}
 	
 	function expends_add_action($data){
-	
-		$expense_ID = $this->generate_code->getUID();	
-		
-		$expends_detail = $data['expends_detail'];	
-		
-		unset($data['expense_ID']);
-		
-		unset($data['expense']);
-		
-		unset($data['employee']);
-		
-		unset($data['expends_detail']);
-		
-		$this->db->set('date',date('y-m-d',strtotime($data['date'])));
-		
-		unset($data['date']);
-		
-		$this->db->set('expense_ID',$expense_ID);
 		 
-		$this->db->insert('expense',$data);
+			$expends_detail = $data['expends_detail'];
+			
+			unset($data['expends_detail']);
+	
+		if($data['expense_ID']==""){
 		
-		$total=0;
+			// insert new expend
+	
+			$expense_ID = $this->generate_code->getUID();	
+			 
+			unset($data['expense_ID']);
+			
+			unset($data['expense']);
+			
+			unset($data['employee']);
+			 
+			$this->db->set('date',date('y-m-d',strtotime($data['date'])));
+			
+			unset($data['date']);
+			
+			$this->db->set('expense_ID',$expense_ID);
+			 
+			$this->db->insert('expense',$data);
+			 
+		} else {
 		
-		foreach($expends_detail as $det){
-		
-		$this->db->set('expense_detaiID',$this->generate_code->getUID());
-		
-		$this->db->set('expense_ID', $expense_ID);
-		  
-		$this->db->insert('expense_detail',$det);
-		
-		$total = $det['sub_total'] + $total;
-		
+			// update expenses
+			
+			$expense_ID = $data['expense_ID'];
+			  
+			unset($data['expense']);
+			
+			unset($data['employee']);
+			 
+			$this->db->set('date',date('y-m-d',strtotime($data['date'])));
+			
+			unset($data['date']);
+			
+			$this->db->where('expense_ID', $expense_ID);
+			
+			$this->db->update('expense',$data);
+			
+			  
 		}
+		 
+		// expense detail update
 		
-		$this->db->where('expense_ID',$expense_ID);
+			$total=0;
+			foreach($expends_detail as $det){
+			
+				if($det['expense_detaiID'] == ""){
+				
+				$total = $det['sub_total'] + $total;
+				 
+				$this->db->set('expense_detaiID',$this->generate_code->getUID());
+				
+				$this->db->set('expense_ID', $expense_ID);
+				  
+				$this->db->insert('expense_detail',$det);
+				 
+				} else{
+				
+				$total = $det['sub_total'] + $total;
+				
+				$this->db->where('expense_detaiID', $det['expense_detaiID']);
+				
+				$this->db->update('expense_detail',$det);
+				
+				}
+			
+			}
 		
-		$this->db->set('total_amount',$total);
+			
 		
-		$this->db->update('expense');
+			$this->db->where('expense_ID',$expense_ID);
+			
+			$this->db->set('total_amount',$total);
+			
+			$this->db->update('expense');
 	  
 	}
 	
@@ -1618,6 +1667,8 @@ class Mhrd extends CI_Model {
 		$this->db->join('product', 'expense_detail.product_ID = product.product_ID');
 		
 		$this->db->order_by('expense_detail.dateCreated', 'asc');
+		
+		$this->db->where('expense_detail.deleted',0);
 	
 		$query = $this->db->get('expense_detail');
 	 
@@ -1637,6 +1688,8 @@ class Mhrd extends CI_Model {
 		$this->db->where('expense_detaiID',$expense_detailID);
 		
 		$this->db->join('product', 'expense_detail.product_ID = product.product_ID');
+		
+		$this->db->where('expense_detail.deleted',0);
 		 
 		$query = $this->db->get('expense_detail');
 	 
@@ -2193,6 +2246,16 @@ class Mhrd extends CI_Model {
 		$this->db->where('leave_type_dateID',$data['leave_type_dateID']);
 	 
 		$this->db->update('leave_type_date',$data);
+	
+	}
+	
+	function expends_delete($expense_ID){
+	
+		$this->db->where('expense_ID',$expense_ID);
+	
+		$this->db->set('deleted','1');
+	
+		$this->db->update('expense');
 	
 	}
 }
