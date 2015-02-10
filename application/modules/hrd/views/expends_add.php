@@ -200,31 +200,31 @@
 </div><!-- /.modal --> 
  
 <script>
-
-function expense_state(a){ 
-	 $.ajax({
-			 url: "<?php echo base_url('hrd/expense_state/');?>"+"/"+a,
-			success: function(data){       	 
-			
-			}  
-	 
-	 })
-}
+		
+	function expense_state(a){ 
+		 $.ajax({
+				 url: "<?php echo base_url('hrd/expense_state/');?>"+"/"+a,
+				success: function(data){       	 
+				
+				}  
+		 
+		 })
+	}
 
 	function what_next_currency(){
 					get_currency();
 	}
- 
- function add_detail(a){
-	 $.ajax({
-			 url: "<?php echo base_url('hrd/expends_detail_add/');?>"+"/"+a,
-			success: function(data){      
-			$( "#modal_body" ).html(data); 		
-			$( "#modal_label" ).html("Expense Lines"); 		 
-			}  
 	 
-	 })
- }
+	 function add_detail(a){
+		 $.ajax({
+				 url: "<?php echo base_url('hrd/expends_detail_add/');?>"+"/"+a,
+				success: function(data){      
+				$( "#modal_body" ).html(data); 		
+				$( "#modal_label" ).html("Expense Lines"); 		 
+				}  
+		 
+		 })
+	 }
 
 load_data();
 function load_data(){
