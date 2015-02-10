@@ -1110,12 +1110,22 @@ class hrd extends CI_Controller {
 	 
 	}
 	
-	function expends_detail_add_action(){
+	function expends_detail_add_action($draft_stat=null){
 	
-			$data['id'] = $this->generate_code->getUID();
-	 
-			$data['datanya'] =  $this->input->post(); 	 
+			$data['draft_stat'] = $draft_stat;
 			
+			if($draft_stat==""){
+			
+			$data['id'] = $this->generate_code->getUID();
+			 
+			}else{
+			  
+			$data['id'] = $data['draft_stat'];
+			 
+			}
+			
+			$data['datanya'] =  $this->input->post(); 
+ 
 			$this->load->view('expends_detail_draft', $data);
 			
 	}

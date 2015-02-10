@@ -1,6 +1,9 @@
 <form  id = "form-expendsdetail" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
+	
 	<input name="expense_detaiID"  id = "expense_detaiID"   type="hidden" value = "<?php echo $expends_detail[0]['expense_detaiID'];?>"   />
-	<input name="draft_stat"  id = "draft_stat"   type="hidden" value = ""   />
+	
+	<input name="draft_stat"  id = "draft_stat"   type="hidden" value = "" />
+	
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Product :</label>
 		<div class="control col-md-6">
@@ -94,28 +97,29 @@ $(function() {
 
 $("form#form-expendsdetail").submit(function(e){
 	// add detail
-			if($('#expense_detaiID').val()=="" ){
+	
+			var draft_stat = $('#draft_stat').val();
+			 
+			if($('#expense_detaiID').val()==""){
 				NProgress.inc();	
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('hrd/expends_detail_add_action');?>",
+					url: "<?php echo base_url('hrd/expends_detail_add_action');?>"+"/"+draft_stat,
 					data: $("#form-expendsdetail").serialize(),
 					success: function(data)
 					{
 						$('#myModal').modal('hide');
-						
-						var statID = $('#draft_stat').val();
-						
-						if(statID == ""){
+						 
+						if(draft_stat == ""){
 							$( "#draft" ).append(data); 	
 						}else{
-							$( "#"+statID ).html(data); 	
-						}
-						
+							
+							$( "#"+draft_stat ).html(data); 	
+							
+						} 
 						NProgress.done(true);
 					}
-				});
-				
+				}); 
 			}
 			 
 			else{

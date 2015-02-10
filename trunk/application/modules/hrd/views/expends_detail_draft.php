@@ -1,7 +1,8 @@
-<?php //$this->core->print_rr($datanya);?>
- 
+<?php if($draft_stat==""):?>
 <tr id = "<?php echo $id;?>">
-	<td>
+<?php endif;?>
+ 
+	<td>  
 	<span id = "product_name<?php echo $id;?>" ><?php echo $datanya['product'];?></span>
 	<input type = "hidden" id = "expends_detail<?php echo $id;?>product_ID" name = "expends_detail[<?php echo $id;?>][product_ID]" value = "<?php echo $datanya['product_ID'];?>">
 	</td>
@@ -35,8 +36,10 @@
 					<button class="delete btn btn-danger" title="Delete" onclick=delete_draft("<?php echo $id;?>")><i class="icon-trash "></i></button> 
 			</div>
 	 </td>
-</tr>
- 
+<?php if($draft_stat==""):?>  
+</tr> 
+<?php endif;?>
+
 <script>
  function add_detailx(a){
   
@@ -71,6 +74,6 @@
 				$('#sub_total').val(sub_total);
 				
 				$('#UoM').val(UoM);
-				   
+				 
  }
  </script>
