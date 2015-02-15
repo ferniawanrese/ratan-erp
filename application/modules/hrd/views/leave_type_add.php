@@ -41,6 +41,23 @@
 							</div>
 						</div> 
 						
+						<div class="form-group">
+							<label  class="col-sm-3 control-label"> Color Date: </label>
+							<div class="control col-md-2">
+								<select class = "form-control" name = "date_color" id = "date_color">
+								 
+									<?php if($leave_date[0]['date_color']!=""):?>
+									<option value = "<?php echo $leave_date[0]['date_color'];?>" selected disabled="disabled" ><?php echo $leave_date[0]['date_color'];?></option>
+									<?php endif;?> 
+									
+									<option value = "red"  >Red</option>
+									<option value = "yellow"  >Yellow</option>
+									<option value = "green" >Green</option>
+									 
+								</select>
+							</div>
+						</div> 
+						
 						<div class="stepy-widget"> 
 							<div class="widget-container gray ">
 								Date Available <button class="btn btn-blue icon-plus" onclick="add_detail()" type="button" data-target="#myModal" data-toggle="modal"  > Add</button><div></br></div>

@@ -2258,6 +2258,161 @@ class Mhrd extends CI_Model {
 		$this->db->update('expense');
 	
 	}
+	
+	function get_leave_month($date_start,$date_end){
+	
+		$this->db->where('leave_type_date.date_allow >=',$date_start);
+		
+		$this->db->where('leave_type_date.date_allow <=',$date_end);
+	
+		$this->db->join('leave_type','leave_type.leave_typeID =  leave_type_date.leave_typeID ');
+	
+		$query = $this->db->get('leave_type_date');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function get_leave_type(){
+	
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('leave_type');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function leaves_add($data){
+	 
+		unset($data['employee']);
+	 
+		if($data['leave_ID']==""){
+	 
+		$this->db->set('leave_ID',$this->generate_code->getUID());
+	
+		$this->db->insert('leave',$data);
+		
+		}else{
+		
+		$this->db->where('leave_ID',$data['leave_ID']);
+		 
+		$this->db->update('leave',$data);
+		
+		}
+	
+	}
+	
+	function leave_approval_data($data,$page,$limit){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+	
+		$this->db->select('leave.*,employee.employee_name, leave_type.leave_type_name');
+		
+		$this->db->like('employee.employee_name',$data['search']);
+	
+		$this->db->join('employee','leave.employee_ID = employee.employee_ID');
+		
+		$this->db->join('leave_type','leave_type.leave_typeID = leave.leave_typeID');
+		
+		$this->db->order_by('leave.dateCreated','desc');
+		
+		$this->db->where('leave.deleted','0');
+	
+		$query = $this->db->get('leave',$limit,$a);
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function leave_approval_data_count($data){
+		
+		$this->db->select('count(*) as totdata');
+		
+		$this->db->like('employee.employee_name',$data['search']);
+	
+		$this->db->join('employee','leave.employee_ID = employee.employee_ID');
+		
+		$this->db->join('leave_type','leave_type.leave_typeID = leave.leave_typeID');
+		
+		$this->db->where('leave.deleted','0');
+	 
+		$query = $this->db->get('leave');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function leaves_approval_stat($leave_ID, $stat){
+	
+		$this->db->where('leave_ID',$leave_ID);
+	
+		$this->db->set('approved',$stat);
+	
+		$this->db->update('leave');
+	
+	}
+	
+	function leave_approval_delete($leave_ID){
+	
+		$this->db->where('leave_ID',$leave_ID);
+	
+		$this->db->set('deleted','1');
+	
+		$this->db->update('leave');
+	
+	}
+	
+	function leave_detail($leave_ID){
+	
+		$this->db->select('leave.*,employee.employee_name,employee.employee_ID');
+	
+		$this->db->where('leave_ID',$leave_ID);
+		
+		$this->db->join('employee','leave.employee_ID = employee.employee_ID');
+	
+		$query = $this->db->get('leave');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
 }
 	
 ?>

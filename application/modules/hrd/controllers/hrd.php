@@ -1405,6 +1405,112 @@ class hrd extends CI_Controller {
 			 
 	}
 	
+	function leaves_calendar_json(){
+	  
+		$date_start = gmdate("Y-m-d h:i:s",$this->input->GET('start'));
+		
+		$date_end = gmdate("Y-m-d h:i:s",$this->input->GET('end'));
+		
+		$data['events'] = $this->Mhrd->get_leave_month($date_start,$date_end);
+		 
+		if($data['events']){
+			foreach ($data['events'] as $record) {
+			
+				if($record['date_color'] == "red"){
+				$color = "rgba(255, 0, 0, 0.7)";
+				$textColor = '#fffff';
+				$icon = "<i class = 'icon-calendar'></i> ";
+				} 
+				
+				if($record['date_color'] == "yellow"){
+				$color = "rgba(255, 255, 0, 0.7)";
+				$textColor = '#000000';
+				$icon = "<i class = 'icon-calendar'></i> ";
+				} 
+				
+				if($record['date_color'] == "green"){
+				$color = "rgba(0, 153, 0, 0.7)";
+				$textColor = '#000000';
+				$icon = "<i class = 'icon-calendar'></i> ";
+				} 
+				
+				$event_array[] = array(
+					'title' => '<font style="font-family:arial ;font-size:13px;" >'.$icon.$record['note'].'</font>',
+					'start' => $record['date_allow'],
+					'end' => $record['date_allow'],
+					'allDay' => true,
+					'color' => $color,
+					'textColor' => $textColor,
+					'holiday' => True, 
+					'url' => base_url('entertainment/entertainment_detail/'.$record['leave_type_dateID'])
+				);
+			}
+		}
+		  
+		echo json_encode($event_array);
+		exit;
+	 
+	}
+	
+	function leaves_add($leave_ID=null){
+	
+		$data['leave_type'] = $this->Mhrd->get_leave_type(); 	
+
+		$data['leave_detail'] = $this->Mhrd->leave_detail($leave_ID); 
+			
+		$this->load->view('leave_add', $data);
+	
+	}
+	
+	function leaves_add_action(){
+	
+		$this->Mhrd->leaves_add($this->input->post()); 	 
+			 
+	}
+	
+	function leave_approval(){
+	
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		 
+		$output['data']['menu_active'] = "Main";
+		 
+		$output['content'] = "hrd/leave_approval";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	
+	}
+	
+	function leave_approval_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		   
+		$data['leave_data'] = $this->Mhrd->leave_approval_data($this->input->post(),$data['page'],$data['limit']);		
+		 
+		$data['countdata'] = $this->Mhrd->leave_approval_data_count($this->input->post());	
+
+		$this->load->view('leave_approval_data', $data);
+	
+	}
+	
+	function leaves_approval($stat, $leave_ID){
+	
+		$this->Mhrd->leaves_approval_stat($leave_ID, $stat); 	 
+	
+	}
+	
+	function leave_approval_delete($leave_ID){
+	
+		$this->Mhrd->leave_approval_delete($leave_ID); 	 
+	
+	}
+	
 }
 
 /* End of file welcome.php */
