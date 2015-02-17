@@ -1,23 +1,23 @@
-<form  id = "productAdd" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
+<form  id = "productAdd" class="form-horizontal form-validate" enctype="multipart/form-data" >
 						<input name="product_ID"  id = "product_ID" class="form-control " type="hidden"  value="<?php echo $product_data[0]['product_ID'];?>"  /> 
+						<div class="form-group">
+							<label  class="col-sm-3 control-label">Barcode :</label>
+							<div class="control col-md-4"> 
+								<input name="product_code" id = "product_code" class="form-control  {validate:{required:false,user_barcode:true}}" type="text" value = "<?php echo $product_data[0]['product_code'];?>" />
+							</div>
+						</div>
 						<div class="form-group">
 							<label  class="col-sm-3 control-label">Product Name :</label>
 							<div class="control col-md-4">
-								<input name="product_name"  id = "product_name" class="form-control " type="text" value="<?php echo $product_data[0]['product_name'];?>"   /> 
+								<input name="product_name"  id = "product_name" class="form-control {validate:{required:true}}" type="text" value="<?php echo $product_data[0]['product_name'];?>"   /> 
 							</div>
-						</div>
+						</div> 
 						<div class="form-group">
 							<label  class="col-sm-3 control-label">Description:</label>
 							<div class="control col-md-4">
 								<textarea class = "form-control" id = "product_desc" name = "product_desc"><?php echo $product_data[0]['product_desc'];?></textarea>
 							</div>
-						</div>
-						<div class="form-group">
-							<label  class="col-sm-3 control-label">Product Code :</label>
-							<div class="control col-md-4">
-								<input name="product_code"  id = "product_code" class="form-control " type="text"  value = "<?php echo $product_data[0]['product_code'];?>"  /> 
-							</div>
-						</div>
+						</div> 
 						<div class="form-group">
 							<label  class="col-sm-3 control-label">UoM :</label>
 							<div class="control col-md-4">
@@ -45,9 +45,34 @@
 						
 </form>
 
+<input type = "hidden" id = "validate_error" name = "validate_error" class = "validate_error" value = "0">
+
 <script>
+document.getElementById('product_code').focus(); 
+
+$('#validate_error').val('0'); //wawan 
+	cek_validate();
+			function cek_validate(){
+				
+				var container = $('div.error-container ');
+                // validate the form when it is submitted
+                var validator = $(".form-validate").validate({
+                    errorContainer: container,
+                    errorLabelContainer: $("ol", container),
+                    wrapper: 'span',
+                    meta: "validate"
+                });
+				
+                $(".cancel").click(function () {
+                    validator.resetForm();
+                });
+			}
 
 $("form#productAdd").submit(function(e){
+	
+	if($('#validate_error').val()==1){
+		return false;
+	}
 	
 	e.preventDefault();
 	
@@ -56,8 +81,7 @@ $("form#productAdd").submit(function(e){
 				url: "<?php echo base_url('hrd/product_add_action/');?>",
 				data: $("#productAdd").serialize(),
 				success: function(data)
-				{ 
-
+				{  
 					$('#myModal').modal('hide'); 
 					what_next_product(); 
 				}
@@ -65,4 +89,15 @@ $("form#productAdd").submit(function(e){
 			
 			return false;
 	});
+	 
+	$("#product_code").focusout(function(){
+		var container = $('div.error-container ');
+		$(".form-validate").validate({
+                    errorContainer: container,
+                    errorLabelContainer: $("ol", container),
+                    wrapper: 'span',
+                    meta: "validate"
+                });
+		 
+	})
 </script>

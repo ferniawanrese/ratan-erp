@@ -65,6 +65,8 @@ $.extend($.fn, {
 						}
 						return false;
 					}
+					$('.validate_error').val('0'); //wawan 
+					 
 					return true;
 				}
 
@@ -72,6 +74,8 @@ $.extend($.fn, {
 				if ( validator.cancelSubmit ) {
 					validator.cancelSubmit = false;
 					return handle();
+					$('.validate_error').val('0'); //wawan 
+					 
 				}
 				if ( validator.form() ) {
 					if ( validator.pendingRequest ) {
@@ -84,7 +88,8 @@ $.extend($.fn, {
 					$('#step-last').show(); //wawan 
 					$('.alert_message_required').show(); //wawan
 					$("html, body").animate({ scrollTop: 0 }, "slow"); //wawan
-					
+					$('.validate_error').val('1'); //wawan 
+				 
 					validator.focusInvalid();
 					return false;
 					
@@ -278,6 +283,7 @@ $.extend($.validator, {
 		remote: "<span class='label label-danger'>Please fix this field.</span>",
 		email: "<span class='label label-danger'>Please enter a valid email address.</span>",
 		user_badge: "<span class='label label-danger'>Badge already taken</span>",
+		user_barcode: "<span class='label label-danger'>Barcode already taken</span>",
 		url: "<span class='label label-danger'>Please enter a valid URL.</span>",
 		date: "<span class='label label-danger'>Please enter a valid date.</span>",
 		dateISO: "<span class='label label-danger'>Please enter a valid date (ISO).</span>",
@@ -329,7 +335,7 @@ $.extend($.validator, {
 			$(this.currentForm)
 				.validateDelegate(":text, [type='password'], [type='file'], select, textarea, " +
 					"[type='number'], [type='search'] ,[type='tel'], [type='url'], " +
-					"[type='email'],  [type='user_badge'], [type='datetime'], [type='date'], [type='month'], " +
+					"[type='email'],  [type='user_badge'], [type='user_barcode'], [type='datetime'], [type='date'], [type='month'], " +
 					"[type='week'], [type='time'], [type='datetime-local'], " +
 					"[type='range'], [type='color'] ",
 					"focusin focusout keyup", delegate)
@@ -816,6 +822,7 @@ $.extend($.validator, {
 		required: {required: true},
 		email: {email: true},
 		user_badge: {user_badge: true},
+		user_barcode: {user_barcode: true},
 		url: {url: true},
 		date: {date: true},
 		dateISO: {dateISO: true},
@@ -1117,6 +1124,31 @@ $.extend($.validator, {
 						success: function(json_data){   
 							 
 							  exist = json_data.badge_cek[0].employee_badge; 
+						}  
+					});
+					 
+					if (typeof exist === "undefined") { 
+						exist = "";
+					}
+					 
+					return this.optional(element) || value != exist;
+					 
+		},
+		
+		user_barcode: function(value, element) {
+		
+			// contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
+			//return this.optional(element);
+			 //exist = ""; 
+			$.ajax({
+					 
+					url: base_url+"hrd/barcode_check" + "/" + value,
+					dataType: 'json',
+				    data: "",
+
+						success: function(json_data){   
+							 
+							  exist = json_data.barcode_check[0].product_code; 
 						}  
 					});
 					 

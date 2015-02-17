@@ -95,8 +95,10 @@
 									</li>      
 									<li><a href="#"><i class="icon-caret-right"></i> Payroll</a>
 									<ul>
-										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Employee Payslips</a></li>
-										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Payslips Batches</a></li>  
+										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i>Employee Salary</a></li>
+										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Employee Loan</a></li>  
+										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Payroll Slip </a></li>  
+										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Payroll Summary  </a></li>  
 									</ul> 
 									</li>	
 									<li><a href="#"><i class="icon-caret-right"></i> Recruitment</a> 
@@ -135,6 +137,26 @@
 										<ul> 
 											<li  ><a href="<?php echo base_url('hrd/leave_type');?>">  Leave Type </a></li> 							
 										 </ul>    
+									</li>
+									<li ><a href="#"><i class="icon-caret-right"></i> Payroll</a>
+										<ul> 
+											<li  ><a href="<?php echo base_url('hrd/leave_type');?>">  Tax </a></li> 							
+										 </ul>   
+										<ul> 
+											<li  ><a href="<?php echo base_url('hrd/leave_type');?>">  Tax Formula</a></li> 							
+										 </ul>
+										 <ul> 
+											<li  ><a href="<?php echo base_url('hrd/leave_type');?>">  Insurance </a></li> 							
+										 </ul>
+										 <ul> 
+											<li  ><a href="<?php echo base_url('hrd/leave_type');?>">  Insurance Formula</a></li> 							
+										 </ul>
+										  <ul> 
+											<li  ><a href="<?php echo base_url('hrd/leave_type');?>">  Allowance/Deduction </a></li> 							
+										 </ul>
+										  <ul> 
+											<li  ><a href="<?php echo base_url('hrd/leave_type');?>">  Allowance/Deduction Formula</a></li> 							
+										 </ul>
 									</li>
 									<li ><a href="#"><i class="icon-caret-right"></i> Goods</a>
 										<ul> 

@@ -1511,6 +1511,18 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function barcode_check($barcode){
+	
+	$json['barcode_check']  = $this->Mhrd->barcode_check($barcode);
+	
+	if(!$json['barcode_check']){
+	$json['barcode_check'][] = array("product_code" => "");
+	}
+	 
+		 echo json_encode($json);
+	
+	}
+	
 }
 
 /* End of file welcome.php */
