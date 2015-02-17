@@ -5,8 +5,7 @@ class Mhrd extends CI_Model {
     {
         parent::__construct();
     }
-	
-	
+	 
 	function employee_data($data,$page,$limit){
 	
 		$a = ($page-1) * $limit;
@@ -552,7 +551,7 @@ class Mhrd extends CI_Model {
 	
 	function get_product_name($name){ 
 	
-		$this->db->select('product_name as label, product_name as value, product_ID');
+		$this->db->select('product_name as label, product_name as value, product_ID, product_code as barcode');
 		
 		$this->db->where('deleted',0);
 	  
@@ -1455,6 +1454,26 @@ class Mhrd extends CI_Model {
              SELECT employee_badge
              FROM employee
              WHERE employee_badge=  '".$badge_code."'";	 
+	
+			$query = $this->db->query($querynya);
+				
+					if ($query->num_rows())
+					{
+					return $query->result_array();
+					}
+					else
+					{
+					return FALSE;
+					}
+	
+	}
+	
+	function barcode_check($barcode){
+	
+	$querynya = " 
+             SELECT *
+             FROM product
+             WHERE product_code=  '".$barcode."'";	 
 	
 			$query = $this->db->query($querynya);
 				

@@ -3,7 +3,14 @@
 	<input name="expense_detaiID"  id = "expense_detaiID"   type="hidden" value = "<?php echo $expends_detail[0]['expense_detaiID'];?>"   />
 	
 	<input name="draft_stat"  id = "draft_stat"   type="hidden" value = "" />
-	
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">Barcode :</label>
+		<div class="control col-md-6">
+			 
+			<input name="product_code"  id = "product_code" class="form-control product_code {validate:{required:true}}" type="text"   value = "<?php echo $expends_detail[0]['product_name'];?>"  /> 
+			 
+		</div>
+	</div>
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Product :</label>
 		<div class="control col-md-6">
@@ -71,7 +78,12 @@
  
  
 <script>
+
+ 
+
 $(document).ready(function () {
+
+document.getElementById('product_code').focus();
   //called when key is pressed in textbox
   $(".numonly").keypress(function (e) {
      //if the letter is not digit then display error and don't type anything
@@ -89,7 +101,9 @@ $(function() {
 			source: "<?php echo base_url('hrd/get_product_name/');?>" + "/" + $('.product').val(),
 				select: function (event, ui) {
 				var id = ui.item.product_ID; 
+				var barcode = ui.item.barcode; 
 				$(".product_ID").val(id); 
+				$(".product_code").val(barcode); 
 				}  
 				
 		}); 
@@ -226,5 +240,25 @@ $("form#form-expendsdetail").submit(function(e){
 		 
 		 }) 
 	 }
+	 
+	$("#product_code").focusout(function() {
+	
+		var barcode = $("#product_code").val();
+		$.ajax({
+				 url: "<?php echo base_url('hrd/barcode_check/');?>"+"/"+barcode,
+				success: function(data){  
+
+					var jsonData = JSON.parse(data);  
+					$.each(jsonData.barcode_check, function(i, v) {
+
+							var datanya = jsonData.barcode_check[i]; 
+							$('#product').val(datanya.product_name);
+							$('#product_ID').val(datanya.product_ID);
+                    });
+				  	
+				}  
+		 
+		 }) 
+	 }) 
 
 </script>

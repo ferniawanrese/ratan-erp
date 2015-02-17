@@ -200,7 +200,8 @@
 </div><!-- /.modal --> 
  
 <script>
-		
+	document.getElementById('employee').focus(); 	
+	
 	function expense_state(a){ 
 		 $.ajax({
 				 url: "<?php echo base_url('hrd/expense_state/');?>"+"/"+a,
