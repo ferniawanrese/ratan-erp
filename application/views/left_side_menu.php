@@ -86,13 +86,7 @@
 										<li  ><a href="<?php echo base_url('hrd/leave_approval');?>"><i class=" icon-file-alt"></i>Leaves Approval</a></li>  
 										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Leaves Summary</a></li> 
 									</ul> 
-									</li> 
-									<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
-									<ul>
-										<li><a href="<?php echo base_url('hrd/appraisal');?>"><i class=" icon-file-alt"></i> Appraisal</a></li>
-										<li  ><a href="<?php echo base_url('hrd/interview_req');?>"><i class=" icon-file-alt"></i> Interview Request</a></li> 
-									</ul> 
-									</li>      
+									</li>  
 									<li><a href="#"><i class="icon-caret-right"></i> Payroll</a>
 									<ul>
 										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i>Employee Salary</a></li>
@@ -106,7 +100,13 @@
 										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Applicants</a></li>
 										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Job Positions</a></li>  
 									</ul> 
-									</li>		 		
+									</li>	
+									<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
+									<ul>
+										<li><a href="<?php echo base_url('hrd/appraisal');?>"><i class=" icon-file-alt"></i> Appraisal</a></li>
+										<li  ><a href="<?php echo base_url('hrd/interview_req');?>"><i class=" icon-file-alt"></i> Interview Request</a></li> 
+									</ul> 
+									</li>   
 								</ul>
 							</div>
 							<div class="tab-pane  <?php  if($menu_active == "Configuration"){echo "active";};?>" id="Configuration">
