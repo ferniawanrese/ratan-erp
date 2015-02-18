@@ -4,7 +4,8 @@
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Date Allow:</label>
 		<div class="control col-md-4">
-			<input id = "date_allow" name="date_allow" class="form-control datepicker" type="text" value = "<?php echo date("d-m-Y", strtotime($leave_type_date[0]['date_allow']));?>"/>
+			<?php if($leave_type_date[0]['date_allow']!=""){$datenya = date("d-m-Y", strtotime($leave_type_date[0]['date_allow']));}else{$datenya=date('d-m-Y');};?>
+			<input id = "date_allow" name="date_allow" class="form-control datepicker" type="text" value = "<?php echo $datenya;?>"/>
 		</div>
 	</div>
 	<div class="form-group">
