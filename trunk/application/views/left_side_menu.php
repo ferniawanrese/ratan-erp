@@ -83,8 +83,7 @@
 									<li><a href="#"><i class="icon-caret-right"></i> Leaves</a>
 									<ul>
 										<li><a href="<?php echo base_url('hrd/leaves');?>"><i class=" icon-file-alt"></i>Leaves Request</a></li>
-										<li  ><a href="<?php echo base_url('hrd/leave_approval');?>"><i class=" icon-file-alt"></i>Leaves Approval</a></li>  
-										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Leaves Summary</a></li> 
+										<li  ><a href="<?php echo base_url('hrd/leave_approval');?>"><i class=" icon-file-alt"></i>Leaves Summary</a></li>   
 									</ul> 
 									</li>  
 									<li><a href="#"><i class="icon-caret-right"></i> Payroll</a>
@@ -126,13 +125,7 @@
 											<li  ><a href="<?php echo base_url('hrd/task');?>">  Task </a></li> 
 										 </ul>   
 									</li>
-									<li ><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
-										<ul> 
-											<li  ><a href="<?php echo base_url('hrd/task');?>">  Appraisal Form </a></li>
-											<li><a href="<?php echo base_url('hrd/project');?>"> Plan </a></li>
-											<li><a href="<?php echo base_url('hrd/project');?>"> Survey </a></li>											
-										 </ul>   
-									</li>
+									
 									<li ><a href="#"><i class="icon-caret-right"></i> Leaves</a>
 										<ul> 
 											<li  ><a href="<?php echo base_url('hrd/leave_type');?>">  Leave Type </a></li> 							
@@ -168,6 +161,13 @@
 										 <ul> 
 											<li  ><a href="<?php echo base_url('hrd/currency');?>"> Currencies </a></li> 							
 										 </ul>
+									</li>
+									<li ><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
+										<ul> 
+											<li  ><a href="<?php echo base_url('hrd/task');?>">  Appraisal Form </a></li>
+											<li><a href="<?php echo base_url('hrd/project');?>"> Plan </a></li>
+											<li><a href="<?php echo base_url('hrd/project');?>"> Survey </a></li>											
+										 </ul>   
 									</li>
 								</ul>
 							</div>
