@@ -58,7 +58,8 @@
 						<div class="control col-md-3">
 							<div id="datetimepicker4" class="input-append datetimepicker">
 								<span class="add-on">
-								<input  type="text" class = "form-control datepicker {validate:{required:true}}" id = "date" name = "date" value = "<?php echo date('d-m-Y',strtotime($expends_data[0]['date']));?>">
+								<?php if($expends_data[0]['date']!=""){$datenya = date("d-m-Y", strtotime($expends_data[0]['date']));}else{$datenya=date('d-m-Y');};?>
+								<input  type="text" class = "form-control datepicker {validate:{required:true}}" id = "date" name = "date" value = "<?php echo $datenya;?>">
 								</span>																	
 						</div>																													
 						</div>																									
