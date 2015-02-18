@@ -10,7 +10,7 @@
 		<div class="row-fluid">
 					<div class="content-widgets gray">
 						<div class="widget-head blue clearfix">
-						  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">Leave Approval Data </h3>
+						  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">Leave Summary   </h3>
 						</div> 
 						<div class="well col-sm-12 col-md-12">
 						<form id = "form_filter"  method="post">

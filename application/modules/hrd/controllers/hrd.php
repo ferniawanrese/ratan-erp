@@ -1464,8 +1464,8 @@ class hrd extends CI_Controller {
 	
 	function leaves_add_action(){
 	
-		$this->Mhrd->leaves_add($this->input->post()); 	 
-			 
+		$this->Mhrd->leaves_add($this->input->post()); 	
+ 
 	}
 	
 	function leave_approval(){

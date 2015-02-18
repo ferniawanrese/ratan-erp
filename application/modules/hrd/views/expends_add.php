@@ -199,8 +199,13 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
+
+<input type = "hidden" id = "validate_error" name = "validate_error" class = "validate_error" value = "0">
  
 <script>
+
+	$('#validate_error').val('0'); //wawan 
+
 	document.getElementById('employee').focus(); 	
 	
 	function expense_state(a){ 
@@ -263,26 +268,7 @@ function delete_draft(a){
 					 
 }
 
-
-$("form#form-expends").submit(function(e){
-	
-	//e.preventDefault();
-			NProgress.inc();	
-			$.ajax({
-				type: "POST",
-				url: "<?php echo base_url('hrd/expends_add_action');?>",
-				data: $("#form-expends").serialize(),
-				success: function(data)
-				{ 
-					NProgress.done(true);
-					display_data();
-				}
-			});
-			
-			return false;
-	});
-	
-		cek_validate();
+cek_validate();
 			function cek_validate(){
 				
 				 var container = $('div.error-container ');
@@ -299,6 +285,30 @@ $("form#form-expends").submit(function(e){
                 });
 			} 
 			
+
+$("form#form-expends").submit(function(e){
+
+	if($('#validate_error').val()==1){
+		return false;
+	}
+	
+	e.preventDefault();
+			NProgress.inc();	
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('hrd/expends_add_action');?>",
+				data: $("#form-expends").serialize(),
+				success: function(data)
+				{ 
+					NProgress.done(true);
+					display_data();
+				}
+			});
+			
+			return false;
+	});
+	
+		
 
 	 function add_currency(){
 		 $.ajax({

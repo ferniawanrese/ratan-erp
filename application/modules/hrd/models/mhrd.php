@@ -2319,14 +2319,32 @@ class Mhrd extends CI_Model {
 	function leaves_add($data){
 	 
 		unset($data['employee']);
-	 
+		 
 		if($data['leave_ID']==""){
+		
+		unset($data['leave_ID']);
 	 
 		$this->db->set('leave_ID',$this->generate_code->getUID());
+		
+		$this->db->set('date_start',date("Y-m-d", strtotime($data['date_start'])));
+		
+		$this->db->set('date_end',date("Y-m-d", strtotime($data['date_end'])));
+		
+		unset($data['date_end']);
+		
+		unset($data['date_start']);
 	
 		$this->db->insert('leave',$data);
 		
 		}else{
+		
+		$this->db->set('date_start',date("Y-m-d", strtotime($data['date_start'])));
+		
+		$this->db->set('date_end',date("Y-m-d", strtotime($data['date_end'])));
+		
+		unset($data['date_end']);
+		
+		unset($data['date_start']);
 		
 		$this->db->where('leave_ID',$data['leave_ID']);
 		 
