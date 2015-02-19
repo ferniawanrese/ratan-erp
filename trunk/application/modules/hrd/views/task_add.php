@@ -1,6 +1,5 @@
 <form  id = "catAdd" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/employee_cat_add_action/');?>" method="post">
-						 
-						
+						  
 						<?php if(!isset($project_ID)):?>
 						
 						<input name="task_ID"  id = "task_ID" class="form-control " type="hidden"  value = "<?php echo $dat[0]['task_ID'];?>"  /> 	
@@ -8,8 +7,8 @@
 						<div class="form-group">
 							<label  class="col-sm-3 control-label"> Department:</label>
 								<div class="control col-md-4">
-										 <select id = "department_ID" name="department_ID"  class="form-control  "> 
-												<option >-- Choose Department --</option>
+										 <select id = "department_ID" name="department_ID"  class="form-control {validate:{required:true}} "> 
+												<option value = "">-- Choose Department --</option>
 													<?php foreach($department_data as $dep):?>
 													<?php if($dep['department_ID']==$dat[0]['department_ID']){$selected = "selected";}else{$selected = "";}?>
 														<?php if($dep['department_parentID'] == '0'):?>
@@ -62,7 +61,8 @@
 						</div>
 						
 </form>
- 
+
+<input type = "hidden" id = "validate_error" name = "validate_error" class = "validate_error" value = "0">
 
 <script>
 
@@ -102,8 +102,31 @@
 	  $('#parent_new').show(); 
 	  }
 	});
+	
+	
+cek_validate();
+			function cek_validate(){
+				
+				 var container = $('div.error-container ');
+                // validate the form when it is submitted
+                var validator = $(".form-validate").validate({
+                    errorContainer: container,
+                    errorLabelContainer: $("ol", container),
+                    wrapper: 'span',
+                    meta: "validate"
+                });
+				
+                $(".cancel").click(function () {
+                    validator.resetForm();
+                });
+			} 
+			
   
 	$("form#catAdd").submit(function(e){
+	
+	if($('#validate_error').val()==1){
+		return false;
+	}
 	
 	e.preventDefault();
 	
@@ -120,22 +143,5 @@
 			
 			return false;
 	});
-	
-	cek_validate();
-			function cek_validate(){
-				
-				 var container = $('div.error-container ');
-                // validate the form when it is submitted
-                var validator = $(".form-validate").validate({
-                    errorContainer: container,
-                    errorLabelContainer: $("ol", container),
-                    wrapper: 'span',
-                    meta: "validate"
-                });
-				
-                $(".cancel").click(function () {
-                    validator.resetForm();
-                });
-			}
-	
+	 
 </script>

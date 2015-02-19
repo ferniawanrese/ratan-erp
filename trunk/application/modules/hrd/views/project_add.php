@@ -3,15 +3,15 @@
 						<div class="form-group">
 							<label  class="col-sm-3 control-label"> Project Name:</label>
 							<div class="control col-md-4">
-								<input name="project_name"  id = "project_name" class="form-control " type="text"  value = "<?php echo $dat[0]['project_name'];?>"  /> 
+								<input name="project_name"  id = "project_name" class="form-control {validate:{required:true}}" type="text"  value = "<?php echo $dat[0]['project_name'];?>"  /> 
 							</div>
 						</div>
 						 
 						<div class="form-group">
 							<label  class="col-sm-3 control-label"> Department:</label>
 								<div class="control col-md-4">
-										 <select id = "department_ID" name="department_ID"  class="form-control"> 
-												<option >-- Choose Department --</option>
+										 <select id = "department_ID" name="department_ID"  class="form-control {validate:{required:true}}"> 
+												<option value = "">-- Choose Department --</option>
 													<?php foreach($department_data as $dep):?>
 													<?php if($dep['department_ID']==$dat[0]['department_ID']){$selected = "selected";}else{$selected = "";}?>
 														<?php if($dep['department_parentID'] == '0'):?>
@@ -39,7 +39,7 @@
 						<div class="form-group">
 							<label  class="col-sm-3 control-label"> Billable :</label>
 							<div class="control col-md-4">
-								<input name="billable"  id = "billable" class="form-control " type="text"  value = "<?php echo $dat[0]['billable'];?>"  /> 
+								<input name="billable"  id = "billable" class="form-control numonly" type="text"  value = "<?php echo $dat[0]['billable'];?>"  /> 
 							</div>
 						</div>
 						
@@ -70,9 +70,26 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<input type = "hidden" id = "validate_error" name = "validate_error" class = "validate_error" value = "0">
  
 
 <script>
+ 
+	$(document).ready(function () {
+
+	document.getElementById('project_name').focus();
+	  //called when key is pressed in textbox
+	  $(".numonly").keypress(function (e) {
+		 //if the letter is not digit then display error and don't type anything
+		 if (e.which != 8 && e.which != 0 && (e.which != 46 || $(this).val().indexOf('.') != -1) && (e.which < 48 || e.which > 57)) {
+			//display error message
+		   // $("#errmsg").html("Digits Only ").show().fadeOut("slow");
+				   return false;
+		}
+	   });
+	}); 
+
 	$('#parent').on('change', function() {
 	  var a= this.value;
 	  if(a !=-1){
@@ -82,8 +99,30 @@
 	  $('#parent_new').show(); 
 	  }
 	});
+	
+	
+cek_validate();
+			function cek_validate(){
+				
+				 var container = $('div.error-container ');
+                // validate the form when it is submitted
+                var validator = $(".form-validate").validate({
+                    errorContainer: container,
+                    errorLabelContainer: $("ol", container),
+                    wrapper: 'span',
+                    meta: "validate"
+                });
+				
+                $(".cancel").click(function () {
+                    validator.resetForm();
+                });
+			} 
   
 	$("form#catAdd").submit(function(e){
+	
+	if($('#validate_error').val()==1){
+		return false;
+	}
 	
 	e.preventDefault();
 	

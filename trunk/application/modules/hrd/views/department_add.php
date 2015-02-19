@@ -32,7 +32,7 @@
 						<div class="form-group">
 							<label  class="col-sm-3 control-label">Manager Name:</label>
 							<div class="control col-md-4">
-								<input id = "employee_managerName_dep" name="employee_managerName_dep" class="form-control employee_managerName_dep" type="text" value = ""/>
+								<input id = "employee_managerName_dep" name="employee_managerName_dep" class="form-control employee_managerName_dep {validate:{required:true}}" type="text" value = ""/>
 								<input id = "manager_ID" name="manager_ID"  class = "manager_ID" type="hidden"  />
 							</div>
 						</div>
@@ -47,7 +47,12 @@
 						
 </form>
 
+<input type = "hidden" id = "validate_error" name = "validate_error" class = "validate_error" value = "0">
+
 <script>
+
+$('#validate_error').val('0'); //wawan 
+
 $('#parent').on('change', function() {
   var a= this.value;
   if(a !=-1){
@@ -59,8 +64,28 @@ $('#parent').on('change', function() {
   }
 });
 
+
+cek_validate();
+			function cek_validate(){
+				
+				 var container = $('div.error-container ');
+                // validate the form when it is submitted
+                var validator = $(".form-validate").validate({
+                    errorContainer: container,
+                    errorLabelContainer: $("ol", container),
+                    wrapper: 'span',
+                    meta: "validate"
+                });
+				
+                $(".cancel").click(function () {
+                    validator.resetForm();
+                });
+			} 
+
 $("form#depAdd").submit(function(e){
-	
+	if($('#validate_error').val()==1){
+		return false;
+	}
 	e.preventDefault();
 	
 			$.ajax({
