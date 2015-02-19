@@ -218,6 +218,8 @@ class hrd extends CI_Controller {
 			}
 		}
 		
+		$data['currency'] = $this->Mhrd->currency();	
+		
 		$data['badge'] = $this->Mhrd->badge_inc($this->session->userdata('current_companyID'));		
 		 
 		if($data['badge']){ 
@@ -853,9 +855,14 @@ class hrd extends CI_Controller {
 				
 					$uid = $this->generate_code->getUID();
 					$keys[$uid]['attendance_ID']= $uid;
-					$keys[$uid]['employee_ID']= $key['1'];
-					$keys[$uid]['dateCreated']= $key['2'];
-					$keys[$uid]['status']= $key['3'];
+					$keys[$uid]['employee_badge']= $key['1'];
+					$keys[$uid]['date']=  date("Y-m-d", strtotime($key['2']));
+					$keys[$uid]['status']=  $key['3'];
+					$keys[$uid]['signin']=  date("Y-m-d h:i:s", strtotime($key['4']));
+					$keys[$uid]['signout']= date("Y-m-d h:i:s", strtotime($key['5']));
+					$keys[$uid]['overtime']= $key['6'];
+					$keys[$uid]['late']= $key['7'];
+					$keys[$uid]['goback_early']= $key['8'];
 					
 					$this->db->insert('attendance',$keys[$uid]);
 					 
@@ -1520,6 +1527,52 @@ class hrd extends CI_Controller {
 	}
 	 
 		 echo json_encode($json);
+	
+	}
+	
+	function allowance(){
+	 
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Configuration";
+		
+		$output['content'] = "hrd/allowance";
+		 
+		$output['department_data'] = $this->Mhrd->department_data( );		
+		 
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	
+	}
+	
+	function allowance_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['allowance_data'] = $this->Mhrd->allowance_data($this->input->post(),$data['page'],$data['limit']);		
+		 
+		$data['countdata'] = $this->Mhrd->allowance_data_count($this->input->post());	
+
+		$this->load->view('allowance_data', $data);
+	
+	}
+	
+	function allowance_add($allowance_ID=null){
+	
+		$data['dat'] = $this->Mhrd->allowance_detail($allowance_ID);
+	   
+		$this->load->view('allowance_add', $data);
+	
+	}
+	
+	function allowance_add_action(){
+	
+		$this->Mhrd->allowance_add($this->input->post());
 	
 	}
 	

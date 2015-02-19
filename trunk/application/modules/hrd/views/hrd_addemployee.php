@@ -121,6 +121,21 @@
 														
 													</div>
 												</div>
+												
+												<div class="form-group">
+													<label  class="col-sm-3 control-label">Salary :</label> 
+													<div class="control col-md-3">
+														<select class = "form-control" name = "currency_ID" >
+															<?php foreach($currency as $cur):?>
+															<?php if($cur['currency_ID']==$data_detail[0]['currency_ID']){$selected = "selected";}else{$selected="";};?>
+															<option value = "<?php echo $cur['currency_ID'];?>" <?php echo $selected;?>><?php echo $cur['currency_code'];?></option> 
+															<?php endforeach;?>
+														</select>
+													</div>
+													<div class="control col-md-3">
+														<input name="employee_salary" id = "employee_salary"class="form-control numonly" type="text" value = "<?php echo $data_detail[0]['employee_salary'] * 1;?>"/>
+													</div>
+												</div>
 														 
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Place / Date of Birth :</label>
@@ -319,6 +334,20 @@
 </div><!-- /.modal -->
  
 <script type="text/javascript">
+
+
+$(document).ready(function () {
+ 
+  //called when key is pressed in textbox
+  $(".numonly").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which != 46 || $(this).val().indexOf('.') != -1) && (e.which < 48 || e.which > 57)) {
+        //display error message
+       // $("#errmsg").html("Digits Only ").show().fadeOut("slow");
+               return false;
+    }
+   });
+}); 
 
 			function what_next(){
 					get_department();
