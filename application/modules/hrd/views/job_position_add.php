@@ -3,8 +3,8 @@
 						<div class="form-group">
 							<label  class="col-sm-4 control-label">Department :</label>
 							<div class="control col-md-4">
-								 <select id = "department_ID" name="department_ID"  class="form-control"> 
-										<option >-- Choose Department --</option>
+								 <select id = "department_ID" name="department_ID"  class="form-control {validate:{required:true}}"> 
+										<option value = "">-- Choose Department --</option>
 											<?php foreach($department_data as $dep):?>
 											<?php if($dep['department_ID']==$dat[0]['department_ID']){$selected = "selected";}else{$selected = "";}?>
 												<?php if($dep['department_parentID'] == '0'):?>
@@ -20,7 +20,7 @@
 						<div class="form-group">
 							<label  class="col-sm-4 control-label">Job Name :</label>
 							<div class="control col-md-4">
-								<input name="job_name"  id = "job_name" class="form-control " type="text"  value = "<?php echo $dat[0]['job_name'];?>"  /> 
+								<input name="job_name"  id = "job_name" class="form-control {validate:{required:true}}" type="text"  value = "<?php echo $dat[0]['job_name'];?>"  /> 
 							</div>
 						</div>
 						<div class="form-group">
@@ -38,7 +38,7 @@
 						<div class="form-group">
 							<label  class="col-sm-4 control-label">Job Expected Num Requirement :</label>
 							<div class="control col-md-2">
-								<input name="job_expected_requirement"  id = "job_expected_requirement" class="form-control " type="text"  value = "<?php echo $dat[0]['job_expected_requirement'];?>"   /> 
+								<input name="job_expected_requirement"  id = "job_expected_requirement" class="form-control numonly {validate:{required:true}}" type="text"  value = "<?php echo $dat[0]['job_expected_requirement'];?>"   /> 
 							</div>
 						</div>
 						<div class="form-group">
@@ -50,7 +50,25 @@
 						
 </form>
 
+<input type = "hidden" id = "validate_error" name = "validate_error" class = "validate_error" value = "0">
+
 <script>
+
+$(document).ready(function () {
+ 
+  //called when key is pressed in textbox
+  $(".numonly").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which != 46 || $(this).val().indexOf('.') != -1) && (e.which < 48 || e.which > 57)) {
+        //display error message
+       // $("#errmsg").html("Digits Only ").show().fadeOut("slow");
+               return false;
+    }
+   });
+}); 
+
+$('#validate_error').val('0'); //wawan 
+
 	$('#parent').on('change', function() {
 	  var a= this.value;
 	  if(a !=-1){
@@ -60,7 +78,30 @@
 	  }
 	});
   
+	
+
+cek_validate();
+			function cek_validate(){
+				
+				 var container = $('div.error-container ');
+                // validate the form when it is submitted
+                var validator = $(".form-validate").validate({
+                    errorContainer: container,
+                    errorLabelContainer: $("ol", container),
+                    wrapper: 'span',
+                    meta: "validate"
+                });
+				
+                $(".cancel").click(function () {
+                    validator.resetForm();
+                });
+			} 
+			 
 	$("form#jobAdd").submit(function(e){
+	
+	if($('#validate_error').val()==1){
+		return false;
+	}
 	
 	e.preventDefault();
 	

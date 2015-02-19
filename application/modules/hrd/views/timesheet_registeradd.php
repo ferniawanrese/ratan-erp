@@ -116,9 +116,11 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-
+<input type = "hidden" id = "validate_error" name = "validate_error" class = "validate_error" value = "0">
 	
 <script type="text/javascript">
+
+$('#validate_error').val('0'); //wawan 
 
 			function what_next(){
 					get_department();
@@ -269,7 +271,7 @@
 
 <script>
 $( "select#department_ID" ).change(function() {
-	
+ 
 		var a = $('select#department_ID option:selected').val();
 		
 		$.ajax({
@@ -305,6 +307,10 @@ $( "select#department_ID" ).change(function() {
 	});
 
 	$("form#form_add").submit(function(e){
+	
+	if($('#validate_error').val()==1){
+		return false;
+	}
 	
 	//e.preventDefault();
 			NProgress.inc();	

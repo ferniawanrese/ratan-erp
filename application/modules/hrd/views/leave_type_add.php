@@ -1,5 +1,4 @@
- 
-			<form  id = "form_add" class="form-horizontal form-validate"   method="post"> 
+<form  id = "form_add" class="form-horizontal form-validate"   method="post"> 
 						<input name="leave_typeID"  id = "leave_typeID" class="form-control " type="hidden"  value = "<?php echo $leave_date[0]['leave_typeID'];?>"  /> 	 
 						
 						<div class="form-group">
@@ -133,8 +132,12 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
+
+<input type = "hidden" id = "validate_error" name = "validate_error" class = "validate_error" value = "0">
   
 <script>
+
+$('#validate_error').val('0'); //wawan 
 	cek_validate();
 			function cek_validate(){
 				
@@ -153,6 +156,10 @@
 			}  
 	
 	$("form#form_add").submit(function(e){
+	
+	if($('#validate_error').val()==1){
+		return false;
+	}
 	 
 		//e.preventDefault();
 			NProgress.inc();	
