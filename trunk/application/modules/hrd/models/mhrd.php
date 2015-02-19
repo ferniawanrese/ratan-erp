@@ -2515,6 +2515,55 @@ class Mhrd extends CI_Model {
 			}
 	}
 	
+	function tax_data(){
+	
+		$query = $this->db->get('tax');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function tax_data_count(){
+	
+		$this->db->select('count(*) as totdata');
+	
+		$query = $this->db->get('tax');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function tax_detail($tax_ID){
+	
+		$this->db->where('tax_ID',$tax_ID);
+	
+		$query = $this->db->get('tax');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
 }
 	
 ?>
