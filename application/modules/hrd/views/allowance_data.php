@@ -4,30 +4,27 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 <table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
 	<thead>
 		  <tr>
-				<th>  Employee </th>  
-				<th>  Date </th>   
-				<th>  Status </th>
-				<th>  Sign In </th>
-				<th>  Sign Out </th>
-				<th>  Overtime </th>
-				<th>  Late </th>
-				<th>  Go home early </th>
+				<th>  Type Name </th> 
+				<th>  Description </th> 
+				<th>  Deduction Status </th>
+				<th> Action </th> 
 		  </tr>
 	</thead> 
 	<tbody>
-			<?php if($attandances_data):?>		
-			<?php foreach($attandances_data as $keys):?>
+			<?php if($allowance_data):?>		
+			<?php foreach($allowance_data as $keys):?>
 				<tr>				
-					  
-					<td> <?php  echo $keys['employee_name']; ?> </td> 
-					<td> <?php  echo $keys['date']; ?> </td>
-					<td> <?php  echo $keys['status']; ?> </td>
-					<td> <?php  echo $keys['signin']; ?> </td>
-					<td> <?php  echo $keys['signout']; ?> </td>
-					<td> <?php  echo $keys['overtime']; ?> </td>
-					<td> <?php  echo $keys['late']; ?> </td>
-					<td> <?php  echo $keys['goback_early']; ?> </td>
-					
+					<td> <?php 	echo $keys['allowance_name'];	 ?>  </td> 
+					<td> <?php 	echo $keys['allowance_desc'];	 ?></td> 
+					<td> <?php 	if($keys['deduction_stat']=="0"){echo "No ";}else{echo "Yes";};?>	 </td> 
+					<td class="center">
+							<div class="btn-toolbar row-action">
+									<?php //echo $keys['employee_catParentID'];?>
+									<button class="btn btn-info" title="Edit" onclick=allowance_update("<?php echo $keys['allowance_ID'];?>")><i class="icon-edit"></i></button>
+									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['allowance_ID'];?>")><i class="icon-trash "></i></button>
+								
+							</div>
+					 </td>
 				</tr>
 			<?php endforeach;?>
 			<?php else:?>
@@ -39,13 +36,14 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 	
 </table>
 
+
 <div class = "pagination pagination-large col-sm-12 col-md-12"></div>
 
 <?php 	
 	$alldata =  $countdata[0]['totdata'];
 	$totpage = ceil($alldata/$limit);
 ?>
-
+<?php if($allowance_data):?>	
 <script type='text/javascript'>
 			var options = {
 				currentPage: <?php echo $page;?>,
@@ -71,15 +69,15 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					placement: 'bottom'
 				},
 				onPageClicked: function changepage(e,originalEvent,type,page){
-					$('.progress-bar').show();
+					NProgress.inc();	
 					$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('hrd/department_data/');?>" + "/" + page,
+					url: "<?php echo base_url('hrd/allowance_data/');?>" + "/" + page,
 					data: $("#form_filter").serialize(),
 					
 						success: function(data){     
 							$( ".list" ).html(data); 							
-							$('.progress-bar').hide();
+							NProgress.done(true);
 							
 						}  
 					});
@@ -89,14 +87,4 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 
 			$('.pagination').bootstrapPaginator(options);
 </script>
-
-<script>
-function remove_addcolums(a){
-$('.'+a).remove();
-}
-</script>
-
-
-					
-						
-		
+<?php endif;?>

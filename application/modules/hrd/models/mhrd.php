@@ -1284,7 +1284,7 @@ class Mhrd extends CI_Model {
 		$a = ($page-1) * $limit;
 		$limitnya = ",".$a.",".$limit;
 		 
-		$this->db->join('employee','employee.employee_ID = attendance.employee_ID');
+		$this->db->join('employee','employee.employee_badge = attendance.employee_badge');
 		 
 		$query = $this->db->get('attendance',$limit,$a);
 	 
@@ -1303,7 +1303,7 @@ class Mhrd extends CI_Model {
 	
 		$this->db->select('count(*) as totdata');
 		
-		$this->db->join('employee','employee.employee_ID = attendance.employee_ID');
+		$this->db->join('employee','employee.employee_badge = attendance.employee_badge');
 		  
 		$query = $this->db->get('attendance');
 	 
@@ -2448,6 +2448,71 @@ class Mhrd extends CI_Model {
 				return FALSE;
 			}	
 	
+	}
+	
+	function allowance_data(){
+	
+		$query = $this->db->get('allowance');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function allowance_data_count(){
+	
+		$this->db->select('count(*) as totdata');
+	
+		$query = $this->db->get('allowance');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function allowance_detail($allowance_ID){
+	
+		$this->db->where('allowance_ID',$allowance_ID);
+	
+		$query = $this->db->get('allowance');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function allowance_add($data){
+	
+		if($data['allowance_ID']!=""){ 
+			
+				$this->db->where('allowance_ID',$data['allowance_ID']); 
+				$this->db->update('allowance',$data); 
+				
+			}else{
+				unset($data['allowance_ID']);
+				$id  = $this->generate_code->getUID(); 
+				$this->db->set('allowance_ID',$id);
+				$this->db->insert('allowance',$data);
+				
+			}
 	}
 	
 }
