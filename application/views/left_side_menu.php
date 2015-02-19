@@ -135,7 +135,7 @@
 											<li  ><a href="<?php echo base_url('hrd/allowance');?>">  Allowance/Deduction  </a></li> 							
 										 </ul>  
 										<ul> 
-											<li  ><a href="<?php echo base_url('hrd/tax');?>">  Tax  </a></li> 							
+											<li  ><a href="<?php echo base_url('hrd/tax');?>">  Tax  Formula</a></li> 							
 										 </ul>
 										 <ul> 
 											<li  ><a href="<?php echo base_url('hrd/insurance');?>">  Insurance  </a></li> 							
