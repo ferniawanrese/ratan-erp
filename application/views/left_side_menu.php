@@ -136,11 +136,7 @@
 										 </ul>  
 										<ul> 
 											<li  ><a href="<?php echo base_url('hrd/tax');?>">  Tax  Formula</a></li> 							
-										 </ul>
-										 <ul> 
-											<li  ><a href="<?php echo base_url('hrd/insurance');?>">  Insurance  </a></li> 							
-										 </ul>
-										  
+										 </ul> 
 									</li>
 									<li ><a href="#"><i class="icon-caret-right"></i> Goods</a>
 										<ul> 
