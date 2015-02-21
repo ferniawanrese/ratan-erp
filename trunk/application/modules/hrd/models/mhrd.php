@@ -2625,6 +2625,102 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function payslip_data(){
+	
+		$this->db->where('deleted',0);
+		
+		$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
+		 
+		$query = $this->db->get('employee');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function payslip_data_count($data){
+	
+		 
+		$this->db->select('count(*) as totdata');
+		
+		$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
+		 
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('employee');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function payslip_detail($employee_ID){
+	
+		$this->db->select('employee.employee_name,employee.employee_salary,employee.employee_maritalstat, employee.employee_badge');
+		
+		$this->db->where('employee_ID',$employee_ID);
+	
+		$query = $this->db->get('employee');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function deduction_stat($stat){
+	
+		$this->db->where('deduction_stat',$stat);
+		
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('allowance');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function tax(){
+	 
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('tax');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
 }
 	
 ?>

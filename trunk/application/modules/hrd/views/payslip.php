@@ -1,22 +1,24 @@
 <ul class="breadcrumb">
 	<li><a href="<?php echo base_url('backend');?>" class="icon-home"></a><span class="divider "><i class="icon-angle-right"></i></span></li>
 	<li><a href="<?php echo  base_url('hrd');?>">HRD</a><span class="divider"><i class="icon-angle-right"></i></span></li>
-	<li class=" "> Expenses</li> 
+	<li class=" "> Payroll</li> 
+	<li class=" "> Employee Payslip</li> 
 </ul>
- 
+
+
 <div class="primary-head">
 						<!--content-->
 						<div class="row-fluid">
 									<div class="content-widgets gray">
 										<div class="widget-head blue clearfix">
-										  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">Expenses </h3>
+										  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">Employee Payslip </h3>
 											
 										</div>
 																			
 										<div class="well col-sm-12 col-md-12">
 										
 											<div  id = "btn-create" class="form-group">
-												<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "expends_add()"> Create</button> 
+												<!--<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "expends_add()"> Create</button> -->
 												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "open_filter()" id = "Show"> Show Filter</button>
 												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "close_filter()" id = "Hide" style = "display: none;"> Hide Filter</button>
 											
@@ -26,19 +28,20 @@
 												<button class="btn btn-inverse  icon-arrow-left" type="button" onclick = "display_data()" > Back to Data</button>
 											</div>
 											 
-										<span  id ="search" style = "display: none;">	
+										 
+										 <span  id ="search" style = "display: none;" >	
 											<!-- searching -->
 											 <form id = "form_filter" name="form_filter" method="post">
 												<fieldset class="default panel">
-														<legend> Filter Timesheet </legend>
+														<legend> Filter Payslip </legend>
 													 
 														<div class="form-group col-sm-12 col-md-3">  
 														<label for="validate-text"></label>
 															<div class="input-group col-sm-12 col-md-12">
-																<input   class="form-control" type="text" placeholder="Notes" name="filter[description]" id = "description"> 
+																<input   class="form-control" type="text" placeholder="Employee Name" name="filter[description]" id = "description"> 
 															</div> 
 														</div>
-														
+														  
 														<div class="form-group col-sm-12 col-md-3">
 															<label for="validate-email"></label>
 															<div class="input-group col-sm-12 col-md-12" >
@@ -73,15 +76,28 @@
 									</div>
 						</div>
 </div>			
- 
-<!-- dialog contents on hidden div -->   
 
 <script>
 
+display_data();
 
-function what_next_product(){
- 
+function display_data(){ 
+
+	NProgress.inc();
+	$('#btn-list').hide();
+	$('#btn-create').show();
+	$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('hrd/payslip_data/');?>",
+				data: $("#form_filter").serialize(),
+				success: function(data){     
+					$( ".list" ).html(data); 								
+					NProgress.done(true);
+				}			
+			});
+
 }
+
 
 function close_filter(){											
 $("#search").fadeOut();
@@ -94,99 +110,25 @@ $("#search").fadeIn();
 $("#Hide").show();
 $("#Show").hide();
 }
- 
- 
 
-display_data();
 
-function display_data(){ 
-	 $('#btn-list').hide();
-	$('#btn-create').show();
+function payslip_add(a){
+
+	$('#search').hide();
+	$('#btn-list').show();
+	$('#btn-create').hide();
 	NProgress.inc();
 	$.ajax({
-				type: "POST",
-				url: "<?php echo base_url('hrd/expends_data/');?>",
-				data: $("#form_filter").serialize(),
+				
+				url: "<?php echo base_url('hrd/payslip_add/');?>"+"/"+a,
 				success: function(data){     
-					$( ".list" ).html(data); 								
+
+					$( ".list" ).html(data); 		
 					NProgress.done(true);
-				}			
+				}  
 			});
 
 }
 
 
-	function expends_add(a){
-
-		$('#search').hide();
-		$('#btn-list').show();
-		$('#btn-create').hide();
-		NProgress.inc();
-		$.ajax({
-					
-					url: "<?php echo base_url('hrd/expends_add/');?>"+"/"+a,
-					success: function(data){     
-
-						$( ".list" ).html(data); 		
-						NProgress.done(true);
-					}  
-				});
-
-	}
-
-
-	$("form#form_filter").submit(function(e){
-	
-	e.preventDefault();
-			NProgress.inc();
-			$.ajax({
-				type: "POST",
-				url: "<?php echo base_url('hrd/expends_data');?>",
-				data: $("#form_filter").serialize(),
-				success: function(data)
-				{
-					$( ".list" ).html(data);
-					NProgress.done(true);
-				}
-			});
-			
-			return false;
-	});
-	
-	function clearfilter(){
-			$('#register_date').val(''); 
-			$('.additional_group').remove();
-			display_data();
-	}
-	
-	function approved(a,b){
-	
-		$.ajax({ 
-				url: "<?php echo base_url('hrd/expends_approval/');?>"+"/"+a+"/"+b,
-				data: '',
-				success: function(data)
-				{
-					display_data();
-				}
-			});
-	
-	}
-	
-	
-function delete_post(a){
-	
-	bootbox.confirm("Are you sure delete this item?", function (result) {
-                  
-					if(result == true){						
-						$.ajax({
-									url: "<?php echo base_url('hrd/expends_delete/')?>/" + a,									
-									success: function(data)
-									{											
-											display_data();
-									}
-						});
-					}
-					
-                });
-}
 </script>
