@@ -1576,6 +1576,12 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function allowance_deleted($allowance_ID){
+	
+		$this->Mhrd->allowance_deleted($allowance_ID);
+	
+	}
+	
 	function tax(){
 	 
 		$output['data']['module_name'] = "Human Resources";
@@ -1585,8 +1591,6 @@ class hrd extends CI_Controller {
 		$output['data']['menu_active'] = "Configuration";
 		
 		$output['content'] = "hrd/tax";
-		 
-		$output['tax_data'] = $this->Mhrd->tax_data( );		
 		  
 		$this->load->view('template', $output);
 	
@@ -1611,6 +1615,18 @@ class hrd extends CI_Controller {
 		$data['dat'] = $this->Mhrd->tax_detail($tax_ID);
 	   
 		$this->load->view('tax_add', $data);
+	
+	}
+	
+	function tax_add_action(){
+	
+		$this->Mhrd->tax_add($this->input->post());
+		
+	}
+	
+	function tax_delete($tax_ID){
+	
+		$this->Mhrd->tax_delete($tax_ID);
 	
 	}
 	
