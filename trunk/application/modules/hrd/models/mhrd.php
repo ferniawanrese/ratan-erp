@@ -2458,6 +2458,8 @@ class Mhrd extends CI_Model {
 		$this->db->like('allowance_name',$data['search']);
 		
 		$this->db->where('deleted',0);
+		
+		$this->db->order_by('dateCreated','desc');
 	
 		$query = $this->db->get('allowance',$limit,$a);
 	 
@@ -2542,6 +2544,8 @@ class Mhrd extends CI_Model {
 		$this->db->like('tax_name',$data['search']);
 		
 		$this->db->where('deleted',0);
+		
+		$this->db->order_by('dateCreated','desc');
 	
 		$query = $this->db->get('tax',$limit,$a);
 	 
