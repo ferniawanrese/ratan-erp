@@ -2450,7 +2450,33 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function allowance_data(){
+	function allowance_data($data,$page,$limit){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->like('allowance_name',$data['search']);
+		
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('allowance',$limit,$a);
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function allowance_data_count($data){
+	
+		$this->db->select('count(*) as totdata');
+		
+		$this->db->where('deleted',0);
 	
 		$query = $this->db->get('allowance');
 	 
@@ -2465,20 +2491,13 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function allowance_data_count(){
+	function allowance_deleted($allowance_ID){
+		
+		$this->db->where('allowance_ID',$allowance_ID);
+		
+		$this->db->set('deleted',1);
 	
-		$this->db->select('count(*) as totdata');
-	
-		$query = $this->db->get('allowance');
-	 
-			if ($query->num_rows())
-			{
-				return $query->result_array();
-			}
-			else
-			{
-				return FALSE;
-			}	
+		$this->db->update('allowance');
 	
 	}
 	
@@ -2515,9 +2534,16 @@ class Mhrd extends CI_Model {
 			}
 	}
 	
-	function tax_data(){
+	function tax_data($data,$page,$limit){
 	
-		$query = $this->db->get('tax');
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->like('tax_name',$data['search']);
+		
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('tax',$limit,$a);
 	 
 			if ($query->num_rows())
 			{
@@ -2530,9 +2556,13 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function tax_data_count(){
+	function tax_data_count($data){
+	
+		$this->db->like('tax_name',$data['search']);
 	
 		$this->db->select('count(*) as totdata');
+		
+		$this->db->where('deleted',0);
 	
 		$query = $this->db->get('tax');
 	 
@@ -2561,6 +2591,33 @@ class Mhrd extends CI_Model {
 			{
 				return FALSE;
 			}	
+	
+	}
+	
+	function tax_add($data){
+	
+		if($data['tax_ID']!=""){ 
+			
+				$this->db->where('tax_ID',$data['tax_ID']); 
+				$this->db->update('tax',$data); 
+				
+			}else{
+				unset($data['tax_ID']);
+				$id  = $this->generate_code->getUID(); 
+				$this->db->set('tax_ID',$id);
+				$this->db->insert('tax',$data);
+				
+			}
+	
+	}
+	
+	function tax_delete($tax_ID){
+	
+		$this->db->where('tax_ID',$tax_ID);
+		
+		$this->db->set('deleted',1);
+	
+		$this->db->update('tax');
 	
 	}
 	

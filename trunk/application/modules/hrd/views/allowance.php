@@ -86,7 +86,7 @@ function allowance_update(a){
 
 function delete_post(a){
 	
-	bootbox.confirm("Are you sure?", function (result) {
+	bootbox.confirm("Are you sure delete this item?", function (result) {
                   
 					if(result == true){						
 						$.ajax({

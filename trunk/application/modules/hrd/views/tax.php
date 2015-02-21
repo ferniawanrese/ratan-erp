@@ -83,4 +83,22 @@ function tax_update(a){
 
 }
 
+
+function delete_post(a){
+	
+	bootbox.confirm("Are you sure delete this item?", function (result) {
+                  
+					if(result == true){						
+						$.ajax({
+									url: "<?php echo base_url('hrd/tax_delete/')?>/" + a,									
+									success: function(data)
+									{											
+											display_data();
+									}
+						});
+					}
+					
+                });
+}
+
 </script>

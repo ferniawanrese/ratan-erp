@@ -30,7 +30,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<td class="center">
 							<div class="btn-toolbar row-action">
 									<?php //echo $keys['employee_catParentID'];?>
-									<button class="btn btn-info" title="Edit" onclick=allowance_update("<?php echo $keys['tax_ID'];?>")><i class="icon-edit"></i></button>
+									<button class="btn btn-info" title="Edit" onclick=tax_update("<?php echo $keys['tax_ID'];?>")><i class="icon-edit"></i></button>
 									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['tax_ID'];?>")><i class="icon-trash "></i></button>
 								
 							</div>
