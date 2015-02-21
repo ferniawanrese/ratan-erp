@@ -88,9 +88,8 @@
 									</li>  
 									<li><a href="#"><i class="icon-caret-right"></i> Payroll</a>
 									<ul>
-										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i>Employee Salary</a></li> 
-										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Payroll Slip </a></li>  
-										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Payroll Summary  </a></li>  
+										<li><a href="<?php echo base_url('hrd/payslip');?>"><i class=" icon-file-alt"></i>Employee Payslip</a></li>  
+										<li  ><a href="<?php echo base_url('hrd/payrollbatch');?>"><i class=" icon-file-alt"></i>Payroll Batches  </a></li>  
 									</ul> 
 									</li>	
 									<li><a href="#"><i class="icon-caret-right"></i> Recruitment</a> 

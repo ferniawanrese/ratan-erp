@@ -1630,6 +1630,48 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function payslip(){
+	
+		$output['data']['module_name'] = "Payslip";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['content'] = "hrd/payslip";
+		 
+		$this->load->view('template', $output);
+	
+	}
+	
+	function payslip_data($page=1){
+	
+		$data['limit'] = $this->input->post('limit');
+		
+		$data['page'] = $page;
+
+		$data['employee_data'] = $this->Mhrd->payslip_data($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->payslip_data_count($this->input->post());	
+
+		$this->load->view('payslip_data', $data);
+
+	}
+	
+	function payslip_add($employee_ID){
+	
+		$data['dat'] = $this->Mhrd->payslip_detail($employee_ID);
+		
+		$data['allowance'] = $this->Mhrd->deduction_stat(0);
+		
+		$data['deduction'] = $this->Mhrd->deduction_stat(1);
+		
+		$data['taxs'] = $this->Mhrd->tax();
+	   
+		$this->load->view('payslip_add', $data);
+	
+	}
+	
 }
 
 /* End of file welcome.php */
