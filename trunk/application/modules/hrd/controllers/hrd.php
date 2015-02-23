@@ -1672,6 +1672,63 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function generate_payroll(){
+	
+		// cek atendance
+		
+		//cek allowance
+		
+		//cek deduction
+		
+		//cek tax
+		
+		//summary
+	
+	}
+	
+	function weekend(){
+	
+		
+		$output['data']['module_name'] = "Human Resources";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Configuration";
+		
+		$output['content'] = "hrd/weekend";
+		   
+		$this->load->view('template', $output);
+	
+	}
+	
+	function weekend_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['weekend_data'] = $this->Mhrd->weekend_data($this->input->post(),$data['page'],$data['limit']);		
+		 
+		$data['countdata'] = $this->Mhrd->weekend_data_count($this->input->post());	
+
+		$this->load->view('weekend_data', $data);
+	
+	}
+	
+	function weekend_add(){
+	
+		$data['weekend_data'] = $this->Mhrd->weekend_data();		
+	 
+		$this->load->view('weekend_add',$data);
+	
+	}
+	
+	function weekend_add_action(){
+	
+		$this->Mhrd->weekend_add($this->input->post());
+	
+	}
+	
 }
 
 /* End of file welcome.php */
