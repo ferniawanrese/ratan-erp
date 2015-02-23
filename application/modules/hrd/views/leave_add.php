@@ -66,8 +66,7 @@ $('#date_end').datepicker({
 $('#date_start').datepicker({
   format:"dd-mm-yyyy"
 });  
-
-
+ 
 cek_validate();
 			function cek_validate(){
 				

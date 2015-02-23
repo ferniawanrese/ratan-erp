@@ -128,6 +128,9 @@
 										<ul> 
 											<li  ><a href="<?php echo base_url('hrd/leave_type');?>">  Leave Type </a></li> 							
 										 </ul>    
+										 <ul> 
+											<li  ><a href="<?php echo base_url('hrd/weekend');?>"> Weekend </a></li> 							
+										 </ul> 
 									</li>
 									<li ><a href="#"><i class="icon-caret-right"></i> Payroll</a>
 										 <ul> 

@@ -2721,6 +2721,51 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function weekend_data(){
+	
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('weekend');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function weekend_data_count(){
+	
+		$this->db->select('count(*) as totdata');
+		
+		$this->db->where('deleted',0);
+	
+		$query = $this->db->get('weekend');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function weekend_add($data){
+	
+		
+		$id  = $this->generate_code->getUID(); 
+		$this->db->set('weekend_ID',$id);
+		$this->db->insert('weekend',$data);
+	
+	}
+	
 }
 	
 ?>
