@@ -1,4 +1,4 @@
-<label class = "pull-right"><font size = "3"><?php echo $dat[0]['employee_name'];?> <?php echo $dat[0]['employee_badge'];?>  </font></label>
+	<label class = "pull-right"><font size = "3"><?php echo $dat[0]['employee_name'];?> <?php echo $dat[0]['employee_badge'];?>  </font></label>
 
 	<span class = "col-md-12" >	
 		<!-- searching -->
@@ -9,14 +9,14 @@
 					<div class="form-group col-sm-12 col-md-3">  
 					<label for="validate-text"></label>
 						<div class="input-group col-sm-12 col-md-12">
-							<input   class="form-control datepicker" type="text" placeholder="Date Start" name="filter[dateStart]" id = "date_start"> 
+							<input   class="form-control datepicker" type="text" placeholder="Date Start" name="date_start" id = "date_start"> 
 						</div> 
 					</div>
 					  
 					<div class="form-group col-sm-12 col-md-3">  
 					<label for="validate-text"></label>
 						<div class="input-group col-sm-12 col-md-12">
-							<input   class="form-control datepicker" type="text" placeholder="Date End" name="filter[dateEnd]" id = "date_end"> 
+							<input   class="form-control datepicker" type="text" placeholder="Date End" name="date_end" id = "date_end"> 
 						</div> 
 					</div>
 					 
