@@ -1285,6 +1285,8 @@ class Mhrd extends CI_Model {
 		$limitnya = ",".$a.",".$limit;
 		 
 		$this->db->join('employee','employee.employee_badge = attendance.employee_badge');
+		
+		$this->db->order_by('attendance.date','desc');
 		 
 		$query = $this->db->get('attendance',$limit,$a);
 	 

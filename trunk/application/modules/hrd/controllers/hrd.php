@@ -850,16 +850,28 @@ class hrd extends CI_Controller {
 			$datax = $this->excel_reader->sheets[0] ;
 			 
 			if($datax['numRows']>0){
-			
+			 
 				foreach($datax['cells'] as $key) {
 				
+					$date = ($key['2'] - 25569) * 86400;
+					 					 
+					$newdate = gmdate("Y-m-d", $date)."</br>";  
+					
+					$date_signin = ($key['4'] - 25569) * 86400;
+					 					 
+					$newdate_signin = gmdate("Y-m-d H:i:s", $date_signin)."</br>";  
+					
+					$date_signout = ($key['5'] - 25569) * 86400;
+					 					 
+					$newdate_signout = gmdate("Y-m-d H:i:s", $date_signout)."</br>";  
+				 
 					$uid = $this->generate_code->getUID();
 					$keys[$uid]['attendance_ID']= $uid;
 					$keys[$uid]['employee_badge']= $key['1'];
-					$keys[$uid]['date']=  date("Y-m-d", strtotime($key['2']));
+					$keys[$uid]['date']=  $newdate;
 					$keys[$uid]['status']=  $key['3'];
-					$keys[$uid]['signin']=  date("Y-m-d h:i:s", strtotime($key['4']));
-					$keys[$uid]['signout']= date("Y-m-d h:i:s", strtotime($key['5']));
+					$keys[$uid]['signin']=  $newdate_signin;
+					$keys[$uid]['signout']= $newdate_signout;
 					$keys[$uid]['overtime']= $key['6'];
 					$keys[$uid]['late']= $key['7'];
 					$keys[$uid]['goback_early']= $key['8'];
@@ -1674,8 +1686,11 @@ class hrd extends CI_Controller {
 	
 	function generate_payroll(){
 	
-		// cek atendance
+		$data = $this->input->post();
+		 
+		// atendance
 		
+		 
 		//cek allowance
 		
 		//cek deduction
