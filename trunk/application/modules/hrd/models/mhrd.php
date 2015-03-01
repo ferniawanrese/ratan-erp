@@ -2670,7 +2670,7 @@ class Mhrd extends CI_Model {
 	
 	function payslip_detail($employee_ID){
 	
-		$this->db->select('employee.employee_name,employee.employee_salary,employee.employee_maritalstat, employee.employee_badge');
+		$this->db->select('employee.employee_name,employee.employee_salary,employee.employee_maritalstat, employee.employee_badge,employee.employee_ID');
 		
 		$this->db->where('employee_ID',$employee_ID);
 	
@@ -2765,6 +2765,44 @@ class Mhrd extends CI_Model {
 		$id  = $this->generate_code->getUID(); 
 		$this->db->set('weekend_ID',$id);
 		$this->db->insert('weekend',$data);
+	
+	}
+	
+	function total_in($data){
+	
+		$this->db->where('employee_badge',$data['employee_badge']);
+		
+		$this->db->where('date >=',date("Y-m-d", strtotime($data['date_start'])));
+		
+		$this->db->where('date <=',date("Y-m-d", strtotime($data['date_end'])));
+	
+		$query = $this->db->get('attendance');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function get_weekend(){
+	
+	$this->db->where('company_ID', $this->session->userdata('current_companyID'));
+	
+	$query = $this->db->get('weekend');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
 	
 	}
 	

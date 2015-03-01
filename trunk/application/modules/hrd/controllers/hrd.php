@@ -1672,24 +1672,65 @@ class hrd extends CI_Controller {
 	
 	function payslip_add($employee_ID){
 	
-		$data['dat'] = $this->Mhrd->payslip_detail($employee_ID);
-		
+		$data['dat'] = $this->Mhrd->payslip_detail($employee_ID); 
+	   
+		$this->load->view('payslip_add', $data);
+	
+	}
+	 
+	function generate_payroll(){
+	
+		$data['datnya'] = $this->Mhrd->payslip_detail($this->input->post('employee_ID')); 
+		 
 		$data['allowance'] = $this->Mhrd->deduction_stat(0);
 		
 		$data['deduction'] = $this->Mhrd->deduction_stat(1);
 		
 		$data['taxs'] = $this->Mhrd->tax();
-	   
-		$this->load->view('payslip_add', $data);
-	
-	}
-	
-	function generate_payroll(){
-	
-		$data = $this->input->post();
+	 
+		$data['weekend'] = $this->Mhrd->get_weekend($this->input->post());
 		 
-		// atendance
-		
+			// atendance
+		 
+			$data['total_inout'] = $this->Mhrd->total_in($this->input->post());
+			 
+			$x = 0;
+			$in = 0;
+			$out = 0;
+			
+			if($data['total_inout']){
+			
+				foreach($data['total_inout'] as $keyinouit){
+				 
+					foreach($data['weekend'] as $keyweekend){
+					
+						if(date("l", strtotime($keyinouit['date'])) == $keyweekend['weekend_day']){
+						
+							unset($data['total_inout'][$x]);
+							 
+						}
+					
+					}
+					
+					$x++;
+				
+				}
+				
+				foreach($data['total_inout'] as $keyinouit){
+				
+					if($keyinouit['status']=="masuk"){
+						$in = $in +1;
+					}else{
+						$out = $out+1;
+					}
+				
+				}
+			
+			}
+			 
+			$data['in'] = $in;
+			
+			$data['out'] = $out;
 		 
 		//cek allowance
 		
@@ -1697,7 +1738,19 @@ class hrd extends CI_Controller {
 		
 		//cek tax
 		
+		
+		
 		//summary
+		
+			$data['totalallowance'] = "123";
+		
+			$data['totaldeduction'] = "123";
+		
+			$data['totaltax'] = "123";
+		
+			$data['takehome'] = "123";
+		
+			$this->load->view('payslip_generate', $data);
 	
 	}
 	
