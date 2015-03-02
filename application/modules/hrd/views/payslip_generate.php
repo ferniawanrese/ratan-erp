@@ -1,21 +1,19 @@
 
-	<span class = "col-md-12" >	
-	<label>Basic Salary : IDR <?php echo $datnya[0]['employee_salary'] * 1;?></label>
-	</span>
-	
-	<span class = "col-md-12" >	
-	<label>Present : <?php echo $in * 1;?>,</label>
-	<label>Absent : <?php echo $out * 1;?></label>
-	</span>
-	
-	<form id = "form_generate" name="form_filter" method="post">
+<span class = "col-md-12" >	
+<label>Basic Salary : IDR <?php echo $datnya[0]['employee_salary'] * 1;?></label>
+</span>
+
+<span class = "col-md-12" >	
+<label>Present : <?php echo $in * 1;?>,</label>
+<label>Absent : <?php echo $out * 1;?></label>
+</span>
+
+<form id = "form_generate" name="form_filter" method="post">
 	
 	<span  class = "col-md-6">	
-		<!-- searching -->
-		
+		<!-- searching --> 
 			<fieldset class="default panel">
-					<legend> Allowance </legend>
-				 
+					<legend> Allowance </legend>  
 				 </br>
 				 <?php foreach($allowance as $allow):?>
 				 <div class="input-group col-sm-12 col-md-12">
@@ -25,20 +23,16 @@
 					<div class="form-group col-sm-12 col-md-8">    
 							<input   class="form-control" type="text" placeholder="0.00" name="filter[description]" id = "description"> 
 					</div> 
-				</div>
-					
-				 <?php endforeach;?>
-					   
-				</fieldset>
-		 
+				</div> 
+				 <?php endforeach;?> 
+				</fieldset> 
 	</span>
 	
 	<span  class = "col-md-6">	
-		<!-- searching -->
-		  
+		<!-- searching --> 
 			<fieldset class="default panel">
 					<legend> Deduction </legend>
-					 </br> 
+					 </br>  
 				<?php foreach($deduction as $ded):?>	 
 				 <div class="input-group col-sm-12 col-md-12">
 					<div class="form-group col-sm-12 col-md-4">  
@@ -49,24 +43,20 @@
 					</div>
 				</div>
 				<?php endforeach;?>	 
-					
-			</fieldset>
-		 
+			</fieldset> 
 	</span>
 	
 	<span  class = "col-md-6">	
-		<!-- searching -->
-		  
+		<!-- searching --> 
 			<fieldset class="default panel">
 					<legend> Attendance </legend>
-					 </br>
-					 
+					 </br> 
 				<div class="input-group col-sm-12 col-md-12">
 					<div class="form-group col-sm-12 col-md-4"> 
 							Absent Days 
 					</div>  
 					<div class="form-group col-sm-12 col-md-8">    
-							<input   class="form-control" type="text" placeholder="0" name="filter[description]" id = "description">  
+							<input   class="form-control" type="text" placeholder="0" name="filter[description]" id = "description" value = "<?php echo $out;?>">  
 					</div>
 				</div>  
 				<div class="input-group col-sm-12 col-md-12">
@@ -74,16 +64,14 @@
 							Deduction 
 					</div> 
 					<div class="form-group col-sm-12 col-md-8">   
-							<input   class="form-control" type="text" placeholder="0.00" name="filter[description]" id = "description">  
+							<input   class="form-control" type="text" placeholder="0.00" name="filter[description]" id = "description" value = "<?php echo $deduction_attendance;?>">  
 					</div>
 				</div> 	
-			</fieldset>
-		 
+			</fieldset> 
 	</span>
 	
 	<span  class = "col-md-6">	
-		<!-- searching -->
-		 
+		<!-- searching --> 
 			<fieldset class="default panel">
 					<legend> Tax </legend>
 				 
@@ -95,18 +83,16 @@
 							<?php echo $tax['tax_name'];?> 
 					</div> 
 					<div class="form-group col-sm-12 col-md-8">    
-							<input   class="form-control" type="text" placeholder="0.00" name="filter[description]" id = "description">  
+							<input   class="form-control" type="text" placeholder="0.00" name="filter[description]" id = "description" value ="<?php echo $wp_montly;?>">  
 					</div>
 				</div>
 				<?php endforeach;?>	 
 					     
-			</fieldset>
-		 
+			</fieldset> 
 	</span>
 	
 	<span  class = "col-md-6">	
-		<!-- searching -->
-		  
+		<!-- searching --> 
 			<fieldset class="default panel">
 					<legend> Summary </legend>
 					</br>
@@ -143,35 +129,34 @@
 							</div>
 						</div>	
 					</div> 	
-			</fieldset>
-		 
+			</fieldset> 
 	</span>
 	
 	<span  class = "col-md-12">
 		<button type = "submit" class="btn btn-success"  > Process</buttton> 
 	</span>
 	
-	</form>
+</form>
 	
-	<script> 
-		$("form#form_generate").submit(function(e){
+<script> 
+	$("form#form_generate").submit(function(e){
 
-			if($('#validate_error').val()==1){
-				return false;
-			}
-				 
-					e.preventDefault();
-					NProgress.inc();	
-					$.ajax({
-						type: "POST",
-						url: "<?php echo base_url('hrd/generate_payroll');?>",
-						data: $("#form_generate").serialize(),
-						success: function(data)
-						{
-							 
-							$("#contentnya").html(data); 		
-							NProgress.done(true);
-						}
-					});
-		});	
-	</script>
+		if($('#validate_error').val()==1){
+			return false;
+		}
+			 
+				e.preventDefault();
+				NProgress.inc();	
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('hrd/generate_payroll');?>",
+					data: $("#form_generate").serialize(),
+					success: function(data)
+					{
+						 
+						$("#contentnya").html(data); 		
+						NProgress.done(true);
+					}
+				});
+	});	
+</script>
