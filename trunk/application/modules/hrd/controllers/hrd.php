@@ -1681,16 +1681,14 @@ class hrd extends CI_Controller {
 	function generate_payroll(){
 	
 		$data['datnya'] = $this->Mhrd->payslip_detail($this->input->post('employee_ID')); 
-		 
-		$data['allowance'] = $this->Mhrd->deduction_stat(0);
 		
-		$data['deduction'] = $this->Mhrd->deduction_stat(1);
+		$salary = $data['datnya'][0]['employee_salary'];
 		
-		$data['taxs'] = $this->Mhrd->tax();
-	 
+		$marriedstat = $data['datnya'][0]['employee_maritalstat'];
+		    
 		$data['weekend'] = $this->Mhrd->get_weekend($this->input->post());
 		 
-			// atendance
+		// ------------------------------------- atendance
 		 
 			$data['total_inout'] = $this->Mhrd->total_in($this->input->post());
 			 
@@ -1731,24 +1729,101 @@ class hrd extends CI_Controller {
 			$data['in'] = $in;
 			
 			$data['out'] = $out;
+			
+			$total_inout = $in + $out;
+			
+			$data['deduction_attendance'] = ($salary / $total_inout) * $out;
+			 
 		 
-		//cek allowance
+		// ------------------------------------------ cek allowance
 		
-		//cek deduction
+			$data['allowance'] = $this->Mhrd->deduction_stat(0);
+			
+			$data['total_allowance'] = 24000;
 		
-		//cek tax
+		// ------------------------------------------ cek deduction
 		
+			$data['deduction'] = $this->Mhrd->deduction_stat(1);
+			
+			$data['total_deduction'] = 261200;
+			
 		
+		// ------------------------------------------ cek tax
 		
-		//summary
+			$data['taxs'] = $this->Mhrd->tax();
+			
+			$data['wp'] = 0 ;
+			
+			if($data['taxs']){
+			
+				foreach($data['taxs'] as $keytax){
+				
+					if($keytax['taxable_annually'] == 1){
+					
+						if($keytax['grossnetto']=="netto"){
+						
+							if($marriedstat=="Married"){
+							$marriedval = $keytax['taxable_addmarried_year'];
+							}else{
+							$marriedval = 0;
+							}
+							
+							$salary = $salary - $data['total_deduction'] + $data['total_allowance'];
+						
+							$wp = ($keytax['tax_persentage']*0.01) * (($salary * 12) - ($keytax['taxable_min_year'] + $marriedval));
+							 
+						}
+						
+						if($keytax['grossnetto']=="gross"){
+						
+							if($marriedstat=="Married"){
+							$marriedval = $keytax['taxable_addmarried_year'];
+							}else{
+							$marriedval = 0;
+							}
+							
+							$salary = $salary + $data['total_allowance'];
+						
+							$wp = ($keytax['tax_persentage']*0.01) * (($salary * 12) - ($keytax['taxable_min_year'] + $marriedval));
+							 
+						}
+						
+						if($keytax['grossnetto']=="salary"){
+						
+							if($marriedstat=="Married"){
+							$marriedval = $keytax['taxable_addmarried_year'];
+							}else{
+							$marriedval = 0;
+							}
+						
+							$wp = ($keytax['tax_persentage']*0.01) * (($salary * 12) - ($keytax['taxable_min_year'] + $marriedval));
+							 
+						}
+					
+					}
+					
+					if($keytax['taxable_annually'] == 0){
+					 
+					}
+				
+				}
+			
+			}
+			
+			$data['wp'] = $wp;
+			
+			$data['wp_montly'] = $wp / 12;
+			
+		
+		// ------------------------------------------ summary
 		
 			$data['totalallowance'] = "123";
 		
 			$data['totaldeduction'] = "123";
 		
-			$data['totaltax'] = "123";
+			$data['totaltax'] = $data['wp'];
 		
-			$data['takehome'] = "123";
+			$data['takehome'] = $salary;
 		
 			$this->load->view('payslip_generate', $data);
 	
