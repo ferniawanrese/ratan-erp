@@ -1679,7 +1679,7 @@ class hrd extends CI_Controller {
 	}
 	 
 	function generate_payroll(){
-	
+	 
 		$data['datnya'] = $this->Mhrd->payslip_detail($this->input->post('employee_ID')); 
 		
 		$salary = $data['datnya'][0]['employee_salary'];
@@ -1816,11 +1816,7 @@ class hrd extends CI_Controller {
 			
 		
 		// ------------------------------------------ summary
-		
-			$data['totalallowance'] = "123";
-		
-			$data['totaldeduction'] = "123";
-		
+		  
 			$data['totaltax'] = $data['wp'];
 		
 			$data['takehome'] = $salary;

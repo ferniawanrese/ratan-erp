@@ -21,7 +21,7 @@
 							<?php echo $allow['allowance_name'];?> 
 					</div> 
 					<div class="form-group col-sm-12 col-md-8">    
-							<input   class="form-control" type="text" placeholder="0.00" name="filter[description]" id = "description"> 
+							<input   class="form-control" type="text" placeholder="0.00" name="allowance[<?php echo $allow['allowance_ID'];?>]" id = "<?php echo $allow['allowance_ID'];?>"> 
 					</div> 
 				</div> 
 				 <?php endforeach;?> 
@@ -39,7 +39,7 @@
 							<?php echo $ded['allowance_name'];?> 
 					</div> 
 					<div class="form-group col-sm-12 col-md-8">    
-							<input   class="form-control" type="text" placeholder="0.00" name="filter[description]" id = "description">  
+							<input   class="form-control" type="text" placeholder="0.00" name="deduction[<?php echo $allow['allowance_ID'];?>]" id = "<?php echo $allow['allowance_ID'];?>">  
 					</div>
 				</div>
 				<?php endforeach;?>	 
@@ -56,7 +56,7 @@
 							Absent Days 
 					</div>  
 					<div class="form-group col-sm-12 col-md-8">    
-							<input   class="form-control" type="text" placeholder="0" name="filter[description]" id = "description" value = "<?php echo $out;?>">  
+							<input   class="form-control" type="text" placeholder="0"  value = "<?php echo $out;?>">  
 					</div>
 				</div>  
 				<div class="input-group col-sm-12 col-md-12">
@@ -64,7 +64,7 @@
 							Deduction 
 					</div> 
 					<div class="form-group col-sm-12 col-md-8">   
-							<input   class="form-control" type="text" placeholder="0.00" name="filter[description]" id = "description" value = "<?php echo $deduction_attendance;?>">  
+							<input   class="form-control" type="text" placeholder="0.00" name="deduction[absent]" id = "description" value = "<?php echo $deduction_attendance;?>">  
 					</div>
 				</div> 	
 			</fieldset> 
@@ -83,7 +83,7 @@
 							<?php echo $tax['tax_name'];?> 
 					</div> 
 					<div class="form-group col-sm-12 col-md-8">    
-							<input   class="form-control" type="text" placeholder="0.00" name="filter[description]" id = "description" value ="<?php echo $wp_montly;?>">  
+							<input   class="form-control" type="text" placeholder="0.00" name="tax[<?php echo $tax['tax_ID'];?>]" id = "<?php echo $tax['tax_ID'];?>" value ="<?php echo $wp_montly;?>">  
 					</div>
 				</div>
 				<?php endforeach;?>	 
@@ -101,7 +101,7 @@
 									Total Allowance 
 							</div> 
 							<div class="form-group col-sm-12 col-md-8">    
-									<input   class="form-control" type="text" placeholder="0.00" name="totalallowance" id = "totalallowance" value= "<?php echo $totalallowance;?>"> 
+									<input   class="form-control" type="text" placeholder="0.00" name="total_allowance" id = "total_allowance" value= "<?php echo $total_allowance;?>"> 
 							</div> 
 						</div> 		
 						<div class="input-group col-sm-12 col-md-12">
@@ -109,7 +109,7 @@
 									Total Deduction 
 							</div> 
 							<div class="form-group col-sm-12 col-md-8">     
-									<input   class="form-control" type="text" placeholder="0.00" name="totaldeduction" id = "totaldeduction" value= "<?php echo $totaldeduction;?>"> 
+									<input   class="form-control" type="text" placeholder="0.00" name="total_deduction" id = "total_deduction" value= "<?php echo $total_deduction;?>"> 
 							</div> 
 						</div>
 						<div class="input-group col-sm-12 col-md-12">						
@@ -132,13 +132,21 @@
 			</fieldset> 
 	</span>
 	
-	<span  class = "col-md-12">
-		<button type = "submit" class="btn btn-success"  > Process</buttton> 
+	<span  class = "col-md-12 btn-group">
+		<button type = "submit" class="btn btn-danger" > Calculate</buttton> 
+		<button type = "submit" class="btn btn-success"  > Save Log</buttton> 
+		<button   class="btn btn-default"  ><i class = "icon-print"></i> Print</buttton>
 	</span>
 	
 </form>
 	
 <script> 
+	function recalculate(){
+	
+		
+	
+	}
+
 	$("form#form_generate").submit(function(e){
 
 		if($('#validate_error').val()==1){
@@ -149,7 +157,7 @@
 				NProgress.inc();	
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('hrd/generate_payroll');?>",
+					url: "<?php echo base_url('hrd/regenerate_payroll');?>",
 					data: $("#form_generate").serialize(),
 					success: function(data)
 					{
