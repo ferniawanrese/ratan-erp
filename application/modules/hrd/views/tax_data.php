@@ -20,7 +20,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 			<?php foreach($tax_data as $keys):?>
 				<tr>				
 					<td> <?php 	echo $keys['tax_name'];	 ?>  </td> 
-					<td> <?php 	echo $keys['grossneto'];	 ?></td> 					 
+					<td> <?php 	echo $keys['grossnetto'];	 ?></td> 					 
 					<td> <?php 	echo $keys['tax_persentage'];	 ?>  </td> 
 					<td> <?php 	echo $keys['taxable_min_year'];	 ?></td> 
 					<td> <?php 	echo $keys['taxable_addmarried_year'];	 ?>  </td> 
