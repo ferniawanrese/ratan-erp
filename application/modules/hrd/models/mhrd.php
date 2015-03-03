@@ -2768,13 +2768,17 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function total_in($data){
+	function total_in($data,$date_start,$date_end){
 	
-		$this->db->where('employee_badge',$data['employee_badge']);
+		$date_start =  date("Y-M-d", strtotime($date_start));
 		
-		$this->db->where('date >=',date("Y-m-d", strtotime($data['date_start'])));
+		$date_end =  date("Y-M-d", strtotime($date_end));
+	  
+		$this->db->where('employee_badge',$data[0]['employee_badge']);
 		
-		$this->db->where('date <=',date("Y-m-d", strtotime($data['date_end'])));
+		$this->db->where('date >=',date("Y-m-d", strtotime($date_start)));
+		
+		$this->db->where('date <=',date("Y-m-d", strtotime($date_end)));
 	
 		$query = $this->db->get('attendance');
 	 
