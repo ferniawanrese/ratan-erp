@@ -132,8 +132,7 @@
 			</fieldset> 
 	</span>
 	
-	<span  class = "col-md-12 btn-group">
-		<button type = "submit" class="btn btn-danger" > Calculate</buttton> 
+	<span  class = "col-md-12 btn-group">  
 		<button type = "submit" class="btn btn-success"  > Save Log</buttton> 
 		<button   class="btn btn-default"  ><i class = "icon-print"></i> Print</buttton>
 	</span>
@@ -167,4 +166,11 @@
 					}
 				});
 	});	
+	
+	
+function recalculate(){
+
+alert('asd');
+
+}
 </script>

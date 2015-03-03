@@ -1678,9 +1678,9 @@ class hrd extends CI_Controller {
 	
 	}
 	 
-	function generate_payroll(){
+	function generate_payroll($employee_ID,$date_start,$date_end){
 	 
-		$data['datnya'] = $this->Mhrd->payslip_detail($this->input->post('employee_ID')); 
+		$data['datnya'] = $this->Mhrd->payslip_detail($employee_ID); 
 		
 		$salary = $data['datnya'][0]['employee_salary'];
 		
@@ -1690,11 +1690,12 @@ class hrd extends CI_Controller {
 		 
 		// ------------------------------------- atendance
 		 
-			$data['total_inout'] = $this->Mhrd->total_in($this->input->post());
+			$data['total_inout'] = $this->Mhrd->total_in($data['datnya'],$date_start,$date_end);
 			 
 			$x = 0;
 			$in = 0;
 			$out = 0;
+			 
 			
 			if($data['total_inout']){
 			
@@ -1729,7 +1730,7 @@ class hrd extends CI_Controller {
 			$data['in'] = $in;
 			
 			$data['out'] = $out;
-			
+			 
 			$total_inout = $in + $out;
 			
 			$data['deduction_attendance'] = ($salary / $total_inout) * $out;
