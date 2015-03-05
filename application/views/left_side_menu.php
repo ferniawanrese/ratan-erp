@@ -94,16 +94,16 @@
 									</li>	
 									<li><a href="#"><i class="icon-caret-right"></i> Recruitment</a> 
 									<ul>
-										<li><a href="<?php echo base_url('hrd/employee_cat');?>"><i class=" icon-file-alt"></i> Applicants</a></li>
-										<li  ><a href="<?php echo base_url('hrd/job_position');?>"><i class=" icon-file-alt"></i>Job Positions</a></li>  
+										<li><a href="<?php echo base_url('hrd/applicant');?>"><i class=" icon-file-alt"></i>Applicants</a></li>
+										<li  ><a href="<?php echo base_url('hrd/jobspace');?>"><i class=" icon-file-alt"></i>Job Positions</a></li>  
 									</ul> 
 									</li>
-									<!--<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
+									<li><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
 									<ul>
-										<li><a href="<?php echo base_url('hrd/appraisal');?>"><i class=" icon-file-alt"></i> Appraisal</a></li>
-										<li  ><a href="<?php echo base_url('hrd/interview_req');?>"><i class=" icon-file-alt"></i> Interview Request</a></li> 
+										<li><a href="<?php echo base_url('hrd/appraisal');?>"><i class=" icon-file-alt"></i>Appraisal</a></li>
+										<li  ><a href="<?php echo base_url('hrd/interview_req');?>"><i class=" icon-file-alt"></i>Interview Request</a></li> 
 									</ul> 
-									</li> -->  
+									</li>  
 								</ul>
 							</div>
 							<div class="tab-pane  <?php  if($menu_active == "Configuration"){echo "active";};?>" id="Configuration">
@@ -163,8 +163,22 @@
 							<div class="tab-pane  <?php  if($menu_active == "Report"){echo "active";};?>" id="Report">
 								<h4 class="side-head"> <?php //echo $module_name;?> Report</h4> 
 								<ul class="accordion-nav"> 
-									<li><a href="login.html">  Employee Data</a></li>    
-									<li><a href="login.html">  Time Tracking</a></li>
+									<li><a href="login.html">  Expense Analysis</a></li>   
+									<li><a href="login.html">  Appraisal Analysis</a></li>
+									<li><a href="login.html">  Recruitment Analysis</a></li>
+									<li ><a href="#"><i class="icon-caret-right"></i> Timesheet</a>
+										<ul> 
+											<li  ><a href="<?php echo base_url('hrd/product');?>"> Timesheet Analysis </a></li> 							
+										 </ul>  
+										<ul> 
+											<li  ><a href="<?php echo base_url('hrd/uom');?>"> Employee Timesheet  </a></li> 							
+										 </ul> 
+									</li>
+									<li ><a href="#"><i class="icon-caret-right"></i> Leaves</a>
+										<ul> 
+											<li  ><a href="<?php echo base_url('hrd/product');?>"> Leaves Analysis </a></li> 							
+										 </ul>   
+									</li>
 								</ul>
 							</div>
 				

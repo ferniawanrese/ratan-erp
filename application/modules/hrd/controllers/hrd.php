@@ -1869,6 +1869,28 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function applicant(){
+	
+		$output['data']['module_name'] = "Applicant";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['content'] = "hrd/applicant";
+		 
+		$this->load->view('template', $output);
+	
+	}
+	
+	function add_applicant(){
+	
+		$data['asd'] = 'asd';
+		 
+		$this->load->view('applicant_add', $data);
+	
+	}
+	
 }
 
 /* End of file welcome.php */
