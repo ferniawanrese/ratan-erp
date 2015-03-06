@@ -151,6 +151,14 @@
 											<li  ><a href="<?php echo base_url('hrd/currency');?>"> Currencies </a></li> 							
 										 </ul>
 									</li>
+									<li ><a href="#"><i class="icon-caret-right"></i> Recruitment</a>
+										<ul> 
+											<li  ><a href="<?php echo base_url('hrd/product');?>"> Applicant Stage </a></li> 							
+										 </ul>  
+										<ul> 
+											<li  ><a href="<?php echo base_url('hrd/uom');?>"> School Degree </a></li> 							
+										 </ul> 
+									</li>
 									<!--<li ><a href="#"><i class="icon-caret-right"></i> Appraisal</a>
 										<ul> 
 											<li  ><a href="<?php echo base_url('hrd/task');?>">  Appraisal Form </a></li>
