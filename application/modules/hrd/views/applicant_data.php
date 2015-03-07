@@ -6,9 +6,10 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 		  <tr>
 				<th> Applicant Name </th> 
 				<th> Department </th> 
-				<th> Job </th>
+				<th> Job </th> 
 				<th> Mobile </th> 
 				<th> Email </th> 
+				<th> Stage </th>
 				<th> Appreciation </th>
 				<th> Action </th> 
 		  </tr>
@@ -19,9 +20,10 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 				<tr>				
 					<td> <?php 	echo $keys['applicant_name'];	 ?>  </td> 
 					<td> <?php 	echo $keys['department_name'];	 ?></td> 
-					<td> <?php 	echo $keys['job_name'];	 ?></td> 
+					<td> <?php 	echo $keys['job_name'];	 ?></td>  
 					<td> <?php 	echo $keys['mobile'];	 ?></td> 
-					<td> <?php 	echo $keys['email'];	 ?></td> 
+					<td> <?php 	echo $keys['email'];	 ?></td>
+					<td> <?php 	echo $keys['stage'];	 ?></td> 					
 					<td> <?php 	echo $keys['appreciation'];	 ?></td> 
 					<td class="center">
 							<div class="btn-toolbar row-action">
