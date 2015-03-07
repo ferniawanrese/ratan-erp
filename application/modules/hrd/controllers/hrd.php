@@ -1885,9 +1885,36 @@ class hrd extends CI_Controller {
 	
 	function add_applicant(){
 	
-		$data['asd'] = 'asd';
+		$data['parent'] = $this->Mhrd->department_parent();
+		
+		if($data['parent']){
+			foreach($data['parent'] as $pr){
+				 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+			}
+		}
+		 
+		$data['department_data'] = $this->Mhrd->department_data();
 		 
 		$this->load->view('applicant_add', $data);
+	
+	}
+	
+	function applicant_add_action(){
+		$this->Mhrd->applicant_add($this->input->post());
+	}
+	
+	 
+	function applicant_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['applicant_data'] = $this->Mhrd->applicant_data($this->input->post(),$data['page'],$data['limit']);		
+		 
+		$data['countdata'] = $this->Mhrd->applicant_data_count($this->input->post());	
+
+		$this->load->view('applicant_data', $data);
 	
 	}
 	

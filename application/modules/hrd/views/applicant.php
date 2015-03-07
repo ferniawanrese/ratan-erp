@@ -63,7 +63,7 @@ function display_data(){
 	$('#btn-list').hide();
 	$('#btn-create').show();
 	$.ajax({
-		url:'<?php echo base_url('hrd/appraisal_data');?>',
+		url:'<?php echo base_url('hrd/applicant_data');?>',
 		success: function(data){     
 		 
 					$( ".list" ).html(data); 		
