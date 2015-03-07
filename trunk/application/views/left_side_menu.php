@@ -182,11 +182,7 @@
 											<li  ><a href="<?php echo base_url('hrd/uom');?>"> Employee Timesheet  </a></li> 							
 										 </ul> 
 									</li>
-									<li ><a href="#"><i class="icon-caret-right"></i> Leaves</a>
-										<ul> 
-											<li  ><a href="<?php echo base_url('hrd/product');?>"> Leaves Analysis </a></li> 							
-										 </ul>   
-									</li>
+									<li><a href="login.html"> Leaves Analysis</a> </li>
 								</ul>
 							</div>
 				
