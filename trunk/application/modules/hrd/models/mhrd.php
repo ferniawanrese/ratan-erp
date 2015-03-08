@@ -2812,11 +2812,20 @@ class Mhrd extends CI_Model {
 	
 	function applicant_add($data){
 	 
-		$applicant_ID  = $this->generate_code->getUID(); 		
-		$this->db->set('applicant_ID',$applicant_ID);
-		$this->db->set('date_closed',date("Y-m-d", strtotime($data['date_closed'])));
-		unset($data[date_closed]);
-		$this->db->insert('applicant',$data);
+	 
+		if($data['applicant_ID']==""){
+			$applicant_ID  = $this->generate_code->getUID(); 		
+			$this->db->set('applicant_ID',$applicant_ID);
+			$this->db->set('date_closed',date("Y-m-d", strtotime($data['date_closed'])));
+			unset($data[date_closed]);
+			$this->db->insert('applicant',$data);
+		}else{
+			$this->db->where('applicant_ID',$data['applicant_ID']); 	 
+			$this->db->set('date_closed',date("Y-m-d", strtotime($data['date_closed'])));
+			unset($data[date_closed]);
+			$this->db->update('applicant',$data);
+		}
+		
 	
 	}
 	
@@ -2850,6 +2859,31 @@ class Mhrd extends CI_Model {
 	$this->db->where('deleted',0);
  
 	$query = $this->db->get('applicant');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function applicant_detail($applicant_ID){
+	
+		$this->db->select('applicant.*,job.job_name,employee.employee_name');
+	
+		$this->db->where('applicant.deleted',0);
+		
+		$this->db->where('applicant_ID',$applicant_ID);
+		
+		$this->db->join('job','applicant.job_ID = job.job_ID');
+		
+		$this->db->join('employee','employee.employee_ID = applicant.responsible_ID');
+ 
+		$query = $this->db->get('applicant');
 	 
 			if ($query->num_rows())
 			{

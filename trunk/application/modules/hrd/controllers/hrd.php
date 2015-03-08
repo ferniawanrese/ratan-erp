@@ -1883,7 +1883,7 @@ class hrd extends CI_Controller {
 	
 	}
 	
-	function add_applicant(){
+	function add_applicant($applicant_ID=null){
 	
 		$data['parent'] = $this->Mhrd->department_parent();
 		
@@ -1894,10 +1894,14 @@ class hrd extends CI_Controller {
 		}
 		 
 		$data['department_data'] = $this->Mhrd->department_data();
+		
+		$data['applicant_detail'] = $this->Mhrd->applicant_detail($applicant_ID);
 		 
 		$this->load->view('applicant_add', $data);
 	
 	}
+	
+	
 	
 	function applicant_add_action(){
 		$this->Mhrd->applicant_add($this->input->post());

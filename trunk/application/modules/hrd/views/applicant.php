@@ -90,6 +90,24 @@ function add_appraisal(){
 
 }
 
+
+function applicant_update(a){
+	NProgress.inc();	
+	$('#search').hide();
+	$('#btn-list').show();
+	$('#btn-create').hide();
+	$.ajax({
+				
+				url: "<?php echo base_url('hrd/add_applicant/');?>" +"/"+ a,
+				success: function(data){     
+					alert('asd');
+					$( ".list" ).html(data); 		
+					NProgress.done(true);
+				}  
+			});
+
+}
+
 function close_filter(){											
 $("#search").fadeOut();
 $("#Show").show();
