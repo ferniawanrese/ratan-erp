@@ -17,21 +17,21 @@
 		 
 		
 	<form  id = "applicantAdd" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
-				
+		<input name="applicant_ID"  id = "applicant_ID" class="form-control " type="hidden"  value = "<?php echo $applicant_detail[0]['applicant_ID'] ;?>"  /> 		
 		<div class="col-md-12">	
 				<div class="form-group"  >    
 					
 					<div class="form-group">
 						<label  class="col-sm-3 control-label">Applicant Name :</label>
 						<div class="control col-md-4">
-							<input name="applicant_name"  id = "applicant_name" class="form-control " type="text"    /> 
+							<input name="applicant_name"  id = "applicant_name" class="form-control  {validate:{required:true}}" type="text"  value = "<?php echo $applicant_detail[0]['applicant_name'] ;?>"  /> 
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label  class="col-sm-3 control-label">Subject :</label>
 						<div class="control col-md-4">
-							<input name="subject"  id = "subject" class="form-control " type="text"    /> 
+							<input name="subject"  id = "subject" class="form-control " type="text"  value = "<?php echo $applicant_detail[0]['subject'] ;?>"  /> 
 						</div>
 					</div>
 					
@@ -42,11 +42,11 @@
 								<select id = "department_ID" name="department_ID"  class="form-control {validate:{required:true}}"> 
 									<option  value="">-- Choose Department --</option>
 										<?php foreach($department_data as $dep):?>
-										 
+											<?php if($dep['department_ID'] == $applicant_detail[0]['department_ID'] ){$selected= "selected";}else{$selected="";};?>
 											<?php if($dep['department_parentID'] == '0'):?>
-												<option value = "<?php echo  $dep['department_ID'];?>"  ><?php echo  $dep['department_name'];?></option>
+												<option value = "<?php echo  $dep['department_ID'];?>" <?php echo $selected;?> ><?php echo  $dep['department_name'];?></option>
 											<?php else:?>
-												<option value="<?php echo  $dep['department_ID'];?>"  ><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
+												<option value="<?php echo  $dep['department_ID'];?>" <?php echo $selected;?> ><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
 											<?php endif;?>										
 										<?php endforeach;?>	  
 								</select>
@@ -60,12 +60,11 @@
 					<div class="form-group ">
 						<label  class="col-sm-3 control-label">Job Position : </label>
 						<div class="control col-sm-4 col-md-4" data-validate="number">
-							 <span class = "input-group  ">
-							
+							 <span class = "input-group  "> 
 								<select id = "job_ID" name="job_ID"  class="form-control {validate:{required:true}}"> 
-									<option value="">-- Choose Position --</option> 
-									 <?php if($data_detail[0]['job_ID']!=""):?>
-									 <option value = "<?php echo $data_detail[0]['job_ID'];?>" selected><?php echo $data_detail[0]['job_name'];?></option> 
+									<option value="">-- Choose Position --</option>  
+									 <?php if($applicant_detail[0]['job_ID']!=""):?>
+									 <option value = "<?php echo $applicant_detail[0]['job_ID'];?>" selected><?php echo $applicant_detail[0]['job_name'];?></option> 
 									 <?php endif;?>
 								</select>
 							 
@@ -79,7 +78,10 @@
 					<div class="form-group">
 						<label  class="col-sm-3 control-label">Stage :</label>
 						<div class="control col-md-4">  
-								<select class = "form-control" id = "stage" name = "stage">
+								<select class = "form-control" id = "stage" name = "stage"> 
+									<?php if($applicant_detail[0]['stage']!=""):?>
+									<option selected disabled><?php echo $applicant_detail[0]['stage'];?></option>
+									<?php endif;?>
 									<option>Initial Qualification</option>
 									<option>Fisrt Interview</option>
 									<option>Second Interview</option>
@@ -92,8 +94,8 @@
 					<div class="form-group">
 						<label  class="col-sm-3 control-label">Employee Responsible :</label>
 						<div class="control col-md-4">
-							<input class="form-control responsible_name" type="text"    /> 
-							<input id = "responsible_ID" name="responsible_ID"  class = "responsible_ID" type="hidden"   value = "<?php //echo $data_detail[0]['responsible_ID'];?>" />
+							<input class="form-control responsible_name" type="text" value = "<?php echo $applicant_detail[0]['employee_name'];?>"   /> 
+							<input id = "responsible_ID" name="responsible_ID"  class = "responsible_ID" type="hidden"   value = "<?php echo $applicant_detail[0]['responsible_ID'];?>" />
 						</div>
 					</div>
 					 
@@ -102,7 +104,7 @@
 						<div class="control col-md-3">
 							<div id="datetimepicker4" class="input-append dating ">
 									<span class="add-on">
-									<input data-format="dd/MM/yyyy" type="text" class = "form-control" id = "date_closed" name = "date_closed">
+									<input data-format="dd/MM/yyyy" type="text" class = "form-control" id = "date_closed" name = "date_closed" value = "<?php echo date("d-m-Y", strtotime($applicant_detail[0]['date_closed']));?>">
 									</span>																	
 							</div>																												
 						</div>																									
@@ -124,25 +126,25 @@
 												<div class="form-group">
 													<label  class="col-sm-4 control-label">Partner :</label>
 													<div class="control col-md-8">
-														<input name="partner_ID"  id = "partner_ID" class="form-control " type="text"    /> 
+														<input name="partner_ID"  id = "partner_ID" class="form-control " type="text"  value = "<?php echo $applicant_detail[0]['partner_ID'];?>"  /> 
 													</div>
 												</div> 
 												<div class="form-group">
 													<label  class="col-sm-4 control-label">Phone :</label>
 													<div class="control col-md-8">
-														<input name="phone"  id = "phone" class="form-control " type="text"    /> 
+														<input name="phone"  id = "phone" class="form-control " type="text"  value = "<?php echo $applicant_detail[0]['phone'];?>"  /> 
 													</div>
 												</div> 
 												<div class="form-group">
 													<label  class="col-sm-4 control-label">Mobile :</label>
 													<div class="control col-md-8">
-														<input name="mobile"  id = "mobile" class="form-control " type="text"    /> 
+														<input name="mobile"  id = "mobile" class="form-control " type="text"  value = "<?php echo $applicant_detail[0]['mobile'];?>"  /> 
 													</div>
 												</div> 
 												<div class="form-group">
 													<label  class="col-sm-4 control-label">Email :</label>
 													<div class="control col-md-8">
-														<input name="email"  id = "email" class="form-control " type="text"    /> 
+														<input name="email"  id = "email" class="form-control " type="text" value = "<?php echo $applicant_detail[0]['email'];?>"   /> 
 													</div>
 												</div> 
 												 
@@ -151,7 +153,7 @@
 												<div class="form-group">
 													<label  class="col-sm-4 control-label">Expected Salary  :</label>
 													<div class="control col-md-8">
-														<input name="expectation_salary"  id = "expectation_salary" class="form-control " type="text"    /> 
+														<input name="expectation_salary"  id = "expectation_salary" class="form-control " type="text" value = "<?php echo $applicant_detail[0]['expectation_salary'];?>"   /> 
 													</div>
 												</div> 
 												<div class="form-group">
@@ -172,6 +174,9 @@
 													<label  class="col-sm-3 control-label">Degree :</label>
 													<div class="control col-md-4"> 
 															<select class = "form-control" id = "degree" name = "degree">
+																<?php if($applicant_detail[0]['degree']!=""):?>
+																<option selected disabled><?php echo $applicant_detail[0]['degree'];?></option>
+																<?php endif;?>
 																<option>Graduate</option>
 																<option>Bachelor Degree</option>
 																<option>Master Degree</option>
@@ -184,6 +189,9 @@
 													<label  class="col-sm-3 control-label">Appreciation :</label>
 													<div class="control col-md-4"> 
 															<select class = "form-control" name = "appreciation" id="appreciation">
+																<?php if($applicant_detail[0]['appreciation']!=""):?>
+																<option selected disabled><?php echo $applicant_detail[0]['appreciation'];?></option>
+																<?php endif;?>
 																<option>Not Good</option>
 																<option>On Avarage</option>
 																<option>Good</option>
@@ -206,7 +214,7 @@
 												
 												<div class="form-group"> 
 													<div class="control col-md-12">
-														<textarea rows="5" cols="80" style="width: 80%" class="tinymce-simple" name = "notes" id = "notes"></textarea>
+														<textarea rows="5" cols="80" style="width: 80%" class="tinymce-simple" name = "notes" id = "notes"><?php echo $applicant_detail[0]['notes'];?></textarea>
 													</div>
 												</div> 
 												
@@ -240,10 +248,11 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
+
+<input type = "hidden" id = "validate_error" name = "validate_error" class = "validate_error" value = "0">
  
 <script>
-
-
+ 
 cek_validate();
 			function cek_validate(){
 				
@@ -275,8 +284,9 @@ cek_validate();
 				data: $("#applicantAdd").serialize(),
 				success: function(data)
 				{ 
+					
 					$('#myModal').modal('hide');
-					 
+					display_data();
 				}
 			});
 			
