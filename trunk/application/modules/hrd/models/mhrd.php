@@ -2871,6 +2871,55 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function jobspace_data($data,$page,$limit){
+	
+	$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+	
+	$this->db->select('job.*,department.department_name');
+	 
+	$this->db->where('job.deleted',0);
+	
+	$this->db->join('department','department.department_ID = job.department_ID');
+	
+	$this->db->where('department.company_ID', $this->session->userdata('current_companyID'));
+	 
+	$query = $this->db->get('job',$limit,$a);
+		 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function jobspace_data_count($data){
+	
+	$this->db->select('count(*) as totdata');
+		 
+	$this->db->where('job.deleted',0);
+	
+	$this->db->join('department','department.department_ID = job.department_ID');
+	
+	$this->db->where('department.company_ID', $this->session->userdata('current_companyID'));
+ 
+	$query = $this->db->get('job');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
 	function applicant_detail($applicant_ID){
 	
 		$this->db->select('applicant.*,job.job_name,employee.employee_name');
@@ -2884,6 +2933,27 @@ class Mhrd extends CI_Model {
 		$this->db->join('employee','employee.employee_ID = applicant.responsible_ID');
  
 		$query = $this->db->get('applicant');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function employee_num($job_ID){
+	
+	$this->db->select('count(job_ID) as totdata');
+	
+	$this->db->where('deleted',0);
+		 
+	$this->db->where('employee.job_ID',$job_ID);
+	 
+	$query = $this->db->get('employee');
 	 
 			if ($query->num_rows())
 			{

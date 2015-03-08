@@ -1922,6 +1922,47 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function jobspace(){
+	
+		$output['data']['module_name'] = "Job Space";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['content'] = "hrd/jobspace";
+		 
+		$this->load->view('template', $output);
+	
+	}
+	
+	function jobspace_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['jobspace_data'] = $this->Mhrd->jobspace_data($this->input->post(),$data['page'],$data['limit']);	
+		 
+		if($data['jobspace_data']){
+			$i=0;
+			foreach($data['jobspace_data'] as $keys){
+
+				$employee_num = $this->Mhrd->employee_num($keys['job_ID']);	
+				
+				$data['jobspace_data'][$i]['employee_num'] = $employee_num[0]['totdata'];
+				
+				$i++;
+				 
+			}
+		}
+		 
+		$data['countdata'] = $this->Mhrd->jobspace_data_count($this->input->post());	
+
+		$this->load->view('jobspace_data', $data);
+		
+	}
+	
 }
 
 /* End of file welcome.php */
