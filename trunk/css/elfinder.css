@@ -1317,7 +1317,10 @@ embed.elfinder-quicklook-preview-audio {
 	float:left;
 	overflow:hidden;
 	position:relative;
-	border:0 solid
+	border:0 solid;
+	 -webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
 }
 .elfinder .ui-icon-search {
 	cursor:pointer
@@ -1660,3 +1663,4 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 .elfinder-button-search input:focus{-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;}
+	

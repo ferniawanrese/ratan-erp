@@ -13,7 +13,7 @@
 							</ul>
 						</div>
 						
-						<div class="form-container">
+						<div class="form-container col-md-12">
 							<form id="stepy_form" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/hrd_save_employee/');?>" method="post">
 								<div class="row setup-content " id="step-1">
 										
