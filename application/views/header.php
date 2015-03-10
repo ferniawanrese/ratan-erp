@@ -9,6 +9,8 @@
 <!-- styles -->
 <link href="<?php echo base_url('css/bootstrap.css');?>" rel="stylesheet">
 
+<link href="<?php echo base_url('css/bootstrap-responsive.css');?>" rel="stylesheet">
+
 <link rel="stylesheet" href="<?php echo base_url('css/font-awesome.css');?>">
 <link rel="icon" href="<?php echo base_url('images/fav.ico');?>" sizes="16x16" type="image/png">
 <!--[if IE 7]>

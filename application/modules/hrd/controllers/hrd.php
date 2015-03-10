@@ -1963,6 +1963,20 @@ class hrd extends CI_Controller {
 		
 	}
 	
+	function file_manager(){
+	
+		$output['data']['module_name'] = "File Manager";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['content'] = "hrd/file_manager";
+		 
+		$this->load->view('template', $output);
+	
+	}
+	
 }
 
 /* End of file welcome.php */
