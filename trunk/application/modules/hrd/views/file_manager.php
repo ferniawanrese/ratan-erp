@@ -8,6 +8,7 @@
 <script src="<?php echo base_url('js/elfinder.min.js');?>"></script>
 
 <link href="<?php echo base_url('css/elfinder.css');?>" rel="stylesheet">  
+ 
 <script>
 	$().ready(function () {
 		var elf = $('#file-manager').elfinder({
