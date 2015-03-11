@@ -7,12 +7,11 @@
 
 <script src="<?php echo base_url('js/elfinder.min.js');?>"></script>
 
-<link href="<?php echo base_url('css/elfinder.css');?>" rel="stylesheet">
- 
+<link href="<?php echo base_url('css/elfinder.css');?>" rel="stylesheet">  
 <script>
 	$().ready(function () {
 		var elf = $('#file-manager').elfinder({
-			url: "<?php echo base_url('php/connector.php');?>" // connector URL (REQUIRED)
+			url: "<?php echo base_url('connector/connector.php?dir=images');?>" // connector URL (REQUIRED) 
 			// lang: 'ru',             // language (OPTIONAL)
 		}).elfinder('instance');
 	});
