@@ -133,7 +133,8 @@
 														</select>
 													</div>
 													<div class="control col-md-3">
-														<input name="employee_salary" id = "employee_salary"class="form-control numonly" type="text" value = "<?php echo $data_detail[0]['employee_salary'] * 1;?>"/>
+														 
+														<input name="employee_salary" id = "employee_salary"class="form-control auto"   data-a-sign="" data-a-sep="<?php echo $currency_detail[0]['currency_format_separator'];?>" data-a-dec="<?php echo $currency_detail[0]['currency_format_decimal'];?>" type="text" value = "<?php echo $data_detail[0]['employee_salary'] * 1;?>"/>
 													</div>
 												</div>
 														 
@@ -332,9 +333,13 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
  
 <script type="text/javascript">
-
+jQuery(function($) {
+    $('.auto').autoNumeric('init');
+});
 
 $(document).ready(function () {
  

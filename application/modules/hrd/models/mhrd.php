@@ -2966,6 +2966,23 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function currency_detail($currency_ID){
+	
+	$this->db->where('currency_ID',$currency_ID);
+	
+	$query = $this->db->get('currency');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
 }
 	
 ?>

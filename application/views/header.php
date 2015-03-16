@@ -61,10 +61,9 @@
 <script src="<?php echo base_url('js/chosen.jquery.js');?>"></script>
 <script src="<?php echo base_url('js/stepy.jquery.js');?>"></script> 
 <script src="<?php echo base_url('js/nprogress.js');?>"></script>  
-
+<script src="<?php echo base_url('js/autoNumeric.js');?>"></script>  
 </head>
  
-
 <body id = "smashinglogo">
 <div class="my_loadie_container" ></div>
 
