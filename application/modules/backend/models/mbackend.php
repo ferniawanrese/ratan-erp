@@ -41,6 +41,21 @@ class Mbackend extends CI_Model {
 			}		
 	}
 	
+	function currency(){
+		
+		$this->db->where('deleted',0);
+		$query = $this->db->get('currency');
+			
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	}
+	
 	function companies_det($company_ID){
 	
 		$this->db->select("company.*,employee.employee_name,employee.employee_badge");

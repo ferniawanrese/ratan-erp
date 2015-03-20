@@ -22,6 +22,18 @@
 						</div>
 						
 						<div class="form-group">
+							<label  class="col-sm-3 control-label">Default Currency :</label>
+							<div class="control col-md-4">
+								<select class = "form-control" id = "default_currencyID" name = "default_currencyID">
+									<?php foreach($currency as $keycur):?>
+										<?php if($keycur['currency_ID'] == $companies[0]['default_currencyID']){$selected = "selected";}else{$selected = "" ;};?> 
+										<option value = "<?php echo $keycur['currency_ID'];?>" <?php echo $selected;?> ><?php echo $keycur['currency_code'];?></option>
+									<?php endforeach;?>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group">
 							<label  class="col-sm-3 control-label">Website :</label>
 							<div class="control col-md-4">
 								<input name="website"  id = "website" class="form-control " type="text"  value = "<?php echo $companies[0]['website'];?>"  /> 
@@ -34,7 +46,7 @@
 								<input name="phone"  id = "phone" class="form-control " type="text"  value = "<?php echo $companies[0]['phone'];?>"  /> 
 							</div>
 						</div>
-						
+						 
 						<div class="form-group">
 							<label  class="col-sm-3 control-label">Owner :</label>
 							<div class="control col-md-4">
