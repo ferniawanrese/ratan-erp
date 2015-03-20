@@ -202,9 +202,7 @@ class hrd extends CI_Controller {
 		}else{
 		$img = null;
 		}
-		
-		//print_r($this->input->post());exit;
-		
+		 
 		$this->Mhrd->save_employee($this->input->post(),$img);
 		
 		redirect('hrd');
@@ -236,9 +234,13 @@ class hrd extends CI_Controller {
 	
 		$data['data_detail'] = $this->Mhrd->employee_data_detail($employee_ID);
 		
-		$this->core->print_rr($this->session->all_userdata());
-		
-		$data['currency_detail'] = $this->Mhrd->currency_detail($data['data_detail'][0]['currency_ID']);	
+		if($data['data_detail']==""){
+		$currency_ID = $this->session->userdata('default_currencyID');
+		}else{
+		$currency_ID = $data['data_detail'][0]['currency_ID'];
+		}
+		 
+		$data['currency_detail'] = $this->Mhrd->currency_detail($currency_ID);	
 		  
 		if($data['data_detail']){
 			$data['final_badge'] = $data['data_detail'][0]['employee_badge'];
