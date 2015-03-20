@@ -69,6 +69,8 @@ class backend extends CI_Controller {
 	public function add_company($company_ID=null){
 	
 	$data['companies'] = $this->Mbackend->companies_det($company_ID);
+	
+	$data['currency'] = $this->Mbackend->currency();
 	 
 	$this->load->view('company_add',$data);
 	
@@ -83,6 +85,8 @@ class backend extends CI_Controller {
 	function edit_company($company_ID=null){
 	
 	$data['companies'] = $this->Mbackend->companies_det($company_ID);
+	
+	$data['currency'] = $this->Mbackend->currency();
 	
 	$this->load->view('company_add', $data);
 	 
@@ -100,6 +104,7 @@ class backend extends CI_Controller {
 	 
 	$this->session->set_userdata('current_companyID', $company_ID);
 	$this->session->set_userdata('current_companyName', $data['companies'][0]['company_name']);
+	$this->session->set_userdata('default_currencyID', $data['companies'][0]['default_currencyID']);
 	
 	redirect('backend');
 	

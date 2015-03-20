@@ -231,16 +231,16 @@ class hrd extends CI_Controller {
 		}
 		
 		$data['final_badge'] = "exist";
-		
-		
-		
+		 
 		$data['department_data'] = $this->Mhrd->department_data( );		
 	
 		$data['data_detail'] = $this->Mhrd->employee_data_detail($employee_ID);
 		
+		$this->core->print_rr($this->session->all_userdata());
+		
 		$data['currency_detail'] = $this->Mhrd->currency_detail($data['data_detail'][0]['currency_ID']);	
-		 
-		if($data['data_detail'] ){
+		  
+		if($data['data_detail']){
 			$data['final_badge'] = $data['data_detail'][0]['employee_badge'];
 		}else{
 		
