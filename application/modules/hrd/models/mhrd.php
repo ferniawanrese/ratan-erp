@@ -224,7 +224,8 @@ class Mhrd extends CI_Model {
 
 	function save_employee($data,$img){
 	 
-			unset($data['employee_managerName']);
+		unset($data['employee_managerName']);
+		
 		if ($data['employee_ID']==""){
 			unset($data['employee_ID']);
 			
@@ -266,19 +267,19 @@ class Mhrd extends CI_Model {
 			}
 			
 			unset($data['employee_dateofbirth']);
+			 
 			$this->db->where('employee_ID',$data['employee_ID']);
-			$this->db->update('employee', $data); 			
+			$this->db->update('employee', $data); 		
+			
 		}
-	
-		
-
+	 
 	}
 	
 	function employeecat_parent(){
 	$this->db->where('employee_catParentID','0');
 	$query = $this->db->get('employee_cat');
 	
-	if ($query->num_rows())
+		if ($query->num_rows())
 			{
 				return $query->result_array();
 			}
