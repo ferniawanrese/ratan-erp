@@ -101,8 +101,22 @@ class Core
         echo '<pre>';
         print_r($val);
         echo  '</pre>';
-}
+	}
 	
+	function getnum($currency_ID,$value){
+      
+		$this->CI =& get_instance();
+		$SQL = " SELECT currency.currency_format_separator, currency.currency_format_decimal FROM currency where currency_ID = '".$currency_ID."'";
+		$results = $this->CI->db->query($SQL)->result_array();
+		 
+		if($results): 
+		
+			return str_replace($results[0]['currency_format_separator'],'',$value);
+			 
+		endif;
+		
+		
+	}
 
 }	
 ?>
