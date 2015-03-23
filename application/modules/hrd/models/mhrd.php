@@ -3,7 +3,7 @@ class Mhrd extends CI_Model {
 
     function __construct()
     {
-        parent::__construct();
+        parent::__construct(); 
     }
 	 
 	function employee_data($data,$page,$limit){
@@ -223,7 +223,7 @@ class Mhrd extends CI_Model {
 	}
 
 	function save_employee($data,$img){
-	 
+	  
 		unset($data['employee_managerName']);
 		
 		if ($data['employee_ID']==""){

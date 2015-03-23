@@ -125,7 +125,7 @@
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Salary :</label> 
 													<div class="control col-md-3">
-														<select class = "form-control" name = "currency_ID" >
+														<select class = "form-control" name = "currency_ID" id = "currency_ID">
 															<?php foreach($currency as $cur):?>
 															<?php if($cur['currency_ID']==$data_detail[0]['currency_ID']){$selected = "selected";}else{$selected="";};?>
 															<option value = "<?php echo $cur['currency_ID'];?>" <?php echo $selected;?>><?php echo $cur['currency_code'];?></option> 
@@ -133,9 +133,20 @@
 														</select>
 													</div>
 													<div class="control col-md-3"> 
-														<input name="employee_salary" id = "employee_salary"class="form-control auto"   data-a-sign="" data-a-sep="<?php echo $currency_detail[0]['currency_format_separator'];?>" data-a-dec="<?php echo $currency_detail[0]['currency_format_decimal'];?>" type="text" value = "<?php echo $data_detail[0]['employee_salary'] * 1;?>"/>
+														<input  id = "employee_salary" class="form-control auto"   data-a-sign="" data-a-sep="<?php echo $currency_detail[0]['currency_format_separator'];?>" data-a-dec="<?php echo $currency_detail[0]['currency_format_decimal'];?>" type="text" value = "<?php echo $data_detail[0]['employee_salary'] * 1;?>"/>
+														<input name="employee_salary" id = "employee_salaryx" value = "<?php echo $data_detail[0]['employee_salary'] * 1;?>" type = "hidden">
 													</div>
 												</div>
+												
+												<script>
+												$("#employee_salary").change(function() {
+													 
+													var nya = $("#employee_salary").autoNumeric('get');
+												    
+													$('#employee_salaryx').val(nya);
+													
+												});
+												</script>
 														 
 												<div class="form-group">
 													<label  class="col-sm-3 control-label">Place / Date of Birth :</label>
