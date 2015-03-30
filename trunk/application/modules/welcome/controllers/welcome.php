@@ -46,9 +46,12 @@ class Welcome extends CI_Controller {
 				 
 				$output['company']['company'] = $this->login->company($output['data']['company_groupID']);
 				
-				$sessian_all = array_merge($output['data'],$output['company']);
+				
 				 
 				if($output['data']){
+				
+				$sessian_all = array_merge($output['data'],$output['company']);
+				
 				$this->session->set_userdata($sessian_all);
 				$this->session->set_userdata('current_companyID', $output['data']['company_ID']);
 				$this->session->set_userdata('current_companygroupID', $output['data']['company_groupID']);
