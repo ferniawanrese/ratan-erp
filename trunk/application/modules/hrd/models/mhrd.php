@@ -371,7 +371,7 @@ class Mhrd extends CI_Model {
 		
 		$this->db->like('department_name', $data['search']);
 		
-		$this->db->join('employee','employee.employee_ID =  department.manager_ID');
+		$this->db->join('employee','employee.employee_ID =  department.manager_ID','left');
 		
 		$this->db->order_by('department.dateCreated','desc');
 		  
@@ -394,9 +394,16 @@ class Mhrd extends CI_Model {
 	function department_data_count($data){
 	
 		$this->db->select('count(*) as totdata');
-		$this->db->where('deleted', '0');
+		$this->db->where('department.deleted', '0');
 		$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
+		
+		if($data['manager_ID']!=""){
+		$this->db->where('manager_ID', $data['manager_ID']);
+		}
+		
 		$this->db->like('department_name', $data['search']);
+		
+		$this->db->join('employee','employee.employee_ID =  department.manager_ID','left');
 		
 		$query = $this->db->get('department');
 

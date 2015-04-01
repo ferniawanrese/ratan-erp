@@ -68,6 +68,8 @@ class backend extends CI_Controller {
 	
 	public function add_company($company_ID=null){
 	
+	//$this->core->print_rr($this->session->all_userdata());
+	
 	$data['companies'] = $this->Mbackend->companies_det($company_ID);
 	
 	$data['currency'] = $this->Mbackend->currency();
@@ -77,7 +79,7 @@ class backend extends CI_Controller {
 	}
 	
 	function company_add_action(){
-	
+	 
 	$this->Mbackend->company_add($this->input->post());
 	
 	}
