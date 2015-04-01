@@ -86,6 +86,9 @@ class Mbackend extends CI_Model {
 		$this->db->like('company_name',$search);
 	   
 		$this->db->where('deleted',0);
+		
+		$this->db->where('company_groupID', $this->session->userdata('company_groupID'));	
+		
 		$query = $this->db->get('company',$limit,$a);
 	
 			if ($query->num_rows())
@@ -106,6 +109,9 @@ class Mbackend extends CI_Model {
 		$this->db->like('company_name',$search);
 	   
 		$this->db->where('deleted',0);
+		
+		$this->db->where('company_groupID', $this->session->userdata('company_groupID'));	
+		
 		$query = $this->db->get('company');
 	
 			if ($query->num_rows())
@@ -125,15 +131,19 @@ class Mbackend extends CI_Model {
 	
 	if($data['company_ID']==""){
 	
-	$this->db->set('company_ID', $this->generate_code->getUID());	
+		$this->db->set('company_ID', $this->generate_code->getUID());	
 	
-	$this->db->insert('company',$data);
+		$this->db->set('company_groupID', $this->session->userdata('company_groupID'));	
+	
+	unset($data['company_ID']);
+	 
+		$this->db->insert('company',$data);
 	
 	}else{
 	
-	$this->db->where('company_ID', $data['company_ID']);
+		$this->db->where('company_ID', $data['company_ID']);
 	
-	$this->db->update('company',$data);
+		$this->db->update('company',$data);
 	
 	}
 	
