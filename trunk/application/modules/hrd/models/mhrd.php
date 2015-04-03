@@ -1326,6 +1326,8 @@ class Mhrd extends CI_Model {
 		 
 		$this->db->join('employee','employee.employee_badge = attendance.employee_badge');
 		
+		$this->db->where('employee.company_ID',  $this->session->userdata('current_companyID'));
+		
 		$this->db->order_by('attendance.date','desc');
 		 
 		$query = $this->db->get('attendance',$limit,$a);
@@ -1346,6 +1348,8 @@ class Mhrd extends CI_Model {
 		$this->db->select('count(*) as totdata');
 		
 		$this->db->join('employee','employee.employee_badge = attendance.employee_badge');
+		
+		$this->db->where('employee.company_ID',  $this->session->userdata('current_companyID'));
 		  
 		$query = $this->db->get('attendance');
 	 
