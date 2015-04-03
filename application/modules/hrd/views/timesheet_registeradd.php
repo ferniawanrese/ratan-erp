@@ -6,7 +6,7 @@
 					<div class="control col-md-3">
 						<div id="datetimepicker4" class="input-append datetimepicker">
 								<span class="add-on">
-									<input  type="text" class = "form-control datepicker" id = "register_date" name = "register_date" value = "<?php if($timesheet_detail[0]['register_date']){echo date("d-m-Y h:i:s", strtotime($timesheet_detail[0]['register_date']));};?>"> 
+									<input  type="text" class = "form-control datepicker" id = "register_date" name = "register_date" value = "<?php if($timesheet_detail[0]['register_date']){echo date("d-m-Y", strtotime($timesheet_detail[0]['register_date']));};?>"> 
 								</span>	
 						</div>		 
 					</div>		 
@@ -16,7 +16,7 @@
 					<div class="control col-md-3">
 						<div id="datetimepicker4" class="input-append datetimepicker">
 								<span class="add-on">
-								<input  type="text" class = "form-control datepicker" id = "deadline" name = "deadline" value = "<?php if($timesheet_detail[0]['register_date']){echo date("d-m-Y h:i:s", strtotime($timesheet_detail[0]['deadline']));};?>">
+								<input  type="text" class = "form-control datepicker" id = "deadline" name = "deadline" value = "<?php if($timesheet_detail[0]['register_date']){echo date("d-m-Y", strtotime($timesheet_detail[0]['deadline']));};?>">
 								</span>																	
 						</div>																												
 					</div>	 
