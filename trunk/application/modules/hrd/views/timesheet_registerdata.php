@@ -10,8 +10,10 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 				<th> Task Name </th>   
 				<th> Notes </th>
 				<th> Employee </th>
-				<th> Status </th>
+				<th width="110"> Status</th>
+				<th>  Register Date </th>
 				<th>  Dead Line </th>
+				<th>  Date Modified </th>
 				<th> Action </th> 
 		  </tr>
 	</thead> 
@@ -49,7 +51,21 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					 <?php echo form_dropdown('status', $status,  $dat['status_task'],'class = "form-control" id="status'.$dat['timetracking_ID'].'"') ;?>
 					</td>
 					<td>
-					<?php echo date('d M Y h:i:s', strtotime($dat['deadline']));?> 
+					<?php 
+					
+					if(($dat['deadline']< date('Y-m-d')) && $dat['status_task'] != "close"){
+						$color = "red";
+					}else{
+						$color = "";
+					} 
+					?>
+					
+					<font color = "<?php echo $color;?>"><?php echo date('d M Y', strtotime($dat['register_date']));?> </font>
+					</td>
+					<td>
+					<font color = "<?php echo $color;?>"><?php echo date('d M Y', strtotime($dat['deadline']));?> </font>
+					</td>
+					<td><?php echo date('d M Y H:i:s' , strtotime($dat['date_modified']));?>
 					</td>
 					<td class="center">
 							<div class="btn-toolbar row-action">  

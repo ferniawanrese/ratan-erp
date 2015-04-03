@@ -726,7 +726,21 @@ class Mhrd extends CI_Model {
 	$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
 	
 	if(isset($data['filter'])){
+	
+	$this->db->like('timetracking.task_ID',$data['filter']['task_ID']);
+	 
+	$this->db->like('project.project_ID',$data['filter']['project_ID']);
+	
+	$this->db->like('department.department_ID',$data['filter']['department_ID']);
+	
+	unset($data['filter']['task_ID']);
+	
+	unset($data['filter']['project_ID']);
+	
+	unset($data['filter']['department_ID']);
+	
 	$this->db->like($data['filter']);
+	
 	}
 	
 	if(isset($data['filterplus'])){
@@ -788,7 +802,21 @@ class Mhrd extends CI_Model {
 	$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
 	
 	if(isset($data['filter'])){
-	$this->db->like($data['filter']);
+	
+	$this->db->like('timetracking.task_ID',$data['filter']['task_ID']);
+	 
+	$this->db->like('project.project_ID',$data['filter']['project_ID']);
+	
+	$this->db->like('department.department_ID',$data['filter']['department_ID']);
+	
+	unset($data['filter']['task_ID']);
+	
+	unset($data['filter']['project_ID']);
+	
+	unset($data['filter']['department_ID']);
+	
+	$this->db->like($data['filter']); 
+	
 	}
 	
 	if(isset($data['filterplus'])){
@@ -1237,6 +1265,10 @@ class Mhrd extends CI_Model {
 		$this->db->where('timetracking_ID',$timetracking_ID);
 		$this->db->set('status_task',$status);
 		$this->db->update('timetracking');
+		
+		$this->db->where('timetracking_ID',$timetracking_ID);
+		$this->db->update('timetrackingmap');
+		$this->db->set('status_taskmap',$status);
 	
 	}
 	

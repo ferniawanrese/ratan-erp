@@ -478,11 +478,15 @@ class hrd extends CI_Controller {
 		$output['data']['menu_active'] = "Main";
 		
 		$output['content'] = "hrd/timesheet_register";
+		
+		$output['parent'] = $this->Mhrd->department_parent();
 		 
-		$output['project'] = $this->Mhrd->get_project();	
-		
-		$output['task'] = $this->Mhrd->get_task();	
-		
+		foreach($output['parent'] as $pr){
+			 $output['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+
+		$output['department_data'] = $this->Mhrd->department_data();	
+		  
 		$output['filterplus'] = $this->core->filterplus('timetracking');
 		
 		$this->load->view('template', $output);

@@ -43,11 +43,17 @@
 														<div class="form-group col-sm-12 col-md-3">
 															<label for="validate-text"></label>
 															<div class="input-group col-sm-12 col-md-12">
-																<select class="form-control {validate:{required:true}}" name = "project_ID" id = "project_ID"> 
-																	<option value = "" >-- Choose Department --</option>
-																	<?php foreach($project as $projects):?>
-																	<option value = "<?php echo $projects['project_ID'];?>"><?php echo $projects['project_name'];?></option>
-																	<?php endforeach;?>
+																<select id = "department_IDy" name="filter[department_ID]"  class="form-control"> 
+																	<option value="">-- Choose Department --</option>
+																		<?php foreach($department_data as $dep):?>
+																		<?php if($dep['department_ID']==$timesheet_detail[0]['department_ID']){$selected = "selected";}else{$selected = "";}?>
+																			<?php if($dep['department_parentID'] == '0'):?>
+																				<option value = "<?php echo  $dep['department_ID'];?>" <?php echo $selected;?>><?php echo  $dep['department_name'];?></option>
+																			<?php else:?>
+																				<option value="<?php echo  $dep['department_ID'];?>"  <?php echo $selected;?>><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
+																			<?php endif;?>	
+																			
+																		<?php endforeach;?>	  
 																</select>
 																 
 															</div>
@@ -55,11 +61,8 @@
 														<div class="form-group col-sm-12 col-md-3">
 															<label for="validate-text"></label>
 															<div class="input-group col-sm-12 col-md-12">
-																<select class="form-control {validate:{required:true}}" name = "project_ID" id = "project_ID"> 
-																	<option value = "" >-- Choose Project --</option>
-																	<?php foreach($project as $projects):?>
-																	<option value = "<?php echo $projects['project_ID'];?>"><?php echo $projects['project_name'];?></option>
-																	<?php endforeach;?>
+																<select class="form-control {validate:{required:true}}" name = "filter[project_ID]" id = "project_IDy"> 
+																	<option value = "" >-- Choose Project --</option> 
 																</select>
 															 
 															</div>
@@ -67,12 +70,9 @@
 														<div class="form-group col-sm-12 col-md-3"> 
 															<label for="validate-text"></label>
 															<div class="input-group col-sm-12 col-md-12">
-																<select class="form-control {validate:{required:true}}" name = "task_ID" id = "task_ID">
+																<select class="form-control {validate:{required:true}}" name = "filter[task_ID]" id = "task_IDy">
 																	<option value = "" >-- Choose Task --</option>
-																	<?php foreach($task as $tasks):?>
-																	<option value = "<?php echo $tasks['task_ID'];?>"><?php echo $tasks['task_name'];?></option>
-																	<?php endforeach;?>
-																	
+																	 
 																</select>
 															 
 															</div>
@@ -195,8 +195,9 @@
 	 })
  }
 
-function close_filter(){											
-$("#search").fadeOut();
+  
+function close_filter(){	 
+$("#search").hide();
 $("#Show").show();
 $("#Hide").hide();
 }
@@ -306,13 +307,80 @@ function delete_post(a){
 	});
 	
 	function clearfilter(){
-			$('#register_date').val('');
-			$('#deadline_date').val('');
+			
+			$('#department_IDy').val('');
+			$('#project_IDy').val('');
+			$('#task_IDy').val('');
 			$('#description').val('');
 			$('.additional_group').remove();
 			display_data();
 	}
 	
+	$( "select#department_IDy" ).change(function() {
+ 
+		var a = $('select#department_IDy option:selected').val();
+		
+		$.ajax({
+			
+			url: "<?php echo base_url('hrd/get_project_detail/');?>" + '/' +a,
+			 
+			success: function (data) {
+			 
+			$( "#project_IDy" ).html("<option value = ''>-- Choose Project --</option>");
+			
+			$( "#task_IDy" ).html("<option value = ''>-- Choose Task --</option>");
+			
+			var jsonData = JSON.parse(data);
+			 
+				optmin = "<option value = ''>-- Choose Project --</option>";
+				for (var i = '0'; i < jsonData.projectnya.length; i++) {
+					var datanya = jsonData.projectnya[i];
+						
+							optmin += "<option value ='"+ datanya.project_ID +"'>"+ datanya.project_name +"</option>";
+										
+					$( "#project_IDy" ).html(optmin); 
+				}
+				
+			}
+		});
+		
+	});
+	
+	$( "select#project_IDy" ).change(function() {
+
+	//get_tasky();
+	
+	var project_IDy = $('select#project_IDy option:selected').val();
+	
+	$.ajax({
+					
+					url: "<?php echo base_url('hrd/get_task_detail/');?>" + '/' + project_IDy,
+					 
+					success: function (data) {
+					 
+					$( "#task_IDy" ).html("<option value = ''>-- Choose Task --</option>");
+					var jsonData = JSON.parse(data);
+					 
+						optmin = "<option value = ''>-- Choose Task --</option>";
+						for (var i = '0'; i < jsonData.tasknya.length; i++) {
+							var datanya = jsonData.tasknya[i];
+							
+							if(datanya.task_ID > '0'){
+									 
+									optmin += "<option value ='"+ datanya.task_ID +"'>"+ datanya.task_name +"</option>";
+									 
+							}
+												 
+							$( "#task_IDy" ).html(optmin); 
+						}
+						
+					}
+				});
+	
 	 
+		
+	});
+	 
+	
 </script>
 	
