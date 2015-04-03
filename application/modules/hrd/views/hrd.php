@@ -340,7 +340,7 @@ function delete_post(a){
 	
 <script>
 function close_filter(){											
-$("#search").fadeOut();
+$("#search").hide();
 $("#Show").show();
 $("#Hide").hide();
 }
