@@ -2362,7 +2362,7 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function leaves_add($data){
+	function leaves_add($data,$total_leaves){
 	 
 		unset($data['employee']);
 		 
@@ -2376,6 +2376,8 @@ class Mhrd extends CI_Model {
 		
 		$this->db->set('date_end',date("Y-m-d", strtotime($data['date_end'])));
 		
+		$this->db->set('total_leaves',$total_leaves);
+		
 		unset($data['date_end']);
 		
 		unset($data['date_start']);
@@ -2387,6 +2389,8 @@ class Mhrd extends CI_Model {
 		$this->db->set('date_start',date("Y-m-d", strtotime($data['date_start'])));
 		
 		$this->db->set('date_end',date("Y-m-d", strtotime($data['date_end'])));
+		
+		$this->db->set('total_leaves',$total_leaves);
 		
 		unset($data['date_end']);
 		
@@ -2412,6 +2416,8 @@ class Mhrd extends CI_Model {
 		$this->db->join('employee','leave.employee_ID = employee.employee_ID');
 		
 		$this->db->join('leave_type','leave_type.leave_typeID = leave.leave_typeID');
+		
+		$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
 		
 		$this->db->order_by('leave.dateCreated','desc');
 		
@@ -2439,6 +2445,8 @@ class Mhrd extends CI_Model {
 		$this->db->join('employee','leave.employee_ID = employee.employee_ID');
 		
 		$this->db->join('leave_type','leave_type.leave_typeID = leave.leave_typeID');
+		
+		$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
 		
 		$this->db->where('leave.deleted','0');
 	 
@@ -3024,6 +3032,156 @@ class Mhrd extends CI_Model {
 			{
 				return FALSE;
 			}	
+	
+	}
+	
+	function leave_summary_data($data,$page,$limit){
+	
+	$this->db->select('employee.employee_name, sum(leave.total_leaves) as taken');
+	
+	$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
+	
+	$this->db->join('leave','employee.employee_ID = leave.employee_ID');
+	
+	$this->db->group_by('employee.employee_ID');
+	
+	$this->db->where('leave.deleted',0);
+	
+	$this->db->where('leave.approved',1);
+	
+	$this->db->like('employee.employee_name',$data['search']);
+	
+	$query = $this->db->get('employee');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function leave_summary_data_count($data){
+	
+	$this->db->select('count(*) as totdata');
+	
+	$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
+	
+	$this->db->join('leave','employee.employee_ID = leave.employee_ID');
+	
+	$this->db->group_by('employee.employee_ID');
+	
+	$this->db->where('leave.deleted',0);
+	
+	$this->db->where('leave.approved',1);
+	
+	$this->db->like('employee.employee_name',$data['search']);
+	
+	$query = $this->db->get('employee');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function leave_allowed(){
+	
+	$this->db->select('sum(limit_days) as totallowed');
+	
+	$this->db->where('payroll_deduction',0);
+	
+	$this->db->where('holiday_stat',0);
+	
+	$this->db->where('deleted',0);
+	
+	$query = $this->db->get('leave_type');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function total_leaves($data){
+	
+	// weekend check
+	 
+		$this->db->where("deleted",0);
+	
+		$query = $this->db->get('weekend');
+		
+		$totnya = 0;
+		 
+				if ($query->num_rows())
+				{
+				
+					$weekend = $query->result_array();
+					
+					$date = date("Y-m-d", strtotime($data['date_start']));
+
+					while( strtotime($date) <= strtotime(date("Y-m-d", strtotime($data['date_end']))) ) { 
+					
+						$namedate =  date("l", strtotime($date));
+					 
+					 foreach($weekend as $weeknya){
+					  
+						if($namedate == $weeknya['weekend_day']){
+							$totnya++;
+						}
+					  
+					  }
+					  
+					   $date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));					 
+					}
+					  
+					 
+				}
+				 
+		//holiday stat
+		
+		$this->db->select('COUNT(*) AS totdata');
+		
+		$this->db->where('date_allow >=', date("Y-m-d", strtotime($data['date_start'])));
+		
+		$this->db->where('date_allow <=',date("Y-m-d", strtotime($data['date_end'])));
+		
+		$this->db->join('leave_type', 'leave_type.leave_typeID = leave_type_date.leave_typeID');
+		
+		$this->db->where("leave_type.holiday_stat",1);
+		
+		$this->db->where("leave_type_date.deleted",0);
+		
+		$query = $this->db->get('leave_type_date');
+		 
+				if ($query->num_rows())
+				{
+					$tot2 = $query->result_array();
+					
+					$totnya2 = $tot2[0]['totdata'];
+					 
+				}
+				else
+				{
+					$totnya2 = 0;
+				}	
+				
+			$total_leaves = 	$totnya + $totnya2;
+	
+		return $total_leaves ;
 	
 	}
 	

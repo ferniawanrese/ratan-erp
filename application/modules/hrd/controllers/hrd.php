@@ -1492,8 +1492,10 @@ class hrd extends CI_Controller {
 	}
 	
 	function leaves_add_action(){
-	
-		$this->Mhrd->leaves_add($this->input->post()); 	
+	 
+		$total_leaves = $this->Mhrd->total_leaves($this->input->post()); 	
+		 
+		$this->Mhrd->leaves_add($this->input->post(),$total_leaves); 	
  
 	}
 	
@@ -1743,6 +1745,10 @@ class hrd extends CI_Controller {
 			 
 			$total_inout = $in + $out;
 			
+			if($total_inout == 0){
+			$total_inout = 1;
+			}
+			
 			$data['deduction_attendance'] = ($salary / $total_inout) * $out;
 			 
 		 
@@ -1984,6 +1990,38 @@ class hrd extends CI_Controller {
 		$output['content'] = "hrd/file_manager";
 		 
 		$this->load->view('template', $output);
+	
+	}
+	
+	function leave_summary(){
+	
+		$output['data']['module_name'] = "Leave Summary";
+		
+		$output['data']['menu_name'] = "HRD";
+		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['content'] = "hrd/leave_summary";
+		 
+		$this->load->view('template', $output);
+	
+	}
+	
+	function leave_summary_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		
+		$data['totallowed'] = $this->Mhrd->leave_allowed();	
+		 
+		$data['leave_data'] = $this->Mhrd->leave_summary_data($this->input->post(),$data['page'],$data['limit']);		
+		
+		$data['taken'] = $this->Mhrd->leave_summary_data($this->input->post(),$data['page'],$data['limit']);	
+		 
+		$data['countdata'] = $this->Mhrd->leave_summary_data_count($this->input->post());	
+
+		$this->load->view('leave_summary_data', $data);
 	
 	}
 	

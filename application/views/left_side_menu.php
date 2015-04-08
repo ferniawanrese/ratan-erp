@@ -82,8 +82,9 @@
 									<li><a href="<?php echo base_url('hrd/expends');?>"><i class="icon-file-alt"></i>  Expenses</a></li>	
 									<li><a href="#"><i class="icon-caret-right"></i> Leaves</a>
 									<ul>
-										<li><a href="<?php echo base_url('hrd/leaves');?>"><i class=" icon-file-alt"></i>Leaves Request</a></li>
-										<li  ><a href="<?php echo base_url('hrd/leave_approval');?>"><i class=" icon-file-alt"></i>Leaves Summary</a></li>   
+										<li><a href="<?php echo base_url('hrd/leaves');?>"><i class=" icon-file-alt"></i>Leave Requests</a></li>
+										<li><a href="<?php echo base_url('hrd/leave_approval');?>"><i class=" icon-file-alt"></i>Leave Approval</a></li> 
+										<li><a href="<?php echo base_url('hrd/leave_summary');?>"><i class=" icon-file-alt"></i>Leave Summary</a></li>   
 									</ul> 
 									</li>  
 									<li><a href="#"><i class="icon-caret-right"></i> Payroll</a>
