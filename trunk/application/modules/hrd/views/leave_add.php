@@ -37,6 +37,13 @@
 				<input  type="text" class = "form-control datepicker {validate:{required:true}}" id = "date_end" name = "date_end" value = "<?php echo $datenya2;?>">
 			</div>
 		</div>
+		
+		<div class="form-group">
+			<label  class="col-sm-3 control-label">Total Leaves:</label>
+			<div class="control col-md-2"> 
+				<input  type="text" class = "form-control" id = "totleaves"   value = "1 Days" disabled> 
+			</div>
+		</div>
 		 
 		<div class="form-group">
 			<label  class="col-sm-3 control-label">Note:</label>

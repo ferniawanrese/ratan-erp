@@ -7,6 +7,7 @@
 <label>Present : <?php echo $in * 1;?>,</label>
 <label>Absent : <?php echo $out * 1;?></label>
 </span>
+ 
 
 <form id = "form_generate" name="form_filter" method="post">
 	
@@ -21,7 +22,7 @@
 							<?php echo $allow['allowance_name'];?> 
 					</div> 
 					<div class="form-group col-sm-12 col-md-8">    
-							<input   class="form-control" type="text" placeholder="0.00" name="allowance[<?php echo $allow['allowance_ID'];?>]" id = "<?php echo $allow['allowance_ID'];?>"> 
+							<input   class="form-control auto" type="text" placeholder="0.00" name="allowance[<?php echo $allow['allowance_ID'];?>]" id = "<?php echo $allow['allowance_ID'];?>" style="text-align: right;"> 
 					</div> 
 				</div> 
 				 <?php endforeach;?> 
@@ -39,7 +40,7 @@
 							<?php echo $ded['allowance_name'];?> 
 					</div> 
 					<div class="form-group col-sm-12 col-md-8">    
-							<input   class="form-control" type="text" placeholder="0.00" name="deduction[<?php echo $allow['allowance_ID'];?>]" id = "<?php echo $allow['allowance_ID'];?>">  
+							<input   class="form-control auto" type="text" placeholder="0.00" name="deduction[<?php echo $allow['allowance_ID'];?>]" id = "<?php echo $allow['allowance_ID'];?>" style="text-align: right;">  
 					</div>
 				</div>
 				<?php endforeach;?>	 
@@ -56,7 +57,7 @@
 							Absent Days 
 					</div>  
 					<div class="form-group col-sm-12 col-md-8">    
-							<input   class="form-control" type="text" placeholder="0"  value = "<?php echo $out;?>">  
+							<input   class="form-control auto" type="text" placeholder="0"  value = "<?php echo $out;?>" style="text-align: right;">  
 					</div>
 				</div>  
 				<div class="input-group col-sm-12 col-md-12">
@@ -64,7 +65,7 @@
 							Deduction 
 					</div> 
 					<div class="form-group col-sm-12 col-md-8">   
-							<input   class="form-control" type="text" placeholder="0.00" name="deduction[absent]" id = "description" value = "<?php echo $deduction_attendance;?>">  
+							<input   class="form-control auto" type="text" placeholder="0.00" name="deduction[absent]" id = "description" value = "<?php echo $deduction_attendance;?>" style="text-align: right;">  
 					</div>
 				</div> 	
 			</fieldset> 
@@ -83,7 +84,7 @@
 							<?php echo $tax['tax_name'];?> 
 					</div> 
 					<div class="form-group col-sm-12 col-md-8">    
-							<input   class="form-control" type="text" placeholder="0.00" name="tax[<?php echo $tax['tax_ID'];?>]" id = "<?php echo $tax['tax_ID'];?>" value ="<?php echo $wp_montly;?>">  
+					 		<input   class="form-control auto" type="text" data-a-sign=""  placeholder="0.00" name="tax[<?php echo $tax['tax_ID'];?>]" id = "<?php echo $tax['tax_ID'];?>" value ="<?php echo $wp_montly;?>" style="text-align: right;">  
 					</div>
 				</div>
 				<?php endforeach;?>	 
@@ -101,7 +102,7 @@
 									Total Allowance 
 							</div> 
 							<div class="form-group col-sm-12 col-md-8">    
-									<input   class="form-control" type="text" placeholder="0.00" name="total_allowance" id = "total_allowance" value= "<?php echo $total_allowance;?>"> 
+									<input   class="form-control auto" type="text" placeholder="0.00" name="total_allowance" id = "total_allowance" value= "<?php echo $total_allowance;?>" style="text-align: right;"> 
 							</div> 
 						</div> 		
 						<div class="input-group col-sm-12 col-md-12">
@@ -109,7 +110,7 @@
 									Total Deduction 
 							</div> 
 							<div class="form-group col-sm-12 col-md-8">     
-									<input   class="form-control" type="text" placeholder="0.00" name="total_deduction" id = "total_deduction" value= "<?php echo $total_deduction;?>"> 
+									<input   class="form-control auto" type="text" placeholder="0.00" name="total_deduction" id = "total_deduction" value= "<?php echo $total_deduction;?>" style="text-align: right;"> 
 							</div> 
 						</div>
 						<div class="input-group col-sm-12 col-md-12">						
@@ -117,7 +118,7 @@
 									Total Tax 
 							</div> 
 							<div class="form-group col-sm-12 col-md-8">     
-									<input   class="form-control" type="text" placeholder="0.00" name="totaltax" id = "totaltax" value= "<?php echo $totaltax;?>"> 
+									<input   class="form-control auto" type="text" placeholder="0.00" name="totaltax" id = "totaltax" value= "<?php echo $totaltax;?>" style="text-align: right;"> 
 							</div>
 						</div>	
 						<div class="input-group col-sm-12 col-md-12">
@@ -125,7 +126,7 @@
 									Take Home Salary 
 							</div> 
 							<div class="form-group col-sm-12 col-md-8">    
-									<input   class="form-control" type="text" placeholder="0.00" name="takehome" id = "takehome" value= "<?php echo $takehome;?>">  
+									<input   class="form-control auto" type="text" placeholder="0.00" name="takehome" id = "takehome" value= "<?php echo $takehome;?>" style="text-align: right;">  
 							</div>
 						</div>	
 					</div> 	
@@ -140,6 +141,12 @@
 </form>
 	
 <script> 
+
+jQuery(function($) {
+    $('.auto').autoNumeric('init');
+});
+
+
 	function recalculate(){
 	
 		

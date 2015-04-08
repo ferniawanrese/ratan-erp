@@ -6,6 +6,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 		  <tr>
 				<th>  Employee </th>  
 				<th>  Leave type </th>  
+				<th>  Total Leaves </th>
 				<th>  Note </th>  
 				<th> Approval </th>
 				<th> Action </th> 
@@ -20,6 +21,9 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					</td> 
 					<td> 
 					<?php 	echo $keys['leave_type_name'];	?> 
+					</td> 
+					<td> 
+					<?php 	echo $keys['total_leaves'];	?> Days
 					</td> 
 					<td> 
 					<?php 	echo $keys['note'];	?> 

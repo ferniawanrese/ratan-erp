@@ -6,7 +6,9 @@
 
 <link href="<?php echo base_url('css/fullcalendar.css');?>" rel="stylesheet">
 <script src="<?php echo base_url('js/fullcalendar.min.js');?>"></script>
-
+<style>
+.datepicker{z-index:1151 !important;}
+</style>
 
 <div class="primary-head">
 						<!--content-->
@@ -19,8 +21,8 @@
 										<div class="well col-sm-12 col-md-12">
 										  
 											<div class = "list col-sm-12 col-md-12">
-												<span id='calendar'>
-											    </span>
+												<div id='calendar'>
+												</div>
 												<!-- content ajax -->	 
 											</div>
 										 
@@ -48,19 +50,7 @@
 </div><!-- /.modal -->
  
 <script>
-
-function close_filter(){											
-$("#search").fadeOut();
-$("#Show").show();
-$("#Hide").hide();
-}
-function open_filter(){											
-$("#search").fadeIn();
-$("#Hide").show();
-$("#Show").hide();
-}
-
-
+  
 function add_leaves(){
 
 	$('#search').hide();
