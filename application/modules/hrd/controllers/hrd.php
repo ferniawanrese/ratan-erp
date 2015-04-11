@@ -75,7 +75,7 @@ class hrd extends CI_Controller {
 		
 		$output['data']['menu_name'] = "HRD";
 		
-		$output['data']['menu_active'] = "Configuration";
+		$output['data']['menu_active'] = "Configuration"; 
 		
 		$output['content'] = "hrd/employee_cat";
 		
