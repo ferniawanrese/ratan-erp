@@ -3092,21 +3092,38 @@ class Mhrd extends CI_Model {
 	
 	function leave_summary_data($data,$page,$limit){
 	
-	$this->db->select('employee.employee_name, sum(leave.total_leaves) as taken');
+	$a = ($page-1) * $limit;
+	$limitnya = ",".$a.",".$limit;
+	
+	$this->db->select('employee.employee_name, sum(leave.total_leaves) as taken, leave_type.leave_type_name, leave_type.limit_days');
 	
 	$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
 	
-	$this->db->join('leave','employee.employee_ID = leave.employee_ID');
+	if($data['date_start']!="" && $data['date_end']!=""){
 	
-	$this->db->group_by('employee.employee_ID');
+	$this->db->where('leave.date_start >=',date("Y-m-d", strtotime($data['date_start'])));
+	
+	$this->db->where('leave.date_end <=',date("Y-m-d", strtotime($data['date_end'])));
+	
+	}
+	
+	if($data['employee_ID']!=""){
+	
+	$this->db->where('employee.employee_ID', $data['employee_ID']);
+	
+	}
+	
+	$this->db->join('employee','employee.employee_ID = leave.employee_ID');
+	
+	$this->db->join('leave_type','leave.leave_typeID = leave_type.leave_typeID');
+	
+	$this->db->group_by('leave.leave_typeID');
 	
 	$this->db->where('leave.deleted',0);
 	
 	$this->db->where('leave.approved',1);
-	
-	$this->db->like('employee.employee_name',$data['search']);
-	
-	$query = $this->db->get('employee');
+	 
+	$query = $this->db->get('leave',$limit,$a);
 	 
 			if ($query->num_rows())
 			{
@@ -3125,17 +3142,29 @@ class Mhrd extends CI_Model {
 	
 	$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
 	
-	$this->db->join('leave','employee.employee_ID = leave.employee_ID');
+	if($data['date_start']!="" && $data['date_end']!=""){
 	
-	$this->db->group_by('employee.employee_ID');
+	$this->db->where('leave.date_start >=',date("Y-m-d", strtotime($data['date_start'])));
 	
+	$this->db->where('leave.date_end <=',date("Y-m-d", strtotime($data['date_end'])));
+	
+	}
+	
+	if($data['employee_ID']!=""){
+	
+	$this->db->where('employee.employee_ID', $data['employee_ID']);
+	
+	}
+	
+	$this->db->join('employee','employee.employee_ID = leave.employee_ID');
+	
+	$this->db->join('leave_type','leave.leave_typeID = leave_type.leave_typeID');
+	 
 	$this->db->where('leave.deleted',0);
 	
 	$this->db->where('leave.approved',1);
-	
-	$this->db->like('employee.employee_name',$data['search']);
-	
-	$query = $this->db->get('employee');
+	 
+	$query = $this->db->get('leave');
 	 
 			if ($query->num_rows())
 			{

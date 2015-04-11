@@ -2028,15 +2028,13 @@ class hrd extends CI_Controller {
 	
 	function leave_summary_data($page=1){
 	
-		$data['limit'] = 10;
+		$data['limit'] = $this->input->post('limit');
 		
 		$data['page'] = $page;
 		
-		$data['totallowed'] = $this->Mhrd->leave_allowed();	
+		//$data['totallowed'] = $this->Mhrd->leave_allowed();	
 		 
 		$data['leave_data'] = $this->Mhrd->leave_summary_data($this->input->post(),$data['page'],$data['limit']);		
-		
-		$data['taken'] = $this->Mhrd->leave_summary_data($this->input->post(),$data['page'],$data['limit']);	
 		 
 		$data['countdata'] = $this->Mhrd->leave_summary_data_count($this->input->post());	
 

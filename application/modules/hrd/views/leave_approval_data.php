@@ -6,8 +6,8 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 		  <tr>
 				<th>  Employee </th>  
 				<th>  Leave type </th>  
-				<th>  Leave</th>
-				<th>  Year </th>
+				<th>  Leave</th> 
+				<th>  Date Range</th>
 				<th>  Note </th>  
 				<th> Approval </th>
 				<th> Action </th> 
@@ -24,11 +24,11 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<?php 	echo $keys['leave_type_name'];	?> 
 					</td> 
 					<td> 
-					<?php 	echo $keys['total_leaves'];	?> Days
+					<?php 	echo $keys['total_leaves'];	?> Work Days
 					</td>
-					
-					 
-					<td>2014</td>
+					 <td> 
+					<?php 	echo date("d M Y", strtotime($keys['date_start']));	?>  - <?php 	echo date("d M Y", strtotime($keys['date_end']));	?>
+					</td>
 					<td> 
 					<?php 	echo $keys['note'];	?> 
 					</td> 

@@ -4,8 +4,9 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 	<thead>
 		  <tr>
 				<th>  Employee </th>  
-				<th>  Total Leaves allowed</th> 
-				<th>  Total Leaves Taken</th>   
+				<th>  Leave type</th> 
+				<th>  Leaves allowed</th> 
+				<th>  Leaves Taken</th>   
 				<th>  Leaves Available</th> 
 				 
 		  </tr>
@@ -19,13 +20,16 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<?php 	echo $keys['employee_name'];	?>
 					</td> 
 					<td>  
-					<?php 	echo $totallowed[0]['totallowed'];?> Days
+					<?php 	echo $keys['leave_type_name'];?> 
+					</td> 
+					<td> 
+					<?php 	echo $keys['limit_days'];?> Days
 					</td> 
 					<td> 
 					<?php 	echo $keys['taken'];	?> Days
-					</td> 
+					</td>
 					<td> 
-					<?php 	echo $totallowed[0]['totallowed'] - $keys['taken'];	?> Days
+					<?php 	echo $keys['limit_days'] - $keys['taken'];	?> Days
 					</td> 
 					 
 				</tr>
