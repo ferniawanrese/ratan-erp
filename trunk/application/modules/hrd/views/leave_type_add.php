@@ -41,6 +41,25 @@
 						</div> 
 						
 						<div class="form-group">
+							<label  class="col-sm-3 control-label">National Holiday : </label>
+							<div class="control col-md-2">
+								<select class = "form-control" name = "holiday_stat" id = "holiday_stat">
+								<?php if($leave_date):?>
+									<?php if($leave_date[0]['holiday_stat']==1):?>
+									<option value = "<?php echo $leave_date[0]['holiday_stat'];?>" selected disabled="disabled" >Yes</option>
+									<?php endif;?>
+									<?php if($leave_date[0]['holiday_stat']==0):?>
+									<option value = "<?php echo $leave_date[0]['holiday_stat'];?>" selected disabled="disabled" >No</option>
+									<?php endif;?>
+								<?php endif;?>
+								
+								<option value = "0">No</option>
+								<option value = "1">Yes</option>
+								</select>
+							</div>
+						</div> 
+						
+						<div class="form-group">
 							<label  class="col-sm-3 control-label"> Color Date: </label>
 							<div class="control col-md-2">
 								<select class = "form-control" name = "date_color" id = "date_color">

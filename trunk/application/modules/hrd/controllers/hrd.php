@@ -1486,7 +1486,9 @@ class hrd extends CI_Controller {
 		$data['leave_type'] = $this->Mhrd->get_leave_type(); 	
 
 		$data['leave_detail'] = $this->Mhrd->leave_detail($leave_ID); 
-			
+		
+		$data['signature_name'] = $this->Mhrd->get_employee_detail($data['leave_detail'][0]['signature_byID']);
+		 
 		$this->load->view('leave_add', $data);
 	
 	}
@@ -1494,9 +1496,9 @@ class hrd extends CI_Controller {
 	function leaves_add_action(){
 	 
 		$total_leaves = $this->Mhrd->total_leaves($this->input->post()); 	
-		 
-		$this->Mhrd->leaves_add($this->input->post(),$total_leaves); 	
  
+		$this->Mhrd->leaves_add($this->input->post(),$total_leaves); 	
+		 
 	}
 	
 	function leave_approval(){
@@ -1530,8 +1532,25 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function leaves_allowed(){
+	
+	//count available or not / tot leaves
+	
+	$ouput['total_leaves'] = $this->Mhrd->total_leaves($this->input->post()); 	
+	
+	//remaining user 
+	
+	$ouput['leaves_taken'] = $this->Mhrd->total_leaves_taken($this->input->post()); 
+	  
+	echo json_encode($ouput);
+	 
+	}
+	
 	function leaves_approval($stat, $leave_ID){
 	
+		// leave allow limit days
+		$totallowed = $this->Mhrd->get_leave_type_detail($leave_ID); 	 
+		 
 		$this->Mhrd->leaves_approval_stat($leave_ID, $stat); 	 
 	
 	}

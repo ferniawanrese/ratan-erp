@@ -6,7 +6,8 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 		  <tr>
 				<th>  Employee </th>  
 				<th>  Leave type </th>  
-				<th>  Total Leaves </th>
+				<th>  Leave</th>
+				<th>  Year </th>
 				<th>  Note </th>  
 				<th> Approval </th>
 				<th> Action </th> 
@@ -24,26 +25,32 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					</td> 
 					<td> 
 					<?php 	echo $keys['total_leaves'];	?> Days
-					</td> 
+					</td>
+					
+					 
+					<td>2014</td>
 					<td> 
 					<?php 	echo $keys['note'];	?> 
 					</td> 
 					<td> 
 					<?php if($keys['approved']==0):?>
 						<div class="btn-toolbar row-action">   
-									<?php if($keys['approved']==0 ):?>
+									<?php if($keys['approved']==0 ):?> 
 									 <a href = "#" onclick = "approved('1','<?php echo $keys['leave_ID'];?>')"><i class="icon-ok-sign"></i> Approve </a>
 									 <a href = "#" onclick = "approved('-1','<?php echo $keys['leave_ID'];?>')"><i class="icon-remove-sign"></i> Refuse</a>
 									 <?php endif;?>
 						</div>
 					<?php else:?>
-						<?php if($keys['approved']==1){echo "Approved";}else if($keys['approved'] == -1){echo "Refused";};	?> 
+						<?php if($keys['approved']==1){echo "Approved";}else if($keys['approved'] == -1){echo "<font color='red'>Refused</a>";};	?> 
 					<?php endif;?>	
 					</td> 
 				 
 					<td class="center">
 							<div class="btn-toolbar row-action">
 									<?php //echo $keys['employee_catParentID'];?>
+									<?php if($keys['approved']==1):?>
+									<button class="btn btn-default" title="Print" onclick=leave_add("<?php echo $keys['leave_ID'];?>")><i class="icon-print"></i></button>
+									<?php endif;?>	
 									<button class="btn btn-info" title="Edit" onclick=leave_add("<?php echo $keys['leave_ID'];?>")><i class="icon-edit"></i></button>
 									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['leave_ID'];?>")><i class="icon-trash "></i></button>
 								

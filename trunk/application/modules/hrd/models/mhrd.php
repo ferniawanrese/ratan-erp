@@ -2347,9 +2347,32 @@ class Mhrd extends CI_Model {
 	
 	function get_leave_type(){
 	
+		$this->db->where('holiday_stat',0);
+	
 		$this->db->where('deleted',0);
 	
 		$query = $this->db->get('leave_type');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function get_leave_type_detail($leave_ID){
+	
+		$this->db->select('leave_type.limit_days, leave.total_leaves');
+	
+		$this->db->where('leave_ID',$leave_ID);
+		
+		$this->db->join('leave_type', 'leave.leave_typeID = leave_type.leave_typeID' );
+	  
+		$query = $this->db->get('leave');
 	 
 			if ($query->num_rows())
 			{
@@ -2377,7 +2400,7 @@ class Mhrd extends CI_Model {
 		$this->db->set('date_end',date("Y-m-d", strtotime($data['date_end'])));
 		
 		$this->db->set('total_leaves',$total_leaves);
-		
+		 
 		unset($data['date_end']);
 		
 		unset($data['date_start']);
@@ -2391,7 +2414,7 @@ class Mhrd extends CI_Model {
 		$this->db->set('date_end',date("Y-m-d", strtotime($data['date_end'])));
 		
 		$this->db->set('total_leaves',$total_leaves);
-		
+ 
 		unset($data['date_end']);
 		
 		unset($data['date_start']);
@@ -2463,16 +2486,48 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function total_leaves_taken($data){
+	  
+		$this->db->select('sum(total_leaves) as taken, leave_type.limit_days');
+	
+		$this->db->where('leave.employee_ID',$data['employee_ID']);
+		
+		$this->db->where('leave_type.leave_typeID',$data['leave_typeID']);
+		
+		// add year filter
+	 
+		$this->db->where('leave.deleted','0');
+		
+		$this->db->where('leave.approved !=','-1');
+		
+		$this->db->join('leave_type', 'leave.leave_typeID = leave_type.leave_typeID');
+		
+		$this->db->order_by('leave.employee_ID');
+	 
+		$query = $this->db->get('leave');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
 	function leaves_approval_stat($leave_ID, $stat){
-	
+	 
 		$this->db->where('leave_ID',$leave_ID);
-	
+		
 		$this->db->set('approved',$stat);
-	
+	 
 		$this->db->update('leave');
 	
 	}
 	
+	  
 	function leave_approval_delete($leave_ID){
 	
 		$this->db->where('leave_ID',$leave_ID);
@@ -3124,6 +3179,17 @@ class Mhrd extends CI_Model {
 	
 		$query = $this->db->get('weekend');
 		
+		$startTimeStamp = strtotime(date("Y-m-d", strtotime($data['date_start'])));
+		
+		$endTimeStamp = strtotime(date("Y-m-d", strtotime($data['date_end'])));
+
+		$timeDiff = abs($endTimeStamp - $startTimeStamp);
+
+		$numberDays = $timeDiff/86400;  // 86400 seconds in one day
+
+		// and you might want to convert to integer
+		$numberDays = intval($numberDays) + 1;
+		
 		$totnya = 0;
 		 
 				if ($query->num_rows())
@@ -3133,21 +3199,20 @@ class Mhrd extends CI_Model {
 					
 					$date = date("Y-m-d", strtotime($data['date_start']));
 
-					while( strtotime($date) <= strtotime(date("Y-m-d", strtotime($data['date_end']))) ) { 
+					while(strtotime($date) <= strtotime(date("Y-m-d", strtotime($data['date_end']))) ) { 
 					
 						$namedate =  date("l", strtotime($date));
-					 
-					 foreach($weekend as $weeknya){
-					  
-						if($namedate == $weeknya['weekend_day']){
-							$totnya++;
-						}
-					  
-					  }
+						 
+							 foreach($weekend as $weeknya){
+							  
+								if($namedate == $weeknya['weekend_day']){
+									$totnya++;
+								}
+							  
+							  }
 					  
 					   $date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));					 
 					}
-					  
 					 
 				}
 				 
@@ -3179,9 +3244,9 @@ class Mhrd extends CI_Model {
 					$totnya2 = 0;
 				}	
 				
-			$total_leaves = 	$totnya + $totnya2;
-	
-		return $total_leaves ;
+			$total_leaves = 	$numberDays - $totnya - $totnya2;
+			 
+			return $total_leaves ;
 	
 	}
 	
