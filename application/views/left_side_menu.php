@@ -87,11 +87,11 @@
 										<li><a href="<?php echo base_url('hrd/leave_summary');?>"><i class=" icon-file-alt"></i>Leave Summary</a></li>   
 									</ul> 
 									</li>  
-									<li><a href="#"><i class="icon-caret-right"></i> Payroll</a>
+									<!--<li><a href="#"><i class="icon-caret-right"></i> Payroll</a>
 									<ul>
 										<li><a href="<?php echo base_url('hrd/payslip');?>"><i class=" icon-file-alt"></i>Employee Payslip</a></li>  
 										<li  ><a href="<?php echo base_url('hrd/payrollbatch');?>"><i class=" icon-file-alt"></i>Payroll Batches  </a></li>  
-									</ul> 
+									</ul> -->
 									</li>	
 									<li><a href="#"><i class="icon-caret-right"></i> Recruitment</a> 
 									<ul>
@@ -134,14 +134,14 @@
 											<li  ><a href="<?php echo base_url('hrd/weekend');?>"> Weekend </a></li> 							
 										 </ul> 
 									</li>
-									<li ><a href="#"><i class="icon-caret-right"></i> Payroll</a>
+									<!--<li ><a href="#"><i class="icon-caret-right"></i> Payroll</a>
 										 <ul> 
 											<li  ><a href="<?php echo base_url('hrd/allowance');?>">  Allowance/Deduction  </a></li> 							
 										 </ul>  
 										<ul> 
 											<li  ><a href="<?php echo base_url('hrd/tax');?>">  Tax  Formula</a></li> 							
 										 </ul> 
-									</li>
+									</li>-->
 									<li ><a href="#"><i class="icon-caret-right"></i> Goods</a>
 										<ul> 
 											<li  ><a href="<?php echo base_url('hrd/product');?>"> Product </a></li> 							

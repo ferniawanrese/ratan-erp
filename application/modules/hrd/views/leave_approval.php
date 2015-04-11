@@ -37,6 +37,22 @@
 		</div>
 </div>		
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-header modal-header-warning">
+   				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class = "icon-remove"></i></button>
+    				<h1><span id = "modal_label"></span></h1>
+     			</div>
+    			<div class="modal-body" id = "modal_body">
+     			</div>
+    			<div class="modal-footer">
+    				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+     			</div>
+    		</div><!-- /.modal-content -->
+    	</div><!-- /.modal-dialog -->
+   </div><!-- /.modal --> 
+
 
 <script>
 
