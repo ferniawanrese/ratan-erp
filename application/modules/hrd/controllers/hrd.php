@@ -155,24 +155,33 @@ class hrd extends CI_Controller {
 
 	}
 	
-	function hrd_employe_data_export(){
+	function hrd_employe_data_export($page=1){
 	
-		header("Content-type: application/vnd-ms-excel");
- 
-		header("Content-Disposition: attachment; filename=employee-export.xls");
- 
-		$content = "
-
-		<table>
-
-		<tr><td>nama</td><td>bimosaurus</td></tr><tr><td>alamat</td><td>wonosobo</td></tr><tr><td>nohp</td><td>080808080</td></tr>
-
-		</table>
-
-		";
+		$this->load->library('parser');
+	 
+		$data['limit'] = $this->input->get('limit');
 		
-		print $content;
+		$data['page'] = $page;
 
+		$data['employee_data'] = $this->Mhrd->employee_data($this->input->get(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->employee_data_count($this->input->get());	
+ 
+		//pass retrieved data into template and return as a string
+        $stringData = $this->parser->parse('excelfile/hrd_employee_data_excel', $data, true);
+		
+		header("Pragma: public");
+		header("Expires: 0");
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		
+		header('Content-type: application/ms-excel');
+		header("Expires: 0");
+		header('Content-Disposition: attachment; filename=hrd_employe_data_export.xls');
+		header("Content-Description: File Transfer");
+  
+		echo $stringData;
+		exit;
+		 
 	}
 
 	function hrd_save_employee (){

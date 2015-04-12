@@ -10,14 +10,17 @@
 									<div class="content-widgets gray">
 										<div class="widget-head blue clearfix">
 											<h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">Employee Data </h3>
-											<h3 class="pull-right" onclick="exportdata()" style="cursor:pointer;"><i class = "icon-download-alt" title = "Download Data"></i> </h3>
+											 
 										</div>
+										<ul class="top-right-toolbar"> 
+											<li><a href="" onclick="exportdata()"  class="brown" title="Export to excel"><i class="icon-download-alt"></i></a></li> 
+											<li> </li> 
+										</ul>
 																			
 										<div class="well col-sm-12 col-md-12">
 										
 											<div  id = "btn-create" class="form-group">
-												<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_employee()"> Create</button>
-												<!--<button class="btn btn-inverse btn-large icon-file-alt" type="button" onclick = "exportdata()"> Export to Excel</button>-->
+												<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_employee()"> Create</button> 
 												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "open_filter()" id = "Show"> Show Filter</button>
 												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "close_filter()" id = "Hide" style = "display: none;"> Hide Filter</button>
 											</div>
@@ -225,21 +228,14 @@ function add_employee(){
 			
 			return false;
 	});
-
-
+ 
+ 
 function exportdata(){
-NProgress.inc();
-$.ajax({
-				type: "POST",
-				url: "<?php echo base_url('hrd/hrd_employe_data_export');?>",
-				data: $("#form_filter").serialize(),
-				success: function(data)
-				{
-						NProgress.done(true);
-				}
-			});
-			
+
+window.open('<?php echo base_url('hrd/hrd_employe_data_export');?>?'+$("#form_filter").serialize());
+ 
 }
+
 </script>
 
 
