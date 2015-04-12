@@ -14,7 +14,10 @@
 										  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">Register Time </h3>
 											
 										</div>
-																			
+										<ul class="top-right-toolbar"> 
+											<li><a href="" onclick="exportdata()"  class="brown" title="Export to excel"><i class="icon-download-alt"></i></a></li> 
+											<li> </li> 
+										</ul>									
 										<div class="well col-sm-12 col-md-12">
 										
 										<div  id = "btn-create" class="form-group">
@@ -103,9 +106,23 @@
 																		<?php endforeach;?>
 																	</select>
 																	<input type = "hidden" name = "ascdsc" id = "ascdsc" value = "ASC">
-																	<span class="input-group-addon "><i class = "icon-arrow-up" title = "Ascending" style = "cursor:pointer;"></i></span>
+																	<span class="input-group-addon " id = "ascx"><i class = "icon-arrow-up" title = "Ascending" style = "cursor:pointer;"  onclick ="urutan('DESC')" ></i></span>
+																	<span class="input-group-addon " id = "descx" style = "display:none;"><i class = "icon-arrow-down" title = "Descending" style = "cursor:pointer;" onclick = "urutan('ASC')" ></i></span>
 															</div>
 														</div>
+														
+														<script>
+														function urutan(a){
+															$('#ascdsc').val(a);
+															if(a == "ASC"){
+															$('#descx').hide();
+															$('#ascx').show(); 
+															}else{
+															$('#ascx').hide();
+															$('#descx').show();
+															}
+														}
+														</script>
 														
 														<div class="form-group col-sm-12 col-md-3">
 															<label for="validate-email"></label>
@@ -115,6 +132,7 @@
 																	<option value = "20">Limit 20</option>
 																	<option value = "50">Limit 50</option>
 																	<option value = "100">Limit 100</option>
+																	<option value = "-1">All Data</option>
 																</select>
 																 
 															</div>
@@ -381,6 +399,11 @@ function delete_post(a){
 		
 	});
 	 
+	 function exportdata(){
+
+window.open('<?php echo base_url('hrd/timesheet_registerdata_excel');?>?'+$("#form_filter").serialize());
+ 
+}
 	
 </script>
 	

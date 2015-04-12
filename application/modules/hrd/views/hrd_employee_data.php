@@ -50,8 +50,8 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 	$alldata =  $countdata[0]['totdata'];
 	$totpage = ceil($alldata/$limit);
 ?>
-<?php if($employee_data):?>
-<script type='text/javascript'>
+<?php if($employee_data && $limit != -1):?>
+<script type='text/javascript'> 
 			var options = {
 				currentPage: <?php echo $page;?>,
 				totalPages: <?php echo $totpage;?>,

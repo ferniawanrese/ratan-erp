@@ -111,7 +111,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 </table>
 
 <div class = "pagination pagination-large col-sm-12 col-md-12"></div>
-<?php if($timesheet_data):?>
+<?php if($timesheet_data && $limit!=-1):?>
 
 <?php 	
 	$alldata =  $countdata[0]['totdata'];

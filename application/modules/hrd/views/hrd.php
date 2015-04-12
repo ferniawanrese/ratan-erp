@@ -73,7 +73,8 @@
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-number"></label>
 													<div class="input-group col-sm-12 col-md-12" data-validate="number">
-														<input type="text" class="form-control employee_managerName" name="employee_managerID " id="employee_managerID " placeholder="manager" > 
+														<input type="text" class="form-control employee_managerName"  id="employee_manager" placeholder="manager" > 
+														<input type="hidden" class="form-control  " name="manager_ID" id="employee_managerIDx" > 
 													</div>
 												</div>
 												
@@ -102,9 +103,23 @@
 																<?php endforeach;?>
 															</select>
 															<input type = "hidden" name = "ascdsc" id = "ascdsc" value = "ASC">
-															<span class="input-group-addon "><i class = "icon-arrow-up" title = "Ascending" style = "cursor:pointer;"></i></span>
+															<span class="input-group-addon " id = "ascx"><i class = "icon-arrow-up" title = "Ascending" style = "cursor:pointer;"  onclick ="urutan('DESC')" ></i></span>
+															<span class="input-group-addon " id = "descx" style = "display:none;"><i class = "icon-arrow-down" title = "Descending" style = "cursor:pointer;" onclick = "urutan('ASC')" ></i></span>
 													</div>
 												</div>
+												
+												<script>
+												function urutan(a){
+													$('#ascdsc').val(a);
+													if(a == "ASC"){
+													$('#descx').hide();
+													$('#ascx').show(); 
+													}else{
+													$('#ascx').hide();
+													$('#descx').show();
+													}
+												}
+												</script>
 												
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-email"></label>
@@ -114,6 +129,7 @@
 															<option value = "20">Limit 20</option>
 															<option value = "50">Limit 50</option>
 															<option value = "100">Limit 100</option>
+															<option value = "-1">All Data</option>
 														</select>
 														 
 													</div>
@@ -268,7 +284,8 @@ $('#orderby').val('');
 $('#ascdsc').val('');
 $('.additional_group').remove();
 $('#employee_name').val('');
-
+$('#employee_managerIDx').val('');
+$('#employee_manager').val('');
 display_data();
 }
 
@@ -331,6 +348,17 @@ function delete_post(a){
 					});
 					
 				});
+				
+	$(function() {
+		$( ".employee_managerName" ).autocomplete({ 
+		 
+			source: "<?php echo base_url('hrd/get_employee_name/');?>" + "/" + $('.employee_managerName').val(),
+				select: function (event, ui) {
+				var id = ui.item.employee_ID;
+				$("#employee_managerIDx").val(id);
+				}  
+		}); 
+	}); 
 </script>
 
 	

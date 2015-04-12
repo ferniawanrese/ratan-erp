@@ -36,11 +36,22 @@ class Mhrd extends CI_Model {
 		$this->db->where('employee.job_ID',$data['semployee_positionID']);
 		}	
 		
+		if($data['manager_ID'] != ""){
+		$this->db->where('employee.manager_ID',$data['manager_ID']);
+		}	
+		
 		if(isset($data['filter'])){
 		$this->db->like($data['filter']);
 		}
-				
+		
+		if($limit==-1){
+		// all data
+		$query = $this->db->get('employee');
+		}else{
+		// base on limit
 		$query = $this->db->get('employee',$limit,$a);
+		}
+		
 
 			if ($query->num_rows())
 			{
@@ -128,6 +139,10 @@ class Mhrd extends CI_Model {
 		
 		if($data['semployee_positionID'] != "-1"){
 		$this->db->where('employee.job_ID',$data['semployee_positionID']);
+		}	
+		
+		if($data['manager_ID'] != ""){
+		$this->db->where('employee.manager_ID',$data['manager_ID']);
 		}	
 		
 		$this->db->order_by('employee.datecreated','desc');	
@@ -749,9 +764,21 @@ class Mhrd extends CI_Model {
 	
 	$this->db->where('timetracking.deleted','0');
 	 
-	$this->db->order_by('timetracking.dateCreated','desc');
+	//orderby
+		if($data['orderby']!=""){
+		$this->db->order_by($data['orderby'],$data['ascdsc']);
+		}else{
+		$this->db->order_by('timetracking.dateCreated','DESC');
+		}
 	 
-	$query = $this->db->get('timetracking', $limit,$a);
+	 
+	if($limit==-1){
+		// all data
+		$query = $this->db->get('timetracking');
+		}else{
+		// base on limit
+		$query = $this->db->get('timetracking',$limit,$a);
+		}
 
 			if ($query->num_rows())
 			{

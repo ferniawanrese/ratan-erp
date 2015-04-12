@@ -528,6 +528,41 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function timesheet_registerdata_excel($page=1){
+	
+		$this->load->library('parser');
+	 
+		$data['limit'] = $this->input->post('limit');
+		
+		$data['page'] = $page;
+	 
+		$data['timesheet_data'] = $this->Mhrd->timesheet_registerdata($this->input->post(),$data['page'],$data['limit']);	
+		
+		$data['parent'] = $this->Mhrd->department_parent();
+		 
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+  
+		$data['countdata'] = $this->Mhrd->timesheet_registerdata_count($this->input->post());	
+
+		//pass retrieved data into template and return as a string
+        $stringData = $this->parser->parse('excelfile/timesheet_registerdata_excel', $data, true);
+		
+		header("Pragma: public");
+		header("Expires: 0");
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		
+		header('Content-type: application/ms-excel');
+		header("Expires: 0");
+		header('Content-Disposition: attachment; filename=timesheet_registerdata_excel.xls');
+		header("Content-Description: File Transfer");
+  
+		echo $stringData;
+		exit;
+		 
+	}
+	
 	function timesheet(){
 	
 		$output['data']['module_name'] = "Human Resources";
