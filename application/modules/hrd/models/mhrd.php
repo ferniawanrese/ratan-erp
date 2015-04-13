@@ -1293,10 +1293,9 @@ class Mhrd extends CI_Model {
 		$this->db->set('status_task',$status);
 		$this->db->update('timetracking');
 		
-		$this->db->where('timetracking_ID',$timetracking_ID);
-		$this->db->update('timetrackingmap');
+		$this->db->where('timetracking_ID',$timetracking_ID); 
 		$this->db->set('status_taskmap',$status);
-	
+		$this->db->update('timetrackingmap');
 	}
 	
 	function update_taskstatus_map($timetrackingmapID,$status){

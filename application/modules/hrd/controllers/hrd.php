@@ -532,12 +532,18 @@ class hrd extends CI_Controller {
 	
 		$this->load->library('parser');
 	 
-		$data['limit'] = $this->input->post('limit');
+		$data['limit'] = $this->input->get('limit');
 		
 		$data['page'] = $page;
 	 
-		$data['timesheet_data'] = $this->Mhrd->timesheet_registerdata($this->input->post(),$data['page'],$data['limit']);	
+		$data['timesheet_data'] = $this->Mhrd->timesheet_registerdata($this->input->get(),$data['page'],$data['limit']);	
 		
+		foreach($data['timesheet_data'] as $key){
+		
+			$data['employeelist'][$key['timetracking_ID']] = $this->Mhrd->employee_task($key['timetracking_ID']);	
+			 
+		}
+		 
 		$data['parent'] = $this->Mhrd->department_parent();
 		 
 		foreach($data['parent'] as $pr){
@@ -549,6 +555,7 @@ class hrd extends CI_Controller {
 		//pass retrieved data into template and return as a string
         $stringData = $this->parser->parse('excelfile/timesheet_registerdata_excel', $data, true);
 		
+		
 		header("Pragma: public");
 		header("Expires: 0");
 		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
@@ -557,7 +564,8 @@ class hrd extends CI_Controller {
 		header("Expires: 0");
 		header('Content-Disposition: attachment; filename=timesheet_registerdata_excel.xls');
 		header("Content-Description: File Transfer");
-  
+		
+		
 		echo $stringData;
 		exit;
 		 
@@ -602,6 +610,47 @@ class hrd extends CI_Controller {
 		$data['countdata'] = $this->Mhrd->timesheet_mapdata_count($this->input->post());	
 
 		$this->load->view('timesheet_data', $data);
+	
+	}
+	
+	function timesheet_data_excel($page=1){
+	
+		$this->load->library('parser');
+	 
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		
+		$data['status'] = array( 
+			'active' => 'Active',
+			'pause' => 'Pause',
+			'close' => 'Close'
+		);
+		
+		$data['parent'] = $this->Mhrd->department_parent();
+		 
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
+	 
+		$data['timesheet_data'] = $this->Mhrd->timesheet_mapdata($this->input->get(),$data['page'],$data['limit']);		
+		
+		$data['countdata'] = $this->Mhrd->timesheet_mapdata_count($this->input->get());	
+ 
+		//pass retrieved data into template and return as a string
+        $stringData = $this->parser->parse('excelfile/timesheet_data_excel', $data, true);
+		
+		header("Pragma: public");
+		header("Expires: 0");
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		
+		header('Content-type: application/ms-excel');
+		header("Expires: 0");
+		header('Content-Disposition: attachment; filename=hrd_employe_data_export.xls');
+		header("Content-Description: File Transfer");
+		
+		echo $stringData;
+		exit;
 	
 	}
 	

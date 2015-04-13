@@ -10,6 +10,7 @@ Attendance : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 				<th> Notes </th> 
 				<th> Status </th>
 				<th>  Dead Line </th> 
+				<th>  Last Modified </th> 
 		  </tr>
 	</thead> 
 	<tbody>
@@ -41,7 +42,9 @@ Attendance : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<td>
 					<?php echo date('d M Y h:i:s',strtotime($dat['deadline']));?>	 
 					</td> 
-					 
+					 <td>
+					<?php echo date('d M Y h:i:s',strtotime($dat['date_modified']));?>	 
+					</td> 
 				</tr>
 				
 				<script>

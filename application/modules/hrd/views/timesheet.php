@@ -14,7 +14,10 @@
 										  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">My Timesheet </h3>
 											
 										</div>
-																			
+										<ul class="top-right-toolbar"> 
+											<li><a href="" onclick="exportdata()"  class="brown" title="Export to excel"><i class="icon-download-alt"></i></a></li> 
+											<li> </li> 
+										</ul>										
 										<div class="well col-sm-12 col-md-12">
 										 
 										<span  id ="search"  >
@@ -101,5 +104,10 @@ $('#description').val('');
 display_data();
 
 }
-	
+
+ function exportdata(){
+
+window.open('<?php echo base_url('hrd/timesheet_data_excel');?>?'+$("#form_filter").serialize());
+ 
+}
 </script>

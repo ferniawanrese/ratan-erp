@@ -44,11 +44,13 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<td>
 					<?php echo $dat['description'];?>		
 					</td>  
-					 <td> 
-					 <button class="btn btn-default" title="Edit" onclick="list_employee('<?php echo $dat['timetracking_ID'];?>')" data-target="#myModal" data-toggle="modal"><i class="icon-group"></i> list</button>
+					 <td>  
+					 <?php foreach($employeelist[$dat['timetracking_ID']] as $key):?>
+					 <li><?php echo $key['employee_name'] ;?>, Status: <?php echo $key['status_taskmap'] ;?></li> 
+					 <?php endforeach;?>
 					 </td>
 					 <td> 
-					 <?php echo form_dropdown('status', $status,  $dat['status_task'],'class = "form-control" id="status'.$dat['timetracking_ID'].'"') ;?>
+					 <?php echo $dat['status_task'] ;?>
 					</td>
 					<td>
 					<?php 
