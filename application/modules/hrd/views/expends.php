@@ -12,7 +12,10 @@
 										  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">Expenses </h3>
 											
 										</div>
-																			
+										<ul class="top-right-toolbar"> 
+											<li><a href="" onclick="exportdata()"  class="brown" title="Export to excel"><i class="icon-download-alt"></i></a></li> 
+											<li> </li> 
+										</ul>										
 										<div class="well col-sm-12 col-md-12">
 										
 											<div  id = "btn-create" class="form-group">
@@ -35,7 +38,7 @@
 														<div class="form-group col-sm-12 col-md-3">  
 														<label for="validate-text"></label>
 															<div class="input-group col-sm-12 col-md-12">
-																<input   class="form-control" type="text" placeholder="Notes" name="filter[description]" id = "description"> 
+																<input   class="form-control" type="text" placeholder="Description" name="description" id = "description"> 
 															</div> 
 														</div>
 														
@@ -47,6 +50,7 @@
 																	<option value = "20">Limit 20</option>
 																	<option value = "50">Limit 50</option>
 																	<option value = "100">Limit 100</option>
+																	<option value = "-1">All Data</option>
 																</select>
 																 
 															</div>
@@ -154,7 +158,8 @@ function display_data(){
 	});
 	
 	function clearfilter(){
-			$('#register_date').val(''); 
+			$('#description').val(''); 
+			$('#limit').val('10');
 			$('.additional_group').remove();
 			display_data();
 	}
@@ -188,5 +193,11 @@ function delete_post(a){
 					}
 					
                 });
+}
+
+function exportdata(){
+
+window.open('<?php echo base_url('hrd/expends_data_excel');?>?'+$("#form_filter").serialize());
+ 
 }
 </script>

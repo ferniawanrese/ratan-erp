@@ -68,13 +68,29 @@
 							</span>
 						</span>
 					</div>
-				</div>
+				</div> 
 				<div class="form-group">
 					<label  class="col-sm-3 control-label">Amount Expense :</label>
-					<div class="control col-md-4">
-						<input name="ammount_expenses"  id = "ammount_expenses" class="form-control " type="text"  placeholder="0.00"  value = "<?php echo $timesheet_detail[0]['ammount_expenses'];?>" /> 
+					<div class="control col-md-3">
+						<select class = "form-control" name = "currency_ID" id = "currency_ID">
+							<?php foreach($currency as $cur):?>
+							<?php if($cur['currency_ID']==$timesheet_detail[0]['currency_ID']){$selected = "selected";}else{$selected="";};?>
+							<option value = "<?php echo $cur['currency_ID'];?>" <?php echo $selected;?>><?php echo $cur['currency_code'];?></option> 
+							<?php endforeach;?>
+						</select>
 					</div>
-				</div> 
+					<div class="control col-md-3"> 
+						<input  id = "ammount_expenses" class="form-control auto"   data-a-sign="" data-a-sep="<?php echo $currency_detail[0]['currency_format_separator'];?>" data-a-dec="<?php echo $currency_detail[0]['currency_format_decimal'];?>" type="text" value = "<?php echo $timesheet_detail[0]['ammount_expenses'] * 1;?>"/>
+						<input name="ammount_expenses" id = "ammount_expensesx" value = "<?php echo $timesheet_detail[0]['ammount_expenses'] * 1;?>" type = "hidden">
+					</div>
+				</div>  
+				<script>
+						$("#ammount_expenses").change(function() { 
+							var nya = $("#ammount_expenses").autoNumeric('get'); 
+							$('#ammount_expensesx').val(nya); 
+						});
+				</script>
+				
 				<div class="form-group">
 					<label  class="col-sm-3 control-label">Employees :</label>
 					<div class="control col-md-9">
@@ -270,6 +286,11 @@ $('#validate_error').val('0'); //wawan
 
 
 <script>
+jQuery(function($) {
+    $('.auto').autoNumeric('init');
+});
+
+
 $( "select#department_ID" ).change(function() {
  
 		var a = $('select#department_ID option:selected').val();

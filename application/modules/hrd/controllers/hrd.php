@@ -695,7 +695,15 @@ class hrd extends CI_Controller {
 		 
 		$data['timesheet_detail'] = $this->Mhrd->timeheet_data_detail($timetracking_ID);
 		
+		$data['currency'] = $this->Mhrd->currency();	
 		
+		if($data['timesheet_detail']==""){
+		$currency_ID = $this->session->userdata('default_currencyID');
+		}else{
+		$currency_ID = $data['timesheet_detail'][0]['currency_ID'];
+		}
+		 
+		$data['currency_detail'] = $this->Mhrd->currency_detail($currency_ID);	
 	 				
 		$this->load->view('timesheet_registeradd', $data);
 	 
@@ -1206,6 +1214,45 @@ class hrd extends CI_Controller {
 		$data['countdata'] = $this->Mhrd->expends_data_count($this->input->post());	
 
 		$this->load->view('expends_data', $data);
+	
+	}
+	
+	function expends_data_excel($page=1){
+	
+		$this->load->library('parser');
+	 
+		$data['limit'] = $this->input->get('limit');
+		
+		$data['page'] = $page;
+		 
+		$data['expends_data'] = $this->Mhrd->expends_data($this->input->get(),$data['page'],$data['limit']);	
+		 
+		$data['countdata'] = $this->Mhrd->expends_data_count($this->input->get());	
+ 
+		$stringData = $this->parser->parse('excelfile/expends_data_excel', $data, true);
+		
+		if($data['expends_data']){ 
+			foreach($data['expends_data']  as $key){ 
+				$data['expends_data_detail'][] = $this->Mhrd->get_expends_data_detail($key['expense_ID']);
+			}
+		}
+		
+		$this->core->print_rr($data['expends_data_detail']);
+		
+		echo $stringData;
+		exit;
+		 
+		header("Pragma: public");
+		header("Expires: 0");
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		
+		header('Content-type: application/ms-excel');
+		header("Expires: 0");
+		header('Content-Disposition: attachment; filename=expends_data_excel.xls');
+		header("Content-Description: File Transfer");
+  
+		echo $stringData;
+		exit;
 	
 	}
 	 

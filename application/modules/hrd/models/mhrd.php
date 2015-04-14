@@ -1560,7 +1560,10 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function expends_data(){
+	function expends_data($data,$page,$limit){
+	
+			$a = ($page-1) * $limit;
+			$limitnya = ",".$a.",".$limit;
 	
 			$this->db->select('expense.*,employee.employee_name, currency.currency_code ');
 			
@@ -1571,8 +1574,16 @@ class Mhrd extends CI_Model {
 			$this->db->order_by('expense.dateCreated', 'desc');
 			
 			$this->db->where('expense.deleted',0);
-	
+			
+			$this->db->like('expense.description',$data['description']);
+	 
+			if($limit==-1){
+			// all data
 			$query = $this->db->get('expense');
+			}else{
+			// base on limit
+			$query = $this->db->get('expense',$limit,$a);
+			}
 	 
 			if ($query->num_rows())
 			{
@@ -1585,17 +1596,18 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function expends_data_count(){
+	function expends_data_count($data){
 	
 			$this->db->select('count(*) as totdata');
 			
 			$this->db->join("currency", "currency.currency_ID = expense.currency_ID");
 	
 			$this->db->join("employee", "employee.employee_ID = expense.employee_ID");
-
-			
+ 
 			$this->db->where('expense.deleted',0);
-	
+			
+			$this->db->like('expense.description',$data['description']);
+	  
 			$query = $this->db->get('expense');
 	 
 			if ($query->num_rows())
