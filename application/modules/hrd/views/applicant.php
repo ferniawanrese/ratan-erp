@@ -10,8 +10,12 @@
 						<div class="row-fluid">
 									<div class="content-widgets gray">
 										<div class="widget-head blue clearfix">
-										  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;"> Applicant</h3> 
-										</div> 		
+										  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;"> Applicants</h3> 
+										</div> 	
+										<ul class="top-right-toolbar"> 
+											<li><a href="" onclick="exportdata()"  class="brown" title="Export to excel"><i class="icon-download-alt"></i></a></li> 
+											<li> </li> 
+										</ul>
 										<div class="well col-sm-12 col-md-12">
 										
 											<div  id = "btn-create" class="form-group">
@@ -116,5 +120,12 @@ function open_filter(){
 $("#search").fadeIn();
 $("#Hide").show();
 $("#Show").hide();
+}
+
+
+function exportdata(){
+
+window.open('<?php echo base_url('hrd/applicant_data_excel');?>?'+$("#form_filter").serialize());
+ 
 }
 </script>

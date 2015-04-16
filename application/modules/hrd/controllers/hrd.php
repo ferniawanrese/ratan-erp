@@ -641,7 +641,7 @@ class hrd extends CI_Controller {
 		
 		header('Content-type: application/ms-excel');
 		header("Expires: 0");
-		header('Content-Disposition: attachment; filename=hrd_employe_data_export.xls');
+		header('Content-Disposition: attachment; filename=timesheet_data_excel.xls');
 		header("Content-Description: File Transfer");
 		
 		echo $stringData;
@@ -1682,7 +1682,7 @@ class hrd extends CI_Controller {
 		
 		header('Content-type: application/ms-excel');
 		header("Expires: 0");
-		header('Content-Disposition: attachment; filename=expends_data_excel.xls');
+		header('Content-Disposition: attachment; filename=leave_approval_data_excel.xls');
 		header("Content-Description: File Transfer");
   
 		echo $stringData;
@@ -2115,6 +2115,32 @@ class hrd extends CI_Controller {
 	
 	}
 	
+	function applicant_data_excel($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['applicant_data'] = $this->Mhrd->applicant_data($this->input->get(),$data['page'],$data['limit']);		
+		 
+		$data['countdata'] = $this->Mhrd->applicant_data_count($this->input->get());	
+ 
+		$stringData = $this->parser->parse('excelfile/applicant_data_excel', $data, true);
+		 
+		header("Pragma: public");
+		header("Expires: 0");
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		
+		header('Content-type: application/ms-excel');
+		header("Expires: 0");
+		header('Content-Disposition: attachment; filename=applicant_data_excel.xls');
+		header("Content-Description: File Transfer");
+  
+		echo $stringData;
+		exit;
+	
+	}
+	
 	function jobspace(){
 	
 		$output['data']['module_name'] = "Job Space";
@@ -2187,7 +2213,7 @@ class hrd extends CI_Controller {
 		
 		header('Content-type: application/ms-excel');
 		header("Expires: 0");
-		header('Content-Disposition: attachment; filename=expends_data_excel.xls');
+		header('Content-Disposition: attachment; filename=jobspace_data_excel.xls');
 		header("Content-Description: File Transfer");
   
 		echo $stringData;
@@ -2259,7 +2285,7 @@ class hrd extends CI_Controller {
 		
 		header('Content-type: application/ms-excel');
 		header("Expires: 0");
-		header('Content-Disposition: attachment; filename=expends_data_excel.xls');
+		header('Content-Disposition: attachment; filename=leave_summary_data_excel.xls');
 		header("Content-Description: File Transfer");
   
 		echo $stringData;

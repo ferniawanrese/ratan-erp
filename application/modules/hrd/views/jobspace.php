@@ -19,10 +19,10 @@
 										<div class="well col-sm-12 col-md-12">
 										
 											<div  id = "btn-create" class="form-group">
-												<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_appraisal()"> Create</button>
-												<!--<button class="btn btn-inverse btn-large icon-file-alt" type="button" onclick = "exportdata()"> Export to Excel</button>-->
+												<!--<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_appraisal()"> Create</button>
+												<button class="btn btn-inverse btn-large icon-file-alt" type="button" onclick = "exportdata()"> Export to Excel</button>
 												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "open_filter()" id = "Show"> Show Filter</button>
-												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "close_filter()" id = "Hide" style = "display: none;"> Hide Filter</button>
+												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "close_filter()" id = "Hide" style = "display: none;"> Hide Filter</button>-->
 											</div>
 											
 											<div   id = "btn-list" class="form-group">
