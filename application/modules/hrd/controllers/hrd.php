@@ -32,6 +32,7 @@ class hrd extends CI_Controller {
 		$this->load->library('core');
 		$this->load->library('image_lib');
 		$this->load->library('session');
+		$this->load->library('parser');
 		$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
@@ -156,8 +157,6 @@ class hrd extends CI_Controller {
 	}
 	
 	function hrd_employe_data_export($page=1){
-	
-		$this->load->library('parser');
 	 
 		$data['limit'] = $this->input->get('limit');
 		
@@ -529,8 +528,6 @@ class hrd extends CI_Controller {
 	}
 	
 	function timesheet_registerdata_excel($page=1){
-	
-		$this->load->library('parser');
 	 
 		$data['limit'] = $this->input->get('limit');
 		
@@ -614,8 +611,6 @@ class hrd extends CI_Controller {
 	}
 	
 	function timesheet_data_excel($page=1){
-	
-		$this->load->library('parser');
 	 
 		$data['limit'] = 10;
 		
@@ -1218,8 +1213,6 @@ class hrd extends CI_Controller {
 	}
 	
 	function expends_data_excel($page=1){
-	
-		$this->load->library('parser');
 	 
 		$data['limit'] = $this->input->get('limit');
 		
@@ -1261,6 +1254,8 @@ class hrd extends CI_Controller {
 		$data['expends_detail'] = $this->Mhrd->get_expends_data_detail($expend_ID);	
 	 
 		$data['currency'] = $this->Mhrd->currency();	
+		
+		$data['currency_detail'] = $this->Mhrd->currency_detail($data['expends_data'][0]['currency_ID']);	
 		  
 		$this->load->view('expends_add', $data);
 	 
@@ -1666,6 +1661,32 @@ class hrd extends CI_Controller {
 		$data['countdata'] = $this->Mhrd->leave_approval_data_count($this->input->post());	
 
 		$this->load->view('leave_approval_data', $data);
+	
+	}
+	
+	function leave_approval_data_excel($page=1){
+	 
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		   
+		$data['leave_data'] = $this->Mhrd->leave_approval_data($this->input->post(),$data['page'],$data['limit']);		
+		 
+		$data['countdata'] = $this->Mhrd->leave_approval_data_count($this->input->post());	
+ 
+		$stringData = $this->parser->parse('excelfile/leave_approval_data_excel', $data, true);
+		 
+		header("Pragma: public");
+		header("Expires: 0");
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		
+		header('Content-type: application/ms-excel');
+		header("Expires: 0");
+		header('Content-Disposition: attachment; filename=expends_data_excel.xls');
+		header("Content-Description: File Transfer");
+  
+		echo $stringData;
+		exit;
 	
 	}
 	
@@ -2135,6 +2156,45 @@ class hrd extends CI_Controller {
 		
 	}
 	
+	function jobspace_data_excel($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+	 
+		$data['jobspace_data'] = $this->Mhrd->jobspace_data($this->input->get(),$data['page'],$data['limit']);	
+		 
+		if($data['jobspace_data']){
+			$i=0;
+			foreach($data['jobspace_data'] as $keys){
+
+				$employee_num = $this->Mhrd->employee_num($keys['job_ID']);	
+				
+				$data['jobspace_data'][$i]['employee_num'] = $employee_num[0]['totdata'];
+				
+				$i++;
+				 
+			}
+		}
+		 
+		$data['countdata'] = $this->Mhrd->jobspace_data_count($this->input->get());	
+ 
+		$stringData = $this->parser->parse('excelfile/jobspace_data_excel', $data, true);
+		 
+		header("Pragma: public");
+		header("Expires: 0");
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		
+		header('Content-type: application/ms-excel');
+		header("Expires: 0");
+		header('Content-Disposition: attachment; filename=expends_data_excel.xls');
+		header("Content-Description: File Transfer");
+  
+		echo $stringData;
+		exit;
+		
+	}
+	
 	function file_manager(){
 	
 		$output['data']['module_name'] = "File Manager";
@@ -2176,6 +2236,34 @@ class hrd extends CI_Controller {
 		$data['countdata'] = $this->Mhrd->leave_summary_data_count($this->input->post());	
 
 		$this->load->view('leave_summary_data', $data);
+	
+	}
+	
+	function leave_summary_data_excel($page=1){
+	
+		$data['limit'] = $this->input->get('limit');
+		
+		$data['page'] = $page; 
+		 
+		$data['leave_data'] = $this->Mhrd->leave_summary_data($this->input->get(),$data['page'],$data['limit']);		
+		 
+		$data['countdata'] = $this->Mhrd->leave_summary_data_count($this->input->get());	
+
+		$this->load->view('leave_summary_data', $data);
+		
+		$stringData = $this->parser->parse('excelfile/leave_summary_data_excel', $data, true);
+		 
+		header("Pragma: public");
+		header("Expires: 0");
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		
+		header('Content-type: application/ms-excel');
+		header("Expires: 0");
+		header('Content-Disposition: attachment; filename=expends_data_excel.xls');
+		header("Content-Description: File Transfer");
+  
+		echo $stringData;
+		exit;
 	
 	}
 	

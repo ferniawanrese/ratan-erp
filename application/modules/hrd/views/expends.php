@@ -88,7 +88,7 @@ function what_next_product(){
 }
 
 function close_filter(){											
-$("#search").fadeOut();
+$("#search").hide();
 $("#Show").show();
 $("#Hide").hide();
 }

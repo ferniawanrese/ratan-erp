@@ -12,7 +12,7 @@
 <script>
 	$().ready(function () {
 		var elf = $('#file-manager').elfinder({
-			url: "<?php echo base_url('connector/connector.php?dir=images');?>" // connector URL (REQUIRED) 
+			url: "<?php echo base_url('connector/connector.php?dir=upload');?>" // connector URL (REQUIRED) 
 			// lang: 'ru',             // language (OPTIONAL)
 		}).elfinder('instance');
 	});

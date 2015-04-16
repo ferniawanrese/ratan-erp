@@ -168,4 +168,11 @@ $(function() {
 		}); 
 	}); 
 	
+
+function exportdata(){
+
+window.open('<?php echo base_url('hrd/leave_summary_data_excel');?>?'+$("#form_filter").serialize());
+ 
+}
+	
 </script>

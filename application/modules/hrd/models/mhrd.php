@@ -1565,7 +1565,7 @@ class Mhrd extends CI_Model {
 			$a = ($page-1) * $limit;
 			$limitnya = ",".$a.",".$limit;
 	
-			$this->db->select('expense.*,employee.employee_name, currency.currency_code ');
+			$this->db->select('expense.*,employee.employee_name, currency.* ');
 			
 			$this->db->join("currency", "currency.currency_ID = expense.currency_ID");
 	

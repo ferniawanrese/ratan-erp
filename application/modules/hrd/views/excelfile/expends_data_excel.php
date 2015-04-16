@@ -43,9 +43,9 @@ Expenses Data : <span class="label label-info"><?php echo $countdata[0]['totdata
 					<td rowspan="<?php echo $col;?>" colspan = "1">
 					<?php echo $dat['currency_code'];?>	 
 					</td> 
-					 <td rowspan="<?php echo $col;?>" colspan = "1"> 
-					  <?php echo $dat['total_amount'];?>	 
-					</td >
+					 <th rowspan="<?php echo $col;?>" colspan = "1" style = "text-align: right;">  
+					  <?php echo number_format($dat['total_amount'], 2,$dat['currency_format_decimal'], $dat['currency_format_separator']);?>	 
+					</th >
 					<td rowspan="<?php echo $col;?>" colspan = "1"> 
 					<?php echo $dat['state'];?>	 
 					</td> 
@@ -67,18 +67,18 @@ Expenses Data : <span class="label label-info"><?php echo $countdata[0]['totdata
 					<td rowspan="<?php echo $rol;?>">
 					<?php echo $key['reference'];?>	 
 					</td> 
-					<td rowspan="<?php echo $rol;?>">
-					<?php echo $key['unit_price'];?> 
-					</td> 
+					<th rowspan="<?php echo $rol;?>" style = "text-align: right;"> 
+					<?php echo number_format($key['unit_price'], 2,$dat['currency_format_decimal'], $dat['currency_format_separator']);?>	 
+					</th> 
 					 <td rowspan="<?php echo $rol;?>"> 
 					<?php echo $key['quantity'];?>	 
 					</td >
 					<td rowspan="<?php echo $rol;?>"> 
 					<?php echo $key['uom'];?>
 					</td> 
-					<td rowspan="<?php echo $rol;?>"> 
-					<?php echo $key['sub_total'];?> 
-					</td>
+					<th rowspan="<?php echo $rol;?>" style = "text-align: right;">  
+					<?php echo number_format($key['sub_total'], 2,$dat['currency_format_decimal'], $dat['currency_format_separator']);?>
+					</th>
 					 
 				</tr>
 				<?php $i++;?>

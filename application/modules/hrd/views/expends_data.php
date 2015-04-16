@@ -30,9 +30,9 @@ Expenses Data : <span class="label label-info"><?php echo $countdata[0]['totdata
 					<td>
 					<?php echo $dat['currency_code'];?>	 
 					</td> 
-					 <td> 
-					  <?php echo $dat['total_amount'];?>	 
-					</td>
+					<th style = "text-align: right;">
+					  <?php echo number_format($dat['total_amount'], 2,$dat['currency_format_decimal'], $dat['currency_format_separator']);?>	 
+					</th>
 					<td>
 					
 						<div class="btn-toolbar row-action">  

@@ -105,7 +105,8 @@
 										<input type = "hidden" id = "expends_detail<?php echo $det['expense_detaiID'];?>reference" name = "expends_detail[<?php echo $det['expense_detaiID'];?>][reference]" value = "<?php echo $det['reference'];?>">
 										</td>
 										<td style="text-align:right">
-										<span id = "unit_price<?php echo $det['expense_detaiID'];?>"> <?php echo $det['unit_price']* 1;?> </span>
+										<span id = "unit_price<?php echo $det['expense_detaiID'];?>"><?php echo number_format($det['unit_price'], 2,$currency_detail[0]['currency_format_decimal'], $currency_detail[0]['currency_format_separator']);?>
+										  </span>
 										<input type = "hidden" id = "expends_detail<?php echo $det['expense_detaiID'];?>unit_price" name = "expends_detail[<?php echo $det['expense_detaiID'];?>][unit_price]" value = "<?php echo $det['unit_price'];?>">
 										</td>
 										<td style="text-align:right">
@@ -117,7 +118,8 @@
 										<input type = "hidden" id = "expends_detail<?php echo $det['expense_detaiID'];?>UoM" name = "expends_detail[<?php echo $det['expense_detaiID'];?>][UoM]" value = "<?php echo $det['uom'];?>">
 										</td>
 										<td style="text-align:right">
-										<span id="sub_total<?php echo $det['expense_detaiID'];?>"><?php echo $det['sub_total'] * 1;?></span>
+										<span id="sub_total<?php echo $det['expense_detaiID'];?>"><?php echo number_format($det['sub_total'], 2,$currency_detail[0]['currency_format_decimal'], $currency_detail[0]['currency_format_separator']);?>
+										</span>
 										<input type = "hidden" id = "expends_detail<?php echo $det['expense_detaiID'];?>sub_total" name = "expends_detail[<?php echo $det['expense_detaiID'];?>][sub_total]" value = "<?php echo $det['sub_total'] * 1;?>">
 										</td> 
 										

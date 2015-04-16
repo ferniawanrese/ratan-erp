@@ -139,4 +139,10 @@
 			});
 	
 	}
+	
+function exportdata(){
+
+window.open('<?php echo base_url('hrd/leave_approval_data_excel');?>?'+$("#form_filter").serialize());
+ 
+}
 </script>
