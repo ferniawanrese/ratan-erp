@@ -12,6 +12,10 @@
 						<div class="widget-head blue clearfix">
 						  <h3 class="pull-left" onclick="display_data()" style="cursor:pointer;">Leave Approval   </h3>
 						</div> 
+						<ul class="top-right-toolbar"> 
+							<li><a href="" onclick="exportdata()"  class="brown" title="Export to excel"><i class="icon-download-alt"></i></a></li> 
+							<li> </li> 
+						</ul>
 						<div class="well col-sm-12 col-md-12">
 						<form id = "form_filter"  method="post">
 							<div class = "col-md-3 btn-create">

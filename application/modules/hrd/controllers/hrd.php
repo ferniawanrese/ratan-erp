@@ -1229,19 +1229,16 @@ class hrd extends CI_Controller {
 		 
 		$data['countdata'] = $this->Mhrd->expends_data_count($this->input->get());	
  
-		$stringData = $this->parser->parse('excelfile/expends_data_excel', $data, true);
+		
 		
 		if($data['expends_data']){ 
 			foreach($data['expends_data']  as $key){ 
-				$data['expends_data_detail'][] = $this->Mhrd->get_expends_data_detail($key['expense_ID']);
+				$data['expends_data_detail'][$key['expense_ID']] = $this->Mhrd->get_expends_data_detail($key['expense_ID']);
 			}
 		}
 		
-		$this->core->print_rr($data['expends_data_detail']);
-		
-		echo $stringData;
-		exit;
-		 
+		$stringData = $this->parser->parse('excelfile/expends_data_excel', $data, true);
+		  
 		header("Pragma: public");
 		header("Expires: 0");
 		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
