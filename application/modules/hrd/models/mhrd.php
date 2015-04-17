@@ -2974,17 +2974,38 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function applicant_data($data){
+	function applicant_data($data,$page,$limit){
+	
+	$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
 	
 	$this->db->select('applicant.*,department.department_name,job.job_name');
 	
 	$this->db->where('applicant.deleted',0);
-	
+	 
 	$this->db->join('department','department.department_ID = applicant.department_ID');
 	
 	$this->db->join('job','job.job_ID = applicant.job_ID');
-  
+	
+	if($data['department_ID'] != "-1"){ 
+		$this->db->where('applicant.department_ID',$data['department_ID']);
+	}
+		
+	if($data['job_ID'] != "-1"){
+	$this->db->where('applicant.job_ID',$data['job_ID']);
+	}	
+	
+	if(isset($data['filter'])){
+		$this->db->like($data['filter']);
+	}
+   
+	if($limit==-1){
+	// all data
 	$query = $this->db->get('applicant');
+	}else{
+	// base on limit
+	$query = $this->db->get('applicant',$limit,$a);
+	}
 		 
 			if ($query->num_rows())
 			{
@@ -3001,7 +3022,23 @@ class Mhrd extends CI_Model {
 	
 	$this->db->select('count(*) as totdata');
 		 
-	$this->db->where('deleted',0);
+	$this->db->where('applicant.deleted',0);
+	 
+	$this->db->join('department','department.department_ID = applicant.department_ID');
+	
+	$this->db->join('job','job.job_ID = applicant.job_ID');
+	
+	if($data['department_ID'] != "-1"){ 
+		$this->db->where('applicant.department_ID',$data['department_ID']);
+	}
+		
+	if($data['job_ID'] != "-1"){
+	$this->db->where('applicant.job_ID',$data['job_ID']);
+	}	
+	
+	if(isset($data['filter'])){
+		$this->db->like($data['filter']);
+	}
  
 	$query = $this->db->get('applicant');
 	 

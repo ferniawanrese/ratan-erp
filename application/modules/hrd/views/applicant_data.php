@@ -51,7 +51,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 	$alldata =  $countdata[0]['totdata'];
 	$totpage = ceil($alldata/$limit);
 ?>
-<?php if($applicant_data):?>	
+<?php if($applicant_data && $limit !="-1"):?>	
 <script type='text/javascript'>
 			var options = {
 				currentPage: <?php echo $page;?>,

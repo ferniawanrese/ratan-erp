@@ -2070,6 +2070,14 @@ class hrd extends CI_Controller {
 		
 		$output['data']['menu_active'] = "Main";
 		
+		$output['data']['parent'] = $this->Mhrd->department_parent();
+		if($output['data']['parent']){
+			foreach($output['data']['parent'] as $pr){
+				 $output['depparent'][$pr['department_ID']] = $pr['department_name'];
+			}
+		}
+		$output['data']['department_data'] = $this->Mhrd->department_data();
+		
 		$output['content'] = "hrd/applicant";
 		 
 		$this->load->view('template', $output);
@@ -2103,7 +2111,7 @@ class hrd extends CI_Controller {
 	 
 	function applicant_data($page=1){
 	
-		$data['limit'] = 10;
+		$data['limit'] = $this->input->post('limit');
 		
 		$data['page'] = $page;
 	 
@@ -2117,7 +2125,7 @@ class hrd extends CI_Controller {
 	
 	function applicant_data_excel($page=1){
 	
-		$data['limit'] = 10;
+		$data['limit'] = $this->input->get('limit');
 		
 		$data['page'] = $page;
 	 
@@ -2126,7 +2134,7 @@ class hrd extends CI_Controller {
 		$data['countdata'] = $this->Mhrd->applicant_data_count($this->input->get());	
  
 		$stringData = $this->parser->parse('excelfile/applicant_data_excel', $data, true);
-		 
+		
 		header("Pragma: public");
 		header("Expires: 0");
 		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
@@ -2136,8 +2144,10 @@ class hrd extends CI_Controller {
 		header('Content-Disposition: attachment; filename=applicant_data_excel.xls');
 		header("Content-Description: File Transfer");
   
+		
 		echo $stringData;
 		exit;
+		 
 	
 	}
 	
