@@ -1643,8 +1643,8 @@ class hrd extends CI_Controller {
 		 
 		$output['content'] = "hrd/leave_approval";
 		
-		$output['filterplus'] = $this->core->filterplus('employee');
-		
+		$output['leave_type'] = $this->Mhrd->get_leave_type(); 	
+		 
 		$this->load->view('template', $output);
 	
 	
@@ -1652,7 +1652,7 @@ class hrd extends CI_Controller {
 	
 	function leave_approval_data($page=1){
 	
-		$data['limit'] = 10;
+		$data['limit'] = $this->input->post('limit');
 		
 		$data['page'] = $page;
 		   
@@ -1666,13 +1666,13 @@ class hrd extends CI_Controller {
 	
 	function leave_approval_data_excel($page=1){
 	 
-		$data['limit'] = 10;
+		$data['limit'] = $this->input->get('limit');
 		
 		$data['page'] = $page;
 		   
-		$data['leave_data'] = $this->Mhrd->leave_approval_data($this->input->post(),$data['page'],$data['limit']);		
+		$data['leave_data'] = $this->Mhrd->leave_approval_data($this->input->get(),$data['page'],$data['limit']);		
 		 
-		$data['countdata'] = $this->Mhrd->leave_approval_data_count($this->input->post());	
+		$data['countdata'] = $this->Mhrd->leave_approval_data_count($this->input->get());	
  
 		$stringData = $this->parser->parse('excelfile/leave_approval_data_excel', $data, true);
 		 

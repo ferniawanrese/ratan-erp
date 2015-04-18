@@ -2472,7 +2472,7 @@ class Mhrd extends CI_Model {
 	
 		$this->db->select('leave.*,employee.employee_name, leave_type.leave_type_name');
 		
-		$this->db->like('employee.employee_name',$data['search']);
+		$this->db->like('leave.note',$data['search']);
 	
 		$this->db->join('employee','leave.employee_ID = employee.employee_ID');
 		
@@ -2483,8 +2483,40 @@ class Mhrd extends CI_Model {
 		$this->db->order_by('leave.dateCreated','desc');
 		
 		$this->db->where('leave.deleted','0');
-	
+		 
+		if($data['leave_typeID']!=""){
+		
+		$this->db->where('leave.leave_typeID',$data['leave_typeID']);
+		
+		}
+		
+		if($data['employee_ID']!=""){
+		
+		$this->db->where('leave.employee_ID',$data['employee_ID']);
+		
+		}
+		
+		if($data['approved']!=""){
+		
+		$this->db->where('leave.approved',$data['approved']);
+		
+		}
+		
+		if($data['date_start'] !="" && $data['date_end']){
+		
+		$this->db->where('leave.date_start >=' ,date("Y-m-d", strtotime($data['date_start'])));
+		
+		$this->db->where('leave.date_end <=',date("Y-m-d", strtotime($data['date_end'])));
+		 
+		}
+		
+		if($limit==-1){
+		// all data
+		$query = $this->db->get('leave');
+		}else{
+		// base on limit
 		$query = $this->db->get('leave',$limit,$a);
+		}
 	 
 			if ($query->num_rows())
 			{
@@ -2510,6 +2542,32 @@ class Mhrd extends CI_Model {
 		$this->db->where('employee.company_ID', $this->session->userdata('current_companyID'));
 		
 		$this->db->where('leave.deleted','0');
+		
+		if($data['leave_typeID']!=""){
+		
+		$this->db->where('leave.leave_typeID',$data['leave_typeID']);
+		
+		}
+		
+		if($data['employee_ID']!=""){
+		
+		$this->db->where('leave.employee_ID',$data['employee_ID']);
+		
+		}
+		
+		if($data['approved']!=""){
+		
+		$this->db->where('leave.approved',$data['approved']);
+		
+		}
+		
+		if($data['date_start'] !="" && $data['date_end']){
+		
+		$this->db->where('leave.date_start >=' ,date("Y-m-d", strtotime($data['date_start'])));
+		
+		$this->db->where('leave.date_end <=',date("Y-m-d", strtotime($data['date_end'])));
+		 
+		}
 	 
 		$query = $this->db->get('leave');
 	 
@@ -3197,8 +3255,14 @@ class Mhrd extends CI_Model {
 	$this->db->where('leave.deleted',0);
 	
 	$this->db->where('leave.approved',1);
-	 
+	  
+	if($limit==-1){
+	// all data
+	$query = $this->db->get('leave');
+	}else{
+	// base on limit
 	$query = $this->db->get('leave',$limit,$a);
+	}
 	 
 			if ($query->num_rows())
 			{

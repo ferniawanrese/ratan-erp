@@ -61,6 +61,7 @@
 																	<option value = "20">Limit 20</option>
 																	<option value = "50">Limit 50</option>
 																	<option value = "100">Limit 100</option>
+																	<option value = "-1">All Data</option>
 																</select>
 																 
 															</div>
@@ -77,8 +78,7 @@
 												</fieldset>
 											</form>	
 							</span>	
-														
-														
+														 
 							<div class = "list col-sm-12 col-md-12">
 								<!-- content ajax -->											
 							</div>
