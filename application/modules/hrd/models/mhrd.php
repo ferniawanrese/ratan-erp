@@ -666,6 +666,8 @@ class Mhrd extends CI_Model {
 	
 	$a = ($page-1) * $limit;
 	
+	$this->db->select('timetracking.*,timetrackingmap.*,task.task_name,task.task_ID, department.department_name,department.department_ID, department.department_parentID , project.project_name, project.project_ID ');
+	
 	$this->db->join('timetracking', 'timetracking.timetracking_ID = timetrackingmap.timetracking_ID');
 	 
 	$this->db->join('task', 'timetracking.task_ID = task.task_ID');
@@ -1568,14 +1570,24 @@ class Mhrd extends CI_Model {
 			$this->db->select('expense.*,employee.employee_name, currency.* ');
 			
 			$this->db->join("currency", "currency.currency_ID = expense.currency_ID");
+			
+			$this->db->join('task', 'expense.task_ID = task.task_ID');
 	
-			$this->db->join("employee", "employee.employee_ID = expense.employee_ID");
-
+			$this->db->join('project', 'task.project_ID = project.project_ID');
+	
+			$this->db->join('department', 'department.department_ID = project.department_ID');
+			
+			$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
+		
+			$this->db->join('employee','expense.employee_ID = employee.employee_ID');
+	 
 			$this->db->order_by('expense.dateCreated', 'desc');
 			
 			$this->db->where('expense.deleted',0);
 			
 			$this->db->like('expense.description',$data['description']);
+			
+			
 	 
 			if($limit==-1){
 			// all data
@@ -1601,8 +1613,16 @@ class Mhrd extends CI_Model {
 			$this->db->select('count(*) as totdata');
 			
 			$this->db->join("currency", "currency.currency_ID = expense.currency_ID");
+			
+			$this->db->join('task', 'expense.task_ID = task.task_ID');
 	
-			$this->db->join("employee", "employee.employee_ID = expense.employee_ID");
+			$this->db->join('project', 'task.project_ID = project.project_ID');
+	
+			$this->db->join('department', 'department.department_ID = project.department_ID');
+			
+			$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
+		
+			$this->db->join('employee','expense.employee_ID = employee.employee_ID');
  
 			$this->db->where('expense.deleted',0);
 			
@@ -1742,9 +1762,15 @@ class Mhrd extends CI_Model {
 	
 	function get_expends_data($expense_ID){
 	
-		$this->db->select('expense.*,employee.employee_name');
+		$this->db->select('expense.*,employee.employee_name,project.project_ID,department.department_ID');
 	
 		$this->db->where('expense_ID',$expense_ID);
+		
+		$this->db->join('task', 'expense.task_ID = task.task_ID');
+	
+		$this->db->join('project', 'task.project_ID = project.project_ID');
+	
+		$this->db->join('department', 'department.department_ID = project.department_ID');
 		
 		$this->db->join('employee','expense.employee_ID = employee.employee_ID');
 		

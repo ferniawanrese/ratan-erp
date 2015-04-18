@@ -31,6 +31,55 @@
 					</div>
 					
 					<div class="form-group">
+					<label  class="col-sm-3 control-label"> Department: </label>
+						<div class="control col-md-4">
+								 <span class = "input-group  "> 
+								 <select id = "department_ID"    class="form-control"> 
+										<option value="">-- Choose Department --</option>
+											<?php foreach($department_data as $dep):?>
+											<?php if($dep['department_ID']==$expends_data[0]['department_ID']){$selected = "selected";}else{$selected = "";}?>
+												<?php if($dep['department_parentID'] == '0'):?>
+													<option value = "<?php echo  $dep['department_ID'];?>" <?php echo $selected;?>><?php echo  $dep['department_name'];?></option>
+												<?php else:?>
+													<option value="<?php echo  $dep['department_ID'];?>"  <?php echo $selected;?>><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
+												<?php endif;?>	
+												
+											<?php endforeach;?>	  
+									</select>
+									<span class="input-group-addon ">
+									<i class="icon-plus " onclick="add_department()" data-target="#myModal" data-toggle="modal" title="Add Project" style="cursor:pointer;"></i>
+									</span>
+									</span>
+							</div>
+				</div> 
+				<div class="form-group">
+					<label  class="col-sm-3 control-label">Project  :</label>
+					<div class="control col-md-4">
+						<span class = "input-group  "> 
+							<select id = "project_IDx"   class="form-control "> 
+								<option  value="">-- Choose Project --</option>  
+							</select>
+							<span class="input-group-addon ">
+							<i class="icon-plus " onclick="add_project()" data-target="#myModal" data-toggle="modal" title="Add Project" style="cursor:pointer;"></i>
+							</span>
+						</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label  class="col-sm-3 control-label">Task :</label>
+					<div class="control col-md-4">
+						<span class = "input-group  "> 
+							<select   id = "task_IDx" name = "task_ID" class="form-control {validate:{required:true}}"> >
+								<option value="">-- Choose Task --</option>
+							</select>
+							<span class="input-group-addon ">
+							<i class="icon-plus " onclick="add_task()" data-target="#myModal" data-toggle="modal" title="Add Task" style="cursor:pointer;"></i>
+							</span>
+						</span>
+					</div>
+				</div> 
+					
+					<div class="form-group">
 						<label  class="col-sm-3 control-label">Description :</label>
 						<div class="control col-md-4">
 							<textarea name= "description" id = "description" class = "form-control"><?php echo $expends_data[0]['description'];?></textarea>
@@ -204,6 +253,97 @@
 
 <input type = "hidden" id = "validate_error" name = "validate_error" class = "validate_error" value = "0">
  
+<script>		 
+ 
+			var a = $('select#department_ID option:selected').val();
+			  
+			if(a!=''){
+			
+			get_project(); 
+			get_task(); 
+			}
+			
+			function get_task(){
+							
+				var project_IDx = $('select#project_IDx option:selected').val();
+				
+				if(project_IDx == ""){
+				var project_IDx = "<?php echo $expends_data[0]['project_ID'];?>";
+				}
+				
+				var task_ID = "<?php echo $expends_data[0]['task_ID'];?>";
+				 
+				$.ajax({
+					
+					url: "<?php echo base_url('hrd/get_task_detail/');?>" + '/' +project_IDx,
+					 
+					success: function (data) {
+					
+					
+					$( "#task_IDx" ).html("<option value = ''>-- Choose Task --</option>");
+					var jsonData = JSON.parse(data);
+					 
+						optmin = "<option value = ''>-- Choose Task --</option>";
+						for (var i = '0'; i < jsonData.tasknya.length; i++) {
+							var datanya = jsonData.tasknya[i];
+							
+							if(datanya.task_ID > '0'){
+									if(datanya.task_ID == task_ID){
+									optmin += "<option value ='"+ datanya.task_ID +"' selected>"+ datanya.task_name +"</option>";
+									}else{
+									optmin += "<option value ='"+ datanya.task_ID +"'>"+ datanya.task_name +"</option>";
+									}
+							}
+													
+							$( "#task_IDx" ).html(optmin); 
+						}
+						
+					}
+				});
+					
+			}
+			 			
+			function  get_project(){
+			
+					if($('#department_ID').val()!='-1'){
+					var depID = $('#department_ID').val();
+					}else{
+					var depID = null;
+					}
+						 
+					$.ajax({
+						
+						url: "<?php echo base_url('hrd/get_project_detail/');?>" +'/'+ depID,
+						
+						
+						success: function (data) {
+						$( "#project_IDx" ).html("<option value = ''>-- Choose Project --</option>");
+						var jsonData = JSON.parse(data); 
+							optmin = "<option value = ''>-- Choose Project --</option>";
+							
+							var idselect = "<?php echo $expends_data[0]['project_ID'];?>";
+							 
+							for (var i = 0; i < jsonData.projectnya.length; i++) {
+							
+										var datanya = jsonData.projectnya[i];
+										
+										if(datanya.project_ID == idselect){
+										optmin += "<option value ='"+ datanya.project_ID +"'selected >"+ datanya.project_name +"</option>";
+										}else{
+										optmin += "<option value ='"+ datanya.project_ID +"'>"+ datanya.project_name +"</option>";
+										}
+										  
+										
+										  
+										$( "#project_IDx" ).html(optmin); 
+							}
+							
+						}
+					});
+					
+				};
+			 
+</script> 
 <script>
 
 	$('#validate_error').val('0'); //wawan 
@@ -323,6 +463,84 @@ $("form#form-expends").submit(function(e){
 		 })
 	 }
 	 
+		 
+	$( "select#department_ID" ).change(function() {
+	 
+			var a = $('select#department_ID option:selected').val();
+			
+			$.ajax({
+				
+				url: "<?php echo base_url('hrd/get_project_detail/');?>" + '/' +a,
+				 
+				success: function (data) {
+				 
+				$( "#project_IDx" ).html("<option value = ''>-- Choose Project --</option>");
+				
+				$( "#task_IDx" ).html("<option value = ''>-- Choose Task --</option>");
+				
+				var jsonData = JSON.parse(data);
+				 
+					optmin = "<option value = ''>-- Choose Project --</option>";
+					for (var i = '0'; i < jsonData.projectnya.length; i++) {
+						var datanya = jsonData.projectnya[i];
+							
+								optmin += "<option value ='"+ datanya.project_ID +"'>"+ datanya.project_name +"</option>";
+											
+						$( "#project_IDx" ).html(optmin); 
+					}
+					
+				}
+			});
+			
+		});
+		
+		
+		
+		$( "select#project_IDx" ).change(function() {
+
+		get_task();
+			
+		});
+		
+		function get_task(){
+							
+				var project_IDx = $('select#project_IDx option:selected').val();
+				
+				if(project_IDx == ""){
+				var project_IDx = "<?php echo $expends_data[0]['project_ID'];?>";
+				}
+				
+				var task_ID = "<?php echo $expends_data[0]['task_ID'];?>";
+				 
+				$.ajax({
+					
+					url: "<?php echo base_url('hrd/get_task_detail/');?>" + '/' +project_IDx,
+					 
+					success: function (data) {
+					
+					
+					$( "#task_IDx" ).html("<option value = ''>-- Choose Task --</option>");
+					var jsonData = JSON.parse(data);
+					 
+						optmin = "<option value = ''>-- Choose Task --</option>";
+						for (var i = '0'; i < jsonData.tasknya.length; i++) {
+							var datanya = jsonData.tasknya[i];
+							
+							if(datanya.task_ID > '0'){
+									if(datanya.task_ID == task_ID){
+									optmin += "<option value ='"+ datanya.task_ID +"' selected>"+ datanya.task_name +"</option>";
+									}else{
+									optmin += "<option value ='"+ datanya.task_ID +"'>"+ datanya.task_name +"</option>";
+									}
+							}
+													
+							$( "#task_IDx" ).html(optmin); 
+						}
+						
+					}
+				});
+					
+			}
 	 
 	 	function  get_currency(){
 						 
@@ -348,6 +566,51 @@ $("form#form-expends").submit(function(e){
 					});
 					
 				};
-</script>
+				
+		
+ 
+ function add_project(){
+	 $.ajax({
+			 url: "<?php echo base_url('hrd/project_add/');?>",
+			success: function(data){      
+			$( "#modal_body" ).html(data); 		
+			$( "#modal_label" ).html("Add Project"); 		 
+			}  
+	 
+	 })
+ }
+ 
+ function add_task(){
+ 
+	if($('#project_IDx').val()== ''){ 
+		$( "#modal_body" ).html('<div class="alert alert-warning" role="alert">Choose Project first !</div>'); 		
+		$( "#modal_label" ).html("Add Task"); 		
+	
+	}else{
+ 
+		 $.ajax({
+				 url: "<?php echo base_url('hrd/task_add_direct/');?>" +'/'+ $('#project_IDx').val(),
+				success: function(data){      
+				$( "#modal_body" ).html(data); 		
+				$( "#modal_label" ).html("Add Task"); 		 
+				}  
+		 
+		 })
+	 
+	 }
+ }
+ 
+ function add_department(){
+	 $.ajax({
+			 url: "<?php echo base_url('hrd/department_add/');?>",
+			success: function(data){      
+			$( "#modal_body" ).html(data); 		
+			$( "#modal_label" ).html("Add Department"); 		 
+			}  
+	 
+	 })
+ }		
+ </script>
+ 
 
 

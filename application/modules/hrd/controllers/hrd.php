@@ -1256,6 +1256,13 @@ class hrd extends CI_Controller {
 		$data['currency'] = $this->Mhrd->currency();	
 		
 		$data['currency_detail'] = $this->Mhrd->currency_detail($data['expends_data'][0]['currency_ID']);	
+		
+		$data['parent'] = $this->Mhrd->department_parent();
+			foreach($data['parent'] as $pr){
+				 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+			}
+		  
+		$data['department_data'] = $this->Mhrd->department_data();	
 		  
 		$this->load->view('expends_add', $data);
 	 
