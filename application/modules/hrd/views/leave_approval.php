@@ -252,6 +252,12 @@ window.open('<?php echo base_url('hrd/leave_approval_data_excel');?>?'+$("#form_
  
 }
 
+function print_r(a){
+
+window.open('<?php echo base_url('hrd/leave_approval_pdf');?>/' + a);
+ 
+}
+
 
 $(function() {
 		$( ".employee" ).autocomplete({ 

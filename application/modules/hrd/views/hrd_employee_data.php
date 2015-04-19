@@ -27,7 +27,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<!--<td class="additionalcolums1"> <?php echo date("d M Y", strtotime($keys['employee_startworking']));?> </td>		-->				
 					<td class="center">
 							<div class="btn-toolbar row-action">
-								
+									<button class="btn btn-primary" title="Print" onclick=print_pdf("<?php echo $keys['employee_ID'];?>")><i class="icon-print"></i></button>
 									<button class="btn btn-info" title="Edit" onclick=edit_employee("<?php echo $keys['employee_ID'];?>")><i class="icon-edit"></i></button>
 									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['employee_ID'];?>")><i class="icon-trash "></i></button>
 								

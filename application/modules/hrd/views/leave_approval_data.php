@@ -47,10 +47,8 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 				 
 					<td class="center">
 							<div class="btn-toolbar row-action">
-									<?php //echo $keys['employee_catParentID'];?>
-									<?php if($keys['approved']==1):?>
-									<button class="btn btn-default" title="Print" onclick=leave_add("<?php echo $keys['leave_ID'];?>")><i class="icon-print"></i></button>
-									<?php endif;?>	
+									 
+									<button class="btn btn-primary" title="Print" onclick=print_r("<?php echo $keys['leave_ID'];?>")><i class="icon-print"></i></button> 
 									<button class="btn btn-info" title="Edit" onclick=leave_add("<?php echo $keys['leave_ID'];?>")><i class="icon-edit"></i></button>
 									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['leave_ID'];?>")><i class="icon-trash "></i></button>
 								

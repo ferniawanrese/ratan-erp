@@ -33,6 +33,7 @@ class hrd extends CI_Controller {
 		$this->load->library('image_lib');
 		$this->load->library('session');
 		$this->load->library('parser');
+		$this->load->library('dompdf_gen');
 		$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
@@ -277,6 +278,22 @@ class hrd extends CI_Controller {
 				
 		$this->load->view('hrd_addemployee', $data);
 		
+	}
+	
+	function hrd_employe_print($employee_ID = null){
+	
+		// Load all views as normal
+		$data['data_detail'] = $this->Mhrd->employee_data_detail($employee_ID);
+		 
+		$this->load->view('pdffile/employee_detail',$data);
+		// Get output html
+		$html = $this->output->get_output();
+		  
+		// Convert to PDF
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream($data['data_detail'][0]['employee_name'].".pdf");
+	
 	}
  
 	function hrd_delete_employee($employee_ID){
@@ -1278,6 +1295,20 @@ class hrd extends CI_Controller {
 	 
 	}
 	
+	function expends_detail_pdf($expend_detailID=null){
+		// Load all views as normal
+		$data['expends_detail'] = $this->Mhrd->get_expends_detail($expend_detailID);	
+		 
+		$this->load->view('pdffile/expend_detail', $data);
+		// Get output html
+		$html = $this->output->get_output();
+		  
+		// Convert to PDF
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("asd.pdf");
+	}
+	
 	function expends_detail_add_action($draft_stat=null){
 	
 			$data['draft_stat'] = $draft_stat;
@@ -1629,6 +1660,24 @@ class hrd extends CI_Controller {
 		$data['signature_name'] = $this->Mhrd->get_employee_detail($data['leave_detail'][0]['signature_byID']);
 		 
 		$this->load->view('leave_add', $data);
+	
+	}
+	
+	function leave_approval_pdf($leave_ID){
+	
+	$data['leave_detail'] = $this->Mhrd->leave_detail($leave_ID); 
+	
+	$data['signature_name'] = $this->Mhrd->get_employee_detail($data['leave_detail'][0]['signature_byID']);
+	
+	$this->load->view('pdffile/leave_approval', $data);
+	 
+	// Get output html
+	$html = $this->output->get_output();
+	  
+	// Convert to PDF
+	$this->dompdf->load_html($html);
+	$this->dompdf->render();
+	$this->dompdf->stream("asd.pdf");
 	
 	}
 	

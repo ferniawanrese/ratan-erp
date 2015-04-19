@@ -200,4 +200,10 @@ function exportdata(){
 window.open('<?php echo base_url('hrd/expends_data_excel');?>?'+$("#form_filter").serialize());
  
 }
+
+function print_(a){
+
+window.open('<?php echo base_url('hrd/expends_detail_pdf');?>/' + a);
+ 
+}
 </script>

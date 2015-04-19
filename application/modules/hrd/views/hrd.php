@@ -252,6 +252,13 @@ window.open('<?php echo base_url('hrd/hrd_employe_data_export');?>?'+$("#form_fi
  
 }
 
+function print_pdf(a){
+
+window.open('<?php echo base_url('hrd/hrd_employe_print');?>/'+a);
+ 
+}
+
+
 </script>
 
 

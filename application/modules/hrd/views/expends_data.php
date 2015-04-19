@@ -46,6 +46,7 @@ Expenses Data : <span class="label label-info"><?php echo $countdata[0]['totdata
 					</td> 
 					<td class="center">
 							<div class="btn-toolbar row-action">  
+									<button class="btn btn-primary" title="Print" onclick=print_("<?php echo $dat['expense_ID'];?>")><i class="icon-print"></i></button>
 									<button class="btn btn-info" title="Edit" onclick=expends_add("<?php echo $dat['expense_ID'];?>")><i class="icon-edit"></i></button>
 									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $dat['expense_ID'];?>")><i class="icon-trash "></i></button> 
 							</div>
