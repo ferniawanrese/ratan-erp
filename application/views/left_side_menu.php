@@ -173,18 +173,18 @@
 							<div class="tab-pane  <?php  if($menu_active == "Report"){echo "active";};?>" id="Report">
 								<h4 class="side-head"> <?php //echo $module_name;?> Report</h4> 
 								<ul class="accordion-nav"> 
-									<li><a href="login.html">  Expense Analysis</a></li>   
+									<li><a href="<?php echo base_url('hrd/expense_chart');?>">  Expense Analysis</a></li>   
 									<!--<li><a href="login.html">  Appraisal Analysis</a></li>-->
-									<li><a href="login.html">  Recruitment Analysis</a></li>
+									<li><a href="<?php echo base_url('hrd/recruitment_chart');?>">  Recruitment Analysis</a></li>
 									<li ><a href="#"><i class="icon-caret-right"></i> Timesheet</a>
 										<ul> 
-											<li  ><a href="<?php echo base_url('hrd/product');?>"> Timesheet Analysis </a></li> 							
+											<li  ><a href="<?php echo base_url('hrd/timesheet_chart');?>"> Timesheet Analysis </a></li> 							
 										 </ul>  
 										<ul> 
-											<li  ><a href="<?php echo base_url('hrd/uom');?>"> Employee Timesheet  </a></li> 							
+											<li  ><a href="<?php echo base_url('hrd/employee_timesheet_chart');?>"> Employee Timesheet  </a></li> 							
 										 </ul> 
 									</li>
-									<li><a href="login.html"> Leaves Analysis</a> </li>
+									<li><a href="<?php echo base_url('hrd/leaves_chart');?>"> Leaves Analysis</a> </li>
 								</ul>
 							</div>
 				
