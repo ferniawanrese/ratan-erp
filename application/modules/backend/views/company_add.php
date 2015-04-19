@@ -1,4 +1,4 @@
-<form  id = "compadd" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
+<form  id = "compadd" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('backend/company_add_action/');?>" method="post">
 						<input name="company_ID"  id = "company_ID" class="form-control " type="hidden"  value="<?php echo $companies[0]['company_ID'];?>"  /> 
 						<div class="form-group">
 							<label  class="col-sm-3 control-label">Company Name :</label>
@@ -52,7 +52,7 @@
 							<div class="control col-md-4">
 								<input id = "employee_IDx" name="employee_IDx" class="form-control employee_IDx" type="text" 
 								value = "<?php echo $companies[0]['employee_name'];?><?php if(isset($companies[0]['employee_badge'])){echo "/";};?><?php echo $companies[0]['employee_badge'];?>"/>
-								<input name="employee_ID"  id = "employee_ID" class="form-control " type="hidden"    /> 
+								<input name="employee_ID"  id = "employee_ID" class="form-control " type="hidden"  value = "<?php echo $companies[0]['employee_ID'];?>"  /> 
 							</div>
 						</div>
 						
@@ -92,6 +92,32 @@
 										<button type="button"  class="btn btn-default btn-info "  data-dir="up" ><i class="glyphicon glyphicon-plus"></i></button>
 									</span>
 								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label  class="col-sm-3 control-label">Logo :</label>
+							<div class="control col-md-6">
+								
+								<div class="fileupload fileupload-new" data-provides="fileupload">
+									<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+										<?php if($companies[0]['company_logo']):?>
+											<img src="<?php  echo base_url($companies[0]['company_logo']);?>" alt="image"/>
+										<?php else:?>	
+											<img alt="img" src="<?php echo base_url('images/upload-icon.png');?>">
+										<?php endif;?>
+									</div>
+									<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+									</div>
+									<div>
+										<span class="btn btn-file"><span class="fileupload-new">Select image</span>
+										<span class="fileupload-exists">Change</span>
+										<input type="file" id="userfile" name="userfile" />
+										</span>
+										<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+									</div>
+								</div>
+								
 							</div>
 						</div>
 						
@@ -170,6 +196,7 @@ $(function() {
     });
 }); 
 
+/*
 $("form#compadd").submit(function(e){
 	
 	e.preventDefault();
@@ -188,6 +215,7 @@ $("form#compadd").submit(function(e){
 			
 			return false;
 	});
+*/
 	
 	$(function() {
 		$( ".employee_IDx" ).autocomplete({ 

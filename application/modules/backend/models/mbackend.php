@@ -125,9 +125,11 @@ class Mbackend extends CI_Model {
 	
 	}
 	
-	function company_add($data){
+	function company_add($data,$img){
 	
 	unset($data['employee_IDx']);
+	
+	$this->db->set('company_logo', $img);	
 	
 	if($data['company_ID']==""){
 	

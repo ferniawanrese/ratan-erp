@@ -6,13 +6,16 @@ class backend extends CI_Controller {
 	{
 		parent::__construct();
 		
-		$this->load->model('Mbackend');
-		$this->load->helper('form');
 		$this->load->database();
-		$this->load->library('session');
+		$this->load->model('Mbackend');
+		$this->load->helper('form'); 
 		$this->load->helper('url');  
-		$this->load->library('generate_code'); 
+		$this->load->library('encrypt');
+		$this->load->library('generate_code');
 		$this->load->library('core');
+		$this->load->library('image_lib');
+		$this->load->library('session');
+		$this->load->library('parser');
 		$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
@@ -79,8 +82,36 @@ class backend extends CI_Controller {
 	}
 	
 	function company_add_action(){
+	
+	// upload file/image
+				
+		$config['file_name'] 		= $this->generate_code->getUID();
+		$config['upload_path'] 	= './upload/company_logo/'.$config['file_name'].'/';
+		$config['allowed_types'] 	= 'gif|jpg|png';
+		
+		@mkdir($config['upload_path'], 0777);
+		
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());			
+		}
+		else
+		{
+			$data = $this->upload->data();			
+			$this->core->resize_im(array_merge($config,$data));
+		}
+		
+		if(isset($data['file_name'])){
+		$img = $config['upload_path'].$data['file_name'];
+		}else{
+		$img = null;
+		}
 	 
-	$this->Mbackend->company_add($this->input->post());
+		$this->Mbackend->company_add($this->input->post(),$img);
+		
+		redirect('backend/company');
 	
 	}
 	
