@@ -1526,20 +1526,6 @@ class hrd extends CI_Controller {
 	
 	}
 	
-	function expense_chart(){
-	
-		$output['data']['module_name'] = "Expense Chart";
-		
-		$output['data']['menu_name'] = "HRD";
-		 
-		$output['data']['menu_active'] = "Report";
-		 
-		$output['content'] = "hrd/chart/expense_chart";
-		 
-		$this->load->view('template', $output);
-	
-	}
-	
 	function leave_type(){
 	
 		$output['data']['module_name'] = "Human Resources";
@@ -2372,7 +2358,33 @@ class hrd extends CI_Controller {
 		exit;
 	
 	}
+	 
+	function expense_chart(){
 	
+		$output['data']['module_name'] = "Expense Chart";
+		
+		$output['data']['menu_name'] = "HRD";
+		 
+		$output['data']['menu_active'] = "Report";
+		 
+		$output['content'] = "hrd/chart/expense_chart";
+		 
+		$this->load->view('template', $output);
+	
+	}
+	
+	function expense_chart_json(){
+	
+		$json['cols']  =  array(array(
+			"id" => "bar",
+			"label" => "foo", 
+		));
+	 
+		$json['rows']  = $this->Mhrd->expense_chart_json();
+	 
+		 echo json_encode($json);
+	
+	}
 }
 
 /* End of file welcome.php */

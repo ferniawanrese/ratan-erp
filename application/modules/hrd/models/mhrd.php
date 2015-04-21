@@ -3444,6 +3444,23 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function expense_chart_json(){
+	
+		$this->db->select('expense.expense_ID,expense.total_amount');
+	
+		$query = $this->db->get('expense');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
 }
 	
 ?>
