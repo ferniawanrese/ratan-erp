@@ -3446,7 +3446,7 @@ class Mhrd extends CI_Model {
 	
 	function expense_chart_json(){
 	
-		$this->db->select('expense.expense_ID,expense.total_amount');
+		$this->db->select('expense.expense_ID ,expense.total_amount');
 	
 		$query = $this->db->get('expense');
 	 

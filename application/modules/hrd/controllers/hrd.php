@@ -2375,13 +2375,29 @@ class hrd extends CI_Controller {
 	
 	function expense_chart_json(){
 	
-		$json['cols']  =  array(array(
-			"id" => "bar",
-			"label" => "foo", 
-		));
-	 
-		$json['rows']  = $this->Mhrd->expense_chart_json();
-	 
+		$jsonx['rows']    = $this->Mhrd->expense_chart_json(); 
+	
+		$json['cols'][]  =  array(
+			"id" => "", 
+			"label" => "Date", 
+			"pattern" => "", 
+			"type" => "string", 
+		);
+		$json['cols'][]  =   array(
+			"id" => "", 
+			"label" => "Ammount ", 
+			"pattern" => "", 
+			"type" => "number", 
+		);
+		  
+		foreach($jsonx['rows'] as $key){
+		
+			$json['rows'][]['c'] = array(
+			array('v' => $key['expense_ID']),
+			array('v' => $key['total_amount'])
+			);
+		}
+		 
 		 echo json_encode($json);
 	
 	}

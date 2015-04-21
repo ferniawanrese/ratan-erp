@@ -122,36 +122,27 @@ function drawChart() {
 </script> 
 
 <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-	  
-		var jsonData = $.ajax({
-		url: "<?php echo base_url('hrd/expense_chart_json/');?>",
+	google.load("visualization", "1", {
+       packages: ["corechart"]
+   });
+   google.setOnLoadCallback(drawChart);
+   function drawChart() {
+    
+		var jsonData  = $.ajax({
+		url: "<?php echo base_url('hrd/expense_chart_json/');?>", 
 		dataType:"json",
 		async: false
 		}).responseText;
-
-		// Create our data table out of JSON data loaded from server.
-		//var data = new google.visualization.DataTable(jsonData);
 		
-		 var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  5000,       1120],
-          ['2007',  1030,      540]
-        ]);
+		var data = new google.visualization.DataTable(jsonData);
 		 
-        var options = {
-          title: 'Company Performance',
-		  		  series: [{color: '#3498db',pointSize: '5',curveType:'function'},{color: '#009600',pointSize: '5',curveType:'function'}]
-        };
-        var chart = new google.visualization.AreaChart(document.getElementById('chart_div1'));
-        chart.draw(data, options);
-      }
-	   
-    }
+       var options = {
+           title: 'My Daily Activities',
+		   slices: [{color: '#b51c44'},{color: '#ce4b27'},{color: '#009600'},{color: '#e88a05'},{color: '#3498db'}]
+       };
+       var chart = new google.visualization.LineChart(document.getElementById('chart_div1'));
+       chart.draw(data, options);
+   }
 </script> 
 
 
