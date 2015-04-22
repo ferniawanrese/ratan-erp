@@ -3444,9 +3444,82 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function expense_chart_json(){
+	 
 	
-		$this->db->select('expense.expense_ID ,expense.total_amount');
+	function expense_chart_json($data){
+	
+		$this->db->select('expense.expense_ID,expense.date ,sum(expense.total_amount) as total_amount');
+		 
+		if($data['start_date']!="" && $data['end_date']!=""){
+		
+			$this->db->where('date >=', date("Y-m-d", strtotime($data['start_date'])));
+		
+			$this->db->where('date <=',date("Y-m-d", strtotime($data['end_date'])));
+		}
+		
+		$this->db->group_by('date');
+	
+		$query = $this->db->get('expense');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function expense_department_chart_json($data){
+	
+		$this->db->select('department.department_name, expense.expense_ID,expense.date ,sum(expense.total_amount) as subtotal');
+		 
+		if($data['start_date']!="" && $data['end_date']!=""){ 
+			$this->db->where('date >=', date("Y-m-d", strtotime($data['start_date'])));
+		
+			$this->db->where('date <=',date("Y-m-d", strtotime($data['end_date'])));
+		}
+		
+		$this->db->join('task', 'expense.task_ID = task.task_ID');
+	
+		$this->db->join('project', 'task.project_ID = project.project_ID');
+	
+		$this->db->join('department', 'department.department_ID = project.department_ID');
+		
+		$this->db->group_by('department.department_ID');
+	
+		$query = $this->db->get('expense');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function expense_project_chart_json($data){
+	
+		$this->db->select('project.project_name, expense.expense_ID,expense.date ,sum(expense.total_amount) as subtotal');
+		 
+		if($data['start_date']!="" && $data['end_date']!=""){ 
+			$this->db->where('date >=', date("Y-m-d", strtotime($data['start_date'])));
+		
+			$this->db->where('date <=',date("Y-m-d", strtotime($data['end_date'])));
+		}
+		
+		$this->db->join('task', 'expense.task_ID = task.task_ID');
+	
+		$this->db->join('project', 'task.project_ID = project.project_ID');
+	
+		$this->db->join('department', 'department.department_ID = project.department_ID');
+		
+		$this->db->group_by('project.project_ID');
 	
 		$query = $this->db->get('expense');
 	 

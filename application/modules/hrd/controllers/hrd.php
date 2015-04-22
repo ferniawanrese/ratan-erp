@@ -2374,8 +2374,8 @@ class hrd extends CI_Controller {
 	}
 	
 	function expense_chart_json(){
-	
-		$jsonx['rows']    = $this->Mhrd->expense_chart_json(); 
+	 
+		$jsonx['rows']    = $this->Mhrd->expense_chart_json($this->input->post()); 
 	
 		$json['cols'][]  =  array(
 			"id" => "", 
@@ -2393,11 +2393,83 @@ class hrd extends CI_Controller {
 		foreach($jsonx['rows'] as $key){
 		
 			$json['rows'][]['c'] = array(
-			array('v' => $key['expense_ID']),
+			array('v' => $key['date']),
 			array('v' => $key['total_amount'])
 			);
 		}
 		 
+		 echo json_encode($json);
+	
+	}
+	
+	function expense_department_json(){
+	 
+		$jsonx['rows']    = $this->Mhrd->expense_department_chart_json($this->input->post()); 
+		 
+		$json['cols'][]  =  array(
+			"id" => "", 
+			"label" => "Department", 
+			"pattern" => "", 
+			"type" => "string", 
+		);
+		$json['cols'][]  =   array(
+			"id" => "", 
+			"label" => "Ammount", 
+			"pattern" => "", 
+			"type" => "number", 
+		);
+		  
+		 $grand_total = 0;
+		foreach($jsonx['rows'] as $key){ 
+			$grand_total = $grand_total + $key['subtotal']; 
+		}
+		
+		foreach($jsonx['rows'] as $key){ 
+		
+			$ammountnya = $key['subtotal']/$grand_total * 100;
+			
+			$json['rows'][]['c'] = array(
+			array('v' => $key['department_name']),
+			array('v' => $ammountnya)
+			);
+		
+		}
+		 echo json_encode($json);
+	
+	}
+	
+	function expense_project_json(){
+	 
+		$jsonx['rows']    = $this->Mhrd->expense_project_chart_json($this->input->post()); 
+		 
+		$json['cols'][]  =  array(
+			"id" => "", 
+			"label" => "Project", 
+			"pattern" => "", 
+			"type" => "string", 
+		);
+		$json['cols'][]  =   array(
+			"id" => "", 
+			"label" => "Ammount", 
+			"pattern" => "", 
+			"type" => "number", 
+		);
+		  
+		 $grand_total = 0;
+		foreach($jsonx['rows'] as $key){ 
+			$grand_total = $grand_total + $key['subtotal']; 
+		}
+		
+		foreach($jsonx['rows'] as $key){ 
+		
+			$ammountnya = $key['subtotal']/$grand_total * 100;
+			
+			$json['rows'][]['c'] = array(
+			array('v' => $key['project_name']),
+			array('v' => $ammountnya)
+			);
+		
+		}
 		 echo json_encode($json);
 	
 	}

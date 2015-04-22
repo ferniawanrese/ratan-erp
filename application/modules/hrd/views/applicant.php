@@ -204,9 +204,7 @@ $("form#form_filter").submit(function(e){
 			
 			return false;
 	});
-	
-	
-	
+	 
 function clearfilter(){
 
 $('#limit').val('10');
