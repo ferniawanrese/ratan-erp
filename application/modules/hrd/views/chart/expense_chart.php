@@ -19,7 +19,7 @@
 						<label for="validate-email"></label>
 						<div class="input-group col-sm-12 col-md-12" >
 							<span class = "btn-group">
-								<button type = "submit" class="btn btn-default"  > Generate!</buttton>
+								<button type = "button" class="btn btn-default" onclick = "trigger_chart()" > Generate!</buttton>
 								<button type = "button" class="btn btn-default" onclick = "clearfilter()" > Clear Filter</buttton>
 							</span>
 						</div>													
@@ -75,22 +75,36 @@
   format:"dd-mm-yyyy"
   }); 
 </script>	
-    
-
+     
 <script type="text/javascript"> 
+
 		google.load("visualization", "1", {
 		packages: ["corechart"]
 		}); 
 		google.setOnLoadCallback(drawChart);  
 		
+	function trigger_chart(){
+		drawChart();
+		drawChart2();
+		drawChart3();
+	}
+	
+	function clearfilter(){
+		$('#end_date').val('');
+		$('#start_date').val('');
+		trigger_chart();
+	}
+		
    function drawChart() {
-    
+		NProgress.inc(); 
 		var jsonData  = $.ajax({
 		url: "<?php echo base_url('hrd/expense_chart_json/');?>", 
+		data: $("#form_filter").serialize(),
 		dataType:"json",
+		type: "POST",
 		async: false
 		}).responseText;
-		
+		NProgress.done(true);
 		var data = new google.visualization.DataTable(jsonData);
 		 
        var options = {
@@ -99,32 +113,7 @@
        };
        var chart = new google.visualization.LineChart(document.getElementById('chart_div1'));
        chart.draw(data, options);
-   }
-    
-	$("form#form_filter").submit(function(e){
-	
-	e.preventDefault();
-			NProgress.inc(); 
-			$.ajax({
-				type: "POST",
-				url: "<?php echo base_url('hrd/expense_chart_json');?>",
-				data: $("#form_filter").serialize(),
-				success: function(data)
-				{
-					var datax = new google.visualization.DataTable(data);
-					var options = {
-					title: 'expense ammount',
-					slices: [{color: '#b51c44'},{color: '#ce4b27'},{color: '#009600'},{color: '#e88a05'},{color: '#3498db'}]
-					};
-					var chart = new google.visualization.LineChart(document.getElementById('chart_div1'));
-					chart.draw(datax, options);
-					NProgress.done(true);
-				}
-			});
-			
-			return false;
-	});
-	
+   } 
 </script> 
  
 <script>
@@ -139,7 +128,9 @@
    
 		var jsonData  = $.ajax({
 		url: "<?php echo base_url('hrd/expense_department_json/');?>", 
+		data: $("#form_filter").serialize(),
 		dataType:"json",
+		type: "POST",
 		async: false
 		}).responseText;
 		
@@ -154,9 +145,8 @@
 		  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
 		  chart.draw(data, {width: 400, height: 240});
    }
-</script> 
-
-
+</script>
+ 
 <script>
        
 	 // Load the Visualization API and the piechart package.
@@ -169,7 +159,9 @@
    
 		var jsonData  = $.ajax({
 		url: "<?php echo base_url('hrd/expense_project_json/');?>", 
+		data: $("#form_filter").serialize(),
 		dataType:"json",
+		type: "POST",
 		async: false
 		}).responseText;
 		
