@@ -1,7 +1,8 @@
+ 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- banner_merp -->
 <ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
+     style="display:inline-block;width:100%;height:90px"
      data-ad-client="ca-pub-2460636277791289"
      data-ad-slot="5831346896"></ins>
 <script>
@@ -10,9 +11,9 @@
 			
 <div class="row-fluid">
 				<div class="switch-board gray col-md-12">
-					<div class="col-md-2">
+					<div class="col-md-2 hidden-xs hidden-sm">
 					</div>
-					<div class="col-md-8">
+					<div class="col-md-8 col-sm-12">
 						<ul class="clearfix switch-item">
 							<?php if($main_menu):?>
 							<?php foreach($main_menu as $key):?>
@@ -23,7 +24,7 @@
 							<?php endif;?>
 						</ul>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-2 hidden-xs hidden-sm">
 					</div>
 				</div>
 </div>

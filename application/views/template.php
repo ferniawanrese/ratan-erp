@@ -21,23 +21,13 @@
 			<div class="row-fluid ">
 				<div class="col-sm-12 col-md-12">
 					<div class="primary-head">
-						<h3 class="page-header"><?php echo $data['module_name'];?></h3>
-						
-						<!--<div class="progress progress-striped active">
-								
-								<div style="width: 100%;display:none " class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" >							
-								</div>
-								
-							 <span >
-						</div>	-->
-							
+						<h3 class="page-header "><font class = "hidden-xs hidden-sm"><?php echo $data['module_name'];?></font></h3> 
 						<ul class="top-right-toolbar">
 							<li><a data-toggle="dropdown" class="dropdown-toggle blue-violate" href="#" title="Users"><i class="icon-user"></i></a>
 							</li>
 							<li><a href="#" class="green" title="Upload"><i class=" icon-upload-alt"></i></a></li>
 							<li><a href="#" class="bondi-blue" title="Settings"><i class="icon-cogs"></i></a></li>
-						</ul>
-						
+						</ul> 
 					</div>
 			
 					<?php $this->load->view($content, $data);?>

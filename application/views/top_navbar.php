@@ -4,7 +4,7 @@
 		<div class="container">
 				<div class="navbar-header">
 					&nbsp <img src="<?php echo base_url('images/logo-merp.gif');?>" width="103" height="50" alt="Media ERP"> &nbsp &nbsp &nbsp  
-				<span class="home-link"><a href="<?php echo base_url('backend');?>" class="icon-home"></a></span>
+					<span class="home-link"><a href="<?php echo base_url('backend');?>" class="icon-home"></a></span>
 				</div>
 				
 				<?php //$this->core->print_rr($this->session->all_userdata());?>
