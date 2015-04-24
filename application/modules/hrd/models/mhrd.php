@@ -3534,6 +3534,25 @@ class Mhrd extends CI_Model {
 	
 	}
 	
+	function ontime_chart_json(){
+	
+		$this->db->select('timetracking.status_task, count(timetracking.timetracking_ID) as subtotal');
+		
+		$this->db->group_by('timetracking.status_task');
+	
+		$query = $this->db->get('timetracking');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
 }
 	
 ?>

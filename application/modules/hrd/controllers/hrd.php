@@ -2473,6 +2473,56 @@ class hrd extends CI_Controller {
 		 echo json_encode($json);
 	
 	}
+	
+	function timesheet_chart(){
+	
+		$output['data']['module_name'] = "Timesheet Chart";
+		
+		$output['data']['menu_name'] = "HRD";
+		 
+		$output['data']['menu_active'] = "Report";
+		 
+		$output['content'] = "hrd/chart/timesheet_chart";
+		 
+		$this->load->view('template', $output);
+	
+	}
+	
+	function ontime_chart(){
+	
+		$jsonx['rows']    = $this->Mhrd->ontime_chart_json($this->input->post()); 
+		 
+		$json['cols'][]  =  array(
+			"id" => "", 
+			"label" => "Status Task", 
+			"pattern" => "", 
+			"type" => "string", 
+		);
+		$json['cols'][]  =   array(
+			"id" => "", 
+			"label" => "Ammount", 
+			"pattern" => "", 
+			"type" => "number", 
+		);
+		  
+		 $grand_total = 0;
+		foreach($jsonx['rows'] as $key){ 
+			$grand_total = $grand_total + $key['subtotal']; 
+		}
+		
+		foreach($jsonx['rows'] as $key){ 
+		
+			$ammountnya = $key['subtotal']/$grand_total * 100;
+			
+			$json['rows'][]['c'] = array(
+			array('v' => $key['status_task']),
+			array('v' => $ammountnya)
+			);
+		
+		}
+		 echo json_encode($json);
+	
+	}
 }
 
 /* End of file welcome.php */
