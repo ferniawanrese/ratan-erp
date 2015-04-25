@@ -85,7 +85,7 @@
    function drawChart() {
 		NProgress.inc(); 
 		var jsonData  = $.ajax({
-		url: "<?php echo base_url('hrd/expense_chart_json/');?>", 
+		url: "<?php echo base_url('hrd/ontime_activity_chart/');?>", 
 		data: $("#form_filter").serialize(),
 		dataType:"json",
 		type: "POST",
@@ -95,10 +95,10 @@
 		var data = new google.visualization.DataTable(jsonData);
 		 
        var options = {
-           title: 'expense ammount',
+           title: 'Activity status',
 		   slices: [{color: '#b51c44'},{color: '#ce4b27'},{color: '#009600'},{color: '#e88a05'},{color: '#3498db'}]
        };
-       var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+       var chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
        chart.draw(data, options);
    } 
 </script> 

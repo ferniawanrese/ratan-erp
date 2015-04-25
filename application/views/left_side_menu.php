@@ -175,8 +175,7 @@
 								<ul class="accordion-nav"> 
 									<li><a href="<?php echo base_url('hrd/expense_chart');?>">  Expense Analysis</a></li>   
 									<!--<li><a href="login.html">  Appraisal Analysis</a></li>-->
-									<li  ><a href="<?php echo base_url('hrd/timesheet_chart');?>"> Timesheet Analysis </a></li> 
-									<li  ><a href="<?php echo base_url('hrd/employee_timesheet_chart');?>"> Employee Timesheet  </a></li> 	
+									<li  ><a href="<?php echo base_url('hrd/timesheet_chart');?>"> Timesheet Analysis </a></li>  
 									<li><a href="<?php echo base_url('hrd/leaves_chart');?>"> Attendance Analysis</a> </li>
 									<li><a href="<?php echo base_url('hrd/leaves_chart');?>"> Leaves Analysis</a> </li>
 								</ul>

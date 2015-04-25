@@ -12,8 +12,7 @@
   margin-top: -17px;
   left: 100%;
   z-index: 3;
-}
- 
+} 
 </style> 
 
 
@@ -89,10 +88,11 @@
 					<div class="form-group">
 						<label  class="col-sm-3 control-label">Currency :</label>
 						<div class="control col-md-4">
-							<span class = "input-group  "> 
+							<span class = "input-group "> 
 								<select class = "form-control" name = "currency_ID" id = "currency_ID">
 									<?php foreach($currency as $cur):?>
-									<option value = "<?php echo $cur['currency_ID'];?>"><?php echo $cur['currency_code'];?></option> 
+									<?php if($cur['currency_ID']==$expends_data[0]['currency_ID']){$selected = "selected";}else{$selected = "";}?>
+									<option value = "<?php echo $cur['currency_ID'];?>" <?php echo $selected;?>><?php echo $cur['currency_code'];?></option> 
 									<?php endforeach;?>
 								</select>
 								<span class="input-group-addon ">

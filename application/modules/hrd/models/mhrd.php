@@ -3448,7 +3448,7 @@ class Mhrd extends CI_Model {
 	
 	function expense_chart_json($data){
 	
-		$this->db->select('expense.expense_ID,expense.date ,sum(expense.total_amount) as total_amount');
+		$this->db->select('expense.expense_ID,expense.date ,sum(expense.total_amount) as total_amount, currency.currency_ID, currency.currency_code, currency.exchange_rate ');
 		 
 		if($data['start_date']!="" && $data['end_date']!=""){
 		
@@ -3456,6 +3456,10 @@ class Mhrd extends CI_Model {
 		
 			$this->db->where('date <=',date("Y-m-d", strtotime($data['end_date'])));
 		}
+		
+		$this->db->join('currency','expense.currency_ID = currency.currency_ID');
+		
+		$this->db->where('expense.deleted',0);
 		
 		$this->db->group_by('date');
 	
@@ -3489,6 +3493,8 @@ class Mhrd extends CI_Model {
 		$this->db->join('department', 'department.department_ID = project.department_ID');
 		
 		$this->db->group_by('department.department_ID');
+		
+		$this->db->where('expense.deleted',0);
 	
 		$query = $this->db->get('expense');
 	 
@@ -3519,6 +3525,8 @@ class Mhrd extends CI_Model {
 	
 		$this->db->join('department', 'department.department_ID = project.department_ID');
 		
+		$this->db->where('expense.deleted',0);
+		
 		$this->db->group_by('project.project_ID');
 	
 		$query = $this->db->get('expense');
@@ -3534,12 +3542,47 @@ class Mhrd extends CI_Model {
 	
 	}
 	
-	function ontime_chart_json(){
+	function ontime_chart_json($data){
 	
 		$this->db->select('timetracking.status_task, count(timetracking.timetracking_ID) as subtotal');
 		
+		if($data['start_date']!="" && $data['end_date']!=""){ 
+			$this->db->where('register_date >=', date("Y-m-d", strtotime($data['start_date'])));
+		
+			$this->db->where('register_date <=',date("Y-m-d", strtotime($data['end_date'])));
+		}
+		
+		$this->db->where('deleted',0);
+		
 		$this->db->group_by('timetracking.status_task');
 	
+		$query = $this->db->get('timetracking');
+	 
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}	
+	
+	}
+	
+	function ontime_chartdue_json($data){
+	 
+		$this->db->select('count(timetracking.timetracking_ID) as overdue');
+		
+		if($data['start_date']!="" && $data['end_date']!=""){ 
+			$this->db->where('register_date >=', date("Y-m-d", strtotime($data['start_date'])));
+		
+			$this->db->where('register_date <=',date("Y-m-d", strtotime($data['end_date'])));
+		}
+		
+		$this->db->where('deleted',0);
+		
+		$this->db->where('timetracking.deadline <', date('Y-m-d'));
+		 
 		$query = $this->db->get('timetracking');
 	 
 			if ($query->num_rows())

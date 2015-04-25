@@ -16,6 +16,16 @@
 						</div>
 					</div>
 					<div class="form-group col-sm-12 col-md-3">
+						<label for="validate-text"></label>
+						<div class="input-group col-sm-12 col-md-12"> 
+							<select class = "form-control" name = "currency_ID" id = "currency_ID">
+								<?php foreach($currency as $cur):?> 
+								<option value = "<?php echo $cur['currency_ID'];?>" ><?php echo $cur['currency_code'];?></option> 
+								<?php endforeach;?>
+							</select>						
+						</div>
+					</div>
+					<div class="form-group col-sm-12 col-md-3">
 						<label for="validate-email"></label>
 						<div class="input-group col-sm-12 col-md-12" >
 							<span class = "btn-group">

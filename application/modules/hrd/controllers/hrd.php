@@ -2367,8 +2367,10 @@ class hrd extends CI_Controller {
 		 
 		$output['data']['menu_active'] = "Report";
 		 
+		$output['currency'] = $this->Mhrd->currency_detail($this->session->userdata('default_currencyID'));	
+		  
 		$output['content'] = "hrd/chart/expense_chart";
-		 
+		
 		$this->load->view('template', $output);
 	
 	}
@@ -2376,7 +2378,7 @@ class hrd extends CI_Controller {
 	function expense_chart_json(){
 	 
 		$jsonx['rows']    = $this->Mhrd->expense_chart_json($this->input->post()); 
-	
+		 
 		$json['cols'][]  =  array(
 			"id" => "", 
 			"label" => "Date", 
@@ -2389,12 +2391,11 @@ class hrd extends CI_Controller {
 			"pattern" => "", 
 			"type" => "number", 
 		);
-		  
-		foreach($jsonx['rows'] as $key){
-		
+		 
+		foreach($jsonx['rows'] as $key){ 
 			$json['rows'][]['c'] = array(
-			array('v' => $key['date']),
-			array('v' => $key['total_amount'])
+			array('v' => date("d M Y", strtotime($key['date']))),
+			array('v' => $key['total_amount']*$key['exchange_rate'])
 			);
 		}
 		 
@@ -2510,17 +2511,61 @@ class hrd extends CI_Controller {
 			$grand_total = $grand_total + $key['subtotal']; 
 		}
 		
-		foreach($jsonx['rows'] as $key){ 
-		
-			$ammountnya = $key['subtotal']/$grand_total * 100;
+		if($jsonx['rows']){
+			foreach($jsonx['rows'] as $key){ 
 			
-			$json['rows'][]['c'] = array(
-			array('v' => $key['status_task']),
-			array('v' => $ammountnya)
-			);
-		
+				$ammountnya = $key['subtotal']/$grand_total * 100;
+				
+				$json['rows'][]['c'] = array(
+				array('v' => $key['status_task']),
+				array('v' => $ammountnya)
+				);
+			
+			}
 		}
 		 echo json_encode($json);
+	
+	}
+	
+	function ontime_activity_chart(){
+	
+		$overdue = 0;   
+	
+		$jsonx['rows']    = $this->Mhrd->ontime_chart_json($this->input->post()); 
+		
+		$jsony['rows']    = $this->Mhrd->ontime_chartdue_json($this->input->post()); 
+		 
+		$json['cols'][]  =  array(
+			"id" => "", 
+			"label" => "Status Task", 
+			"pattern" => "", 
+			"type" => "string", 
+		);
+		$json['cols'][]  =   array(
+			"id" => "", 
+			"label" => "Registered", 
+			"pattern" => "", 
+			"type" => "number", 
+		);
+		
+		if($jsonx['rows']){
+			foreach($jsonx['rows'] as $key){ 
+			 
+				$json['rows'][]['c'] = array(
+				array('v' => $key['status_task']),
+				array('v' => $key['subtotal'])
+				);
+				 
+			}
+		}
+			 $overdue = $jsony['rows'][0]['overdue'];   
+		 
+			$json['rows'][]['c'] = array(
+			array('v' => 'over due'),
+			array('v' => $overdue)
+			);
+		
+		echo json_encode($json);
 	
 	}
 }
