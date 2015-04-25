@@ -3457,6 +3457,14 @@ class Mhrd extends CI_Model {
 			$this->db->where('date <=',date("Y-m-d", strtotime($data['end_date'])));
 		}
 		
+		$this->db->join('task', 'expense.task_ID = task.task_ID');
+
+		$this->db->join('project', 'task.project_ID = project.project_ID');
+
+		$this->db->join('department', 'department.department_ID = project.department_ID');
+
+		$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
+		
 		$this->db->join('currency','expense.currency_ID = currency.currency_ID');
 		
 		$this->db->where('expense.deleted',0);
@@ -3485,12 +3493,14 @@ class Mhrd extends CI_Model {
 		
 			$this->db->where('date <=',date("Y-m-d", strtotime($data['end_date'])));
 		}
-		
+		 		
 		$this->db->join('task', 'expense.task_ID = task.task_ID');
-	
+
 		$this->db->join('project', 'task.project_ID = project.project_ID');
-	
+
 		$this->db->join('department', 'department.department_ID = project.department_ID');
+
+		$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
 		
 		$this->db->group_by('department.department_ID');
 		
@@ -3520,10 +3530,12 @@ class Mhrd extends CI_Model {
 		}
 		
 		$this->db->join('task', 'expense.task_ID = task.task_ID');
-	
+
 		$this->db->join('project', 'task.project_ID = project.project_ID');
-	
+
 		$this->db->join('department', 'department.department_ID = project.department_ID');
+
+		$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
 		
 		$this->db->where('expense.deleted',0);
 		
@@ -3552,7 +3564,15 @@ class Mhrd extends CI_Model {
 			$this->db->where('register_date <=',date("Y-m-d", strtotime($data['end_date'])));
 		}
 		
-		$this->db->where('deleted',0);
+		$this->db->join('task', 'timetracking.task_ID = task.task_ID');
+
+		$this->db->join('project', 'task.project_ID = project.project_ID');
+
+		$this->db->join('department', 'department.department_ID = project.department_ID');
+
+		$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
+		
+		$this->db->where('timetracking.deleted',0);
 		
 		$this->db->group_by('timetracking.status_task');
 	
@@ -3579,7 +3599,15 @@ class Mhrd extends CI_Model {
 			$this->db->where('register_date <=',date("Y-m-d", strtotime($data['end_date'])));
 		}
 		
-		$this->db->where('deleted',0);
+		$this->db->join('task', 'timetracking.task_ID = task.task_ID');
+
+		$this->db->join('project', 'task.project_ID = project.project_ID');
+
+		$this->db->join('department', 'department.department_ID = project.department_ID');
+
+		$this->db->where('department.company_ID',  $this->session->userdata('current_companyID'));
+		
+		$this->db->where('timetracking.deleted',0);
 		
 		$this->db->where('timetracking.deadline <', date('Y-m-d'));
 		 

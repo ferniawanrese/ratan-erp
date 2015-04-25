@@ -2392,13 +2392,14 @@ class hrd extends CI_Controller {
 			"type" => "number", 
 		);
 		 
-		foreach($jsonx['rows'] as $key){ 
-			$json['rows'][]['c'] = array(
-			array('v' => date("d M Y", strtotime($key['date']))),
-			array('v' => $key['total_amount']*$key['exchange_rate'])
-			);
+		if($jsonx['rows']){
+			foreach($jsonx['rows'] as $key){ 
+				$json['rows'][]['c'] = array(
+				array('v' => date("d M Y", strtotime($key['date']))),
+				array('v' => $key['total_amount']*$key['exchange_rate'])
+				);
+			}
 		}
-		 
 		 echo json_encode($json);
 	
 	}
@@ -2421,19 +2422,23 @@ class hrd extends CI_Controller {
 		);
 		  
 		 $grand_total = 0;
-		foreach($jsonx['rows'] as $key){ 
-			$grand_total = $grand_total + $key['subtotal']; 
+		if($jsonx['rows']){
+			foreach($jsonx['rows'] as $key){ 
+				$grand_total = $grand_total + $key['subtotal']; 
+			}
 		}
 		
-		foreach($jsonx['rows'] as $key){ 
-		
-			$ammountnya = $key['subtotal']/$grand_total * 100;
+		if($jsonx['rows']){
+			foreach($jsonx['rows'] as $key){ 
 			
-			$json['rows'][]['c'] = array(
-			array('v' => $key['department_name']),
-			array('v' => $ammountnya)
-			);
-		
+				$ammountnya = $key['subtotal']/$grand_total * 100;
+				
+				$json['rows'][]['c'] = array(
+				array('v' => $key['department_name']),
+				array('v' => $ammountnya)
+				);
+			
+			}
 		}
 		 echo json_encode($json);
 	
@@ -2457,19 +2462,23 @@ class hrd extends CI_Controller {
 		);
 		  
 		 $grand_total = 0;
-		foreach($jsonx['rows'] as $key){ 
-			$grand_total = $grand_total + $key['subtotal']; 
+		 
+		if($jsonx['rows']){
+			foreach($jsonx['rows'] as $key){ 
+				$grand_total = $grand_total + $key['subtotal']; 
+			}
 		}
-		
-		foreach($jsonx['rows'] as $key){ 
-		
-			$ammountnya = $key['subtotal']/$grand_total * 100;
+		if($jsonx['rows']){
+			foreach($jsonx['rows'] as $key){ 
 			
-			$json['rows'][]['c'] = array(
-			array('v' => $key['project_name']),
-			array('v' => $ammountnya)
-			);
-		
+				$ammountnya = $key['subtotal']/$grand_total * 100;
+				
+				$json['rows'][]['c'] = array(
+				array('v' => $key['project_name']),
+				array('v' => $ammountnya)
+				);
+			
+			}
 		}
 		 echo json_encode($json);
 	
@@ -2507,8 +2516,10 @@ class hrd extends CI_Controller {
 		);
 		  
 		 $grand_total = 0;
-		foreach($jsonx['rows'] as $key){ 
-			$grand_total = $grand_total + $key['subtotal']; 
+		if($jsonx['rows']){
+			foreach($jsonx['rows'] as $key){ 
+				$grand_total = $grand_total + $key['subtotal']; 
+			}
 		}
 		
 		if($jsonx['rows']){
