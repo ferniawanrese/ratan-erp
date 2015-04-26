@@ -44,23 +44,15 @@ class asset extends CI_Controller {
 	public function index()
 	{
 	 
-		$output['data']['module_name'] = "Human Resources";
+		$output['data']['module_name'] = "Asset";
 		
-		$output['data']['menu_name'] = "HRD";
+		$output['data']['menu_name'] = "Asset";
 		
 		$output['data']['menu_active'] = "Main";
 		
 		$output['data']['submenu_active'] = "hrd";
-		
-		$output['data']['parent'] = $this->Masset->department_parent();
-		if($output['data']['parent']){
-			foreach($output['data']['parent'] as $pr){
-				 $output['depparent'][$pr['department_ID']] = $pr['department_name'];
-			}
-		}
-		$output['data']['department_data'] = $this->Masset->department_data();
-		
-		$output['content'] = "hrd/hrd";
+		  
+		$output['content'] = "asset/asset";
 		
 		$output['filterplus'] = $this->core->filterplus('employee');
 		
