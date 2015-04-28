@@ -41,7 +41,7 @@
 							
 							<!-- header ASSET -->
 							<?php if($menu_name== "Asset"):?> 
-								<li ><a href="#forms" class="icon-th-large" title="Main Module"></a></li>
+								<li ><a href="#Main" class="icon-th-large" title="Main Module"></a></li>
 								<li ><a href="#Configuration" class="icon-cogs" title="Configuration"></a></li>
 								<li ><a href="#Report" class="icon-bar-chart" title="Report"></a></li>
 							<?php endif;?>
@@ -188,33 +188,30 @@
 							<div class="tab-pane <?php  if($menu_active == "Main"){echo "active";};?>  " id="Main">
 								<h4 class="side-head"> Main Module  </h4> 
 								<ul class="accordion-nav">
-									<li><a href="<?php echo base_url('hrd');?>" ><i class="icon-file-alt"></i>  Employee Data</a></li>     
-									<li ><a href="#"><i class="icon-caret-right"></i> Time Tracking</a>
-										<ul >
-											<li  ><a href="<?php echo base_url('hrd/register_time');?>"  ><i class=" icon-file-alt"></i> Register Time</a></li>
-											<li  ><a href="<?php echo base_url('hrd/timesheet');?>"><i class=" icon-file-alt"></i> My Timesheets</a></li> 
-										</ul>
-									</li> 
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i>  Asset Data</a></li> 
 								</ul>
 							</div>
 							<div class="tab-pane  <?php  if($menu_active == "Configuration"){echo "active";};?>" id="Configuration">
 								<h4 class="side-head">  Configuration</h4> 
 								<ul class="accordion-nav">
-									 <li><a href="<?php echo base_url('hrd/autobadge');?>" ><i class="icon-file-alt"></i>  Auto Badge</a></li>  
-									 <li  ><a href="#" ><i class="icon-caret-right"></i> Organization Resource</a>
-										<ul > 
-											<li><a href="<?php echo base_url('hrd/department');?>"  >  Department & Division</a></li>
-											<li><a href="<?php echo base_url('hrd/job_position');?>">  Job Positions</a></li>
-											<!--<li><a href="<?php echo base_url('hrd/employee_cat');?>">  Employee Categories</a></li>-->
-										 </ul>   
-									 </li>  
+										<li><a href="<?php echo base_url('hrd/autobadge');?>" ><i class="icon-file-alt"></i>  Asset Group</a></li>  
+										<li ><a href="#"><i class="icon-caret-right"></i> Goods</a>
+											<ul> 
+												<li  ><a href="<?php echo base_url('hrd/product');?>"> Product </a></li> 							
+											 </ul>  
+											<ul> 
+												<li  ><a href="<?php echo base_url('hrd/uom');?>"> UoM </a></li> 							
+											 </ul>
+											 <ul> 
+												<li  ><a href="<?php echo base_url('hrd/currency');?>"> Currencies </a></li> 							
+											 </ul>
+										</li>
 								</ul>
 							</div>
 							<div class="tab-pane  <?php  if($menu_active == "Report"){echo "active";};?>" id="Report">
 								<h4 class="side-head"> <?php //echo $module_name;?> Report</h4> 
 								<ul class="accordion-nav"> 
-									<li><a href="<?php echo base_url('hrd/expense_chart');?>">  Expense Analysis</a></li>    
-									<li  ><a href="<?php echo base_url('hrd/timesheet_chart');?>"> Timesheet Analysis </a></li>   
+									<li><a href="<?php echo base_url('hrd/expense_chart');?>">  Asset Analysis</a></li>     
 								</ul>
 							</div>
 				<?php endif;?>	
