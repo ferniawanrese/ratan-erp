@@ -194,7 +194,16 @@
 							<div class="tab-pane  <?php  if($menu_active == "Configuration"){echo "active";};?>" id="Configuration">
 								<h4 class="side-head">  Configuration</h4> 
 								<ul class="accordion-nav">
-										<li><a href="<?php echo base_url('hrd/autobadge');?>" ><i class="icon-file-alt"></i>  Asset Group</a></li>  
+								
+										<li ><a href="#"><i class="icon-caret-right"></i> Asset Config</a>
+											<ul> 
+											<li><a href="<?php echo base_url('hrd/autobadge');?>" ><i class="icon-file-alt"></i>  Asset Group</a></li> 
+											<li><a href="<?php echo base_url('hrd/autobadge');?>" ><i class="icon-file-alt"></i> Asset State</a></li>  	
+											</ul>
+										</li>
+										
+										<li><a href="<?php echo base_url('hrd/autobadge');?>" ><i class="icon-file-alt"></i> Vendor</a></li>  			
+																				
 										<li ><a href="#"><i class="icon-caret-right"></i> Goods</a>
 											<ul> 
 												<li  ><a href="<?php echo base_url('hrd/product');?>"> Product </a></li> 							
