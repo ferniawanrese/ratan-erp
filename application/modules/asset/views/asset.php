@@ -20,7 +20,7 @@
 										<div class="well col-sm-12 col-md-12">
 										
 											<div  id = "btn-create" class="form-group">
-												<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_employee()"> Create</button> 
+												<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_asset()"> Create</button> 
 												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "open_filter()" id = "Show"> Show Filter</button>
 												<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "close_filter()" id = "Hide" style = "display: none;"> Hide Filter</button>
 											</div>
@@ -40,21 +40,20 @@
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-text"></label>
 													<div class="input-group col-sm-12 col-md-12">
-														<input type="text" class="form-control" id="employee_name" name="filter[employee_name]" placeholder="Note" >	 
+														<input type="text" class="form-control" id="note" name="note" placeholder="Note" >	 
 													</div>
 												</div>
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-number"></label>
 													<div class="input-group col-sm-12 col-md-12" data-validate="number">
-														<input type="text" class="form-control employee_managerName"  id="employee_manager" placeholder="Product" > 
-														<input type="hidden" class="form-control  " name="manager_ID" id="employee_managerIDx" > 
+														<input type="text" class="form-control product_name"  id="product_name" name= "product_name" placeholder="Product" >  
 													</div>
 												</div>
 											 
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-email"></label>
 													<div class="input-group col-sm-12 col-md-12" >
-														<select class="form-control" name="semployee_positionID" id="semployee_positionID" >
+														<select class="form-control"  >
 															<option  value = "-1">[Asset State]</option> 
 														</select> 
 													</div>
@@ -125,6 +124,24 @@ function display_data(){
 
 }
 
+$("form#form_filter").submit(function(e){
+	NProgress.inc();
+	e.preventDefault();
+	
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('asset/asset_data');?>",
+				data: $("#form_filter").serialize(),
+				success: function(data)
+				{
+					$( ".list" ).html(data);
+					NProgress.done(true);
+				}
+			});
+			
+			return false;
+	});
+
 function close_filter(){											
 $("#search").hide();
 $("#Show").show();
@@ -134,5 +151,34 @@ function open_filter(){
 $("#search").fadeIn();
 $("#Hide").show();
 $("#Show").hide();
+}
+
+
+function clearfilter(){
+
+$('#limit').val('10');
+$('#note').val('');
+$('#product_name').val('');
+$('#limit').val('10'); 
+display_data();
+}
+
+
+function add_asset(){
+	
+	NProgress.inc();
+	$('#search').hide();
+	$('#btn-list').show();
+	$('#btn-create').hide();
+	$.ajax({
+				
+				url: "<?php echo base_url('asset/add_asset/');?>",
+				success: function(data){     
+
+					$( ".list" ).html(data); 		
+					NProgress.done(true);
+				}  
+			});
+
 }
 </script>

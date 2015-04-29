@@ -27,6 +27,7 @@ class asset extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('url');  
 		$this->load->model('Masset');  
+		$this->load->model('hrd/Mhrd');  
 		$this->load->library('encrypt');
 		$this->load->library('generate_code');
 		$this->load->library('core');
@@ -66,13 +67,33 @@ class asset extends CI_Controller {
 		
 		$data['page'] = $page;
 		  
-		//$data['parent'] = $this->Masset->department_parent();
+		$data['asset_data'] = $this->Masset->asset_data($this->input->post(),$data['page'], $data['limit']);
 		  
 		//$data['department_data'] = $this->Masset->department_data($this->input->post(),$data['page'],$data['limit']);		
 		
 		//$data['countdata'] = $this->Masset->department_data_count($this->input->post());	
 
 		$this->load->view('asset_data', $data);
+	
+	}
+	
+	function add_asset(){
+	 
+		//$data['manager_name']  = $this->Mhrd->get_employee_detail($data['data_detail'][0]['manager_ID']);
+		 
+		$data['country'] = $this->Mhrd->get_country();
+		
+		$data['parent'] = $this->Mhrd->department_parent();
+		
+		if($data['parent']){
+			foreach($data['parent'] as $pr){
+				 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+			}
+		}
+		 
+		$data['department_data'] = $this->Mhrd->department_data();
+				
+		$this->load->view('asset_add', $data);
 	
 	}
 	 

@@ -27,7 +27,25 @@ class Masset extends CI_Model {
 			}		
 	}
 	
-	function asset_data(){
+	function asset_data($data,$page,$limit){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->where('deleted', '0');
+		
+		$this->db->like('note', $data['note']);
+		 
+		$query = $this->db->get('asset',$limit,$a);
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
 	
 	}
 	
