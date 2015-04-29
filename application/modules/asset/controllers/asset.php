@@ -59,6 +59,22 @@ class asset extends CI_Controller {
 		$this->load->view('template', $output);
 		
 	}
+	
+	function asset_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		  
+		//$data['parent'] = $this->Masset->department_parent();
+		  
+		//$data['department_data'] = $this->Masset->department_data($this->input->post(),$data['page'],$data['limit']);		
+		
+		//$data['countdata'] = $this->Masset->department_data_count($this->input->post());	
+
+		$this->load->view('asset_data', $data);
+	
+	}
 	 
 	
 }

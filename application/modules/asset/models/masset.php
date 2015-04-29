@@ -5,9 +5,7 @@ class Masset extends CI_Model {
     {
         parent::__construct();
     }
-	 
-	 
-	
+	  
 	function employee_cat($data,$page,$limit){
 	
 		$a = ($page-1) * $limit;
@@ -27,6 +25,10 @@ class Masset extends CI_Model {
 			{
 				return FALSE;
 			}		
+	}
+	
+	function asset_data(){
+	
 	}
 	
 	 
