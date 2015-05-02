@@ -1,22 +1,69 @@
-	<form  id = "interview_add" class="form-horizontal form-validate" enctype="multipart/form-data" action ="<?php echo base_url('hrd/department_add_action/');?>" method="post">
-							  
+	<form  id = "form_asset" class="form-horizontal form-validate" enctype="multipart/form-data" method="post">
+			<input name="asset_ID"  id = "asset_ID"   name = "asset_ID" type="hidden" value = "<?php echo $asset[0]['asset_ID'];?>"   />				  
 			<div class="form-group">
 				<label  class="col-sm-3 control-label">Asset Name :</label>
 				<div class="control col-md-4">
-					<input name="asset_name"  id = "asset_name" class="form-control " type="text"/> 
+					<input name="asset_name"  id = "asset_name" class="form-control " type="text" value = "<?php echo $asset[0]['asset_name'];?>"/> 
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Barcode :</label>
+				<div class="control col-md-4"> 
+					<input   id = "product_code" class="form-control product_code {validate:{required:true}}" type="text"   placeholder = "Scan Barcode"  /> 
 				</div>
 			</div>
 			<div class="form-group">
 				<label  class="col-sm-3 control-label">Product :</label>
 				<div class="control col-md-4">
-					<input id = "product_namex"  class="form-control product_namex" type="text" value = ""/>
-					<input id = "product_name" name="product_name"  class = "product_name" type="hidden"  />
+					<span class = "input-group  "> 
+					<input  id = "product" class="form-control product {validate:{required:true}}" type="text"   value = ""  /> 
+					<input id = "product_ID" name="product_ID"  class = "product_ID" type="hidden" value = "" /> 
+					<span class="input-group-addon ">
+						<i class="icon-plus " style="cursor:pointer;" title="Add Product" onclick="add_product()"></i>
+					</span>
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Asset Code :</label>
+				<div class="control col-md-4">
+					<input name="asset_code"  id = "asset_code" class="form-control " type="text" value = "<?php echo $asset[0]['asset_code'];?>"/> 
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Asset Group :</label>
+				<div class="control col-md-4">
+					<span class = "input-group  "> 
+					<select class = "form-control" name = "asset_groupID" id = "asset_groupID">
+					<?php foreach($asset_group as $group):?> 
+						<option value = "<?php echo  $group['asset_groupID'];?>"><?php echo  $group['group_name'];?></option> 
+					<?php endforeach;?>	
+					</select>					
+					<span class="input-group-addon ">
+						<i class="icon-plus " style="cursor:pointer;" title="Add Product" onclick="add_product()"></i>
+					</span>
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Asset State :</label>
+				<div class="control col-md-4">
+					<span class = "input-group  "> 
+					<select class = "form-control" name = "asset_stateID" id = "asset_stateID">
+					<?php foreach($asset_state as $state):?> 
+						<option value = "<?php echo  $state['asset_stateID'];?>"><?php echo  $state['state_name'];?></option> 
+					<?php endforeach;?>	 
+					</select>
+					<span class="input-group-addon ">
+						<i class="icon-plus " style="cursor:pointer;" title="Add Product" onclick="add_product()"></i>
+					</span>
+					</span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label  class="col-sm-3 control-label">Department :</label>
 				<div class="control col-md-4">
-					<select class = "form-control" id = "sdepartment_ID" name = "sdepartment_ID">
+					<select class = "form-control" id = "department_ID" name = "department_ID">
 								<option value = "-1">-- Choose Department --</option>
 						<?php foreach($department_data as $dep):?>
 							<?php if($dep['department_parentID'] == '0'):?>
@@ -29,23 +76,22 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label  class="col-sm-3 control-label">Responsible Employee  :</label>
+				<label  class="col-sm-3 control-label">Employee :</label>
 				<div class="control col-md-4">
-					<input id = "employee_managerName_dep" name="employee_managerName_dep" class="form-control employee_managerName_dep" type="text" value = ""/>
-					<input id = "manager_ID" name="manager_ID"  class = "manager_ID" type="hidden"  />
+					<input    id = "employee" class="form-control employee {validate:{required:true}}" type="text"  value = "<?php echo $asset[0]['employee_ID'];?>"  /> 
+					<input name="employee_ID"  id = "employee_ID" class="form-control " type="hidden"  value = "<?php echo $asset[0]['employee_ID'];?>"   />
 				</div>
 			</div>
 			<div class="form-group">
 				<label  class="col-sm-3 control-label">Location  :</label>
 				<div class="control col-md-4">
-					<input id = "employee_managerName_dep" name="employee_managerName_dep" class="form-control employee_managerName_dep" type="text" value = ""/>
-					<input id = "manager_ID" name="manager_ID"  class = "manager_ID" type="hidden"  />
+					<input name="location"  id = "location" class="form-control " type="text" value = "<?php echo $asset[0]['location'];?>"/> 
 				</div>
 			</div>
 			<div class="form-group">
 				<label  class="col-sm-3 control-label">Note  :</label>
 				<div class="control col-md-4">
-					<textarea class = "form-control" id = "note">asd</textarea>
+					<textarea class = "form-control" id = "note" name = "note"><?php echo $asset[0]['note'];?></textarea>
 				</div>
 			</div>
 			  
@@ -57,3 +103,74 @@
 			</div>
 						
 </form>
+
+<script>
+$("#product_code").focusout(function() {
+	
+		var barcode = $("#product_code").val();
+		$.ajax({
+				 url: "<?php echo base_url('hrd/barcode_check/');?>"+"/"+barcode,
+				success: function(data){  
+
+					var jsonData = JSON.parse(data);  
+					$.each(jsonData.barcode_check, function(i, v) {
+
+							var datanya = jsonData.barcode_check[i]; 
+							$('#product').val(datanya.product_name);
+							$('#product_ID').val(datanya.product_ID);
+                    });
+				  	
+				}  
+		 
+		 }) 
+	 }) 
+	 
+	 
+$(function() {
+		$( ".product" ).autocomplete({ 
+		 
+			source: "<?php echo base_url('hrd/get_product_name/');?>" + "/" + $('.product').val(),
+				select: function (event, ui) {
+				var id = ui.item.product_ID; 
+				var barcode = ui.item.barcode; 
+				$(".product_ID").val(id); 
+				$(".product_code").val(barcode); 
+				}  
+				
+		}); 
+}); 
+
+$("form#form_asset").submit(function(e){
+	
+	if($('#validate_error').val()==1){
+		return false;
+	}
+	
+	e.preventDefault();
+	
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url('asset/asset_add_action/');?>",
+				data: $("#form_asset").serialize(),
+				success: function(data)
+				{
+					
+					 display_data();
+					
+				}
+			});
+			
+			return false;
+	});
+	
+	$(function() {
+		$( ".employee" ).autocomplete({ 
+		 
+			source: "<?php echo base_url('hrd/get_employee_name/');?>" + "/" + $('.employee').val(),
+				select: function (event, ui) {
+				var id = ui.item.employee_ID;
+				$("#employee_ID").val(id);
+				}  
+		}); 
+	}); 
+</script>

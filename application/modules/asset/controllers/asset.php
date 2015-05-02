@@ -68,21 +68,21 @@ class asset extends CI_Controller {
 		$data['page'] = $page;
 		  
 		$data['asset_data'] = $this->Masset->asset_data($this->input->post(),$data['page'], $data['limit']);
-		  
-		//$data['department_data'] = $this->Masset->department_data($this->input->post(),$data['page'],$data['limit']);		
-		
-		//$data['countdata'] = $this->Masset->department_data_count($this->input->post());	
+		   
+		$data['countdata'] = $this->Masset->asset_data_count($this->input->post());	
 
 		$this->load->view('asset_data', $data);
 	
 	}
 	
-	function add_asset(){
+	function add_asset($asset_ID=null){
 	 
-		//$data['manager_name']  = $this->Mhrd->get_employee_detail($data['data_detail'][0]['manager_ID']);
-		 
-		$data['country'] = $this->Mhrd->get_country();
+		$data['asset']  = $this->Masset->asset_detail($asset_ID);
 		
+		$data['asset_group'] = $this->Masset->get_asset_group();
+		
+		$data['asset_state'] = $this->Masset->get_asset_state();
+		  
 		$data['parent'] = $this->Mhrd->department_parent();
 		
 		if($data['parent']){
@@ -94,6 +94,18 @@ class asset extends CI_Controller {
 		$data['department_data'] = $this->Mhrd->department_data();
 				
 		$this->load->view('asset_add', $data);
+	
+	}
+	
+	function asset_add_action(){
+	  
+		$this->Masset->asset_add($this->input->post());
+		 
+	}
+	
+	function asset_delete($asset_ID){
+	
+		$this->Masset->asset_delete($asset_ID);
 	
 	}
 	

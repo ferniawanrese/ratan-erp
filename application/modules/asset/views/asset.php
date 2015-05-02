@@ -40,7 +40,7 @@
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-text"></label>
 													<div class="input-group col-sm-12 col-md-12">
-														<input type="text" class="form-control" id="note" name="note" placeholder="Note" >	 
+														<input type="text" class="form-control" id="search" name="search" placeholder="Search" >	 
 													</div>
 												</div>
 												<div class="form-group col-sm-12 col-md-3">
@@ -164,7 +164,7 @@ display_data();
 }
 
 
-function add_asset(){
+function add_asset(a){
 	
 	NProgress.inc();
 	$('#search').hide();
@@ -172,7 +172,7 @@ function add_asset(){
 	$('#btn-create').hide();
 	$.ajax({
 				
-				url: "<?php echo base_url('asset/add_asset/');?>",
+				url: "<?php echo base_url('asset/add_asset/');?>" +"/"+a,
 				success: function(data){     
 
 					$( ".list" ).html(data); 		
@@ -180,5 +180,23 @@ function add_asset(){
 				}  
 			});
 
+}
+
+
+function delete_post(a){
+	
+	bootbox.confirm("Are you sure delete this item?", function (result) {
+                  
+					if(result == true){						
+						$.ajax({
+									url: "<?php echo base_url('asset/asset_delete/')?>/" + a,									
+									success: function(data)
+									{											
+											display_data();
+									}
+						});
+					}
+					
+                });
 }
 </script>
