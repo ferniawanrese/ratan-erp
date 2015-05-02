@@ -41,9 +41,9 @@
 							
 							<!-- header ASSET -->
 							<?php if($menu_name== "Asset"):?> 
-								<li ><a href="#Main" class="icon-th-large" title="Main Module"></a></li>
-								<li ><a href="#Configuration" class="icon-cogs" title="Configuration"></a></li>
-								<li ><a href="#Report" class="icon-bar-chart" title="Report"></a></li>
+								<li  class = "<?php  if($menu_active == "Main"){echo "active";};?>"><a href="#Main" class="icon-th-large" title="Main Module"></a></li>
+								<li  class = "<?php  if($menu_active == "Configuration"){echo "active";};?>" ><a href="#Configuration" class="icon-cogs" title="Configuration"></a></li>
+								<li  class = "<?php  if($menu_active == "Report"){echo "active";};?>"><a href="#Report" class="icon-bar-chart" title="Report"></a></li>
 							<?php endif;?>
 							<!-- end header ASSET -->
 							 
@@ -197,12 +197,12 @@
 								
 										<li ><a href="#"><i class="icon-caret-right"></i> Asset Config</a>
 											<ul> 
-											<li><a href="<?php echo base_url('hrd/autobadge');?>" ><i class="icon-file-alt"></i>  Asset Group</a></li> 
-											<li><a href="<?php echo base_url('hrd/autobadge');?>" ><i class="icon-file-alt"></i> Asset State</a></li>  	
+											<li><a href="<?php echo base_url('asset/asset_group');?>" ><i class="icon-file-alt"></i>  Asset Group</a></li> 
+											<li><a href="<?php echo base_url('asset/asset_state');?>" ><i class="icon-file-alt"></i> Asset State</a></li>  	
 											</ul>
 										</li>
 										
-										<li><a href="<?php echo base_url('hrd/autobadge');?>" ><i class="icon-file-alt"></i> Vendor</a></li>  			
+										<li><a href="<?php echo base_url('asset/vendor');?>" ><i class="icon-file-alt"></i> Vendor</a></li>  			
 																				
 										<li ><a href="#"><i class="icon-caret-right"></i> Goods</a>
 											<ul> 
@@ -220,7 +220,7 @@
 							<div class="tab-pane  <?php  if($menu_active == "Report"){echo "active";};?>" id="Report">
 								<h4 class="side-head"> <?php //echo $module_name;?> Report</h4> 
 								<ul class="accordion-nav"> 
-									<li><a href="<?php echo base_url('hrd/expense_chart');?>">  Asset Analysis</a></li>     
+									<li><a href="<?php echo base_url('asset/asset_chart');?>">  Asset Analysis</a></li>     
 								</ul>
 							</div>
 				<?php endif;?>	

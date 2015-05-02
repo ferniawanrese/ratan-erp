@@ -96,6 +96,86 @@ class asset extends CI_Controller {
 		$this->load->view('asset_add', $data);
 	
 	}
+	
+	function asset_group(){
+	
+		$output['data']['module_name'] = "Asset";
+		
+		$output['data']['menu_name'] = "Asset";
+		
+		$output['data']['menu_active'] = "Configuration";
+		 
+		$output['content'] = "asset/asset_group";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	}
+	
+	function asset_group_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		  
+		$data['asset_data'] = $this->Masset->asset_group_data($this->input->post(),$data['page'], $data['limit']);
+		
+		$data['countdata'] = $this->Masset->asset_group_data_count($this->input->post());
+		 
+		$this->load->view('asset_group_data', $data);
+	
+	}
+	
+	function asset_group_add($asset_groupID=null){
+	  
+		$data['dat'] = $this->Masset->asset_group_detail($asset_groupID);
+	   
+		$this->load->view('asset_group_add', $data);
+	 
+	}
+	
+	function asset_group_add_action(){
+	  
+		$this->Masset->asset_group_add($this->input->post());
+		 
+	}
+	 
+	function asset_group_delete($asset_groupID){
+	
+		$this->Masset->asset_group_delete($asset_groupID);
+	
+	}
+	
+	function asset_state(){
+	
+		$output['data']['module_name'] = "Asset";
+		
+		$output['data']['menu_name'] = "Asset";
+		
+		$output['data']['menu_active'] = "Configuration";
+		 
+		$output['content'] = "asset/asset_state";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+	}
+	
+	function asset_state_data($page=1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		  
+		$data['asset_data'] = $this->Masset->asset_group_data($this->input->post(),$data['page'], $data['limit']);
+		
+		$data['countdata'] = $this->Masset->asset_group_data_count($this->input->post());
+		 
+		$this->load->view('asset_state_data', $data);
+	
+	}
+	
+	
 	 
 	
 }
