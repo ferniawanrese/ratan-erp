@@ -71,6 +71,28 @@ class Masset extends CI_Model {
 	
 	}
 	
+	function asset_state_data($data,$page,$limit){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->where('deleted', '0');
+		
+		$this->db->like('description', $data['search']);
+		 
+		$query = $this->db->get('asset_state',$limit,$a);
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	
+	}
+	
 	function asset_group_detail($asset_groupID){
 	 
 		$this->db->where('deleted', '0');
@@ -138,7 +160,62 @@ class Masset extends CI_Model {
 	
 	}
 	
+	 function asset_state_data_count($data){
+	
+		$this->db->select('count(*) as totdata'); 
+		
+		$this->db->where('deleted', '0');
+		
+		$this->db->like('description', $data['search']);
+		 
+		$query = $this->db->get('asset_state');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	
+	}
+	
+	function asset_state_detail($asset_stateID){
 	 
+		$this->db->where('deleted', '0');
+		
+		$this->db->where('asset_stateID', $asset_stateID);
+		 
+		$query = $this->db->get('asset_state');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	
+	}
+	
+	function asset_state_add($data){
+	
+		if($data['asset_stateID']!=""){ 
+			
+				$this->db->where('asset_stateID',$data['asset_stateID']); 
+				$this->db->update('asset_state',$data); 
+				
+			}else{
+				unset($data['asset_stateID']);
+				$id  = $this->generate_code->getUID(); 
+				$this->db->set('asset_stateID',$id);
+				$this->db->insert('asset_state',$data);
+				
+			}
+	
+	}
 }
 	
 ?>

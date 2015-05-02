@@ -155,9 +155,7 @@ class asset extends CI_Controller {
 		$output['data']['menu_active'] = "Configuration";
 		 
 		$output['content'] = "asset/asset_state";
-		
-		$output['filterplus'] = $this->core->filterplus('employee');
-		
+		 
 		$this->load->view('template', $output);
 	}
 	
@@ -167,15 +165,27 @@ class asset extends CI_Controller {
 		
 		$data['page'] = $page;
 		  
-		$data['asset_data'] = $this->Masset->asset_group_data($this->input->post(),$data['page'], $data['limit']);
+		$data['asset_data'] = $this->Masset->asset_state_data($this->input->post(),$data['page'], $data['limit']);
 		
-		$data['countdata'] = $this->Masset->asset_group_data_count($this->input->post());
+		$data['countdata'] = $this->Masset->asset_state_data_count($this->input->post());
 		 
 		$this->load->view('asset_state_data', $data);
 	
 	}
 	
+	function asset_state_add($asset_stateID=null){
+	  
+		$data['dat'] = $this->Masset->asset_state_detail($asset_stateID);
+	   
+		$this->load->view('asset_state_add', $data);
+	 
+	}
 	
+	function asset_state_add_action(){
+	  
+		$this->Masset->asset_state_add($this->input->post());
+		 
+	}
 	 
 	
 }
