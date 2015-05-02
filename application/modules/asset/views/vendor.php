@@ -90,7 +90,7 @@ function delete_post(a){
                   
 					if(result == true){						
 						$.ajax({
-									url: "<?php echo base_url('asset/asset_group_delete/')?>/" + a,									
+									url: "<?php echo base_url('asset/vendor_delete/')?>/" + a,									
 									success: function(data)
 									{											
 											display_data();

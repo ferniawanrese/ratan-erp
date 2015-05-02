@@ -186,8 +186,56 @@ class asset extends CI_Controller {
 		$this->Masset->asset_state_add($this->input->post());
 		 
 	}
-	 
 	
+	function vendor(){
+	
+		$output['data']['module_name'] = "Asset";
+		
+		$output['data']['menu_name'] = "Asset";
+		
+		$output['data']['menu_active'] = "Configuration";
+		 
+		$output['content'] = "asset/vendor";
+		 
+		$this->load->view('template', $output);
+	
+	}
+	 
+	function vendor_data($page = 1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		  
+		$data['vendor_data'] = $this->Masset->vendor_data($this->input->post(),$data['page'], $data['limit']);
+		
+		$data['countdata'] = $this->Masset->vendor_data_count($this->input->post());
+		 
+		$this->load->view('vendor_data', $data);
+	
+	}
+	
+	function vendor_add($vendor_ID=null){
+	  
+		$data['dat'] = $this->Masset->vendor_detail($vendor_ID);
+		
+		$data['currency'] = $this->Mhrd->currency();	
+	   
+		$this->load->view('vendor_add', $data);
+	 
+	}
+	
+	function vendor_add_action(){
+	  
+		$this->Masset->vendor_add($this->input->post());
+		 
+	}
+	
+	function vendor_delete($vendor_ID){
+	
+		$this->Masset->vendor_delete($vendor_ID);
+	
+	}
 }
 
 /* End of file welcome.php */
