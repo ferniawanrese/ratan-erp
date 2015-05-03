@@ -9,6 +9,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 				<th>  State </th>
 				<th>  Group </th>
 				<th>  Department </th> 
+				<th>  Responsibility </th> 
 				<th>  Location </th>
 				<th> Action </th> 
 		  </tr>
@@ -34,7 +35,17 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<?php echo $keys['group_name'];?>					  			
 					</td> 
 					<td>					
-					<?php echo $keys['department_ID'];?>					  			
+					<?php 
+					if($keys['department_parentID']=='0'){
+						echo $keys['department_name'];
+					}else{ 
+						echo $depparent[$keys['department_parentID']];
+					}					 
+					?> 		
+					<?php if($keys['department_parentID']!='0'){echo "/ ".$keys['department_name'];}?>	
+					</td> 
+					<td>					
+					<?php echo $keys['employee_name'];?>/<?php echo $keys['employee_badge'];?>		  			
 					</td> 
 					<td>					
 					<?php echo $keys['location'];?>					  			

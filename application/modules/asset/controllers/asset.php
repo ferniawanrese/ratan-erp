@@ -68,6 +68,12 @@ class asset extends CI_Controller {
 		$data['page'] = $page;
 		  
 		$data['asset_data'] = $this->Masset->asset_data($this->input->post(),$data['page'], $data['limit']);
+		 
+		$data['parent'] = $this->Mhrd->department_parent();
+		 
+		foreach($data['parent'] as $pr){
+			 $data['depparent'][$pr['department_ID']] = $pr['department_name'];
+		}
 		   
 		$data['countdata'] = $this->Masset->asset_data_count($this->input->post());	
 

@@ -32,7 +32,8 @@ class Masset extends CI_Model {
 		$a = ($page-1) * $limit;
 		$limitnya = ",".$a.",".$limit;
 		
-		$this->db->select('asset.*, product.product_name, asset_state.state_name, asset_group.group_name');
+		$this->db->select('asset.*, product.product_name, asset_state.state_name, asset_group.group_name, employee.employee_name, 
+		employee.employee_badge,department.department_parentID,department.department_name');
 		
 		$this->db->where('asset.deleted', '0');
 		
@@ -43,6 +44,10 @@ class Masset extends CI_Model {
 		$this->db->join('asset_state','asset.asset_stateID = asset_state.asset_stateID');
 		
 		$this->db->join('asset_group','asset.asset_groupID = asset_group.asset_groupID');
+		
+		$this->db->join('employee','asset.employee_ID = employee.employee_ID');
+		
+		$this->db->join('department','department.department_ID = asset.department_ID');
 		 
 		$query = $this->db->get('asset',$limit,$a);
 
@@ -80,10 +85,16 @@ class Masset extends CI_Model {
 	}
 	
 	function asset_detail($asset_ID){
+	
+		$this->db->select('asset.*, employee.employee_name,employee.employee_badge,product.product_name,product.product_code');
 	 
-		$this->db->where('deleted', '0');
+		$this->db->where('asset.deleted', '0');
 		
 		$this->db->where('asset_ID', $asset_ID);
+		
+		$this->db->join('employee', 'employee.employee_ID = asset.employee_ID');
+		
+		$this->db->join('product', 'product.product_ID = asset.product_ID');
 		 
 		$query = $this->db->get('asset');
 

@@ -9,17 +9,17 @@
 			<div class="form-group">
 				<label  class="col-sm-3 control-label">Barcode :</label>
 				<div class="control col-md-4"> 
-					<input   id = "product_code" class="form-control product_code {validate:{required:true}}" type="text"   placeholder = "Scan Barcode"  /> 
+					<input   id = "product_code" class="form-control product_code {validate:{required:true}}" type="text"   placeholder = "Scan Barcode"  value = "<?php echo $asset[0]['product_code'];?>"/> 
 				</div>
 			</div>
 			<div class="form-group">
 				<label  class="col-sm-3 control-label">Product :</label>
 				<div class="control col-md-4">
 					<span class = "input-group  "> 
-					<input  id = "product" class="form-control product {validate:{required:true}}" type="text"   value = ""  /> 
-					<input id = "product_ID" name="product_ID"  class = "product_ID" type="hidden" value = "" /> 
-					<span class="input-group-addon ">
-						<i class="icon-plus " style="cursor:pointer;" title="Add Product" onclick="add_product()"></i>
+					<input  id = "product" class="form-control product {validate:{required:true}}" type="text"   value = "<?php echo $asset[0]['product_name'];?>"  /> 
+					<input id = "product_ID" name="product_ID"  class = "product_ID" type="hidden" value = "<?php echo $asset[0]['product_ID'];?>" /> 
+					<span class="input-group-addon "> 
+						<i class="icon-plus " onclick="add_product()" data-target="#myModal" data-toggle="modal" title="Add Product" style="cursor:pointer;"></i>
 					</span>
 					</span>
 				</div>
@@ -36,11 +36,12 @@
 					<span class = "input-group  "> 
 					<select class = "form-control" name = "asset_groupID" id = "asset_groupID">
 					<?php foreach($asset_group as $group):?> 
-						<option value = "<?php echo  $group['asset_groupID'];?>"><?php echo  $group['group_name'];?></option> 
+						<?php if($asset[0]['asset_groupID'] == $group['asset_groupID']){$selected = "selected";}else{$selected = "";};?>
+						<option value = "<?php echo  $group['asset_groupID'];?>" <?php echo $selected;?>><?php echo  $group['group_name'];?></option> 
 					<?php endforeach;?>	
 					</select>					
-					<span class="input-group-addon ">
-						<i class="icon-plus " style="cursor:pointer;" title="Add Product" onclick="add_product()"></i>
+					<span class="input-group-addon "> 
+						<i class="icon-plus " onclick="add_group()" data-target="#myModal" data-toggle="modal" title="Add State" style="cursor:pointer;"></i>
 					</span>
 					</span>
 				</div>
@@ -51,11 +52,12 @@
 					<span class = "input-group  "> 
 					<select class = "form-control" name = "asset_stateID" id = "asset_stateID">
 					<?php foreach($asset_state as $state):?> 
-						<option value = "<?php echo  $state['asset_stateID'];?>"><?php echo  $state['state_name'];?></option> 
+						<?php if($asset[0]['asset_stateID'] == $state['asset_stateID']){$selected = "selected";}else{$selected = "";};?>
+						<option value = "<?php echo  $state['asset_stateID'];?>" <?php echo $selected;?>><?php echo  $state['state_name'];?></option> 
 					<?php endforeach;?>	 
 					</select>
-					<span class="input-group-addon ">
-						<i class="icon-plus " style="cursor:pointer;" title="Add Product" onclick="add_product()"></i>
+					<span class="input-group-addon "> 
+						<i class="icon-plus " onclick="add_state()" data-target="#myModal" data-toggle="modal" title="Add State" style="cursor:pointer;"></i>
 					</span>
 					</span>
 				</div>
@@ -63,22 +65,28 @@
 			<div class="form-group">
 				<label  class="col-sm-3 control-label">Department :</label>
 				<div class="control col-md-4">
+					<span class = "input-group  "> 
 					<select class = "form-control" id = "department_ID" name = "department_ID">
 								<option value = "-1">-- Choose Department --</option>
 						<?php foreach($department_data as $dep):?>
+							<?php if($dep['department_ID'] == $asset[0]['department_ID'] ){$selected= "selected";}else{$selected="";};?>
 							<?php if($dep['department_parentID'] == '0'):?>
-								<option value = "<?php echo  $dep['department_ID'];?>"><?php echo  $dep['department_name'];?></option>
+								<option value = "<?php echo  $dep['department_ID'];?>" <?php echo $selected;?>><?php echo  $dep['department_name'];?></option>
 							<?php else:?>
-								<option value="<?php echo  $dep['department_ID'];?>"><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
+								<option value="<?php echo  $dep['department_ID'];?>" <?php echo $selected;?>><?php echo $depparent[$dep['department_parentID']].'/'.$dep['department_name'];?></option>
 							<?php endif;?>										
 						<?php endforeach;?>	 
 					 </select>
+					<span class="input-group-addon "> 
+						<i class="icon-plus " onclick="add_department()" data-target="#myModal" data-toggle="modal" title="Add State" style="cursor:pointer;"></i>
+					</span>
+					</span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label  class="col-sm-3 control-label">Employee :</label>
 				<div class="control col-md-4">
-					<input    id = "employee" class="form-control employee {validate:{required:true}}" type="text"  value = "<?php echo $asset[0]['employee_ID'];?>"  /> 
+					<input    id = "employee" class="form-control employee {validate:{required:true}}" type="text"  value = "<?php if($asset[0]['employee_name']){echo $asset[0]['employee_name']."/".$asset[0]['employee_badge'];};?>"  /> 
 					<input name="employee_ID"  id = "employee_ID" class="form-control " type="hidden"  value = "<?php echo $asset[0]['employee_ID'];?>"   />
 				</div>
 			</div>
@@ -173,4 +181,48 @@ $("form#form_asset").submit(function(e){
 				}  
 		}); 
 	}); 
+	
+	function add_department(){
+	 $.ajax({
+			 url: "<?php echo base_url('hrd/department_add/');?>",
+			success: function(data){      
+			$( "#modal_body" ).html(data); 		
+			$( "#modal_label" ).html("Add Department"); 		 
+			}  
+	 
+	 })
+	 }
+	 
+	 function add_state(){
+	 $.ajax({
+			 url: "<?php echo base_url('asset/asset_state_add/');?>",
+			success: function(data){      
+			$( "#modal_body" ).html(data); 		
+			$( "#modal_label" ).html("Add Asset State"); 		 
+			}  
+	 
+	 })
+	 }
+	 
+	 function add_group(){
+	 $.ajax({
+			 url: "<?php echo base_url('asset/asset_group_add/');?>",
+			success: function(data){      
+			$( "#modal_body" ).html(data); 		
+			$( "#modal_label" ).html("Add Asset Group"); 		 
+			}  
+	 
+	 })
+	 }
+	 
+	 function add_product(){
+	 $.ajax({
+			 url: "<?php echo base_url('hrd/product_add');?>",
+			success: function(data){      
+			$( "#modal_body" ).html(data); 		
+			$( "#modal_label" ).html("Add Product"); 		 
+			}  
+	 
+	 })
+	 }
 </script>
