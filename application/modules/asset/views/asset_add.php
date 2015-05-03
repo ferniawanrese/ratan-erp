@@ -64,8 +64,7 @@
 			</div>
 			<div class="form-group">
 				<label  class="col-sm-3 control-label">Department :</label>
-				<div class="control col-md-4">
-					<span class = "input-group  "> 
+				<div class="control col-md-4"> 
 					<select class = "form-control" id = "department_ID" name = "department_ID">
 								<option value = "-1">-- Choose Department --</option>
 						<?php foreach($department_data as $dep):?>
@@ -77,10 +76,7 @@
 							<?php endif;?>										
 						<?php endforeach;?>	 
 					 </select>
-					<span class="input-group-addon "> 
-						<i class="icon-plus " onclick="add_department()" data-target="#myModal" data-toggle="modal" title="Add State" style="cursor:pointer;"></i>
-					</span>
-					</span>
+					 
 				</div>
 			</div>
 			<div class="form-group">
@@ -225,4 +221,56 @@ $("form#form_asset").submit(function(e){
 	 
 	 })
 	 }
+	 
+	 function what_next_product(){
+		//none
+	 }
+	 
+	 function what_next_asset_group(){
+		//none
+		$.ajax({
+						
+						url: "<?php echo base_url('asset/get_asset_group/');?>",
+						
+						
+						success: function (data) {
+						 
+						var jsonData = JSON.parse(data); 
+							optmin = "";
+							for (var i = 0; i < jsonData.dat.length; i++) {
+							
+										var datanya = jsonData.dat[i];
+										  
+										optmin += "<option value ='"+ datanya.asset_groupID +"'>"+ datanya.group_name +"</option>";
+										 
+										$( "#asset_groupID" ).html(optmin); 
+							}
+							
+						}
+					});
+	 }
+	 
+	 function what_next_asset_state(){
+		//none
+		$.ajax({
+						
+						url: "<?php echo base_url('asset/get_asset_state/');?>",
+						 
+						success: function (data) {
+						 
+						var jsonData = JSON.parse(data); 
+							optmin = "";
+							for (var i = 0; i < jsonData.dat.length; i++) {
+							
+										var datanya = jsonData.dat[i];
+										  
+										optmin += "<option value ='"+ datanya.asset_stateID +"'>"+ datanya.state_name +"</option>";
+										 
+										$( "#asset_stateID" ).html(optmin); 
+							}
+							
+						}
+					});
+	 }
+	 
 </script>

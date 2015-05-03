@@ -130,6 +130,14 @@ class asset extends CI_Controller {
 		$this->load->view('template', $output);
 	}
 	
+	function get_asset_group($data=null){
+	
+		$json['dat'] = $this->Masset->asset_group_data($data,$limit=null,$page=null);
+		
+		 echo json_encode($json);
+		 
+	}
+	
 	function asset_group_data($page=1){
 	
 		$data['limit'] = 10;
@@ -175,6 +183,14 @@ class asset extends CI_Controller {
 		$output['content'] = "asset/asset_state";
 		 
 		$this->load->view('template', $output);
+	}
+	
+	function get_asset_state($data=null){
+	
+		$json['dat'] = $this->Masset->asset_state_data($data,$limit=null,$page=null);
+		
+		 echo json_encode($json);
+		 
 	}
 	
 	function asset_state_data($page=1){

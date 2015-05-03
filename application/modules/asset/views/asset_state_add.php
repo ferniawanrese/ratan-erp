@@ -25,7 +25,7 @@
 
 <input type = "hidden" id = "validate_error" name = "validate_error" class = "validate_error" value = "0">
 <script>
- 
+/*
 	cek_validate();
 			function cek_validate(){
 				
@@ -42,7 +42,7 @@
                     validator.resetForm();
                 });
 			} 
-			
+	*/		
 	
 	$("form#assetgroup").submit(function(e){
 	
@@ -59,7 +59,8 @@
 				success: function(data)
 				{
 					
-					 display_data();
+					$('#myModal').modal('hide'); 
+					what_next_asset_state(); 	
 					
 				}
 			});

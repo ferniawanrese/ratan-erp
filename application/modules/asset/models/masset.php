@@ -128,14 +128,21 @@ class Masset extends CI_Model {
 	
 	function asset_group_data($data,$page,$limit){
 	
+		if($data){
 		$a = ($page-1) * $limit;
 		$limitnya = ",".$a.",".$limit;
+		}
 		
 		$this->db->where('deleted', '0');
 		
 		$this->db->like('description', $data['search']);
-		 
-		$query = $this->db->get('asset_group',$limit,$a);
+		
+		if($data){
+		 $query = $this->db->get('asset_group',$limit,$a);
+		}else{
+		 $query = $this->db->get('asset_group');
+		}
+		
 
 			if ($query->num_rows())
 			{
@@ -167,14 +174,20 @@ class Masset extends CI_Model {
 	
 	function asset_state_data($data,$page,$limit){
 	
+		if($data){
 		$a = ($page-1) * $limit;
 		$limitnya = ",".$a.",".$limit;
+		}
 		
 		$this->db->where('deleted', '0');
 		
 		$this->db->like('description', $data['search']);
-		 
-		$query = $this->db->get('asset_state',$limit,$a);
+		  
+		if($data){
+		 $query = $this->db->get('asset_state',$limit,$a);
+		}else{
+		 $query = $this->db->get('asset_state');
+		}
 
 			if ($query->num_rows())
 			{

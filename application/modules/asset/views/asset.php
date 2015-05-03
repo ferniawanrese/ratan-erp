@@ -122,7 +122,7 @@
 	</div><!-- /.modal -->
 
 <script>
-
+ 
 display_data();
 
 function display_data(){ 
