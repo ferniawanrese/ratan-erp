@@ -204,17 +204,7 @@
 										
 										<li><a href="<?php echo base_url('asset/vendor');?>" ><i class="icon-file-alt"></i> Vendor</a></li>  			
 																				
-										<li ><a href="#"><i class="icon-caret-right"></i> Goods</a>
-											<ul> 
-												<li  ><a href="<?php echo base_url('hrd/product');?>"> Product </a></li> 							
-											 </ul>  
-											<ul> 
-												<li  ><a href="<?php echo base_url('hrd/uom');?>"> UoM </a></li> 							
-											 </ul>
-											 <ul> 
-												<li  ><a href="<?php echo base_url('hrd/currency');?>"> Currencies </a></li> 							
-											 </ul>
-										</li>
+										 
 								</ul>
 							</div>
 							<div class="tab-pane  <?php  if($menu_active == "Report"){echo "active";};?>" id="Report">
