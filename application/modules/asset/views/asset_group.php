@@ -40,6 +40,10 @@
 
 <script>
 
+function what_next_asset_group(){
+	display_data();
+}
+
 display_data();
 
 function display_data(){ 

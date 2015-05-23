@@ -354,7 +354,7 @@ class Masset extends CI_Model {
 	
 	function asset_state_delete($asset_stateID){
 		
-		$this->db->where('asset_groupID',$asset_stateID);
+		$this->db->where('asset_stateID',$asset_stateID);
 		
 		$this->db->set('deleted',1);
 	

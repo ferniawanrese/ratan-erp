@@ -221,6 +221,12 @@ class asset extends CI_Controller {
 		 
 	}
 	
+	function asset_state_delete($asset_stateID){
+	
+		$this->Masset->asset_state_delete($asset_stateID);
+	
+	}
+	
 	function vendor(){
 	
 		$output['data']['module_name'] = "Asset";
