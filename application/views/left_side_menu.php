@@ -46,6 +46,14 @@
 								<li  class = "<?php  if($menu_active == "Report"){echo "active";};?>"><a href="#Report" class="icon-bar-chart" title="Report"></a></li>
 							<?php endif;?>
 							<!-- end header ASSET -->
+							
+							<!-- header PURCHASE -->
+							<?php if($menu_name== "Purchase"):?> 
+								<li  class = "<?php  if($menu_active == "Main"){echo "active";};?>"><a href="#Main" class="icon-th-large" title="Main Module"></a></li>
+								<li  class = "<?php  if($menu_active == "Configuration"){echo "active";};?>" ><a href="#Configuration" class="icon-cogs" title="Configuration"></a></li>
+								<li  class = "<?php  if($menu_active == "Report"){echo "active";};?>"><a href="#Report" class="icon-bar-chart" title="Report"></a></li>
+							<?php endif;?>
+							<!-- end header PURCHASE -->
 							 
 						<?php endif;?> 
 					</ul>
@@ -211,6 +219,43 @@
 								<h4 class="side-head"> <?php //echo $module_name;?> Report</h4> 
 								<ul class="accordion-nav"> 
 									<li><a href="<?php echo base_url('asset/asset_chart');?>">  Asset Analysis</a></li>     
+								</ul>
+							</div>
+				<?php endif;?>	
+				
+				<?php if($menu_name== "Purchase"):?> 	
+							<div class="tab-pane <?php  if($menu_active == "Main"){echo "active";};?>  " id="Main">
+								<h4 class="side-head"> Main Module  </h4> 
+								<ul class="accordion-nav">
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i>  Material Request</a></li> 
+								</ul>
+								<ul class="accordion-nav">
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i>  Purchase Request</a></li> 
+								</ul>
+								<ul class="accordion-nav">
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i>  Purchase Order</a></li> 
+								</ul>
+							</div>
+							<div class="tab-pane  <?php  if($menu_active == "Configuration"){echo "active";};?>" id="Configuration">
+								<h4 class="side-head">  Configuration</h4> 
+								<ul class="accordion-nav">
+								
+										<li ><a href="#"><i class="icon-caret-right"></i> Purchase Config</a>
+											<ul> 
+											<li><a href="<?php echo base_url('purchase/shipping');?>" ><i class="icon-file-alt"></i>  Shipping Address</a></li> 
+											<li><a href="<?php echo base_url('purchase/billing');?>" ><i class="icon-file-alt"></i> Billing Address</a></li>  	
+											</ul>
+										</li>
+										
+										<li><a href="<?php echo base_url('asset/vendor');?>" ><i class="icon-file-alt"></i> Vendor</a></li>  			
+																				
+										 
+								</ul>
+							</div>
+							<div class="tab-pane  <?php  if($menu_active == "Report"){echo "active";};?>" id="Report">
+								<h4 class="side-head"> <?php //echo $module_name;?> Report</h4> 
+								<ul class="accordion-nav"> 
+									<li><a href="<?php echo base_url('asset/asset_chart');?>">  Purchase Analysis</a></li>     
 								</ul>
 							</div>
 				<?php endif;?>	
