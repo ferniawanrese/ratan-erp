@@ -152,6 +152,48 @@ class purchase extends CI_Controller {
 		$this->Mpurchase->shipping_add($this->input->post());
 		 
 	}
+	
+	function billing(){
+	
+		$output['data']['module_name'] = "Purchase";
+		
+		$output['data']['menu_name'] = "Purchase";
+		
+		$output['data']['menu_active'] = "Configuration";
+		 
+		$output['content'] = "Purchase/billing";
+		 
+		$this->load->view('template', $output);
+	
+	}
+	
+	function billing_data($page = 1){
+	
+		$data['limit'] = 10;
+		
+		$data['page'] = $page;
+		  
+		$data['billing_data'] = $this->Mpurchase->billing_data($this->input->post(),$data['page'], $data['limit']);
+		
+		$data['countdata'] = $this->Mpurchase->billing_data_count($this->input->post());
+		 
+		$this->load->view('billing_data', $data);
+	
+	}
+	
+	function billing_add($billing_ID=null){
+	  
+		$data['dat'] = $this->Mpurchase->billing_detail($billing_ID);
+		 
+		$this->load->view('billing_add', $data);
+	 
+	}
+	
+	function billing_add_action(){
+	  
+		$this->Mpurchase->billing_add($this->input->post());
+		 
+	}
 }
 
 /* End of file welcome.php */

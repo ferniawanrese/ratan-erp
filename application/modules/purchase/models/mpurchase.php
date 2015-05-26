@@ -84,6 +84,85 @@ class Mpurchase extends CI_Model {
 			}
 	
 	}
+	
+	function billing_data($data,$page,$limit){
+	
+		$a = ($page-1) * $limit;
+		$limitnya = ",".$a.",".$limit;
+		
+		$this->db->where('deleted', '0');
+		
+		$this->db->like('billing_name', $data['search']);
+		 
+		$query = $this->db->get('billing',$limit,$a);
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	
+	}
+	
+	function billing_data_count($data){
+	
+		$this->db->select('count(*) as totdata'); 
+		
+		$this->db->where('deleted', '0');
+		
+		$this->db->like('billing_name', $data['search']);
+		 
+		$query = $this->db->get('billing');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	
+	}
+	
+	function billing_detail($billing_ID){
+	 
+		$this->db->where('deleted', '0');
+		
+		$this->db->where('billing_ID', $billing_ID);
+		 
+		$query = $this->db->get('billing');
+
+			if ($query->num_rows())
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return FALSE;
+			}		
+	
+	}
+	
+	function billing_add($data){
+	
+		if($data['billing_ID']!=""){ 
+			
+				$this->db->where('billing_ID',$data['billing_ID']); 
+				$this->db->update('billing',$data); 
+				
+			}else{
+				unset($data['billing_ID']);
+				$id  = $this->generate_code->getUID(); 
+				$this->db->set('billing_ID',$id);
+				$this->db->insert('billing',$data);
+				
+			}
+	
+	}
 	  
 	function vendor_data($data,$page,$limit){
 	
