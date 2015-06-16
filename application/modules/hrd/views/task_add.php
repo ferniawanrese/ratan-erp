@@ -136,8 +136,9 @@ cek_validate();
 				data: $("#catAdd").serialize(),
 				success: function(data)
 				{
-					what_next3();
+					
 					$('#myModal').modal('hide');
+					what_next3();
 				}
 			});
 			

@@ -54,6 +54,30 @@
 								<li  class = "<?php  if($menu_active == "Report"){echo "active";};?>"><a href="#Report" class="icon-bar-chart" title="Report"></a></li>
 							<?php endif;?>
 							<!-- end header PURCHASE -->
+							
+							<!-- header PURCHASE -->
+							<?php if($menu_name== "CRM"):?> 
+								<li  class = "<?php  if($menu_active == "Main"){echo "active";};?>"><a href="#Main" class="icon-th-large" title="Main Module"></a></li>
+								<li  class = "<?php  if($menu_active == "Configuration"){echo "active";};?>" ><a href="#Configuration" class="icon-cogs" title="Configuration"></a></li>
+								<li  class = "<?php  if($menu_active == "Report"){echo "active";};?>"><a href="#Report" class="icon-bar-chart" title="Report"></a></li>
+							<?php endif;?>
+							<!-- end header PURCHASE -->
+							
+							<!-- header POS -->
+							<?php if($menu_name== "POS"):?> 
+								<li  class = "<?php  if($menu_active == "Main"){echo "active";};?>"><a href="#Main" class="icon-th-large" title="Main Module"></a></li>
+								<li  class = "<?php  if($menu_active == "Configuration"){echo "active";};?>" ><a href="#Configuration" class="icon-cogs" title="Configuration"></a></li>
+								<li  class = "<?php  if($menu_active == "Report"){echo "active";};?>"><a href="#Report" class="icon-bar-chart" title="Report"></a></li>
+							<?php endif;?>
+							<!-- end header POS -->
+							
+							<!-- header POS -->
+							<?php if($menu_name== "Warehouse"):?> 
+								<li  class = "<?php  if($menu_active == "Main"){echo "active";};?>"><a href="#Main" class="icon-th-large" title="Main Module"></a></li>
+								<li  class = "<?php  if($menu_active == "Configuration"){echo "active";};?>" ><a href="#Configuration" class="icon-cogs" title="Configuration"></a></li>
+								<li  class = "<?php  if($menu_active == "Report"){echo "active";};?>"><a href="#Report" class="icon-bar-chart" title="Report"></a></li>
+							<?php endif;?>
+							<!-- end header Warehouse -->
 							 
 						<?php endif;?> 
 					</ul>
@@ -256,6 +280,111 @@
 								<h4 class="side-head"> <?php //echo $module_name;?> Report</h4> 
 								<ul class="accordion-nav"> 
 									<li><a href="<?php echo base_url('asset/asset_chart');?>">  Purchase Analysis</a></li>     
+								</ul>
+							</div>
+				<?php endif;?>	
+				
+				<!-- menu HRD -->
+				<?php if($menu_name== "CRM"):?> 	
+							<div class="tab-pane <?php  if($menu_active == "Main"){echo "active";};?>  " id="Main">
+								<h4 class="side-head"> Main Module  </h4> 
+								<ul class="accordion-nav">
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i>  CRM Data</a></li>  
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i>  Follow Up Data</a></li> 
+								</ul>
+							</div>
+							<div class="tab-pane  <?php  if($menu_active == "Configuration"){echo "active";};?>" id="Configuration">
+								<h4 class="side-head">  Configuration</h4> 
+								<ul class="accordion-nav">
+								
+										<li ><a href="#"><i class="icon-caret-right"></i> CRM Config</a>
+											<ul> 
+											<li><a href="<?php echo base_url('asset/asset_group');?>" ><i class="icon-file-alt"></i>  CRM Group</a></li> 
+											<li><a href="<?php echo base_url('asset/asset_state');?>" ><i class="icon-file-alt"></i> CRM State</a></li>  	
+											</ul>
+										</li>
+										
+										<li><a href="<?php echo base_url('asset/vendor');?>" ><i class="icon-file-alt"></i> Vendor</a></li>  			
+																				
+										 
+								</ul>
+							</div>
+							<div class="tab-pane  <?php  if($menu_active == "Report"){echo "active";};?>" id="Report">
+								<h4 class="side-head"> <?php //echo $module_name;?> Report</h4> 
+								<ul class="accordion-nav"> 
+									<li><a href="<?php echo base_url('asset/asset_chart');?>">  Asset Analysis</a></li>     
+								</ul>
+							</div>
+				<?php endif;?>	
+				
+				<!-- menu HRD -->
+				<?php if($menu_name== "POS"):?> 	
+							<div class="tab-pane <?php  if($menu_active == "Main"){echo "active";};?>  " id="Main">
+								<h4 class="side-head"> Main Module  </h4> 
+								<ul class="accordion-nav">
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Goods Stock Data</a></li> 
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Quotation Data</a></li> 
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> PO Customer Data</a></li> 
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Material Request Data</a></li>   
+								</ul>
+							</div>
+							<div class="tab-pane  <?php  if($menu_active == "Configuration"){echo "active";};?>" id="Configuration">
+								<h4 class="side-head">  Configuration</h4> 
+								<ul class="accordion-nav">
+								
+										<li ><a href="#"><i class="icon-caret-right"></i> CRM Config</a>
+											<ul> 
+											<li><a href="<?php echo base_url('asset/asset_group');?>" ><i class="icon-file-alt"></i>  CRM Group</a></li> 
+											<li><a href="<?php echo base_url('asset/asset_state');?>" ><i class="icon-file-alt"></i> CRM State</a></li>  	
+											</ul>
+										</li>
+										
+										<li><a href="<?php echo base_url('asset/vendor');?>" ><i class="icon-file-alt"></i> Vendor</a></li>  			
+																 
+								</ul>
+							</div>
+							<div class="tab-pane  <?php  if($menu_active == "Report"){echo "active";};?>" id="Report">
+								<h4 class="side-head"> <?php //echo $module_name;?> Report</h4> 
+								<ul class="accordion-nav"> 
+									<li><a href="<?php echo base_url('asset/asset_chart');?>">  Asset Analysis</a></li>     
+								</ul>
+							</div>
+				<?php endif;?>	
+				
+				<!-- menu HRD -->
+				<?php if($menu_name== "Warehouse"):?> 	
+							<div class="tab-pane <?php  if($menu_active == "Main"){echo "active";};?>  " id="Main">
+								<h4 class="side-head"> Main Module  </h4> 
+								<ul class="accordion-nav">
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Goods Stock Data</a></li> 
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Material Request Data</a></li>   
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Material In Data</a></li> 
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Material Out Data</a></li>   
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Transmital In Data</a></li>   
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Transmital Out Data</a></li>   
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Retur In Data</a></li> 
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Retur Out Data</a></li>
+								</ul>
+							</div>
+							<div class="tab-pane  <?php  if($menu_active == "Configuration"){echo "active";};?>" id="Configuration">
+								<h4 class="side-head">  Configuration</h4> 
+								<ul class="accordion-nav">
+								
+										<li ><a href="#"><i class="icon-caret-right"></i> CRM Config</a>
+											<ul> 
+											<li><a href="<?php echo base_url('asset/asset_group');?>" ><i class="icon-file-alt"></i>  CRM Group</a></li> 
+											<li><a href="<?php echo base_url('asset/asset_state');?>" ><i class="icon-file-alt"></i> CRM State</a></li>  	
+											</ul>
+										</li>
+										
+										<li><a href="<?php echo base_url('asset/vendor');?>" ><i class="icon-file-alt"></i> Vendor</a></li>  			
+																 
+								</ul>
+							</div>
+							<div class="tab-pane  <?php  if($menu_active == "Report"){echo "active";};?>" id="Report">
+								<h4 class="side-head"> <?php //echo $module_name;?> Report</h4> 
+								<ul class="accordion-nav"> 
+									<li><a href="<?php echo base_url('asset/asset_chart');?>">  Asset Analysis</a></li>     
 								</ul>
 							</div>
 				<?php endif;?>	
