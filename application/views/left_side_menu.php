@@ -289,7 +289,7 @@
 							<div class="tab-pane <?php  if($menu_active == "Main"){echo "active";};?>  " id="Main">
 								<h4 class="side-head"> Main Module  </h4> 
 								<ul class="accordion-nav">
-									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i>  CRM Data</a></li>  
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i>  Customer Data</a></li>  
 									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i>  Follow Up Data</a></li> 
 								</ul>
 							</div>
