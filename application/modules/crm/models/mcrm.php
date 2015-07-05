@@ -12,6 +12,8 @@ class Mcrm extends CI_Model {
 		$a = ($page-1) * $limit;
 		$limitnya = ",".$a.",".$limit;
 		
+		$this->db->like('customer_name',$data['search']);
+		
 		$this->db->where('deleted', '0');
 	 
 		$query = $this->db->get('customer',$limit,$a);
@@ -31,6 +33,8 @@ class Mcrm extends CI_Model {
 	
 		$this->db->select('count(*) as totdata'); 
 		
+		$this->db->like('customer_name',$data['search']);
+		 
 		$this->db->where('deleted', '0');
 		
 		$this->db->like('customer_name', $data['search']);
@@ -84,6 +88,9 @@ class Mcrm extends CI_Model {
 			}
 	
 	}
+	
+	
+	
 	 
 }
 	

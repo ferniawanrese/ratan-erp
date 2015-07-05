@@ -99,6 +99,25 @@ class crm extends CI_Controller {
 	
 	}
 	
+	function meeting()
+	{
+		
+		$output['data']['module_name'] = "Customer Relationship Manager";
+		
+		$output['data']['menu_name'] = "CRM";
+		
+		$output['data']['menu_active'] = "Main";
+		
+		$output['data']['submenu_active'] = "hrd";
+		
+		$output['content'] = "crm/meeting";
+		
+		$output['filterplus'] = $this->core->filterplus('employee');
+		
+		$this->load->view('template', $output);
+		
+	}
+	
 	
 }
 

@@ -289,8 +289,15 @@
 							<div class="tab-pane <?php  if($menu_active == "Main"){echo "active";};?>  " id="Main">
 								<h4 class="side-head"> Main Module  </h4> 
 								<ul class="accordion-nav">
-									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i>  Customer Data</a></li>  
-									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i>  Follow Up Data</a></li> 
+									<li><a href="<?php echo base_url('crm');?>" ><i class="icon-file-alt"></i>  Customer Data</a></li>
+									<li><a href="<?php echo base_url('crm/meeting');?>" ><i class="icon-file-alt"></i>  Meeting</a></li> 
+									<li ><a href="#"><i class="icon-caret-right"></i> Phone Calls</a>
+											<ul> 
+											<li><a href="<?php echo base_url('asset/asset_group');?>" ><i class="icon-file-alt"></i>  Logged Calls</a></li> 
+											<li><a href="<?php echo base_url('asset/asset_state');?>" ><i class="icon-file-alt"></i> Scheduled Calls</a></li>  	
+											</ul>
+									</li>
+									<li><a href="<?php echo base_url('followup');?>" ><i class="icon-file-alt"></i>  Goods Stock Data</a></li>  
 								</ul>
 							</div>
 							<div class="tab-pane  <?php  if($menu_active == "Configuration"){echo "active";};?>" id="Configuration">
@@ -312,7 +319,7 @@
 							<div class="tab-pane  <?php  if($menu_active == "Report"){echo "active";};?>" id="Report">
 								<h4 class="side-head"> <?php //echo $module_name;?> Report</h4> 
 								<ul class="accordion-nav"> 
-									<li><a href="<?php echo base_url('asset/asset_chart');?>">  Asset Analysis</a></li>     
+									<li><a href="<?php echo base_url('asset/asset_chart');?>">  Opportunities Analysis</a></li>     
 								</ul>
 							</div>
 				<?php endif;?>	
@@ -357,13 +364,27 @@
 								<h4 class="side-head"> Main Module  </h4> 
 								<ul class="accordion-nav">
 									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Goods Stock Data</a></li> 
-									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Material Request Data</a></li>   
-									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Material In Data</a></li> 
-									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Material Out Data</a></li>   
-									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Transmital In Data</a></li>   
-									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Transmital Out Data</a></li>   
-									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Retur In Data</a></li> 
-									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Retur Out Data</a></li>
+									
+									<li><a href="<?php echo base_url('asset');?>" ><i class="icon-file-alt"></i> Material Request Data</a></li>    
+									<li ><a href="#"><i class="icon-caret-right"></i> Material In/Out</a>
+											<ul> 
+											<li><a href="<?php echo base_url('asset/asset_group');?>" ><i class="icon-file-alt"></i>  Material In Data</a></li> 
+											<li><a href="<?php echo base_url('asset/asset_state');?>" ><i class="icon-file-alt"></i> Material Out Data</a></li>  	
+											</ul>
+									</li>		
+									<li ><a href="#"><i class="icon-caret-right"></i> Transmital</a>
+											<ul> 
+											<li><a href="<?php echo base_url('asset/asset_group');?>" ><i class="icon-file-alt"></i>  Transmital In Data</a></li> 
+											<li><a href="<?php echo base_url('asset/asset_state');?>" ><i class="icon-file-alt"></i> Transmital Out Data</a></li>  	
+											</ul>
+									</li>			
+									<li ><a href="#"><i class="icon-caret-right"></i> Retur</a>
+											<ul> 
+											<li><a href="<?php echo base_url('asset/asset_group');?>" ><i class="icon-file-alt"></i>  Retur In Data</a></li> 
+											<li><a href="<?php echo base_url('asset/asset_state');?>" ><i class="icon-file-alt"></i> Retur Out Data</a></li>  	
+											</ul>
+									</li>									
+									 
 								</ul>
 							</div>
 							<div class="tab-pane  <?php  if($menu_active == "Configuration"){echo "active";};?>" id="Configuration">

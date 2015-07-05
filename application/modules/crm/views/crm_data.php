@@ -43,7 +43,7 @@ Total Data : <span class="label label-info"><?php echo $countdata[0]['totdata'];
 					<td class="center">
 							<div class="btn-toolbar row-action">
 									<?php //echo $keys['employee_catParentID'];?>
-									<button class="btn btn-info" title="Edit" onclick=add_customer("<?php echo $keys['customer_ID'];?>")><i class="icon-edit"></i></button>
+									<button class="btn btn-info" title="Edit" onclick=add_crm("<?php echo $keys['customer_ID'];?>")><i class="icon-edit"></i></button>
 									<button class="delete btn btn-danger" title="Delete" onclick=delete_post("<?php echo $keys['customer_ID'];?>")><i class="icon-trash "></i></button>								
 							</div>
 					 </td>

@@ -39,27 +39,10 @@
 												<div class="form-group col-sm-12 col-md-3">
 													<label for="validate-text"></label>
 													<div class="input-group col-sm-12 col-md-12">
-														<input type="text" class="form-control" id="search" name="search" placeholder="Search" >	 
-													</div>
-												</div>
-												<div class="form-group col-sm-12 col-md-3">
-													<label for="validate-number"></label>
-													<div class="input-group col-sm-12 col-md-12" data-validate="number">
-														<input type="text" class="form-control product_name"  id="product_name" name= "product_name" placeholder="Product" >  
+														<input type="text" class="form-control" id="search2" name="search" placeholder="Search" >	 
 													</div>
 												</div>
 											 
-												<div class="form-group col-sm-12 col-md-3">
-													<label for="validate-email"></label>
-													<div class="input-group col-sm-12 col-md-12" >
-														<select class="form-control"  >
-															<option  value = "-1">[Asset State]</option> 
-														</select> 
-													</div>
-												</div>
-												 
-												
-												
 												<span class = "additional"></span>
 												 
 												<div class="form-group col-sm-12 col-md-3">
@@ -71,8 +54,7 @@
 															<option value = "50">Limit 50</option>
 															<option value = "100">Limit 100</option>
 															<option value = "-1">All Data</option>
-														</select>
-														 
+														</select> 
 													</div>
 												</div>
 												 
@@ -172,10 +154,8 @@ $("#Show").hide();
 
 
 function clearfilter(){
-
-$('#limit').val('10');
-$('#note').val('');
-$('#product_name').val('');
+ 
+$('#search2').val('');
 $('#limit').val('10'); 
 display_data();
 }
