@@ -118,7 +118,55 @@ class crm extends CI_Controller {
 		
 	}
 	
+	function add_meeting($meeting_ID=null){
+	 
+		$data['crm']  = $this->Mcrm->crm_detail($meeting_ID);
+		  
+		$this->load->view('meeting_add', $data);
 	
+	}
+	
+	function invitation_detail_add($expend_detailID=null){
+	
+		//$data['expends_detail'] = $this->Mhrd->get_expends_detail($expend_detailID);	
+	 
+		//$data['uom'] = $this->Mhrd->uom();	
+		  
+		$this->load->view('invitation_detail_add');
+	 
+	}
+	
+	function meeting_add_action(){
+	
+	}
+	
+	function get_partner_name(){
+		 
+		$data['employee_name']  = $this->Mcrm->get_partner_name($this->input->get('term'));
+		 
+		echo json_encode($data['employee_name']);
+			
+	}
+	
+	function invitation_detail_add_action($draft_stat=null){
+	
+			$data['draft_stat'] = $draft_stat;
+			
+			if($draft_stat==""){
+			
+			$data['id'] = $this->generate_code->getUID();
+			 
+			}else{
+			  
+			$data['id'] = $data['draft_stat'];
+			 
+			}
+			
+			$data['datanya'] =  $this->input->post(); 
+ 
+			$this->load->view('invitation_detail_draft', $data);
+			
+	}
 }
 
 /* End of file welcome.php */

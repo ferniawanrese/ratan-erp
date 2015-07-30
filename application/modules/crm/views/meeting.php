@@ -18,7 +18,7 @@
 							<div class="well col-sm-12 col-md-12">
 							
 								<div  id = "btn-create" class="form-group">
-									<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_crm()"> Create</button> 
+									<button class="btn btn-inverse btn-large icon-plus" type="button" onclick = "add_meeting()"> Create</button> 
 									<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "open_filter()" id = "Show"> Show Filter</button>
 									<button class="btn btn-inverse btn-large icon-filter" type="button" onclick = "close_filter()" id = "Hide" style = "display: none;"> Hide Filter</button>
 								</div>
@@ -161,7 +161,7 @@ display_data();
 }
 
 
-function add_crm(a){
+function add_meeting(a){
 	
 	NProgress.inc();
 	$('#search').hide();
@@ -169,7 +169,7 @@ function add_crm(a){
 	$('#btn-create').hide();
 	$.ajax({
 				
-				url: "<?php echo base_url('crm/add_crm/');?>" +"/"+a,
+				url: "<?php echo base_url('crm/add_meeting/');?>" +"/"+a,
 				success: function(data){     
 
 					$( ".list" ).html(data); 		

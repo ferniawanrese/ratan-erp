@@ -1,9 +1,9 @@
 	<form  id = "customer" class="form-horizontal form-validate" enctype="multipart/form-data" method="post">
-			<input name="customer_ID"  id = "customer_ID"   name = "customer_ID" type="hidden" value = "<?php echo $crm[0]['customer_ID'];?>"   />				  
+			<input name="partner_ID"  id = "partner_ID"   name = "partner_ID" type="hidden" value = "<?php echo $crm[0]['partner_ID'];?>"   />				  
 			<div class="form-group">
 							<label  class="col-sm-4 control-label">Customer Name :</label>
 							<div class="control col-md-4">
-								<input name="customer_name"  id = "customer_name" class="form-control {validate:{required:true}}" type="text"  value = "<?php echo $crm[0]['customer_name'];?>"  /> 
+								<input name="partner_name"  id = "partner_name" class="form-control {validate:{required:true}}" type="text"  value = "<?php echo $crm[0]['partner_name'];?>"  /> 
 							</div>
 						</div>
 					 
