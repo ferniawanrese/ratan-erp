@@ -15,8 +15,8 @@
         </script> 
 		 
 
-	<form  id = "form-customer" class="form-horizontal form-validate" enctype="multipart/form-data" method="post">
-			<input name="customer_ID"  id = "customer_ID"   name = "customer_ID" type="hidden" value = "<?php echo $crm[0]['customer_ID'];?>"   />				  
+	<form  id = "form-meeting" class="form-horizontal form-validate" enctype="multipart/form-data" method="post">
+			<!--<input name="customer_ID"  id = "customer_ID"   name = "customer_ID" type="hidden" value = "<?php //echo $crm[0]['customer_ID'];?>"   />			-->	  
 						<div class="form-group">
 							<label  class="col-sm-4 control-label">Meeting Title :</label>
 							<div class="control col-md-4">
@@ -112,7 +112,7 @@
 												<div class="form-group">
 													<label  class="col-sm-4 control-label">Partner :</label>
 													<div class="control col-md-8">
-														<input id = "partner_name"  name = "partner_name" class="form-control partner_name" type="text" value = "<?php //if($manager_name[0]['employee_name']){echo $manager_name[0]['employee_name']."/".$manager_name[0]['employee_badge'];};?>"/>
+														<input id = "partner_name"    class="form-control partner_name" type="text" value = "<?php //if($manager_name[0]['employee_name']){echo $manager_name[0]['employee_name']."/".$manager_name[0]['employee_badge'];};?>"/>
 														<input id = "partner_ID" name="partner_ID"  class = "partner_ID" type="hidden"   value = "<?php //echo $data_detail[0]['manager_ID'];?>" />
 													</div>
 												</div> 
@@ -156,12 +156,9 @@
 						
 														<table class="responsive table table-striped table-bordered table-hover" style = "padding-top:20px;">
 															<thead>
-																  <tr>
-																		<th>  From </th> 
-																		<th>  To </th>
-																		<th>  Mail To </th>   
-																		<th>  Role </th> 
-																		<th>  State </th> 
+																  <tr> 
+																		<th>  To </th> 
+																		<th>  Role </th>  
 																		<th> Action </th> 
 																  </tr>
 															</thead> 
@@ -200,7 +197,7 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
 
-<input type = "hidden" id = "validate_error" name = "validate_error" class = "validate_error" value = "0">
+<input type = "hidden" id = "validate_error"  class = "validate_error" value = "0">
 
 <script>
  
@@ -220,27 +217,7 @@
                 });
 			}  
 	
-	$("form#customer").submit(function(e){
-	
-	if($('#validate_error').val()==1){
-		return false;
-	}
-	
-	e.preventDefault();
-	
-			$.ajax({
-				type: "POST",
-				url: "<?php echo base_url('crm/customer_add_action/');?>",
-				data: $("#customer").serialize(),
-				success: function(data)
-				{
-					
-					 display_data(); 
-				}
-			});
-			
-			return false;
-	});
+	 
 	
 	$('#start_date').datepicker({
   format:"dd-mm-yyyy"
@@ -286,7 +263,7 @@ $(function() {
 		 })
 	 }
 	 
-	 $("form#form-customer").submit(function(e){
+	 $("form#form-meeting").submit(function(e){
 
 	if($('#validate_error').val()==1){
 		return false;
@@ -297,7 +274,7 @@ $(function() {
 			$.ajax({
 				type: "POST",
 				url: "<?php echo base_url('crm/meeting_add_action');?>",
-				data: $("#form-customer").serialize(),
+				data: $("#form-meeting").serialize(),
 				success: function(data)
 				{ 
 					NProgress.done(true);

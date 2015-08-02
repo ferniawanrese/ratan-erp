@@ -109,7 +109,24 @@ class Mcrm extends CI_Model {
 			}		
 	}
 	
+	function meeting_add($data){
 	
+		//$this->core->print_rr($data);
+		
+		$detail = $data['invitation_detail'];
+		
+		unset ($data['invitation_detail']);
+		
+		$data['start_date'] = date("Y-m-d", strtotime($data['start_date']));
+		
+		$data['end_date'] = date("Y-m-d", strtotime($data['end_date']));
+		
+		$data['meeting_ID'] = $this->generate_code->getUID(); 
+		 
+		$this->db->insert('meeting',$data);
+		
+	
+	}
 	
 	 
 }

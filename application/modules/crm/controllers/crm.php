@@ -135,10 +135,7 @@ class crm extends CI_Controller {
 		$this->load->view('invitation_detail_add');
 	 
 	}
-	
-	function meeting_add_action(){
-	
-	}
+	 
 	
 	function get_partner_name(){
 		 
@@ -161,12 +158,21 @@ class crm extends CI_Controller {
 			$data['id'] = $data['draft_stat'];
 			 
 			}
-			
+						 
 			$data['datanya'] =  $this->input->post(); 
+			
+			//print_r($data);
  
 			$this->load->view('invitation_detail_draft', $data);
 			
 	}
+	
+	function meeting_add_action(){
+	 
+		$this->Mcrm->meeting_add($this->input->post());
+		 
+	}
+	
 }
 
 /* End of file welcome.php */

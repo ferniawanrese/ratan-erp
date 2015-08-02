@@ -1,27 +1,21 @@
 <form  id = "form-invitationdetail" class="form-horizontal form-validate" enctype="multipart/form-data" method="post">
 	
-	<input name="expense_detaiID"  id = "expense_detaiID"   type="hidden" value = "<?php //echo $expends_detail[0]['expense_detaiID'];?>"   />
+	<input name="meeting_invatationID"  id = "meeting_invatationID"   type="hidden" value = "<?php //echo $expends_detail[0]['expense_detaiID'];?>"   />
 	
 	<input name="draft_stat"  id = "draft_stat"   type="hidden" value = "" />
  
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">To:</label>
 		<div class="control col-md-6">
-			<input id = "responsible_name" name="responsible_name" class="form-control responsible_name" type="text" value = "<?php //if($manager_name[0]['employee_name']){echo $manager_name[0]['employee_name']."/".$manager_name[0]['employee_badge'];};?>"/>
-			<input id = "responsible_ID" name="responsible_ID"  class = "responsible_ID" type="hidden"   value = "<?php //echo $data_detail[0]['manager_ID'];?>" />
-													
+			<input id = "to_name" name="to_name"   class="form-control to_name" type="text" value = "<?php //if($manager_name[0]['employee_name']){echo $manager_name[0]['employee_name']."/".$manager_name[0]['employee_badge'];};?>"/>
+			<input id = "to_ID" name="to_ID"  class = "responsible_ID" type="hidden"   value = "<?php //echo $data_detail[0]['manager_ID'];?>" />													
 		</div>
 	</div>
-	<div class="form-group">
-		<label  class="col-sm-3 control-label">Mail To:</label>
-		<div class="control col-md-6">
-			<input id = "expense_note" name="expense_note" class="form-control expense_note" type="text" value = "<?php //echo $expends_detail[0]['expense_note'];?>"/>
-		</div>
-	</div>
+	 
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Role:</label>
 		<div class="control col-md-6">
-			<select class="form-control">
+			<select class="form-control" name = "role" id ="role">
 				<option></option>
 				<option>Participation Required</option>
 				<option>Chair Person</option>
@@ -30,20 +24,11 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
-		<label  class="col-sm-3 control-label">State:</label>
-		<div class="control col-md-6">
-			<select class="form-control">
-				<option></option>
-
-			</select>
-		</div>
-	</div>
-	 
+	  
 	<div class="form-group">
 		<label  class="col-sm-3 control-label"> </label>
 		<div class="control col-md-4">
-			<button class="alert-box btn" type = "submit" >Finish</button>
+			<button class="alert-box btn" type = "submit" >Add</button>
 		</div> 
 	</div>
 						
@@ -51,11 +36,11 @@
 
 <script>
 $(function() {
-		$( ".responsible_name" ).autocomplete({  
-			source: "<?php echo base_url('hrd/get_employee_name/');?>" + "/" + $('.responsible_name').val(),
+		$( ".to_name" ).autocomplete({  
+			source: "<?php echo base_url('hrd/get_employee_name/');?>" + "/" + $('.to_name').val(),
 				select: function (event, ui) {
 				var id = ui.item.employee_ID;
-				$("#responsible_ID").val(id);
+				$("#to_ID").val(id);
 				}  
 		});  
 	}); 
