@@ -276,7 +276,7 @@ CREATE TABLE `ci_sessions` (
 
 /*Data for the table `ci_sessions` */
 
-insert  into `ci_sessions`(`session_id`,`ip_address`,`user_agent`,`last_activity`,`user_data`,`date_created`,`online`) values ('b4caff6b0778e64258ef211f8c4da5bc','::1','Mozilla/5.0 (Windows NT 6.2; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0',1435980577,'a:44:{s:9:\"user_data\";s:0:\"\";s:11:\"employee_ID\";s:1:\"1\";s:14:\"employee_catID\";s:36:\"8c6f87b1-43fa-58f8-a78e-7079206da22e\";s:13:\"employee_name\";s:10:\"Nurjamilah\";s:20:\"employee_dateofbirth\";s:10:\"1989-01-13\";s:21:\"employee_placeofbirth\";s:10:\"Tembilahan\";s:14:\"employee_email\";s:17:\"milla@anasher.com\";s:17:\"employee_password\";s:32:\"7884fc6616d2e1c408a298a75eb159d4\";s:15:\"employee_access\";s:1:\"1\";s:14:\"employee_photo\";s:101:\"./upload/employee_photo/9d9457d1-e0fd-527e-8f16-9274f82dae68/9d9457d1-e0fd-527e-8f16-9274f82dae68.jpg\";s:21:\"employee_startworking\";s:19:\"2012-12-12 00:00:00\";s:19:\"employee_endworking\";N;s:18:\"employee_badge_int\";s:1:\"1\";s:14:\"employee_badge\";s:9:\"ASR-00001\";s:15:\"employee_salary\";s:8:\"15500.00\";s:11:\"currency_ID\";s:36:\"e4b5cbe5-aaad-12e2-8eb1-24155d6a1ec9\";s:10:\"company_ID\";s:36:\"bf088a55-8d09-5780-b3df-20bbf121532e\";s:15:\"company_groupID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:6:\"job_ID\";s:36:\"0df1f426-6f9a-5064-8485-4f51009677d7\";s:15:\"employee_status\";s:3:\"new\";s:20:\"employee_mobilephone\";s:12:\"085271129400\";s:14:\"employee_phone\";s:10:\" 021334455\";s:10:\"manager_ID\";s:1:\"1\";s:23:\"employee_worklocationID\";s:12:\"Jakarta Raya\";s:16:\"employee_address\";s:41:\"Jl. Bukit Barisan Perum Cendana I blok c2\";s:30:\"employee_tax_obligation_number\";s:0:\"\";s:12:\"employee_SSN\";s:0:\"\";s:20:\"employee_passport_no\";s:0:\"\";s:15:\"employee_gender\";s:6:\"Female\";s:14:\"employee_blood\";s:1:\"B\";s:17:\"employee_religion\";s:5:\"Islam\";s:20:\"employee_maritalstat\";s:7:\"Married\";s:18:\"employee_countryID\";s:3:\"101\";s:12:\"employee_dob\";N;s:14:\"employee_notes\";s:9:\"CEO Owner\";s:7:\"deleted\";s:1:\"0\";s:11:\"datecreated\";s:19:\"0000-00-00 00:00:00\";s:13:\"department_ID\";s:36:\"773d2127-4ed1-5ecf-b764-6a63cc8aeadb\";s:12:\"company_name\";s:19:\"PT. Anasher Textile\";s:18:\"default_currencyID\";s:36:\"b4b5bbf5-eead-11e2-8db1-00155d6a1ec9\";s:7:\"company\";a:4:{i:0;a:15:{s:10:\"company_ID\";s:36:\"bf088a55-8d09-5780-b3df-20bbf121532e\";s:15:\"company_groupID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:12:\"company_name\";s:19:\"PT. Anasher Textile\";s:7:\"address\";s:14:\"Jl. Kebangsaan\";s:10:\"found_year\";s:4:\"2014\";s:5:\"badge\";s:4:\"ASR-\";s:9:\"badge_inc\";s:1:\"1\";s:18:\"badge_leadingzeros\";s:1:\"5\";s:7:\"website\";s:15:\"www.anasher.com\";s:11:\"employee_ID\";s:1:\"1\";s:5:\"phone\";s:9:\"021887788\";s:18:\"default_currencyID\";s:36:\"b4b5bbf5-eead-11e2-8db1-00155d6a1ec9\";s:12:\"company_logo\";N;s:10:\"dateCreate\";s:19:\"2015-01-03 20:06:48\";s:7:\"deleted\";s:1:\"0\";}i:1;a:15:{s:10:\"company_ID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:15:\"company_groupID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:12:\"company_name\";s:28:\"PT. Ratan Software Indonesia\";s:7:\"address\";s:24:\"Jl. Muchtarudin pav 13 A\";s:10:\"found_year\";s:4:\"2014\";s:5:\"badge\";s:4:\"RTN-\";s:9:\"badge_inc\";s:1:\"1\";s:18:\"badge_leadingzeros\";s:1:\"5\";s:7:\"website\";s:15:\"http://ratan.co\";s:11:\"employee_ID\";s:30:\"7da87597-705f-5b1e-b85b-16495f\";s:5:\"phone\";s:10:\"0218877898\";s:18:\"default_currencyID\";s:36:\"u4b5cbe5-eead-11e2-8db1-22155d6a1ec9\";s:12:\"company_logo\";N;s:10:\"dateCreate\";s:19:\"2015-01-03 10:24:00\";s:7:\"deleted\";s:1:\"0\";}i:2;a:15:{s:10:\"company_ID\";s:36:\"0c75a4ac-b7fb-5004-a6cd-214320fbb21b\";s:15:\"company_groupID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:12:\"company_name\";s:15:\"PT. WINS Global\";s:7:\"address\";s:50:\"Jl. Iskandarsyah Raya Gd. Graha Iskandarsyah lt 8 \";s:10:\"found_year\";s:4:\"2012\";s:5:\"badge\";s:4:\"WNS-\";s:9:\"badge_inc\";s:1:\"1\";s:18:\"badge_leadingzeros\";s:1:\"4\";s:7:\"website\";s:18:\"www.winsglobal.com\";s:11:\"employee_ID\";s:30:\"122ab75e-7f18-5818-861d-fc86db\";s:5:\"phone\";s:11:\"0217205886 \";s:18:\"default_currencyID\";s:36:\"b4b5bbf5-eead-11e2-8db1-00155d6a1ec9\";s:12:\"company_logo\";N;s:10:\"dateCreate\";s:19:\"2015-04-01 21:12:10\";s:7:\"deleted\";s:1:\"0\";}i:3;a:15:{s:10:\"company_ID\";s:36:\"a89c6a97-b7b5-5acc-b446-d3f075c1a00b\";s:15:\"company_groupID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:12:\"company_name\";s:7:\"PT. Yui\";s:7:\"address\";s:13:\"Jl. Sudirman \";s:10:\"found_year\";s:4:\"2014\";s:5:\"badge\";s:4:\"YUI-\";s:9:\"badge_inc\";s:1:\"1\";s:18:\"badge_leadingzeros\";s:1:\"6\";s:7:\"website\";s:11:\"www.yui.com\";s:11:\"employee_ID\";s:30:\"7da87597-705f-5b1e-b85b-16495f\";s:5:\"phone\";s:4:\"0213\";s:18:\"default_currencyID\";s:36:\"b4b5bbf5-eead-11e2-8db1-00155d6a1ec9\";s:12:\"company_logo\";N;s:10:\"dateCreate\";s:19:\"2015-01-03 19:15:00\";s:7:\"deleted\";s:1:\"0\";}}s:17:\"current_companyID\";s:36:\"bf088a55-8d09-5780-b3df-20bbf121532e\";s:22:\"current_companygroupID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:19:\"current_companyName\";s:19:\"PT. Anasher Textile\";}','2015-07-04 10:15:17',1);
+insert  into `ci_sessions`(`session_id`,`ip_address`,`user_agent`,`last_activity`,`user_data`,`date_created`,`online`) values ('3e5a52155ccc175d5ea4838bc8a2876d','::1','Mozilla/5.0 (Windows NT 6.2; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0',1438516386,'a:44:{s:9:\"user_data\";s:0:\"\";s:11:\"employee_ID\";s:1:\"1\";s:14:\"employee_catID\";s:36:\"8c6f87b1-43fa-58f8-a78e-7079206da22e\";s:13:\"employee_name\";s:10:\"Nurjamilah\";s:20:\"employee_dateofbirth\";s:10:\"1989-01-13\";s:21:\"employee_placeofbirth\";s:10:\"Tembilahan\";s:14:\"employee_email\";s:17:\"milla@anasher.com\";s:17:\"employee_password\";s:32:\"7884fc6616d2e1c408a298a75eb159d4\";s:15:\"employee_access\";s:1:\"1\";s:14:\"employee_photo\";s:101:\"./upload/employee_photo/9d9457d1-e0fd-527e-8f16-9274f82dae68/9d9457d1-e0fd-527e-8f16-9274f82dae68.jpg\";s:21:\"employee_startworking\";s:19:\"2012-12-12 00:00:00\";s:19:\"employee_endworking\";N;s:18:\"employee_badge_int\";s:1:\"1\";s:14:\"employee_badge\";s:9:\"ASR-00001\";s:15:\"employee_salary\";s:8:\"15500.00\";s:11:\"currency_ID\";s:36:\"e4b5cbe5-aaad-12e2-8eb1-24155d6a1ec9\";s:10:\"company_ID\";s:36:\"bf088a55-8d09-5780-b3df-20bbf121532e\";s:15:\"company_groupID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:6:\"job_ID\";s:36:\"0df1f426-6f9a-5064-8485-4f51009677d7\";s:15:\"employee_status\";s:3:\"new\";s:20:\"employee_mobilephone\";s:12:\"085271129400\";s:14:\"employee_phone\";s:10:\" 021334455\";s:10:\"manager_ID\";s:1:\"1\";s:23:\"employee_worklocationID\";s:12:\"Jakarta Raya\";s:16:\"employee_address\";s:41:\"Jl. Bukit Barisan Perum Cendana I blok c2\";s:30:\"employee_tax_obligation_number\";s:0:\"\";s:12:\"employee_SSN\";s:0:\"\";s:20:\"employee_passport_no\";s:0:\"\";s:15:\"employee_gender\";s:6:\"Female\";s:14:\"employee_blood\";s:1:\"B\";s:17:\"employee_religion\";s:5:\"Islam\";s:20:\"employee_maritalstat\";s:7:\"Married\";s:18:\"employee_countryID\";s:3:\"101\";s:12:\"employee_dob\";N;s:14:\"employee_notes\";s:9:\"CEO Owner\";s:7:\"deleted\";s:1:\"0\";s:11:\"datecreated\";s:19:\"0000-00-00 00:00:00\";s:13:\"department_ID\";s:36:\"773d2127-4ed1-5ecf-b764-6a63cc8aeadb\";s:12:\"company_name\";s:19:\"PT. Anasher Textile\";s:18:\"default_currencyID\";s:36:\"b4b5bbf5-eead-11e2-8db1-00155d6a1ec9\";s:7:\"company\";a:4:{i:0;a:15:{s:10:\"company_ID\";s:36:\"bf088a55-8d09-5780-b3df-20bbf121532e\";s:15:\"company_groupID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:12:\"company_name\";s:19:\"PT. Anasher Textile\";s:7:\"address\";s:14:\"Jl. Kebangsaan\";s:10:\"found_year\";s:4:\"2014\";s:5:\"badge\";s:4:\"ASR-\";s:9:\"badge_inc\";s:1:\"1\";s:18:\"badge_leadingzeros\";s:1:\"5\";s:7:\"website\";s:15:\"www.anasher.com\";s:11:\"employee_ID\";s:1:\"1\";s:5:\"phone\";s:9:\"021887788\";s:18:\"default_currencyID\";s:36:\"b4b5bbf5-eead-11e2-8db1-00155d6a1ec9\";s:12:\"company_logo\";N;s:10:\"dateCreate\";s:19:\"2015-01-03 20:06:48\";s:7:\"deleted\";s:1:\"0\";}i:1;a:15:{s:10:\"company_ID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:15:\"company_groupID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:12:\"company_name\";s:28:\"PT. Ratan Software Indonesia\";s:7:\"address\";s:24:\"Jl. Muchtarudin pav 13 A\";s:10:\"found_year\";s:4:\"2014\";s:5:\"badge\";s:4:\"RTN-\";s:9:\"badge_inc\";s:1:\"1\";s:18:\"badge_leadingzeros\";s:1:\"5\";s:7:\"website\";s:15:\"http://ratan.co\";s:11:\"employee_ID\";s:30:\"7da87597-705f-5b1e-b85b-16495f\";s:5:\"phone\";s:10:\"0218877898\";s:18:\"default_currencyID\";s:36:\"u4b5cbe5-eead-11e2-8db1-22155d6a1ec9\";s:12:\"company_logo\";N;s:10:\"dateCreate\";s:19:\"2015-01-03 10:24:00\";s:7:\"deleted\";s:1:\"0\";}i:2;a:15:{s:10:\"company_ID\";s:36:\"0c75a4ac-b7fb-5004-a6cd-214320fbb21b\";s:15:\"company_groupID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:12:\"company_name\";s:15:\"PT. WINS Global\";s:7:\"address\";s:50:\"Jl. Iskandarsyah Raya Gd. Graha Iskandarsyah lt 8 \";s:10:\"found_year\";s:4:\"2012\";s:5:\"badge\";s:4:\"WNS-\";s:9:\"badge_inc\";s:1:\"1\";s:18:\"badge_leadingzeros\";s:1:\"4\";s:7:\"website\";s:18:\"www.winsglobal.com\";s:11:\"employee_ID\";s:30:\"122ab75e-7f18-5818-861d-fc86db\";s:5:\"phone\";s:11:\"0217205886 \";s:18:\"default_currencyID\";s:36:\"b4b5bbf5-eead-11e2-8db1-00155d6a1ec9\";s:12:\"company_logo\";N;s:10:\"dateCreate\";s:19:\"2015-04-01 21:12:10\";s:7:\"deleted\";s:1:\"0\";}i:3;a:15:{s:10:\"company_ID\";s:36:\"a89c6a97-b7b5-5acc-b446-d3f075c1a00b\";s:15:\"company_groupID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:12:\"company_name\";s:7:\"PT. Yui\";s:7:\"address\";s:13:\"Jl. Sudirman \";s:10:\"found_year\";s:4:\"2014\";s:5:\"badge\";s:4:\"YUI-\";s:9:\"badge_inc\";s:1:\"1\";s:18:\"badge_leadingzeros\";s:1:\"6\";s:7:\"website\";s:11:\"www.yui.com\";s:11:\"employee_ID\";s:30:\"7da87597-705f-5b1e-b85b-16495f\";s:5:\"phone\";s:4:\"0213\";s:18:\"default_currencyID\";s:36:\"b4b5bbf5-eead-11e2-8db1-00155d6a1ec9\";s:12:\"company_logo\";N;s:10:\"dateCreate\";s:19:\"2015-01-03 19:15:00\";s:7:\"deleted\";s:1:\"0\";}}s:17:\"current_companyID\";s:36:\"bf088a55-8d09-5780-b3df-20bbf121532e\";s:22:\"current_companygroupID\";s:36:\"v1540375-0afa-5dd2-b33f-f1fabd54c009\";s:19:\"current_companyName\";s:19:\"PT. Anasher Textile\";}','2015-08-02 17:09:50',1);
 
 /*Table structure for table `city` */
 
@@ -362,30 +362,6 @@ CREATE TABLE `currency` (
 /*Data for the table `currency` */
 
 insert  into `currency`(`currency_ID`,`currency_name`,`currency_code`,`currency_symbol`,`currency_format_separator`,`currency_format_decimal`,`exchange_rate`,`expired_sync_exchange_rate`,`time_to_sync_exchange_rate`,`dateCreated`,`deleted`) values ('8cb742ef-4e7e-524f-b481-f748c7341844','Peso','PSO','₱',',','.','1100',NULL,NULL,'2015-02-07 16:11:23',1),('b4b5bbf5-eead-11e2-8db1-00155d6a1ec9','Rupiah','IDR','Rp','.',',','1','2013-08-20 21:03:39',NULL,'2015-02-07 15:29:54',0),('b541d327-4d68-5629-a363-aa8dad702768','123','123','123','1','1','123',NULL,NULL,'2015-05-03 20:51:44',0),('c2078662-72ed-5f3e-a9e8-fab3403d112f','Ringgit','RM','RM',',','.','3600',NULL,NULL,'2015-02-07 15:45:49',0),('e4b5cbe5-aaad-12e2-8eb1-24155d6a1ec9','Euro','EUR','€',',','.','18000','2013-08-20 21:03:39',NULL,'2015-02-07 15:29:54',0),('j4b5cbe5-jpad-32e2-7yb1-43155d6a1ec9','Japanese Yen','JPY','¥','.',',','108.92','2013-08-20 21:03:39',NULL,'2015-02-07 15:29:54',0),('s4b5cbe5-dyad-41e2-7yb1-11155d6a1ec9','Singapore Dollar','SGD','S$','.',',','9712','2013-08-20 21:03:39',NULL,'2015-02-07 15:29:54',0),('u4b5cbe5-eead-11e2-8db1-22155d6a1ec9','US Dollar','USD','$',',','.','13000','2013-08-20 21:03:39',NULL,'2015-02-07 15:29:54',0),('y4b5cbe5-yyad-13e2-8yb1-36155d6a1ec9','Yuan','CNY','¥','.',',','2009','2013-08-20 21:03:39',NULL,'2015-02-07 15:29:54',0);
-
-/*Table structure for table `customer` */
-
-DROP TABLE IF EXISTS `customer`;
-
-CREATE TABLE `customer` (
-  `customer_ID` char(36) NOT NULL,
-  `customer_name` varchar(100) DEFAULT NULL,
-  `description` blob,
-  `contact_person` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `fax` varchar(30) DEFAULT NULL,
-  `phone` varchar(30) DEFAULT NULL,
-  `address` blob,
-  `website` varchar(30) DEFAULT NULL,
-  `postcode` varchar(6) DEFAULT NULL,
-  `deleted` tinyint(1) DEFAULT '0',
-  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`customer_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `customer` */
-
-insert  into `customer`(`customer_ID`,`customer_name`,`description`,`contact_person`,`email`,`fax`,`phone`,`address`,`website`,`postcode`,`deleted`,`dateCreated`) values ('1','asd',NULL,'asd','as','as','as','asd','asd','123',1,'2015-06-20 15:28:35'),('18dae4a4-273d-5afe-86ff-3e652d667afc','qwe','qwe','qwe','qwe','qwe','qwe','qwe','qwe','qwe',1,'2015-06-20 16:14:18'),('88f67afe-5314-5e46-8c9e-6bdd1ace8b8b','zxc','zxc','zxc','zxc','zxc','zxc','zxc','zxc','zxc',1,'2015-06-20 16:18:25'),('92ecdacc-76a5-52a7-9e27-f8483b9e44fc','PTPN V','asdasd','Arif','arif@ptpnv.co.id','076121003','076121003','Jl. Rambutan no 67-68 a','www.ptpnv.co.id','123456',0,'2015-06-27 13:21:45');
 
 /*Table structure for table `department` */
 
@@ -670,20 +646,24 @@ CREATE TABLE `meeting` (
   `meeting_ID` char(36) NOT NULL,
   `meeting_title` varchar(100) DEFAULT NULL,
   `summary` varchar(255) DEFAULT NULL,
-  `start_date` datetime DEFAULT NULL,
-  `end_date` datetime DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
   `allday` tinyint(1) DEFAULT '0',
   `duration` varchar(100) DEFAULT NULL,
   `reminder` varchar(100) DEFAULT NULL,
   `recurrent` tinyint(1) DEFAULT '0',
   `responsible_ID` char(36) DEFAULT NULL COMMENT 'employee_ID reponse',
-  `customer_ID` char(36) DEFAULT NULL,
+  `partner_ID` char(36) DEFAULT NULL,
+  `location` blob,
+  `description` blob,
   `deleted` tinyint(1) DEFAULT '0',
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`meeting_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `meeting` */
+
+insert  into `meeting`(`meeting_ID`,`meeting_title`,`summary`,`start_date`,`end_date`,`allday`,`duration`,`reminder`,`recurrent`,`responsible_ID`,`partner_ID`,`location`,`description`,`deleted`,`dateCreated`) values ('','a','asd','0000-00-00','0000-00-00',0,'1','1 minute before',0,'02f67708-b01e-5831-a987-658552','87778cc7-f3c5-5a2f-b634-040de0461c43','asd','asd',0,'2015-08-02 17:59:29'),('1','asd','asd',NULL,NULL,1,'1','1',1,'1','1',NULL,NULL,0,'2015-07-11 15:25:08'),('e8623da9-0557-5781-9e2d-7981463c6084','asdqwe','asdqwe','2015-07-27','2015-08-05',0,'1','40 minutes before',0,'1','87778cc7-f3c5-5a2f-b634-040de0461c43','1','asd',0,'2015-08-02 18:50:01');
 
 /*Table structure for table `meeting_invitation` */
 
@@ -692,11 +672,8 @@ DROP TABLE IF EXISTS `meeting_invitation`;
 CREATE TABLE `meeting_invitation` (
   `meeting_invatationID` char(36) NOT NULL,
   `meeting_ID` char(36) DEFAULT NULL,
-  `from_ID` char(36) DEFAULT NULL,
   `to_ID` char(36) DEFAULT NULL,
-  `mailto` varchar(100) DEFAULT NULL,
   `role` enum('Participant','Chair person') DEFAULT NULL,
-  `state` varchar(100) DEFAULT NULL,
   `deleted` tinyint(1) DEFAULT '0',
   `dateCreated` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`meeting_invatationID`)
@@ -722,6 +699,31 @@ CREATE TABLE `menu` (
 /*Data for the table `menu` */
 
 insert  into `menu`(`menu_ID`,`menu_name`,`menu_desc`,`menu_url`,`menu_class`,`menu_icon`,`deleted`) values ('1','Project','Project','project','magenta','icon-bar-chart',0),('10','Asset','Asset','asset','bondi-blue','icon-list-alt',0),('2','Purchase','Purchase','purchase','grey','icon-shopping-cart',0),('3','Finance','Finance','finance','dark-yellow','icon-money',0),('4','HRD','HRD','hrd','blue-violate','icon-group',0),('5','CRM','CRM','crm','blue','icon-briefcase',0),('6','POS','POS','pos','cocolate','icon-truck',0),('7','Warehouse','Warehouse','warehouse','brown','icon-hdd',0),('8','Manufacture','Manufacture','manufacture','orange','icon-wrench',0),('9','Payroll','Payroll','payroll','green','icon-credit-card',0);
+
+/*Table structure for table `partner` */
+
+DROP TABLE IF EXISTS `partner`;
+
+CREATE TABLE `partner` (
+  `partner_ID` char(36) NOT NULL,
+  `partner_name` varchar(100) DEFAULT NULL,
+  `description` blob,
+  `contact_person` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `fax` varchar(30) DEFAULT NULL,
+  `phone` varchar(30) DEFAULT NULL,
+  `address` blob,
+  `website` varchar(30) DEFAULT NULL,
+  `postcode` varchar(6) DEFAULT NULL,
+  `vendor_stat` tinyint(1) DEFAULT '0' COMMENT '0:customer;1:vendor',
+  `deleted` tinyint(1) DEFAULT '0',
+  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`partner_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `partner` */
+
+insert  into `partner`(`partner_ID`,`partner_name`,`description`,`contact_person`,`email`,`fax`,`phone`,`address`,`website`,`postcode`,`vendor_stat`,`deleted`,`dateCreated`) values ('1','asd',NULL,'asd','as','as','as','asd','asd','123',0,1,'2015-06-20 15:28:35'),('18dae4a4-273d-5afe-86ff-3e652d667afc','qwe','qwe','qwe','qwe','qwe','qwe','qwe','qwe','qwe',0,1,'2015-06-20 16:14:18'),('87778cc7-f3c5-5a2f-b634-040de0461c43','PT. Profita Group','asdasd','Marwan','marwan@profita.com','02133221','087767267','Jl. Cemara no 67 pamulang','www.profita.com','12345',0,0,'2015-07-11 14:49:26'),('88f67afe-5314-5e46-8c9e-6bdd1ace8b8b','zxc','zxc','zxc','zxc','zxc','zxc','zxc','zxc','zxc',0,1,'2015-06-20 16:18:25'),('92ecdacc-76a5-52a7-9e27-f8483b9e44fc','PTPN V','asdasd','Arif','arif@ptpnv.co.id','076121003','076121003','Jl. Rambutan no 67-68 a','www.ptpnv.co.id','123456',0,0,'2015-06-27 13:21:45'),('df17f8e6-3eb4-57d2-836f-772de1ff5d86','asd','','asd','asd@asd.fo','','123','','','',0,1,'2015-07-25 22:23:58');
 
 /*Table structure for table `product` */
 
@@ -998,30 +1000,6 @@ CREATE TABLE `uom` (
 /*Data for the table `uom` */
 
 insert  into `uom`(`UoM_ID`,`uom_name`,`dateCreated`,`deleted`) values ('1','Pieces ','2015-01-31 21:44:25',0),('10','Bushel/Bushels ','2015-01-31 21:44:25',0),('11','Carat/Carats ','2015-01-31 21:44:25',0),('12','Carton/Cartons ','2015-01-31 21:44:25',0),('13','Case/Cases ','2015-01-31 21:44:25',0),('14','Centimeter/Centimeters ','2015-01-31 21:44:25',0),('15','Chain/Chains ','2015-01-31 21:44:25',0),('16','Cubic Centimeter/Cubic Centimeters ','2015-01-31 21:44:25',0),('17','Cubic Foot/Cubic Feet ','2015-01-31 21:44:25',0),('18','Cubic Inch/Cubic Inches ','2015-01-31 21:44:25',0),('19','Cubic Meter/Cubic Meters ','2015-01-31 21:44:25',0),('1fc6193c-60ff-5373-aee0-0d2358552504','asd1','2015-02-07 16:45:40',1),('2','20\' Container ','2015-01-31 21:44:25',0),('20','Cubic Yard/Cubic Yards ','2015-01-31 21:44:25',0),('21','Degrees Celsius ','2015-01-31 21:44:25',0),('22','Degrees Fahrenheit ','2015-01-31 21:44:25',0),('23','Dozen/Dozens ','2015-01-31 21:44:25',0),('24','Dram/Drams ','2015-01-31 21:44:25',0),('25','Fluid Ounce/Fluid Ounces ','2015-01-31 21:44:25',0),('26','Foot ','2015-01-31 21:44:25',0),('27','Furlong/Furlongs ','2015-01-31 21:44:25',0),('28','Gallon/Gallons ','2015-01-31 21:44:25',0),('29','Gill/Gills ','2015-01-31 21:44:25',0),('3','40\' Container ','2015-01-31 21:44:25',0),('30','Grain/Grains ','2015-01-31 21:44:25',0),('31','Gram/Grams ','2015-01-31 21:44:25',0),('32','Gross ','2015-01-31 21:44:25',0),('33','Hectare/Hectares  ','2015-01-31 21:44:25',0),('34','Hertz ','2015-01-31 21:44:25',0),('35','Inch/Inches ','2015-01-31 21:44:25',0),('36','Kiloampere/Kiloamperes ','2015-01-31 21:44:25',0),('37','Kilogram/Kilograms ','2015-01-31 21:44:25',0),('38','Kilohertz ','2015-01-31 21:44:25',0),('39','Kilometer/Kilometers ','2015-01-31 21:44:25',0),('4','40\' HQ Container ','2015-01-31 21:44:25',0),('40','Kiloohm/Kiloohms ','2015-01-31 21:44:25',0),('41','Kilovolt/Kilovolts ','2015-01-31 21:44:25',0),('42','Kilowatt/Kilowatts ','2015-01-31 21:44:25',0),('43','Liter/Liters ','2015-01-31 21:44:25',0),('44','Long Ton/Long Tons ','2015-01-31 21:44:25',0),('45','Megahertz ','2015-01-31 21:44:25',0),('46','Meter ','2015-01-31 21:44:25',0),('47','Metric Ton/Metric Tons ','2015-01-31 21:44:25',0),('48','Mile/Miles ','2015-01-31 21:44:25',0),('49','Milliampere/Milliamperes ','2015-01-31 21:44:25',0),('5','Acre/Acres ','2015-01-31 21:44:25',0),('50','Milligram/Milligrams ','2015-01-31 21:44:25',0),('51','Millihertz ','2015-01-31 21:44:25',0),('52','Milliliter/Milliliters ','2015-01-31 21:44:25',0),('53','Millimeter/Millimeters ','2015-01-31 21:44:25',0),('54','Milliohm/Milliohms ','2015-01-31 21:44:25',0),('55','Millivolt/Millivolts ','2015-01-31 21:44:25',0),('56','Milliwatt/Milliwatts ','2015-01-31 21:44:25',0),('57','Nautical Mile/Nautical Miles ','2015-01-31 21:44:25',0),('58','Ohm/Ohms ','2015-01-31 21:44:25',0),('59','Ounce/Ounces ','2015-01-31 21:44:25',0),('6','Ampere/Amperes ','2015-01-31 21:44:25',0),('60','Pack/Packs ','2015-01-31 21:44:25',0),('61','Pairs ','2015-01-31 21:44:25',0),('62','Pallet/Pallets ','2015-01-31 21:44:25',0),('63','Parcel/Parcels ','2015-01-31 21:44:25',0),('64','Perch/Perches ','2015-01-31 21:44:25',0),('65','Pint/Pints ','2015-01-31 21:44:25',0),('66','Plant/Plants ','2015-01-31 21:44:25',0),('67','Pole/Poles ','2015-01-31 21:44:25',0),('68','Pound/Pounds ','2015-01-31 21:44:25',0),('69','Quart/Quarts ','2015-01-31 21:44:25',0),('7','Bags ','2015-01-31 21:44:25',0),('70','Quarter/Quarters ','2015-01-31 21:44:25',0),('71','Reams ','2015-01-31 21:44:25',0),('72','Rod/Rods ','2015-01-31 21:44:25',0),('73','Rolls ','2015-01-31 21:44:25',0),('74','Sets ','2015-01-31 21:44:25',0),('75','Sheet/Sheets ','2015-01-31 21:44:25',0),('76','Short Ton/Short Tons ','2015-01-31 21:44:25',0),('77','Square Centimeter/Square Centimeters ','2015-01-31 21:44:25',0),('78','Square Feet ','2015-01-31 21:44:25',0),('79','Square Meters ','2015-01-31 21:44:25',0),('8','Barrel/Barrels ','2015-01-31 21:44:25',0),('80','Square Inch/Square Inches ','2015-01-31 21:44:25',0),('81','Square Mile/Square Miles ','2015-01-31 21:44:25',0),('82','Square Yard/Square Yards ','2015-01-31 21:44:25',0),('83','Stone/Stones ','2015-01-31 21:44:25',0),('84','Strand/Strands ','2015-01-31 21:44:25',0),('85','Tonne/Tonnes ','2015-01-31 21:44:25',0),('86','Tons ','2015-01-31 21:44:25',0),('87','Tray/Trays ','2015-01-31 21:44:25',0),('88','Unit/Units ','2015-01-31 21:44:25',0),('89','Volt/Volts ','2015-01-31 21:44:25',0),('9','Boxes ','2015-01-31 21:44:25',0),('90','Watt/Watts ','2015-01-31 21:44:25',0),('91','Wp ','2015-01-31 21:44:25',0),('92','Yard/Yards  ','2015-01-31 21:44:25',0),('d4d8a25e-93c8-51b5-9948-bc3ef3373b4e','asd','2015-02-07 16:43:31',1),('edb4741a-5821-504e-b2e0-b3d4ed9a9802','sekayol','2015-02-07 13:03:37',1),('fb9d9b06-7eb1-5002-9bb1-84d8e94e08d4','semato','2015-02-07 13:00:17',1);
-
-/*Table structure for table `vendor` */
-
-DROP TABLE IF EXISTS `vendor`;
-
-CREATE TABLE `vendor` (
-  `vendor_ID` char(36) NOT NULL,
-  `vendor_name` varchar(255) DEFAULT NULL,
-  `description` blob,
-  `contact_person` varchar(255) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `fax` varchar(20) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `address` blob,
-  `website` varchar(100) DEFAULT NULL,
-  `poscode` varchar(10) DEFAULT NULL,
-  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`vendor_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `vendor` */
-
-insert  into `vendor`(`vendor_ID`,`vendor_name`,`description`,`contact_person`,`email`,`fax`,`phone`,`address`,`website`,`poscode`,`dateCreated`,`deleted`) values ('1','PT. I-Softcomputer Indonesia','vendor server second import','narto','narto@i-softcomputer.com','076121009','076121010','Jl. Tiung 2 Sukajadi pekanbaru','www.i-softcomputer.com','12342','2015-05-02 21:01:48',0),('5f815c15-7382-567d-ba78-c3d57cdbc96a','asd','','asd','asd','asd','as','','','','2015-05-21 22:17:31',1),('c7d0ac07-42cb-55e5-8f5f-0999c02fcc6d','asd','asd','asd','asd','asd','asd','asd','asd','asd','2015-05-02 21:52:57',1);
 
 /*Table structure for table `weekend` */
 
